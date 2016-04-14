@@ -1,0 +1,25 @@
+{
+  "name": "a-avto",
+  "version": "1.0.0",
+  "description": "A simple express app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ADemukh/a-avto.github.io.git"
+  },
+  "keywords": [
+    "a-avto"
+  ],
+  "author": "Demukh Inc",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ADemukh/a-avto.github.io/issues"
+  },
+  "homepage": "https://github.com/ADemukh/a-avto.github.io#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
