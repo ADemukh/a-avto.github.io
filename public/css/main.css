@@ -1,49 +1,100 @@
 /*/*main.css*/
-
 html, body {
     font-size: 14px;
     background: url(/images/bg.jpg) repeat 0 0 #eceee9;
 }
 
+#navigation {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+  top: 35px;
+  left: 0;  
+}
+
 header{
     background: #7c7361;
-    padding-top: 38px;
 }
+
+#heading {
+  background: background: #7c7361;  
+
+  min-height: 238px;
+  height: 350px;
+  display: block;
+  width: 100%;
+  padding-top: 120px;
+  padding-right: 80px;
+}
+
+#heading h1, #heading h2, #heading h3, #heading h4, #heading h5, #heading p {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.25);
+}
+
+#heading h1 {
+  font-size: 90px;
+  line-height: 105px;
+  letter-spacing: -1px;
+  color: #fff;
+}
+
+#heading h4 {
+  font-size: 30px;
+  line-height: 40px;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+#heading-info{
+    height: 350px;
+    background: url(/images/header-bg.png) no-repeat right bottom transparent;
+}
+
+/* ==========================================================================
+   Header classes
+   ========================================================================== */
 
 /* navbar */
 .navbar-inverse {
     background-color: #585a56;
     border-color: #585a56;
     font-size: 14px;
+    background-image: none;
 }
 /* title */
 .navbar-inverse .navbar-brand {
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-    background: #333;
+    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 /* link */
 .navbar-inverse .navbar-nav > li > a {
-    color: #ffffff;    
+    color: #fff;    
     text-decoration: none;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {    
     text-decoration: underline;
+    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 .navbar-inverse .navbar-nav > .active > a, 
 .navbar-inverse .navbar-nav > .active > a:hover, 
 .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #555;
-    background-color: #ffffff;
+    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+}
+.navbar-inverse .navbar-nav > .active > a:hover, 
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
 }
 .navbar-inverse .navbar-nav > .open > a, 
 .navbar-inverse .navbar-nav > .open > a:hover, 
 .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: transparent;
+    background-color: #585a56;
 }
 
 .dropdown-menu{
@@ -60,12 +111,11 @@ header{
 .navbar-inverse .navbar-nav > .dropdown > .dropdown-menu li > a:hover,
 .navbar-inverse .navbar-nav > .dropdown > .dropdown-menu li > a:focus {    
     text-decoration: underline;
-
+    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);    
 }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
-
 }
 
 /* mobile version */
@@ -74,27 +124,35 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-    background-color: #DDD;
+    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus > div.navba-collapse.collapse {
+    display: block;
+}
+
 .navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #CCC;  
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
     background-color: #CCC;
 }
+
 @media (max-width: 767px) {
     ul.nav li.dropdown:hover > ul.dropdown-menu {
-        display: block;
         position: static;
+        float: none;
+        display: block;
         width: auto;
         margin-top: 0;
         background-color: transparent;
         border: 0;
         box-shadow: none;
     }
-
-/*    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-        color: #777;
-    }
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #333;
-    }*/
 }
+
+/* ==========================================================================
+   Footer classes
+   ========================================================================== */

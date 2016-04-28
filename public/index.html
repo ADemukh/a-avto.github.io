@@ -6,13 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- styles -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">	
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">	
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/ng-cloak.css" rel="stylesheet">
 </head>
 <body ng-cloak>
-	<header id="header">
-		<nav class="navbar navbar-inverse">
+		
+	<header id="heading">
+		<nav id="navigation" class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -40,17 +42,91 @@
 					</ul>
 				</div>
 			</div>
-		</nav>
+		</nav>		
+		<div id="heading-info" class="clearfix wrapper">			
+            <div id="header-left-block">
+	            <div id="logo">
+	                <a href="https://stohelp.by/">
+	                    <img src="/images/logo.png" alt="" width="188" height="101">
+	                </a>
+	            </div>
+
+            	<p>Бесплатный онлайн-сервис<br> по размещению заявок на запчасти для автомобилей</p>
+	            <!-- <ul class="clearfix" id="social">
+	                <li><a href="https://vk.com/stohelp" id="vk" target="_blank" rel="nofollow">&nbsp;</a></li>
+	                <li><a href="https://twitter.com/STOHelp" id="twitter" target="_blank" rel="nofollow">&nbsp;</a></li>
+	                <li><a href="https://www.facebook.com/groups/1564093237195822/" id="facebook" target="_blank" rel="nofollow">&nbsp;</a></li>
+	            </ul> -->
+        	</div>
+
+        	<div class="login-block right block white-block">
+                <!-- <form action="#login_check" method="post">
+                    <div id="login-header">
+                        <a href="#requests">Вход в рабочий кабинет</a>
+                    </div>
+                    <div class="field-item small-fields">
+                        <label>Логин</label>
+                        <input type="text" id="username" name="_username" value="">
+                    </div>
+                    <div class="field-item small-fields">
+                        <label>Пароль</label>
+                        <input type="password" id="password" name="_password" style="padding: 6px 15px;">
+                    </div>
+                                                            <div class="font-10 field-item clearfix">
+                        <a class="left" href="https://stohelp.by/recovery/?type=sto">Забыли пароль?</a>
+                        <a class="right" href="https://stohelp.by/register">
+                            Зарегистрироваться
+                        </a>
+                    </div>
+                    <button type="submit" class="btn gray">Войти</button>
+                </form> -->
+            </div>
+		</div>
+      
 	</header>
+	
 	<section>
-		<div class="container">
-			<h3>Collapsible Navbar</h3>
-			<p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-			<p>Only when the button is clicked, the navigation bar will be displayed.</p>
+		<div class="jumbotron">
+  			<div class="container">
+   				<h1>Hello, world!</h1>
+  				<p>...</p>
+			</div>			
 		</div>
 	</section>
-	<footer>
-		<p>Copyright Demukh Aleksey</p>
+	<footer id="footer">
+			<nav class="navbar navbar-inverse navbar-bottom container-fluid">
+ 				<div class="row">
+   					<div class="col-xs-12 col-sm-6 col-md-3">
+     					<ul>
+							<li><a href="/">Главная</a></li>
+							<li><a href="#autoshops">Автомагазины</a></li>
+							<li><a href="#help">Помощь</a></li>
+							<li><a href="#about">О проекте</a></li>
+							<li><a href="#promo">Автомагазинам</a></li>
+						</ul>
+   					</div>
+      				<div class="col-xs-12 col-sm-6 col-md-3">
+						<ul>
+							<li><a href="#promotions">Акции</a></li>
+							<li><a href="#news">Новости</a></li>
+							<li><a href="#requests">Заявки автолюбителей</a></li>
+							<li><a href="#create_request">Создать заявку</a></li>
+							<li><a href="#terms">Пользовательское соглашение</a></li>
+						</ul>
+       				</div>
+       				<div class="col-xs-6 col-sm-3 col-md-3">
+        			 	Звоните нам по телефону:<br>
+                            <span>+375 259091025</span>
+       				</div>
+      			 	<div class="col-xs-6 col-sm-3 col-md-3">
+       			  		Или пишите нам на почту:<br>
+                        <span><a href="mailto:info@stohelp.by" style="color: white;">info@stohelp.by</a></span>
+       				</div>       				
+ 				</div>
+ 				<div class="row copy">
+					<p>Copyright © 2016. All rights reserved.</p>
+				</div>
+			</nav>			
 	</footer>
 	
 	<!-- 	vendor libs -->
