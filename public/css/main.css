@@ -2,54 +2,48 @@
 html, body {
     font-size: 14px;
     background: url(/images/bg.jpg) repeat 0 0 #eceee9;
+    height: 100%;
 }
 
 #navigation {
   display: block;
-  position: fixed;
+  position: absolute;
   z-index: 1;
-  display: inline-block;
   width: 100%;
   top: 35px;
   left: 0;  
 }
 
-header{
-    background: #7c7361;
-}
-
 #heading {
-  background: background: #7c7361;  
-
-  min-height: 238px;
-  height: 350px;
-  display: block;
-  width: 100%;
-  padding-top: 120px;
-  padding-right: 80px;
+  background: #7c7361;
+  padding-top: 100px;
 }
 
 #heading h1, #heading h2, #heading h3, #heading h4, #heading h5, #heading p {
   text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.25);
 }
 
-#heading h1 {
-  font-size: 90px;
-  line-height: 105px;
-  letter-spacing: -1px;
-  color: #fff;
+#heading-container{
+  background: url(/images/header-bg.png) no-repeat right bottom transparent;
 }
 
-#heading h4 {
-  font-size: 30px;
-  line-height: 40px;
-  color: #fff;
-  margin-bottom: 25px;
+#heading > #heading-container > div.heading-content-block.left{
+  border: 1px red solid;
+  margin-left: 40px;
 }
 
-#heading-info{
-    height: 350px;
-    background: url(/images/header-bg.png) no-repeat right bottom transparent;
+#heading > #heading-container > div.heading-content-block.right{
+  border: 1px green solid;
+}
+
+#heading > #heading-container > div.heading-content-block{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login-block{
+  background: rgba(236, 236, 236, 0.89);
+  padding: 10px;
 }
 
 /* ==========================================================================
@@ -58,101 +52,110 @@ header{
 
 /* navbar */
 .navbar-inverse {
-    background-color: #585a56;
-    border-color: #585a56;
-    font-size: 14px;
-    background-image: none;
+  background-color: #585a56;
+  border-color: #585a56;
+  font-size: 14px;
+  background-image: none;
 }
 /* title */
 .navbar-inverse .navbar-brand {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 /* link */
 .navbar-inverse .navbar-nav > li > a {
-    color: #fff;    
-    text-decoration: none;
+  color: #fff;    
+  text-decoration: none;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {    
-    text-decoration: underline;
-    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+  text-decoration: underline;
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 .navbar-inverse .navbar-nav > .active > a, 
 .navbar-inverse .navbar-nav > .active > a:hover, 
 .navbar-inverse .navbar-nav > .active > a:focus {
-    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 .navbar-inverse .navbar-nav > .active > a:hover, 
 .navbar-inverse .navbar-nav > .active > a:focus {
-    color: #fff;
+  color: #fff;
 }
 .navbar-inverse .navbar-nav > .open > a, 
 .navbar-inverse .navbar-nav > .open > a:hover, 
 .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: #585a56;
+  background-color: #585a56;
 }
 
 .dropdown-menu{
-    padding: 0;
-    background: transparent;
-    border: none;
+  padding: 0;
+  background: transparent;
 }
 
 .navbar-inverse .navbar-nav > .dropdown > .dropdown-menu > li > a {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #585a56;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #585a56;
 }
 .navbar-inverse .navbar-nav > .dropdown > .dropdown-menu li > a:hover,
 .navbar-inverse .navbar-nav > .dropdown > .dropdown-menu li > a:focus {    
-    text-decoration: underline;
-    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);    
+  text-decoration: underline;
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);    
 }
 
 ul.nav li.dropdown:hover > ul.dropdown-menu {
-    display: block;
+  display: block;
 }
 
 /* mobile version */
 .navbar-inverse .navbar-toggle {
-    border-color: #DDD;
+  border-color: #DDD;
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-    background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
-}
-
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus > div.navba-collapse.collapse {
-    display: block;
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
 }
 
 .navbar-inverse .navbar-toggle .icon-bar {
-    background-color: #CCC;  
+  background-color: #CCC;  
 }
 
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
-    background-color: #CCC;
+  background-color: #CCC;
 }
 
 @media (max-width: 767px) {
-    ul.nav li.dropdown:hover > ul.dropdown-menu {
-        position: static;
-        float: none;
-        display: block;
-        width: auto;
-        margin-top: 0;
-        background-color: transparent;
-        border: 0;
-        box-shadow: none;
-    }
+  ul.nav li.dropdown:hover>ul.dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
 }
 
 /* ==========================================================================
    Footer classes
    ========================================================================== */
+#footer{
+  background: #565954;
+  background: rgba(86, 89, 84, .70);
+  color: #cccccc;
+  width: 100%;
+  padding-top: 22px;
+  margin-top: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
+#footer .navbar-inverse {
+  background-image: #565954;
+  background-image: rgba(86, 89, 84, .70);
+}
