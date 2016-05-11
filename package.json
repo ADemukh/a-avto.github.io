@@ -8,6 +8,7 @@
     "postinstall": "bower install"
   },
   "dependencies": {
+    "bower": "^1.7.9",
     "browser-sync": "^2.2.3",
     "express": "^4.13.4",
     "gulp": "^3.8.11",
@@ -38,8 +39,5 @@
     "express"
   ],
   "author": "Demukh Inc",
-  "license": "MIT",
-  "devDependencies": {
-    "gulp-import-css": "^0.1.2"
-  }
+  "license": "MIT"
 }
