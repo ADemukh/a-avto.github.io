@@ -3,14 +3,10 @@ Setup Environment
 
 2. install git from https://git-scm.com/
 
-3. install gulp: 
-	> npm install -g gulp
+3. clone sources from https://github.com/ADemukh/a-avto.github.io
 
-4. install bower: 
-	> npm install -g bower
+4. go to source folder
 
-5. install dependencies:
-	> npm install
+5. run "npm install" to install dependencies
 
-6. compile and run site locally:
-	> gulp
+6. run "gulp" to compile and run site locally
