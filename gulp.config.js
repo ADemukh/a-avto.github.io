@@ -28,9 +28,10 @@ module.exports = function exports() {
             server: {
                 baseDir: "./build"
             },
-            tunnel: true,
             host: 'localhost',
-            port: 3000
+            port: 3000,
+            notify: false,
+            ghostMode: false
         },
         nodemon: { script: 'index.js' }
     };

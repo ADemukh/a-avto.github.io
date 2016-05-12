@@ -1,0 +1,31 @@
+header {
+  background: #7c7361;
+  padding-top: 50px;
+}
+
+header h1, header h2, header h3, header h4, header h5, header p {
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.25);
+}
+
+header .container{
+  background: url(/img/header-bg.png) no-repeat right bottom transparent;
+}
+
+header .container > div.heading-content-block.left{
+  border: 1px red solid;
+  margin-left: 40px;
+}
+
+header .container > div.heading-content-block.right{
+  border: 1px green solid;
+}
+
+header .container > div.heading-content-block{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login-block{
+  background: rgba(236, 236, 236, 0.89);
+  padding: 10px;
+}

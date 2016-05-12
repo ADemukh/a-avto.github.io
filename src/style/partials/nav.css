@@ -1,0 +1,86 @@
+#navigation.navbar-inverse {
+  background-color: #585a56;
+  background-image: none;
+}
+#navigation.navbar {
+  margin-bottom: 0px; 
+}
+/* brand */
+#navigation.navbar-inverse .navbar-brand {
+  color: #fff;
+}
+#navigation.navbar-inverse .navbar-brand:hover,
+#navigation.navbar-inverse .navbar-brand:focus {
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+}
+/* link */
+#navigation.navbar-inverse .navbar-nav > li > a {
+  color: #fff;    
+  text-decoration: none;
+}
+#navigation.navbar-inverse .navbar-nav > li > a:hover,
+#navigation.navbar-inverse .navbar-nav > li > a:focus {    
+  text-decoration: underline;
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+}
+#navigation.navbar-inverse .navbar-nav > .active > a, 
+#navigation.navbar-inverse .navbar-nav > .active > a:hover, 
+#navigation.navbar-inverse .navbar-nav > .active > a:focus {
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+}
+#navigation.navbar-inverse .navbar-nav > .active > a:hover, 
+#navigation.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #fff;
+}
+#navigation.navbar-inverse .navbar-nav > .open > a, 
+#navigation.navbar-inverse .navbar-nav > .open > a:hover, 
+#navigation.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #585a56;
+}
+
+#navigation .dropdown-menu{
+  padding: 0;
+}
+
+#navigation .dropdown-menu > li > a {
+  color: #ffffff;
+  background-color: #585a56;
+}
+
+#navigation .dropdown-menu li > a:hover,
+#navigation .dropdown-menu li > a:focus {    
+  text-decoration: underline;
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);    
+}
+
+#navigation ul.nav li.dropdown:hover > ul.dropdown-menu {
+  display: block;
+}
+
+/* mobile version */
+#navigation.navbar-inverse .navbar-toggle {
+  border-color: #DDD;
+}
+#navigation.navbar-inverse .navbar-toggle:hover,
+#navigation.navbar-inverse .navbar-toggle:focus {
+  background-image: -webkit-linear-gradient(top,#555 0,rgb(124, 115, 97) 100%);
+}
+#navigation.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #CCC;  
+}
+#navigation.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
+  background-color: #CCC;
+}
+
+@media (max-width: 767px) {
+  #navigation ul.nav li.dropdown:hover>ul.dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}
