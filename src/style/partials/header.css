@@ -29,3 +29,8 @@ header .container > div.heading-content-block{
   background: rgba(236, 236, 236, 0.89);
   padding: 10px;
 }
+
+.logo-block{
+  color: #ded2b8;
+  padding: 10px;
+}

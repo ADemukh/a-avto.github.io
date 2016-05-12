@@ -4,3 +4,7 @@ body {
     background: url(/img/bg.jpg) repeat 0 0 #eceee9;
 }
 
+.jumbotron{
+	background-color: transparent; 
+}
+
