@@ -8,3 +8,8 @@ body {
 	background-color: transparent; 
 }
 
+a {
+  color: #666666;
+  text-decoration: underline;
+}
+
