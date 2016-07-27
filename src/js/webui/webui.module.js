@@ -18,6 +18,10 @@
             templateUrl: 'webui/main/main.tmpl.html',
             url: '/',
             parent: 'root'
+        }).state('autoshops', {
+            template: '<h2>Autoshops</h2>',
+            url: '/autoshops',
+            parent: 'root'
         }).state('news', {
             template: '<h2>News</h2>',
             url: '/news',
@@ -38,11 +42,6 @@
             template: '<h2>Terms & conditions</h2>',
             url: '/term',
             parent: 'root'
-        }).state('autoshops', {
-            template: '<h2>Auto shops</h2>',
-            url: '/autoshops',
-            parent: 'root'
         })
     }
 })();
-
