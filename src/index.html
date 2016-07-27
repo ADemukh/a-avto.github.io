@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app" lang="en">
+<html ng-app="webui" lang="en">
 <head>
 	<title>A-avto</title>
 	<meta charset="utf-8">
@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-cloak>
-	//= template/navigation.html
-	//= template/header.html
+	<div ui-view="navigation"></div>
+	<div ui-view="heading"></div>
 
 	<div ui-view></div>
 	<!-- temp content -->
@@ -26,8 +26,8 @@
 		</div>
 	</section>
 
-	//= template/footer.html
-
+	<div ui-view="footer"></div>
+	
 	<script src="js/main.js"></script>
 </body>
 </html>

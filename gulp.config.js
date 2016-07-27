@@ -7,16 +7,21 @@ module.exports = function exports() {
             js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
             style: 'src/style/main.css',
             img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-            fonts: 'src/fonts/**/*.*'
+            fonts: 'src/fonts/**/*.*',
+            templates: 'src/js/**/*.tmpl.html'
         },
         build: { //Тут мы укажем куда складывать готовые после сборки файлы
-            html: 'build/',
-            js: 'build/js/',
-            css: 'build/css/',
-            img: 'build/img/',
-            fonts: 'build/fonts/'
+            html: '.build/',
+            js: '.build/js/',
+            css: '.build/css/',
+            img: '.build/img/',
+            fonts: '.build/fonts/',
+            templates: '.tmp/tempjs'
         },
-        clean: './build', // Тут мы указываем, какую папку чистить
+        clean: { // Тут мы указываем, какую папку чистить
+            build: './.build',
+            tmp: './.tmp'
+        },
         watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
             html: 'src/**/*.html',
             js: 'src/js/**/*.js',
@@ -26,14 +31,24 @@ module.exports = function exports() {
         },
         browserSync:{  // Для запуска браузера локально и синхронизации с исходниками
             server: {
-                baseDir: "./build"
+                baseDir: "./.build"
             },
             host: 'localhost',
             port: 3000,
             notify: false,
             ghostMode: false
         },
-        nodemon: { script: 'index.js' }
+        nodemon: { script: 'index.js' },
+        templateCache: {
+            filename: 'templates.js',
+            options: {
+                base: __dirname + '\\src\\js',
+                module: 'webui',
+                standalone: false,
+                templateHeader: '//templates\r\nangular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
+                templateFooter: '}]);'
+            }
+        }
     };
 
     return config;    
