@@ -13,3 +13,6 @@
 //= services/services.module.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
+//= webui/navigation/navigation.directive.js
+//= webui/heading/heading.directive.js
+//= webui/footer/footer.directive.js
