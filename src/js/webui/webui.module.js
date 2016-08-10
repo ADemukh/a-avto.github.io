@@ -26,9 +26,9 @@
             template: '<h2>News</h2>',
             url: '/news',
             parent: 'root'
-        }).state('promotions', {
-            template: '<h2>Promotions</h2>',
-            url: '/promotions',
+        }).state('agreement', {
+            templateUrl: 'webui/agreement/agreement.tmpl.html',
+            url: '/agreement',
             parent: 'root'
         }).state('about', {
             template: '<h2>About</h2>',
