@@ -18,17 +18,21 @@
             templateUrl: 'webui/main/main.tmpl.html',
             url: '/',
             parent: 'root'
-        }).state('autoshops', {
-            template: '<h2>Autoshops</h2>',
-            url: '/autoshops',
+        }).state('search', {
+            template: '<h2>Mappp</h2>',
+            url: '/search',
             parent: 'root'
-        }).state('news', {
-            template: '<h2>News</h2>',
-            url: '/news',
+        }).state('reg', {
+            template: '<h2>Registration</h2>',
+            url: '/user/reg',
             parent: 'root'
-        }).state('promotions', {
-            template: '<h2>Promotions</h2>',
-            url: '/promotions',
+        }).state('enter', {
+            template: '<h2>Enter</h2>',
+            url: '/user/enter',
+            parent: 'root'
+        }).state('bid', {
+            template: '<h2>New Bid</h2>',
+            url: '/bid/newbid',
             parent: 'root'
         }).state('about', {
             template: '<h2>About</h2>',
@@ -41,6 +45,10 @@
         }).state('term', {
             template: '<h2>Terms & conditions</h2>',
             url: '/term',
+            parent: 'root'
+        }).state('rules', {
+            templateUrl: 'webui/rules/rules.tmpl.html',
+            url: '/rules',
             parent: 'root'
         })
     }
