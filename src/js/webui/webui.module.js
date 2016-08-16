@@ -42,9 +42,9 @@
             template: '<h2>About</h2>',
             url: '/about',
             parent: 'root'
-        }).state('help', {
-            template: '<h2>Help</h2>',
-            url: '/help',
+        }).state('contacts', {
+            templateUrl: 'webui/contacts/contacts.tmpl.html',
+            url: '/contacts',
             parent: 'root'
         }).state('term', {
             template: '<h2>Terms & conditions</h2>',
