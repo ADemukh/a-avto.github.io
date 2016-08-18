@@ -18,13 +18,13 @@
             templateUrl: 'webui/main/main.tmpl.html',
             url: '/',
             parent: 'root'
-        }).state('search', {
-            template: '<h2>Mappp</h2>',
-            url: '/search',
+        }).state('user', {
+            templateUrl: 'webui/user/user.tmpl.html',
+            url: '/user',
             parent: 'root'
-        }).state('reg', {
-            template: '<h2>Registration</h2>',
-            url: '/user/reg',
+        }).state('getpass', {
+            templateUrl: 'webui/getpass/getpass.tmpl.html',
+            url: '/user/getpass',
             parent: 'root'
         }).state('agreement', {
             templateUrl: 'webui/agreement/agreement.tmpl.html',
