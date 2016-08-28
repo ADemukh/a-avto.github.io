@@ -42,7 +42,7 @@ module.exports = function exports() {
         templateCache: {
             filename: 'templates.js',
             options: {
-                base: __dirname + '\\src\\js',
+                base: '',
                 module: 'webui',
                 standalone: false,
                 templateHeader: '//templates\r\nangular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
