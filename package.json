@@ -1,6 +1,6 @@
 {
   "name": "a-avto",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An express a-avto app.",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "rimraf": "^2.5.4"
   },
   "engines": {
-    "node": "0.12.7"
+    "node": "4.4.3"
   },
   "repository": {
     "type": "git",
