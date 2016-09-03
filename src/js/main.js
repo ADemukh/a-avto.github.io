@@ -17,4 +17,4 @@
 //= webui/heading/heading.directive.js
 //= webui/footer/footer.directive.js
 //= webui/video/video.directive.js
-//= webui/howitworks/howitworks.tmpl.html
+//= webui/howitworks/howitworks.directive.js
