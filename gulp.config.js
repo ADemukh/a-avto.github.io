@@ -38,7 +38,7 @@ module.exports = function exports() {
             notify: false,
             ghostMode: false
         },
-        nodemon: { script: 'index.js' },
+        nodemon: { script: '--debug index.js' },
         templateCache: {
             filename: 'templates.js',
             options: {

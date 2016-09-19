@@ -2,7 +2,7 @@
 (function WebUIModuleInit() {
 	"use strict";
 	
-	angular.module('webui', ['ui.router', 'services'])
+	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap'])
         .config(WebUIModuleConfig);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider'];

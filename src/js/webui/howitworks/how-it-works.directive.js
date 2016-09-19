@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('webui')
-        .directive('qhowitworks', HowItWorksDirective);
+        .directive('qHowItWorks', HowItWorksDirective);
 
     function HowItWorksDirective() {
         return {
                 restrict: 'E',
-                templateUrl: 'webui/howitworks/howitworks.tmpl.html',
+                templateUrl: 'webui/howitworks/how-it-works.tmpl.html',
                 scope: {}
         };
     }

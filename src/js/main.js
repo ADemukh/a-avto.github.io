@@ -6,6 +6,8 @@
 //= ../../bower_components/bootstrap/dist/js/bootstrap.min.js
 //= ../../bower_components/angular/angular.min.js
 //= ../../bower_components/angular-ui-router/release/angular-ui-router.min.js
+//= ../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
+
 
 /*
  * Custom
@@ -17,4 +19,4 @@
 //= webui/heading/heading.directive.js
 //= webui/footer/footer.directive.js
 //= webui/video/video.directive.js
-//= webui/howitworks/howitworks.directive.js
+//= webui/howitworks/how-it-works.directive.js
