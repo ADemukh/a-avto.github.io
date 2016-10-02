@@ -22,6 +22,10 @@
 //= webui/footer/footer.directive.js
 //= webui/video/video.directive.js
 //= webui/howitworks/how-it-works.directive.js
+
+//= webui/newbid/new-bid.directive.js
+//= webui/newbid/new-bid.controller.js
+
 //= webui/user/user-login.directive.js
 //= webui/user/user-login.controller.js
 
