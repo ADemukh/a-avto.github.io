@@ -19,12 +19,12 @@
             url: '/',
             parent: 'root'
         }).state('user', {
-            templateUrl: 'webui/user/user.tmpl.html',
+            template: '<q-user-login/>',
             url: '/user',
             parent: 'root'
         }).state('getpass', {
-            templateUrl: 'webui/getpass/getpass.tmpl.html',
-            url: '/user/getpass',
+            template: '<q-get-pass/>',
+            url: '/getpass',
             parent: 'root'
         }).state('agreement', {
             templateUrl: 'webui/agreement/agreement.tmpl.html',
@@ -38,10 +38,11 @@
             template: '<h2>New Bid</h2>',
             url: '/bid/newbid',
             parent: 'root'
-        }).state('about', {
-            template: '<h2>About</h2>',
-            url: '/about',
+        }).state('registration', {
+            template: '<q-registration/>',
+            url: '/registration',
             parent: 'root'
+
         }).state('contacts', {
             templateUrl: 'webui/contacts/contacts.tmpl.html',
             url: '/contacts',

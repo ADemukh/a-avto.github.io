@@ -1,0 +1,43 @@
+
+<div style="text-align: center;"> 
+	<div class="container">
+		<br>
+		<div class="panel enter single center">
+			<div class="searchBlock">
+				<h1>{{vm.repair}}</h1>
+
+				<span>{{vm.information}}</span>	
+				<br>
+				<br>	
+							
+				<span>{{vm.auto}}</span>	
+				<br>
+				<select ng-model="vm.car" ng-options="c for c in vm.cars " ng-click="vm.k(vm.car)" ><option></option></select>
+				<br>
+				<span>{{vm.modell}}</span>
+				<br>
+				<select ng-model="vm.model" ng-options="c for c in vm.models" ng-click="vm.f(vm.model)"><option></option></select>
+				<br>
+				<span>{{vm.yea}} </span>
+				<br>
+				<select ng-model="vm.y" ng-options="c for c in vm.years"><option></option></select>
+				<br>
+				<br>
+				<p>{{vm.what}}</p>
+
+				<textarea placeholder="Например: Замена масла"></textarea>	
+							
+				<button type="button" class="button button_orange actionNewbid">
+					<span>{{vm.application}}</span>
+				</button>
+				<p>{{vm.departure }}</p>
+					
+				<button type="submit" class="button button_blue actionSearch">
+					<span>{{vm.search}}</span>
+				</button>
+				<p>{{vm.price}}</p>
+			</div>
+		</div>
+	</div>
+</div>
+

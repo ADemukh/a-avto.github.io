@@ -17,3 +17,16 @@
 //= webui/heading/heading.directive.js
 //= webui/footer/footer.directive.js
 //= webui/video/video.directive.js
+
+//= webui/user/user-login.directive.js
+//= webui/user/user-login.controller.js
+
+//= webui/getpass/get-pass.directive.js
+//= webui/getpass/get-pass.controller.js
+
+//= webui/orderreg/order-registration.directive.js
+//= webui/orderreg/order-registration.controller.js
+
+//= webui/registration/registration.directive.js
+//= webui/registration/registration.controller.js
+
