@@ -36,7 +36,7 @@
             url: '/user/enter',
             parent: 'root'
         }).state('bid', {
-            template: '<h2>New Bid</h2>',
+            template: '<q-new-bid>',
             url: '/bid/newbid',
             parent: 'root'
         }).state('registration', {
