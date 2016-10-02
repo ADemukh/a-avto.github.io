@@ -12,7 +12,9 @@
 /*
  * Custom
  */
+ 
 //= services/services.module.js
+//= services/cars/cars.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
 //= webui/navigation/navigation.directive.js
@@ -31,4 +33,3 @@
 
 //= webui/registration/registration.directive.js
 //= webui/registration/registration.controller.js
-
