@@ -3,7 +3,8 @@
 	"use strict";
 	
 	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap'])
-        .config(WebUIModuleConfig);
+        .config(WebUIModuleConfig)
+        .constant('_', window._);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 

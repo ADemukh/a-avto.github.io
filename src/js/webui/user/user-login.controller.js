@@ -11,14 +11,5 @@ function UserLoginController () {
 	vm.enterSiteCaption = 'Вход на сайт';
 	vm.enterCaption = 'Войти';
 	vm.forgotPasswordCaption = 'Забыли пароль?';
-	vm.cars = getCars();
-	vm.click = function click (car) {
-		// body...
-	}
-
-	function getCars () {
-		// body...
-		return ['Volvo','VW','Mazda'];
-	}
 }
 })();

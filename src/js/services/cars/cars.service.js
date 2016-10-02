@@ -4,7 +4,11 @@
     angular.module('services')
         .factory('cars', CarsService);
 
-    function CarsService() {
+    CarsService.$inject = ['_'];
+
+    function CarsService(_) {
+        var config = {};
+
         return {
             getCars: getCars,
             getCarModels: getCarModels,

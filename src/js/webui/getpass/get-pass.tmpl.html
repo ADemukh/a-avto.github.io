@@ -1,27 +1,17 @@
 <div style="text-align: center;"> 
     <br>
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel enter single center">
-                <span class="logo icons icon-icons_char_big">
-            <span class="path1"></span>
-            <span class="path2"></span>
-            <span class="path3"></span></span>
-            <h3>{{am.passwordReset}}</h3>
-            <br>
-            <form method="post" role="form" action="/user/getpass">
-                <input name="email" maxlength="60" class="mobfix last" value="" placeholder="E-mail или телефон">            
-                <br>
-                <br>
-                <button type="submit" class="actionRecoverPassword button button_blue">
-                    <span>{{am.restorePassword}}</span>
-                </button>
-
-                <div class="registration-input reg-box-error" style="display:  block"></div>
-                <div class="reg-box-error" style="display:  none"></div>
-            <br>
-            </form>
-            </div>
-        </div>           
+        <div class="panel enter single center">
+        <h3>{{am.passwordReset}}</h3>
+        <br>
+        <input name="email" maxlength="60" class="mobfix last" value="" placeholder="E-mail или телефон">            
+        <br>
+        <br>
+        <button type="button">
+            <span>{{am.restorePassword}}</span>
+        </button>
+        <br>
+        <br>
+        </div>
     </div>
 </div>

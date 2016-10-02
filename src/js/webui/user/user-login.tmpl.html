@@ -1,22 +1,21 @@
 <div style="text-align: center;"> 
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
             <br>
             <div class="panel enter single center">
             <h3>{{vm.enterSiteCaption}}</h3>
             <br> 
-            <input name="email" placeholder="E-mail" value="">   
+            <input name="email" placeholder="E-mail">   
             <br>     
+            <br>
             <input name="password" placeholder="Пароль">
             <br>
-            <select ng-model="vm.car" ng-options="c for c in vm.cars"><option></option></select>
             <br>
-            <button ng-click="vm.click(vm.car)">
-                <span>{{vm.enterCaption}}</span>
+            <button ng-click="vm.click(vm.car)">{{vm.enterCaption}}
             </button>
             <br>
             <a ui-sref="getpass" href="#/user/getpass">{{vm.forgotPasswordCaption}}</a>
-            
+            <br>
+            <br>
         </div>
     </div>
 </div>

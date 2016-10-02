@@ -1,9 +1,15 @@
+<style type="text/css">
+	.text-align-center {
+		text-align: center;
+	}
+</style>
 
-<div style="text-align: center;"> 
+
+<div class="text-align-center"> 
 	<div class="container">
 		<br>
 		<div class="panel enter single center">
-			<div class="searchBlock">
+
 				<h1>{{vm.repair}}</h1>
 
 				<span>{{vm.information}}</span>	
@@ -12,31 +18,31 @@
 							
 				<span>{{vm.auto}}</span>	
 				<br>
-				<select ng-model="vm.car" ng-options="c for c in vm.cars" ></select>
+				<select style="width: 200px; height: 22px;" ng-model="vm.car" ng-options="c for c in vm.cars" ></select>
 				<br>
 				<span>{{vm.modell}}</span>
 				<br>
-				<select ng-model="vm.model" ng-options="c for c in vm.models"></select>
+				<select style="width: 200px; height: 22px;" ng-model="vm.model" ng-options="c for c in vm.models"></select>
 				<br>
-				<span>{{vm.year}} </span>
+				<span>{{vm.yearr}} </span>
 				<br>
-				<select ng-model="vm.y" ng-options="c for c in vm.years"></select>
+				<select style="width: 100px;  height: 22px;" ng-model="vm.year" ng-options="c for c in vm.years"></select>
 				<br>
 				<br>
 				<p>{{vm.what}}</p>
-
-				<textarea placeholder="Например: Замена масла"></textarea>	
-							
-				<button type="button" class="button button_orange actionNewbid">
+				<textarea style="width: 500px;" placeholder="Например: Замена масла" ng-model="vm.details"></textarea>	
+				<br>
+				<br>	
+				<button type="button" ng-click="vm.sendToAll()">
 					<span>{{vm.application}}</span>
 				</button>
 				<p>{{vm.departure }}</p>
 					
-				<button type="submit" class="button button_blue actionSearch">
+				<button type="button" ng-click="vm.searchByMap()">
 					<span>{{vm.search}}</span>
 				</button>
 				<p>{{vm.price}}</p>
-			</div>
+			
 		</div>
 	</div>
 </div>

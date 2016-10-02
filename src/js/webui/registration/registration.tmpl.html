@@ -1,58 +1,53 @@
 <div style="text-align: center;"> 
 	<div class="container">
-		<div class="tab_body">
-			<div class="col-md-6">
-				<br>
-	            <div class="panel enter single center">
-					
-						<h3><span class="reg">{{vm.clientRegistration}}</span></h3>
-					
-						<input id="regform-name" class="mobfix" name="RegForm[name]" placeholder="Контактное имя" type="text" value="">
-		 
-						<input id="regform-email" class="mobfix" name="RegForm[email]" placeholder="E-mail" type="text" value="">
-
-						<input id="regform-phone" name="RegForm[phone]" placeholder="+7 xxx xxx xx xx" type="text">
-
-						<button type="button" class="button button_blue regformbutton">
-								<span class="buttonText">{{vm.registerClient}}</span>
-						</button>
-
-						<div class="policy">{{vm.q}}<a target="_blank" href="#/agreement">{{vm.w}}</a>{{vm.e}}<a target="_blank" href="#/privacy">{{vm.r}}</a>.
-						</div>
-
-						<br>
-				</div>
-			</div>
-
-
-
-			<div class="col-md-6">
-				<br>
-				<div class="panel enter single center">
-
-					<h3><span class="reg">{{vm.carRegistration}}</span></h3>
-
-					<input type="text" name="name" value="" placeholder="Название автосервиса">
-
-					<input type="text" name="email" placeholder="E-mail">
-
-					<input type="text" name="url" placeholder="Сайт">
-
-					<input type="text" name="address" placeholder="г.Москва ул. Полянка 32 " class="ui-autocomplete-input" autocomplete="off">
-					
-					<input data-phone="1" type="text" name="phone[]" class="sto-phone_1" placeholder="+7 xxx xxx xx xx">
-
-					<textarea name="about" placeholder="Информация о компании" rows="4"></textarea>
-					
-					<input type="checkbox" name="dealer" value="1" id="official_dealer">
-						<label for="official_dealer">{{vm.authorizedDealer}}</label>
-							
-					<button type="button" class="button button_blue regservice"><span>{{vm.registerCar}}</span></button>
-									
-					<br>
-						
-				</div>
-			</div>
-   		</div>
+		<br>
+        <div class="panel enter single center">		
+			<h3>{{vm.clientRegistration}}</h3>
+			<br>				
+			<input name="RegForm[name]" placeholder="Контактное имя">
+			<br>
+			<br>		 
+			<input name="RegForm[email]" placeholder="E-mail">
+			<br>
+			<br>
+			<input name="RegForm[phone]" placeholder="+7 xxx xxx xx xx">
+			<br>
+			<br>
+			<button type="button">{{vm.registerClient}}
+			</button>
+			<br>
+			<br>
+			{{vm.q}}<a target="_blank" href="#/agreement">{{vm.w}}</a>{{vm.e}}<a target="_blank" href="#/privacy">{{vm.r}}</a>.
+			<br>
+			<br>
+		</div>
+		<br>
+		<div class="panel enter single center">
+			<h3>{{vm.carRegistration}}</h3>
+			<br>
+			<input name="name" placeholder="Название автосервиса">
+			<br>
+			<br>
+			<input name="email" placeholder="E-mail">
+			<br>
+			<br>
+			<input name="url" placeholder="Сайт">
+			<br>
+			<br>
+			<input name="address" placeholder="г.Москва ул. Полянка 32 ">
+			<br>
+			<br>
+			<input name="phone[]" placeholder="+7 xxx xxx xx xx">
+			<br>
+			<br>
+			<textarea style="width: 350px;" name="about" placeholder="Информация о компании" ></textarea>
+			<br>
+			<input type="checkbox" name="dealer" value="1">{{vm.authorizedDealer}}
+			<br>
+			<br>	
+			<button type="button">{{vm.registerCar}}</button>
+			<br>									
+			<br>		
+		</div>
 	</div>
 </div>

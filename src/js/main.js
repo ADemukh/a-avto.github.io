@@ -7,7 +7,7 @@
 //= ../../bower_components/angular/angular.min.js
 //= ../../bower_components/angular-ui-router/release/angular-ui-router.min.js
 //= ../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
-
+//= ../../bower_components/lodash/dist/lodash.min.js
 
 /*
  * Custom
@@ -15,6 +15,7 @@
  
 //= services/services.module.js
 //= services/cars/cars.service.js
+//= services/newBid/newBid.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
 //= webui/navigation/navigation.directive.js
