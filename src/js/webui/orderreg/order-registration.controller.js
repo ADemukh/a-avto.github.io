@@ -20,7 +20,9 @@
 		vm.departure = 'Ваша заявка будет отправлена во все сервисы, и вы сможете выбрать лучший';
 		vm.search = 'Искать на карте';
 		vm.price = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
-		vm.cars = cars.getCars();
+
+        vm.cars=_.keys(cars.cars);
+
 
 		vm.sendToAll=function sendToAll(){
 			newBid.car = vm.car;
@@ -36,18 +38,13 @@
 		
 
 		$scope.$watch('vm.car', function watchCar(newValue, oldValue) {
-			vm.models = [];
-			vm.years = [];
-			if (vm.car) {
-				vm.models = cars.getCarModels(vm.car);	
-			}
+			vm.models = _.keys(cars.cars[vm.car]);;	
+			
 		});
 
 		$scope.$watch('vm.model', function watchCar(newValue, oldValue) {
-			vm.years = [];
-			if (vm.model) {		
-				vm.years = cars.getCarModelYears(vm.model);	
-			}
+			vm.years = cars.cars[vm.car][vm.model];	
+			
 		});
 	}
 })();
