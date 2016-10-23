@@ -35,6 +35,10 @@
             template: '<h2>Enter</h2>',
             url: '/user/enter',
             parent: 'root'
+        }).state('maps', {
+            template: '<q-maps/>',
+            url: '/maps',
+            parent: 'root'
         }).state('bid', {
             template: '<q-new-bid>',
             url: '/bid/newbid',

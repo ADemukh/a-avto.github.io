@@ -36,5 +36,8 @@
 //= webui/orderreg/order-registration.directive.js
 //= webui/orderreg/order-registration.controller.js
 
+//= webui/maps/maps.directive.js
+//= webui/maps/maps.controller.js
+
 //= webui/registration/registration.directive.js
 //= webui/registration/registration.controller.js
