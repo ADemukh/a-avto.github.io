@@ -15,6 +15,7 @@
  
 //= services/services.module.js
 //= services/cars/cars.service.js
+//= services/shops/shops.service.js
 //= services/newBid/newBid.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
