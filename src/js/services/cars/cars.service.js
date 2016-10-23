@@ -7,10 +7,9 @@
     CarsService.$inject = ['_'];
 
     function CarsService(_) {
-
         var cars={
             'Acura':{
-                'CL':['1996','1997','1998','1999','2000','2001','2002','2003'],
+                'CL':[''],
                 'CSX':[''],
                 'EL':[''],
                 'ILX':[''],
@@ -1739,13 +1738,33 @@
             },
             'Ё-авто':{
                 'Ё-Кроссовер':['']
-            }
-
-
-        };
-        return {  
+            }};      
+        return {
             cars: cars,
+            getCar: getCar,
+            getCarModels: getCarModels,
+            getYears: getYears
         };
+
+        function getCar(){
+            return _.keys(cars)
+        }
+
+        function getCarModels(car) {
+            return _.keys(cars[car])   
+        }
+
+        function getYears() {
+            var date = new Date();        
+            var nowyears=date.getFullYear() ;
+            var years=[];
+            for (var i=nowyears; i>=1970; i--)
+            {
+                years.push(i);
+
+            }
+            return years;
+        }
 
 
     }
