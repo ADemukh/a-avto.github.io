@@ -2,7 +2,7 @@
 (function WebUIModuleInit() {
 	"use strict";
 	
-	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap'])
+	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'ymaps'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 

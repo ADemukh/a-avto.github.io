@@ -1,19 +1,30 @@
-// (function ShopsServiceInit() {
-//     'use strict';
+(function ShopsServiceInit() {
+    'use strict';
 
-//     angular.module('services')
-//         .factory('shops', ShopsService);
+    angular.module('services')
+        .factory('shops', ShopsService);
+    ShopsService.$inject = ['_'];
 
-//     function ShopsService(){
-//         var shops = {
-//             Auto: {55.831903, 37.411961},
-//             Auto1: {55.763338,37.565466},
-//             Auto2: {55.763338,37.565466}};
+    function ShopsService(_){
+        var shops = [
+            ["53.902257","27.561831", "375336563560"]
+            ,
+            ["53.902277","27.561831", "375336563560"]];
+        return {
+        	getCoord: getCoord
+        };
 
-//         function getCoordinats
+        function getCoord(){
+			for (var i = 0; i < shops.length; i++) {
+			  var i1=shops[i][0];
+			  var i2=shops[i][1];
+			  var a =+i1;
+			  var b =+i2;
+			  var s =[s,[[a,b]]]; 
+			}
+        	return s[1]
+        }
+    }
+    
+})();
 
-
-//     };
-//         return{};
-//     }
-// })();
