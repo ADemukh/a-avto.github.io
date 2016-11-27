@@ -6,23 +6,51 @@
     ShopsService.$inject = ['_'];
 
     function ShopsService(_){
-        var shops = [
-            ["53.902257","27.561831", "375336563560"]
+        var shops = {1:
+            ["27.561831","53.902257", "375336563560","Auto", "Минск"]
             ,
-            ["53.902277","27.561831", "375336563560"]];
+            2:["27.661831","53.902257", "375336563560", "Mashine","Минск1"]
+            ,
+            3:["27.761831","53.902257", "375336563560", "Avto","Минск2"]};
         return {
-        	getCoord: getCoord
+            getName: getName,
+        	getCoord: getCoord,
+            getAdress: getAdress
         };
+        function getName(){
+            var f=_.keys(shops);
+            var k=[];
+            for (var i = 1; i < f.length+1; i++) {
+              var i1=shops[i][3];
+              
+              k[k.length]=i1;
+          }
+          return k;
+        }
 
         function getCoord(){
-			for (var i = 0; i < shops.length; i++) {
+            var f=_.keys(shops);
+            var s=[];
+			for (var i = 1; i < f.length+1; i++) {
 			  var i1=shops[i][0];
 			  var i2=shops[i][1];
 			  var a =+i1;
 			  var b =+i2;
-			  var s =[s,[[a,b]]]; 
+			  s[s.length]=[a,b];
+               
 			}
-        	return s[1]
+        	return s
+        }
+
+        function getAdress(){
+            var f=_.keys(shops);
+            var s=[];
+            for (var i = 1; i < f.length+1; i++) {
+              var i1=shops[i][4];
+              s[s.length]=i1;
+               
+            }
+            return s
         }
     }
     

@@ -8,7 +8,7 @@
 //= ../../bower_components/angular-ui-router/release/angular-ui-router.min.js
 //= ../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
 //= ../../bower_components/lodash/dist/lodash.min.js
-//= ../../bower_components/angular-ymaps/angular-ymaps.js
+//= ../../bower_components/ya-map/ya-map-2.1.min.js
 
 /*
  * Custom

@@ -1,153 +1,53 @@
-<!-- <div styles="width: 300px; height: 300px; background: grey;">
-    <yandex-map center="vm.center" zoom="vm.zoom">
-        <ymap-marker coordinates="vm.coords"></ymap-marker>
-    </yandex-map>
-</div> -->
-
-
-
-
-<yandex-map center="vm.center" zoom="vm.zoom"></yandex-map>
-
-
-
-
-
-
-<h2>вапролд</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <script src="//api-maps.yandex.ru/2.0/?lang=ru-RU&load=package.standard,package.clusters" type="text/javascript"></script>
-
-<script>
-ymaps.ready(
-
-    function () 
-
-    {
-    var myMap = window.map = new ymaps.Map('YMapsID', 
-        {
-            center: [53.902257,27.5618311],
-            zoom: 10,
-            behaviors: ['default', 'scrollZoom']
-        }),
-
-
-    clusterer = new ymaps.Clusterer (
-        {
-            preset: 'twirl#invertedVioletClusterIcons',
-            groupByCoordinates: false,
-            clusterDisableClickZoom: true
-        }),
-
-    getPointData = function (index) 
-    {
-        return {
-            balloonContentBody: 'балун <strong>метки ' + index + '</strong>'+'<button type="button">2345</button>',
-            clusterCaption: 'метка <strong>' + index + '</strong>'};
-    },
-
-    getPointOptions = function () 
-    {
-        return {preset: 'twirl#violetIcon'};
-    },
-
-    points = [[53.902257,27.5618311], [53.902277,27.5618311]];
-
-    geoObjects = [];
-
-    for(var i = 0, len = points.length; i < len; i++) 
-    {
-        geoObjects[i] = new ymaps.Placemark(points[i],
-        getPointData(i),
-        getPointOptions());
-    }
-
-    clusterer.options.set({
-        gridSize: 80,
-        clusterDisableClickZoom: true
-    });
-
-    clusterer.add(geoObjects);
-
-    myMap.geoObjects.add(clusterer);
-});
-</script>
-
-
-
-
-
 <style type="text/css">
-    #YMapsID {
-        width: 1900px;
-        height: 800px;
+    ya-map {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 600px;   
     }
+    .maps{
+        position: relative; /* Относительное позиционирование */
+        float: left; /* Совмещение колонок по горизонтали */
+        width: 100%; /* Ширина слоя */
+        height: 600px; 
+
+
+    }
+    .item{
+        position: relative; /* Относительное позиционирование */
+        float: right; /* Совмещение колонок по горизонтали */
+        width: 300px; /* Ширина слоя */
+        height: 500px;
+        background: #F0F8FF; /* Цвет фона */
+        left: -50px;
+        top: -550px;
+        text-align: center;
+        }
 </style>
 
 
+<div class="maps">
+    <ya-map ya-zoom="10"   ya-center="{{ center }}" ya-controls="zoomControl " ya-before-init="beforeInit()">
+        <ya-cluster
+                ya-options="{preset:'islands#invertedVioletClusterIcons'}">
+            <ya-geo-object ya-options="{preset: 'islands#violetIcon'}" ng-repeat="o in geoObjects" ya-source="o"></ya-geo-object>
+        </ya-cluster>
 
-
-<div class="hero-unit">
-    <div class="container">
-        <div id="YMapsID"></div>
-    </div>
+    </ya-map>
 </div>
 
-
-
-
-
-
- -->
+<div class="item">
+    <h2>Поиск магазинов на карте</h2>
+    <br>
+    <h3>Найдено ... магазинов</h3>
+    <br>
+    <h4>Город:</h4>
+    <select style="width: 200px; height: 22px;" ng-model="vm.city" ng-options="c for c in vm.citys" >
+    <h4>Марка:</h4>
+    <select style="width: 200px; height: 22px;" ></select>
+    <h4>Категория запчасти:</h4>
+    <select style="width: 200px; height: 22px;" ></select>
+    <h4>Б/у / Новая:</h4>
+    <select style="width: 200px; height: 22px;" ></select>
+</div>
+{{vm.city}}

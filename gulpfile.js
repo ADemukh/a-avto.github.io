@@ -129,5 +129,5 @@ gulp.task('start', function(callback) {
 
 // Kоманду "gulp" лучше использовать для локального старта сайта
 gulp.task('default', function(callback) {
-    return sequence('clean', ['build', 'webserver', 'watch'])(callback);
+    return sequence('clean', 'build', ['webserver', 'watch'])(callback);
 });
