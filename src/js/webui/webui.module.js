@@ -2,7 +2,7 @@
 (function WebUIModuleInit() {
 	"use strict";
 	
-	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap'])
+	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
@@ -47,7 +47,6 @@
             template: '<q-registration/>',
             url: '/registration',
             parent: 'root'
-
         }).state('contacts', {
             templateUrl: 'webui/contacts/contacts.tmpl.html',
             url: '/contacts',
