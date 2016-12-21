@@ -21,8 +21,9 @@
 		vm.search = 'Искать на карте';
 		vm.price = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
 		vm.years = cars.getYears();
-        vm.cars=cars.getCar();
-
+		cars.getCars().then(function(cars){
+			vm.cars = cars;
+		});
 
 		vm.sendToAll=function sendToAll(){
 			newBid.car = vm.car;
@@ -32,14 +33,12 @@
 		}
 
 		vm.searchByMap=function searchByMap(){
-
 		}
 
-		
-
 		$scope.$watch('vm.car', function watchCar(newValue, oldValue) {
-			vm.models = cars.getCarModels(vm.car);
-			
+			cars.getCarModels(vm.car).then(function(models){
+				vm.models = models;
+			});
 		});
 
 	}

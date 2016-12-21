@@ -1,6 +1,6 @@
 var Car = require('../models/car');
 
-var carsCollection = [{
+var carsInitialCollection = [{
 		"mark": "Acura",
 		"model": "CL"
 	}, {
@@ -4698,29 +4698,33 @@ var carsCollection = [{
 	}
 ];
 
-function addCar(newCar) {
-    var car = new Car({
-        mark: newCar.mark,
-        model: newCar.model,
-        from: newCar.from,
-        end: newCar.end
+function saveCar(car) {
+    var carModel = new Car({
+        mark: car.mark,
+        model: car.model,
+        from: car.from || 2000,
+        end: car.end
     });
 
-    car.save(function (err) {
+    return carModel.save(function (err) {
         if (err) {
             console.log(err);
         } else {
-            console.log('loaded ' + newCar.model + '.');
+            console.log(car.mark + ' ' + car.model + ' is loaded.');
         }
     });
 }
+
 module.exports = {
     init: function() {
-        carsCollection.forEach(function (carItem) {
-            addCar(carItem);
+        carsInitialCollection.forEach(function (carItem) {
+            saveCar(carItem);
         });
     },
     add: function(carItem) {
-        addCar(carItem);
+        saveCar(carItem);
     },
+	getCars: function(filter) {
+		return Car.find(filter).exec();
+	}
 };

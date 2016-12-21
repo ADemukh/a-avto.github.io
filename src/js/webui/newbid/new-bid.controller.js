@@ -19,20 +19,24 @@ function NewBidController (cars, $scope) {
 	vm.typeKPP='Тип КПП';
 	vm.vinnomber="Vin-номер";
 
-	vm.cars = cars.getCars();
+	cars.getCars().then(function(cars){
+		vm.cars = cars;
+	});
 
 	$scope.$watch('vm.car', function watchCar(newValue, oldValue) {
 		vm.models = [];
 		vm.years = [];
 		if (vm.car) {
-			vm.models = cars.getCarModels(vm.car);	
+			cars.getCarModels(vm.car).then(function(models){
+				vm.models = models;
+			});
 		}
 	});
 
 	$scope.$watch('vm.model', function watchCar(newValue, oldValue) {
 		vm.years = [];
 		if (vm.model) {
-			vm.years = cars.getCarModelYears(vm.model);	
+			// vm.years = cars.getCarModelYears(vm.model);	
 		}
 	});
 
