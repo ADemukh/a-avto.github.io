@@ -1739,6 +1739,11 @@
             'Ё-авто':{
                 'Ё-Кроссовер':['']
             }};      
+        
+        
+        var carModels = getCarModels();
+        var carMarks = getCarMarks();
+
         return {
             cars: cars,
             getCar: getCar,
@@ -1766,6 +1771,25 @@
             return years;
         }
 
+        function getCarModels() {
+            var results = [];
+            _.forOwn(cars, function eachCar(models, mark) {
+                _.forOwn(models, function eachCar(value, model) {
+                    results.push({
+                        mark: mark,
+                        model: model
+                    });
+                });
+            });
+            return results;
+        }
 
+        function getCarMarks() {
+            var results = [];
+            _.forOwn(cars, function eachCar(models, mark) {
+                results.push(mark);
+            });
+            return results;
+        }
     }
 })();

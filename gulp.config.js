@@ -30,15 +30,11 @@ module.exports = function exports() {
             fonts: 'src/fonts/**/*.*'
         },
         browserSync:{  // Для запуска браузера локально и синхронизации с исходниками
-            server: {
-                baseDir: "./.build"
-            },
-            host: 'localhost',
-            port: 3000,
-            notify: false,
-            ghostMode: false
+            proxy: "http://localhost:3000",
+            files: ["./.build/**/*.*"],
+            port: 5000
         },
-        nodemon: { script: '--debug index.js' },
+        nodemon: { script: './bin/www' },
         templateCache: {
             filename: 'templates.js',
             options: {

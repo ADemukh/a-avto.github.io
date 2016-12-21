@@ -103,8 +103,21 @@ gulp.task('watch', function(){
     });
 });
 
-gulp.task('webserver', function () {
-    browserSync(config.browserSync);
+gulp.task('webserver', ['nodemon'], function() {
+	browserSync.init(null, config.browserSync);
+});
+
+gulp.task('nodemon', function (cb) {
+	var started = false;
+	return nodemon(config.nodemon)
+        .on('start', function () {
+		    // to avoid nodemon being started multiple times
+		    // thanks @matthisk
+		    if (!started) {
+		    	cb();
+			    started = true; 
+		    } 
+	    });
 });
 
 gulp.task('clean:build', function (cb) {
@@ -117,17 +130,18 @@ gulp.task('clean:tmp', function (cb) {
 
 gulp.task('clean', ['clean:build', 'clean:tmp']);
 
-
-gulp.task('nodemon', function () {
-    nodemon(config.nodemon);
+gulp.task('www', function () {
+    nodemon({ script: './bin/www' });
 });
 
 // Команду "gulp start" Heroku запускает командой "npm start" для настройки и старта сайта на QA 
 gulp.task('start', function(callback) {
-    return sequence('clean', 'build', 'nodemon')(callback);
+    return sequence('clean', 'build', 'www')(callback);
 });
 
 // Kоманду "gulp" лучше использовать для локального старта сайта
 gulp.task('default', function(callback) {
     return sequence('clean', 'build', ['webserver', 'watch'])(callback);
 });
+
+

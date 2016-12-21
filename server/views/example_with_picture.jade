@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form(method='post', action='add', enctype='multipart/form-data')
+    label Title
+    input(type='text', name='title')
+    br
+    label Text
+    textarea(name='text')
+    br
+    label Picture
+    input(type='file', name='picture')
+    br
+    input(type='submit', value='Submit')
