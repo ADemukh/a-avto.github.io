@@ -4,28 +4,35 @@
     angular.module('services')
         .factory('cars', CarsService);
 
-    CarsService.$inject = ['_', '$http'];
+    CarsService.$inject = ['_', '$http', '$q'];
 
-    function CarsService(_, $http) {
-        return {
-            getCars: getCars,
-            getCarModels: getCarModels,
-            getYears: getYears
-        };
+    function CarsService(_, $http, $q) {
+        var allCars, dfd;
 
-        function loadCars(filter){
+        function getAllCars() {
+            if (!dfd) {
+                dfd = $q.defer();
+                fetchAllCars({});
+            }
+            return dfd.promise;
+        }
+
+        function fetchAllCars(filter){
             return $http.get('cars/getCars', filter)
                 .then(function response(resp) {
-                    return resp.data;
-                })
-                .catch(function setError(resp) {
-                    console.log(resp);
-                    return [];
+                   allCars = resp.data;
+                    dfd.resolve(allCars);
                 });
         }
 
+        return {
+            getCars: getCars,
+            getCarModels: getCarModels,
+            getCarModelYears: getYears
+        };
+
         function getCars() {
-            return loadCars({})
+            return getAllCars()
                 .then(function(cars) {
                     return _.map(_.uniqBy(cars, 'mark'), function(car) {
                         return car.mark;
@@ -33,25 +40,34 @@
                 });
         }
 
-        function getCarModels(car) {
-            return loadCars({ mark: car })
+        function getCarModels(carMark) {
+            return getAllCars()
                 .then(function(cars) {
-                    return _.map(cars, function(car) {
-                        return car.model;
-                    });
+                    return _.chain(cars)
+                            .filter(function (car) { return car.mark === carMark; })
+                            .map(function(car) { return car.model; })
+                            .value();
                 });
         }
 
-        function getYears() {
-            var date = new Date();        
-            var nowyears=date.getFullYear() ;
-            var years=[];
-            for (var i=nowyears; i>=1970; i--)
-            {
-                years.push(i);
+        function getYears(carMark, carModel) {
+            return getAllCars()
+                .then(function(cars) {
+                    return _.find(cars, function(car) {
+                        return car.mark === carMark && car.model === carModel;
+                    });
+                })
+                .then(function(car) {
+                    var date = new Date();        
+                    var nowyears=date.getFullYear();
+                    var years=[];
+                    for (var i=nowyears; i>= car.from; i--)
+                    {
+                        years.push(i);
 
-            }
-            return years;
+                    }
+                    return years;
+                });
         }
     }
 })();

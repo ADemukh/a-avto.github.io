@@ -35,10 +35,11 @@ function NewBidController (cars, $scope) {
 
 	$scope.$watch('vm.model', function watchCar(newValue, oldValue) {
 		vm.years = [];
-		if (vm.model) {
-			// vm.years = cars.getCarModelYears(vm.model);	
+		if (vm.car && vm.model) {
+			cars.getCarModelYears(vm.car, vm.model).then(function(years){
+				vm.years = years;
+			});	
 		}
 	});
-
 }
 })();

@@ -4,9 +4,9 @@
     angular.module('webui').
 	controller('maps', MapsController);
 
-	MapsController.$inject = ['newBid','cars', 'shops', '$scope'];
+	MapsController.$inject = ['shops', '$scope'];
 
-	function MapsController (newBid, cars, shops, $scope) {
+	function MapsController (shops, $scope) {
 		var _map, vm;
 
 		vm = this;
@@ -14,9 +14,6 @@
 		var names=shops.getName();
 		var adress=shops.getAdress();
 		vm.citys=["Минск"];
-
-
-
 
 		var points = shops.getCoord();
 		var createGeoObjects = function(){
@@ -47,8 +44,6 @@
 				    }, function (err) {alert(err.message);});}
 
 	 	};
-
-
 	}
 })();
 

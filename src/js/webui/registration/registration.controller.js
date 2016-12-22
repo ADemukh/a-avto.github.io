@@ -12,7 +12,7 @@ function RegistrationController (newBid, cars, shops, $scope) {
 	vm = this;
 
 	vm.afterMapInit=function (map){
-			_map=map;
+		_map=map;
 	};
 	var map;
 	$scope.afterInit = function($map){
@@ -48,6 +48,5 @@ function RegistrationController (newBid, cars, shops, $scope) {
 	vm.carRegistration='Регистрация автосервиса';
 	vm.authorizedDealer='Официальный дилер';
 	vm.registerCar='Зарегистрироваться';
-	
 }
 })();
