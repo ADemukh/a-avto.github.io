@@ -10,7 +10,7 @@
 	<div class="container">
 		<br>
         <div class="panel enter single center">		
-			<h3>{{vm.clientRegistration}}</h3>
+			<h3>{{$ctrl.clientRegistration}}</h3>
 			<br>				
 			<input name="RegForm[name]" placeholder="Контактное имя">
 			<br>
@@ -21,17 +21,17 @@
 			<input name="RegForm[phone]" placeholder="+7 xxx xxx xx xx">
 			<br>
 			<br>
-			<button type="button">{{vm.registerClient}}
+			<button type="button">{{$ctrl.registerClient}}
 			</button>
 			<br>
 			<br>
-			{{vm.q}}<a target="_blank" href="#/agreement">{{vm.w}}</a>{{vm.e}}<a target="_blank" href="#/privacy">{{vm.r}}</a>.
+			{{$ctrl.q}}<a target="_blank" href="#/agreement">{{$ctrl.w}}</a>{{$ctrl.e}}<a target="_blank" href="#/privacy">{{$ctrl.r}}</a>.
 			<br>
 			<br>
 		</div>
 		<br>
 		<div class="panel enter single center">
-			<h3>{{vm.carRegistration}}</h3>
+			<h3>{{$ctrl.carRegistration}}</h3>
 			<br>
 			<input name="name" placeholder="Название автосервиса">
 			<br>
@@ -45,10 +45,10 @@
 			<input name="address" placeholder="г.Москва ул. Полянка 32 ">
 			<br>
 			<br>
-			<input name="dolgota" placeholder="Долгота" value="{{vm.dolgota}}">
+			<input name="dolgota" placeholder="Долгота" value="{{$ctrl.dolgota}}">
 			<br>
 			<br>
-			<input name="schirota" placeholder="Широта" value="{{vm.shirota}}">
+			<input name="schirota" placeholder="Широта" value="{{$ctrl.shirota}}">
 			<br>
 			<br>
 			<input name="phone[]" placeholder="+7 xxx xxx xx xx" >
@@ -56,7 +56,7 @@
 			<br>
 			<textarea style="width: 350px;" name="about" placeholder="Информация о компании" ></textarea>
 			<br>
-			<input type="checkbox" name="dealer" value="1">{{vm.authorizedDealer}}
+			<input type="checkbox" name="dealer" value="1">{{$ctrl.authorizedDealer}}
 			<br>
 			<h5>Обозначьте на карте местоположение вашего магазина</h5>
 			<br>
@@ -71,10 +71,9 @@
 
 	    </ya-map>
 			<br>	
-			<button type="button">{{vm.registerCar}}</button>
+			<button type="button">{{$ctrl.registerCar}}</button>
 			<br>									
 			<br>		
 		</div>
-		
 	</div>
 </div>

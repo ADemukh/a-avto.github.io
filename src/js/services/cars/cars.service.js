@@ -17,7 +17,7 @@
             return dfd.promise;
         }
 
-        function fetchAllCars(filter){
+        function fetchAllCars(filter) {
             return $http.get('cars/getCars', filter)
                 .then(function response(resp) {
                    allCars = resp.data;
@@ -33,8 +33,8 @@
 
         function getCars() {
             return getAllCars()
-                .then(function(cars) {
-                    return _.map(_.uniqBy(cars, 'mark'), function(car) {
+                .then(function onRecievingCars(cars) {
+                    return _.map(_.uniqBy(cars, 'mark'), function map(car) {
                         return car.mark;
                     });
                 });
@@ -42,29 +42,31 @@
 
         function getCarModels(carMark) {
             return getAllCars()
-                .then(function(cars) {
+                .then(function onRecievingCars(cars) {
                     return _.chain(cars)
-                            .filter(function (car) { return car.mark === carMark; })
-                            .map(function(car) { return car.model; })
+                            .filter(function filter(car) {
+                                return car.mark === carMark;
+                            })
+                            .map(function map(car) {
+                                return car.model;
+                            })
                             .value();
                 });
         }
 
         function getYears(carMark, carModel) {
             return getAllCars()
-                .then(function(cars) {
-                    return _.find(cars, function(car) {
+                .then(function onRecievingCars(cars) {
+                    return _.find(cars, function find(car) {
                         return car.mark === carMark && car.model === carModel;
                     });
                 })
-                .then(function(car) {
-                    var date = new Date();        
-                    var nowyears=date.getFullYear();
-                    var years=[];
-                    for (var i=nowyears; i>= car.from; i--)
-                    {
-                        years.push(i);
+                .then(function onCarFound(car) {
+                    var i, years;
 
+                    years = [];
+                    for (i = (new Date()).getFullYear(); i >= car.from; i -= 1) {
+                        years.push(i);
                     }
                     return years;
                 });

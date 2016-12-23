@@ -6,7 +6,7 @@
 
 	MapsController.$inject = ['shops', '$scope'];
 
-	function MapsController (shops, $scope) {
+	function MapsController(shops, $scope) {
 		var _map, vm;
 
 		vm = this;

@@ -1,16 +1,24 @@
 module.exports = function exports() {
-    'use strict';    
+    'use strict';
 
-    var config = {
-        src: { //Пути откуда брать исходники
-            html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-            js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
+    var config;
+
+    config = {
+        // Пути откуда брать исходники
+        src: {
+            // Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
+            html: 'src/*.html',
+            // В стилях и скриптах нам понадобятся только main файлы
+            js: 'src/js/main.js',
+            alljs: 'src/**/!(*.min)+(.js)',
             style: 'src/style/main.css',
-            img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+            // Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+            img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*',
             templates: 'src/js/**/*.tmpl.html'
         },
-        build: { //Тут мы укажем куда складывать готовые после сборки файлы
+        // Тут мы укажем куда складывать готовые после сборки файлы
+        build: {
             html: '.build/',
             js: '.build/js/',
             css: '.build/css/',
@@ -18,20 +26,23 @@ module.exports = function exports() {
             fonts: '.build/fonts/',
             templates: '.tmp/tempjs'
         },
-        clean: { // Тут мы указываем, какую папку чистить
+        // Тут мы указываем, какую папку чистить
+        clean: {
             build: './.build',
             tmp: './.tmp'
         },
-        watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+        // Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+        watch: {
             html: 'src/**/*.html',
             js: 'src/js/**/*.js',
             style: 'src/style/**/*.css',
             img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*'
         },
-        browserSync:{  // Для запуска браузера локально и синхронизации с исходниками
-            proxy: "http://localhost:3000",
-            files: ["./.build/**/*.*"],
+        // Для запуска браузера локально и синхронизации с исходниками
+        browserSync: {
+            proxy: 'http://localhost:3000',
+            files: ['./.build/**/*.*'],
             port: 5000
         },
         nodemon: { script: './bin/www' },
@@ -47,7 +58,7 @@ module.exports = function exports() {
         }
     };
 
-    return config;    
+    return config;
 };
 
 

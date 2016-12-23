@@ -4,8 +4,10 @@
     angular.module('services')
         .factory('newBid', StatisticsService);
 
-    function StatisticsService(){
-        var bid = {};
+    function StatisticsService() {
+        var bid;
+
+        bid = {};
         return {
             car: bid.car,
             model: bid.model,

@@ -1,7 +1,8 @@
 //webui.module.js
+// eslint no-reserved-keys: 2
 (function WebUIModuleInit() {
-	"use strict";
-	
+	'use strict';
+
 	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
@@ -9,9 +10,9 @@
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function WebUIModuleConfig($stateProvider, $urlRouterProvider) {
-    	$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/');
 
-    	$stateProvider.state('root', {
+        $stateProvider.state('root', {
             abstract: true,
             templateUrl: 'webui/root/root.tmpl.html',
             url: ''
@@ -59,6 +60,6 @@
             templateUrl: 'webui/rules/rules.tmpl.html',
             url: '/rules',
             parent: 'root'
-        })
+        });
     }
 })();

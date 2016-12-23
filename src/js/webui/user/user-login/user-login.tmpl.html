@@ -2,7 +2,7 @@
     <div class="container">
             <br>
             <div class="panel enter single center">
-            <h3>{{vm.enterSiteCaption}}</h3>
+            <h3>{{::$ctrl.enterSiteCaption}}</h3>
             <br> 
             <input name="email" placeholder="E-mail">   
             <br>     
@@ -10,10 +10,10 @@
             <input name="password" placeholder="Пароль">
             <br>
             <br>
-            <button ng-click="vm.click(vm.car)">{{vm.enterCaption}}
+            <button ng-click="$ctrl.click()">{{::$ctrl.enterCaption}}
             </button>
             <br>
-            <a ui-sref="getpass" href="#/user/getpass">{{vm.forgotPasswordCaption}}</a>
+            <a ui-sref="getpass" href="#/user/getpass">{{::$ctrl.forgotPasswordCaption}}</a>
             <br>
             <br>
         </div>
