@@ -1,12 +1,12 @@
-(function RegistrationControllerInit() {
+(function RegistrationShopControllerInit() {
     'use strict';
 
     angular.module('webui').
-	controller('controllers.shopregistration', RegistrationController);
+	controller('controllers.registrationshop', RegistrationShopController);
 
-	RegistrationController.$inject = ['newBid', 'cars', 'shops', '$scope'];
+	RegistrationShopController.$inject = ['newBid', 'cars', 'shops', '$scope'];
 
-	function RegistrationController(newBid, cars, shops, $scope) {
+	function RegistrationShopController(newBid, cars, shops, $scope) {
 		var map, map1, vm;
 
 		vm = this;

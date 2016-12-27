@@ -20,29 +20,17 @@
             templateUrl: 'webui/main/main.tmpl.html',
             url: '/',
             parent: 'root'
-        }).state('user', {
-            template: '<q-user-login/>',
-            url: '/user',
+        }).state('login', {
+            template: '<q-login/>',
+            url: '/login',
             parent: 'root'
-        }).state('getpass', {
-            template: '<q-get-pass/>',
-            url: '/getpass',
+        }).state('passwordrecovery', {
+            template: '<q-password-recovery/>',
+            url: '/passwordrecovery',
             parent: 'root'
         }).state('agreement', {
             templateUrl: 'webui/agreement/agreement.tmpl.html',
             url: '/agreement',
-            parent: 'root'
-        }).state('enter', {
-            template: '<h2>Enter</h2>',
-            url: '/user/enter',
-            parent: 'root'
-        }).state('maps', {
-            template: '<q-maps/>',
-            url: '/maps',
-            parent: 'root'
-        }).state('bid', {
-            template: '<q-new-bid>',
-            url: '/bid/newbid',
             parent: 'root'
         }).state('registration', {
             template: '<q-registration/>',

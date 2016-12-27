@@ -20,25 +20,31 @@
 //= services/newBid/newBid.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
-//= webui/navigation/navigation.component.js
+
 //= webui/footer/footer.component.js
-//= webui/video/video.component.js
+
 //= webui/how-it-works/how-it-works.component.js
 
-//= webui/order-registration/order-registration-full/order-registration-full.component.js
-//= webui/order-registration/order-registration-full/order-registration-full.controller.js
-
-//= webui/order-registration/order-registration-short/order-registration-short.component.js
-//= webui/order-registration/order-registration-short/order-registration-short.controller.js
-
-//= webui/user/user-login/user-login.component.js
-//= webui/user/user-login/user-login.controller.js
-
-//= webui/user/user-password-recovery/user-password-recovery.component.js
-//= webui/user/user-password-recovery/user-password-recovery.controller.js
+//= webui/login/login.component.js
+//= webui/login/login.controller.js
 
 //= webui/maps/maps.directive.js
 //= webui/maps/maps.controller.js
 
-//= webui/shop-registration/shop-registration.component.js
-//= webui/shop-registration/shop-registration.controller.js
+//= webui/navigation/navigation.component.js
+
+//= webui/order-registration/order-registration-full/order-registration-full.component.js
+//= webui/order-registration/order-registration-full/order-registration-full.controller.js
+//= webui/order-registration/order-registration-short/order-registration-short.component.js
+//= webui/order-registration/order-registration-short/order-registration-short.controller.js
+
+//= webui/password-recovery/password-recovery.component.js
+//= webui/password-recovery/password-recovery.controller.js
+
+//= webui/registration/registration.component.js
+//= webui/registration/registration-user/registration-user.component.js
+//= webui/registration/registration-user/registration-user.controller.js
+//= webui/registration/registration-shop/registration-shop.component.js
+//= webui/registration/registration-shop/registration-shop.controller.js
+
+//= webui/video/video.component.js
