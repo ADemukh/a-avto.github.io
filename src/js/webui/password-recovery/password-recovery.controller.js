@@ -6,7 +6,7 @@
 
 	function PasswordRecoveryController() {
 		this.title = 'Восстановление пароля';
-		this.emailOrPhoneAlt = 'E-mail или пароль';
+		this.emailOrPhoneAlt = 'E-mail или телефон';
 		this.recoverActionText = 'Восстановить пароль';
 		this.recover = function onRecover() {
 			alert('on recover!');

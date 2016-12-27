@@ -1,41 +1,66 @@
-<div class="panel enter single">
+<style>
+    .how-it-works-tab.nav-pills>li.active>a,
+    .how-it-works-tab.nav-pills>li.active>a:focus,
+    .how-it-works-tab.nav-pills>li.active>a:hover,
+    .how-it-works-tab.nav-pills>li>a:hover {
+       color: #fff;
+       background-color: #91979c;
+    }
+
+   how-it-works-tab a {
+       background: #fff;
+       color: rgb(0, 0, 0);
+   }
+
+   ul.centered-pills {
+       display: inline-block;
+       margin: auto;
+   }
+</style>
+
+<div class="panel enter single" style="padding-top: 30px; padding-bottom: 30px;">
 	<center>
 		<div class="item">
-			<h1>Как работает uremont.com</h1>
-			<h3>Есть несколько вариантов поиска выбора исполнителей ремонта</h3>
+			<h1>{{::$ctrl.title}}</h1>
+			<p>{{::$ctrl.optionsAlt}}</p>
 		</div>
     </center>
-   	<uib-tabset type="pills">
-          <div class="row">
-            <div class="col-md-4 col-sm-offset-4">
-    	       <uib-tab heading="Создайте заявку во все сервисы" >
-    			 <div class="container">
-                        <div class="col-lg-4">
-                            <img src="img/1.PNG" width="310">
+   	<uib-tabset type="pills centered-pills how-it-works-tab" style="text-align: center;">
+        <uib-tab heading="{{::$ctrl.option1Alt}}" >
+            <div class="container" style="text-align: center;">
+                <div class="col-lg-4">
+                    <a href="#/bid/newbid">
+                        <div>
+                            <img src="img/1.PNG" style="width: 150px; height: 150px;">
                         </div>
-                         <div class="col-lg-4">
-                            <img src="img/2.PNG" width="360">
-                        </div>
-                        <div class="col-lg-4">
-                            <img src="img/3.PNG" width="440">
-                        </div>
-    			 </div>
-                <button type="button" class="btn btn-warning btn-lg center-block">Создать заявку на ремонт</button>
-    		    </uib-tab>
+                        <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action1Alt}}</p>
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <img src="img/2.PNG" style="width: 150px; height: 150px;">
+                    <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action2Alt}}</p>
+                </div>
+                <div class="col-lg-4">
+                    <img src="img/3.PNG" style="width: 150px; height: 150px;">
+                    <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action3Alt}}</p>
+                </div>
             </div>
-            <div class="col-md-4 col-sd-offset-1">
-    		    <uib-tab heading="Ищите сервисы по цене на карте">
-    			 <div class="container">
-                    <div class="col-lg-6">
-                        <img src="img/4.PNG" width="450px">
-                    </div>
-    				<div class="col-lg-6">
-    				    <img src="img/5.PNG" width="500px">
-                    </div>
-    			 </div>
-    			 <button type="button" class="btn btn-info btn-lg center-block">Искать на карте</button>
-    		    </uib-tab>
+        <button type="button" class="btn btn-warning btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
+        </uib-tab>
+        <uib-tab heading="{{::$ctrl.option2Alt}}">
+            <div class="container">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4 col-md-6 col-sm-6" style="text-align: center;">
+                    <img src="img/4.PNG" style="width: 150px; height: 150px;">
+                    <p style="margin: auto;width: 80%;">{{::$ctrl.option2Action1Alt}}</p>
+                </div>
+                <div class="col-lg-4 col-md-6  col-sm-6" style="text-align: center;">
+                    <img src="img/5.PNG" style="width: 150px; height: 150px;">
+                    <p style="margin: auto;width: 80%;">{{::$ctrl.option2Action2Alt}}</p>
+                </div>
+                <div class="col-lg-2"></div>
             </div>
-    	   </div>
-  		</uib-tabset>
+            <button type="button" class="btn btn-info btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
+        </uib-tab>
+    </uib-tabset>
 </div>

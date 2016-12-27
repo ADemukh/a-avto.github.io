@@ -1,6 +1,21 @@
+<style>
+    .registration-tab>li.active>a,
+    .registration-tab>li.active>a:focus,
+    .registration-tab>li.active>a:hover,
+    .registration-tab>li>a:hover {
+       color: #fff;
+       background-color: #91979c;
+    }
+
+   registration-tab a {
+       background: #fff;
+       color: rgb(0, 0, 0);
+   }
+</style>
+
 <div class="container" style="margin-top:40px;">
 	<div class="visible-xs">
-		<uib-tabset active="activePill" vertical="true" type="pills">
+		<uib-tabset active="activePill" vertical="true" type="pills registration-tab">
 			<uib-tab index="0" heading="Регистрация клиента">
 				<q-registration-user/>
 			</uib-tab>

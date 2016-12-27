@@ -4,55 +4,58 @@
     angular.module('webui').
 	controller('controllers.registrationshop', RegistrationShopController);
 
-	RegistrationShopController.$inject = ['newBid', 'cars', 'shops', '$scope'];
+	RegistrationShopController.$inject = [];
 
-	function RegistrationShopController(newBid, cars, shops, $scope) {
-		var map, map1, vm;
+	function RegistrationShopController() {
+		var vm;
 
 		vm = this;
 
-		vm.afterMapInit = function onMapInited(mapParameter) {
-			map1 = mapParameter;
-		};
+		vm.title = 'Регистрация магазина';
+		vm.shopNameAlt = 'Название магазина';
+		vm.shopEmailAlt = 'E-mail';
+		vm.shopUrlAlt = 'Сайт';
+		vm.shopAddressAlt = 'г.Минск ул. Плеханова 69';
+		vm.shopAddressLongitudeAlt = 'Долгота. Выбрать на карте';
+		vm.shopAddressLatitudeAlt = 'Долгота. Выбрать на карте';
+		vm.shopPhoneAlt = '+375 xx xxx xx xx';
+		vm.shopDescriptionAlt = 'Информация о магазине';
+		vm.shopIsDealerAlt = 'Официальный дилер';
+		vm.findShopOnMapAlt = 'Обозначьте на карте местоположение вашего магазина';
+		vm.registerActionText = 'Зарегистрироваться';
 
-		$scope.afterInit = function onInited($map) {
-			map = $map;
-		};
+		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
+		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
+		vm.policyTextPart3 = ' и даете ';
+		vm.policyLinkTextPart4 = 'Согласие на обработку перносальных данных';
+		vm.policyTextPart5 = '.';
 
-		$scope.mapClick = function onMapCLick(e) {
+		vm.register = function onRegister() {
+			alert('on register!');
+		};
+		vm.afterInit = function onInited($map) {
+			vm.map = $map;
+		};
+		vm.mapClick = function onMapCLick(e) {
 			var coords;
 
-			if (map.balloon.isOpen()) {
-				map.balloon.close();
+			if (vm.map.balloon.isOpen()) {
+				vm.map.balloon.close();
 			} else {
 				coords = e.get('coords');
-				map.balloon.open(coords, {
-					contentHeader: 'Событие!',
-					contentBody: 'Кто-то щелкнул по карте. Координаты щелчка: ' + [coords[0].toPrecision(6), coords[1].toPrecision(6)].join(', '),
-					contentFooter: 'Щелкните еще раз'
-
+				vm.map.balloon.open(coords, {
+					contentHeader: 'Отлично!',
+					contentBody: 'Щелкнув по карте, вы занесли координаты в поля регистрации.'
 				});
-				vm.dolgota = coords[0].toPrecision(6);
-				vm.shirota = coords[1].toPrecision(6);
+				vm.shopAddressLongitude = coords[0].toPrecision(6);
+				vm.shopAddressLatitude = coords[1].toPrecision(6);
 			}
 		};
-
-		$scope.handleContext = function handleContext(e) {
-			map.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
+		vm.handleContext = function handleContext(e) {
+			// map.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
 		};
-
-		$scope.balloonOpen = function balloonOpen(){
-			map.hint.close();
+		vm.balloonOpen = function balloonOpen() {
+			vm.map.hint.close();
 		};
-
-		vm.clientRegistration = 'Регистрация клиента';
-		vm.registerClient = 'Зарегистрироваться';
-		vm.q = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
-		vm.w = 'Пользовательским соглашением';
-		vm.e = ' и даёте ';
-		vm.r = 'Согласие на обработку перносальных данных';
-		vm.carRegistration = 'Регистрация автосервиса';
-		vm.authorizedDealer = 'Официальный дилер';
-		vm.registerCar = 'Зарегистрироваться';
 	}
 })();

@@ -24,6 +24,7 @@
 //= webui/footer/footer.component.js
 
 //= webui/how-it-works/how-it-works.component.js
+//= webui/how-it-works/how-it-works.controller.js
 
 //= webui/login/login.component.js
 //= webui/login/login.controller.js

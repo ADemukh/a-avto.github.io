@@ -2,54 +2,52 @@
     ya-map {
         display: block;
         width: 100%;
-        height: 450px;   
+        height: 350px;   
     }
 </style>
 
-<div style="text-align: center;"> 
-		<div class="panel enter single center">
-			<h3>{{$ctrl.carRegistration}}</h3>
-			<br>
-			<input name="name" placeholder="Название автосервиса">
-			<br>
-			<br>
-			<input name="email" placeholder="E-mail">
-			<br>
-			<br>
-			<input name="url" placeholder="Сайт">
-			<br>
-			<br>
-			<input name="address" placeholder="г.Москва ул. Полянка 32 ">
-			<br>
-			<br>
-			<input name="dolgota" placeholder="Долгота" value="{{$ctrl.dolgota}}">
-			<br>
-			<br>
-			<input name="schirota" placeholder="Широта" value="{{$ctrl.shirota}}">
-			<br>
-			<br>
-			<input name="phone[]" placeholder="+7 xxx xxx xx xx" >
-			<br>
-			<br>
-			<textarea style="width: 350px;" name="about" placeholder="Информация о компании" ></textarea>
-			<br>
-			<input type="checkbox" name="dealer" value="1">{{$ctrl.authorizedDealer}}
-			<br>
-			<h5>Обозначьте на карте местоположение вашего магазина</h5>
-			<br>
+<div class="panel enter single center" style="padding: 30px; text-align: center;">
+	<h3>{{::$ctrl.title}}</h3>
+	<div>
+		<input ng-model="$ctrl.shopName" placeholder="{{::$ctrl.shopNameAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopEmail" placeholder="{{::$ctrl.shopEmailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopUrl" placeholder="{{::$ctrl.shopUrlAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopAddress" placeholder="{{::$ctrl.shopAddressAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopAddressLongitude" placeholder="{{::$ctrl.shopAddressLongitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopAddressLatitude" placeholder="{{::$ctrl.shopAddressLatitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shopPhone" placeholder="{{::$ctrl.shopPhoneAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<textarea ng-model="$ctrl.shopDescription" placeholder="{{::$ctrl.shopDescriptionAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;"></textarea>
+	</div>
+	<div style="text-align: start;">
+		<h5>{{::$ctrl.findShopOnMapAlt}}</h5>
+	</div>
 
-			<ya-map ya-zoom="8" ya-search="Гродно" ya-center="[27.561831, 53.902257]" ya-controls="zoomControl searchControl"  ya-options="{balloonMaxWidth: 200}"
-	        ya-after-init="afterInit($target)"
-	        ya-event-click="mapClick($event)"
-	        ya-event-balloonopen="balloonOpen()"
-	        ya-event-contextmenu="handleContext($event)">
+	<ya-map ya-zoom="8" ya-search="Гродно" ya-center="[27.561831, 53.902257]" ya-controls="zoomControl searchControl"  ya-options="{balloonMaxWidth: 200}"
+		ya-after-init="$ctrl.afterInit($target)"
+		ya-event-click="$ctrl.mapClick($event)"
+		ya-event-balloonopen="$ctrl.balloonOpen()"
+		ya-event-contextmenu="$ctrl.handleContext($event)">
+	</ya-map>
 
-	        
-
-	    </ya-map>
-			<br>	
-			<button type="button">{{$ctrl.registerCar}}</button>
-			<br>									
-			<br>		
-		</div>
+	<div style="text-align: start; padding-top: 20px;">
+		<div style="display: inline-block;">
+					<input type="checkbox" ng-model="$ctrl.shopIsDealer">
+					<label>{{::$ctrl.shopIsDealerAlt}}</label>
+				</div>
+		<button type="button" ng-click="::$ctrl.register()" style="float: right;width: initial; padding: 10px 50px; text-align: start;">{{::$ctrl.registerActionText}}</button>
+	</div>	
 </div>
