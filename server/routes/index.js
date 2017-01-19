@@ -1,10 +1,12 @@
-var express = require('express');
-var router = express.Router();
+/*eslint strict:0  */
+var express, router;
+
+express = require('express');
+router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function index(req, res, next) {
   res.sendFile('../../.build/index.html');
-  // res.render('index', { title: 'Express' });
 });
 
 module.exports = router;

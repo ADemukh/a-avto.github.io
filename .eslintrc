@@ -87,7 +87,8 @@
         "max-statements": 0,
         "new-cap": [
             2, {
-                "newIsCapExceptions": ["karmaServer"]
+                "newIsCapExceptions": ["karmaServer"],
+                "capIsNewExceptions": ["express.Router"]
             }
         ],
         "newline-after-var": [2, "always"],
@@ -158,7 +159,7 @@
         "no-throw-literal": 2,
         "no-trailing-spaces": 2,
         "no-undef": 2,
-        "no-undefined": 2,
+        // "no-undefined": 2,
         "no-undef-init": 2,
         "no-underscore-dangle": [
             2, {

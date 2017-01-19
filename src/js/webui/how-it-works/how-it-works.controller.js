@@ -15,6 +15,7 @@
 		this.option2Alt = 'Ищите магазины по цене на карте';
 		this.option2Action1Alt = 'Ищете нужные вам работы по прайс-листам во всех магазинах';
 		this.option2Action2Alt = 'Выбираете лучшие предложения и договариваетесь с магазином';
-		this.option1ActionButtonAlt = 'Искать на карте';
+		this.option1ActionButtonAlt = 'Создать заявку на ремонт';
+		this.option2ActionButtonAlt = 'Искать на карте';
 	}
 })();

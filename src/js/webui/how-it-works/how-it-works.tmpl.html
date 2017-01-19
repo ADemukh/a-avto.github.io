@@ -29,7 +29,7 @@
         <uib-tab heading="{{::$ctrl.option1Alt}}" >
             <div class="container" style="text-align: center;">
                 <div class="col-lg-4">
-                    <a href="#/bid/newbid">
+                    <a ui-sref="order-registration" href="#/order-registration">
                         <div>
                             <img src="img/1.PNG" style="width: 150px; height: 150px;">
                         </div>
@@ -45,7 +45,7 @@
                     <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action3Alt}}</p>
                 </div>
             </div>
-        <button type="button" class="btn btn-warning btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
+        <button type="button" ui-sref="order-registration" class="btn btn-warning btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
         </uib-tab>
         <uib-tab heading="{{::$ctrl.option2Alt}}">
             <div class="container">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-lg-2"></div>
             </div>
-            <button type="button" class="btn btn-info btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
+            <button type="button" ui-sref="maps" class="btn btn-info btn-lg center-block">{{::$ctrl.option2ActionButtonAlt}}</button>
         </uib-tab>
     </uib-tabset>
 </div>

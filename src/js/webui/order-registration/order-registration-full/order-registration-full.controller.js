@@ -4,26 +4,43 @@
     angular.module('webui').
 	controller('controllers.orderregistrationfull',  OrderRegistrationFullController);
 
-	OrderRegistrationFullController.$inject = ['cars', '$scope'];
+	OrderRegistrationFullController.$inject = ['newBid', 'cars', '$scope', '$state'];
 
-	function  OrderRegistrationFullController(cars, $scope) {
+	function  OrderRegistrationFullController(newBid, cars, $scope, $state) {
 		var vm;
 
 		vm = this;
-		// vm.information = 'Информация по автомобилю';
-		// vm.auto = 'Марка';
-		// vm.modell = 'Модель';
-		// vm.year = 'Год';
-		// vm.typeofmotor = 'Тип двигателя';
-		// vm.svalue='Объем';
-		// vm.typeKPP='Тип КПП';
-		// vm.vinnomber="Vin-номер";
+		vm.titleAlt = 'Заявка на оценку стоимости ремонта';
+		vm.stage1Alt = '1. Автомобиль';
+		vm.stage2Alt = '2. Что нужно сделать?';
+		vm.stage3Alt = '3. Информация';
+		vm.setCarDetailsAlt = 'Укажите информацию по автомобилю';
+		vm.carMarkAlt = 'Марка';
+		vm.carModelAlt = 'Модель';
+		vm.carYearAlt = 'Год';
+		vm.vinAlt = 'VIN';
+		vm.whatShouldBeRepairedAlt = 'Опишите работы которые необходимо сделать';
+		vm.toAllShopsAlt = 'Заявка во все сервисы';
+		vm.toAllShopsDescriptionAlt = 'Ваша заявка будет отправлена во все сервисы, и вы сможете выбрать лучший';
+		vm.searchByMapAlt = 'Искать на карте';
+		vm.searchByMapDesciptionAlt = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
 
-		cars.getCars().then(function onGetCars(carMarks) {
-			vm.cars = carMarks;
-		});
+		vm.car = newBid.car;
+		vm.model = newBid.model;
+		vm.year = newBid.year;
+		vm.details = newBid.details;
 
-		$scope.$watch('vm.car', function watchCar(newValue, oldValue) {
+		vm.canChooseCar = function canChooseCar() {
+			return vm.cars && vm.cars.length;
+		};
+		vm.canChooseCarModel = function canChooseCarModel() {
+			return !!vm.car;
+		};
+		vm.canChooseCarModelYear = function canChooseCarModelYear() {
+			return !!vm.model;
+		};
+
+		$scope.$watch('$ctrl.car', function watchCar(newValue, oldValue) {
 			vm.models = [];
 			vm.years = [];
 			if (vm.car) {
@@ -33,13 +50,17 @@
 			}
 		});
 
-		$scope.$watch('vm.model', function watchCar(newValue, oldValue) {
+		$scope.$watch('$ctrl.model', function watchCar(newValue, oldValue) {
 			vm.years = [];
 			if (vm.car && vm.model) {
 				cars.getCarModelYears(vm.car, vm.model).then(function onRecieveCarModelYears(carModelYears) {
 					vm.years = carModelYears;
 				});
 			}
+		});
+
+		cars.getCars().then(function onGetCars(carMarks) {
+			vm.cars = carMarks;
 		});
 	}
 })();

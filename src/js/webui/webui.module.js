@@ -7,9 +7,12 @@
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
-    WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 
-    function WebUIModuleConfig($stateProvider, $urlRouterProvider) {
+    function WebUIModuleConfig($stateProvider, $urlRouterProvider, $httpProvider) {
+        //================================================
+        // Define all the routes
+        //================================================
         $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('root', {
@@ -48,6 +51,38 @@
             templateUrl: 'webui/rules/rules.tmpl.html',
             url: '/rules',
             parent: 'root'
+         }).state('order-registration', {
+            template: '<q-order-registration-full/>',
+            url: '/order-registration',
+            parent: 'root'
+        }).state('maps', {
+            template: '<q-maps/>',
+            url: '/maps',
+            parent: 'root'
+        }).state('profile', {
+            templateUrl: 'webui/profile/profile-user/profile-user.tmpl.html',
+            url: '/profile',
+            parent: 'root'
         });
+        //================================================
+
+        //================================================
+        // Add an interceptor for AJAX errors
+        //================================================
+        $httpProvider.interceptors.push(function interceptor($q, $location) {
+            return {
+                response: function onResponse(response) {
+                    // do something on success
+                    return response;
+                },
+                responseError: function onResponseError(response) {
+                    if (response.status === 401) {
+                        $location.url('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        });
+        //================================================
     }
 })();

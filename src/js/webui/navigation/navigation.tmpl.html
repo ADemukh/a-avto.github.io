@@ -10,12 +10,12 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="maps" href="#/maps">Поиск на карте</a></li>
-				<li ui-sref-active="active"><a ui-sref="login" href="#/login">Войти</a></li> 
-				<li ui-sref-active="active"><a ui-sref="registration" href="#/registration">Регистрация</a></li> 
-				<li ui-sref-active="active"><a ui-sref="bid" href="#/bid/newbid">Регистрация на ремонт</a></li> 
-					</ul>
-				</li>
+				<li ui-sref-active="active"><a ui-sref="maps" href="#/maps">{{::$ctrl.mapsAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="profile" href="#/profile">{{::$ctrl.profileAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()"><a href="" ng-click="::$ctrl.logOut()">{{::$ctrl.logOutAlt}}</a></li>
+				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login" href="#/login">{{::$ctrl.loginAlt}}</a></li>
+				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="registration" href="#/registration">{{::$ctrl.registrationAlt}}</a></li>
+				<li ui-sref-active="active"><a ui-sref="order-registration" href="#/order-registration">{{::$ctrl.orderRegistrationAlt}}</a></li>
 			</ul>
 		</div>
 	</div>

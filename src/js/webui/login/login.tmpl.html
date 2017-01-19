@@ -1,21 +1,18 @@
 <div class="container">
-    <div class="panel enter single center" style="margin: 68px auto 38px;width: 490px; padding: 68px 40px; text-align: center;"> 
-            <h3>{{::$ctrl.title}}</h3>
-            <div>
-                <input ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}"
-                    style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-            </div>
-            <div>
-                <input ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}"
-                    style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-            </div>
-            <div style="text-align: start;">
-                <button type="submit" ng-click="::$ctrl.login()"
-                    class="button button_blue" style="width: initial; padding: 10px 50px; text-align: start;">
+    <form class="panel enter single center" style="margin: 68px auto 38px;width: 490px; padding: 68px 40px; text-align: center;"
+        ng-submit="::$ctrl.login()">
+        <h3>{{::$ctrl.title}}</h3>
+        <div>
+            <input type="text" name="email" ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+        </div>
+        <div>
+            <input type="password" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+        </div>
+        <div style="text-align: start;">
+            <button type="submit" class="button button_blue" style="width: initial; padding: 10px 50px; text-align: start;">
                     <span>{{::$ctrl.loginActinonText}}</span>
                 </button>
-                <a class="recover" href="#/passwordrecovery" style="float: right;">{{::$ctrl.forgotPasswordLinkText}}</a>
-            </div>
+            <a class="recover" href="#/passwordrecovery" style="float: right;">{{::$ctrl.forgotPasswordLinkText}}</a>
         </div>
-    </div>
+    </form>
 </div>

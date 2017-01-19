@@ -18,6 +18,8 @@
 //= services/cars/cars.service.js
 //= services/shops/shops.service.js
 //= services/newBid/newBid.service.js
+//= services/registration/registration.service.js
+//= services/identity/identity.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
 
@@ -29,10 +31,11 @@
 //= webui/login/login.component.js
 //= webui/login/login.controller.js
 
-//= webui/maps/maps.directive.js
+//= webui/maps/maps.component.js
 //= webui/maps/maps.controller.js
 
 //= webui/navigation/navigation.component.js
+//= webui/navigation/navigation.controller.js
 
 //= webui/order-registration/order-registration-full/order-registration-full.component.js
 //= webui/order-registration/order-registration-full/order-registration-full.controller.js

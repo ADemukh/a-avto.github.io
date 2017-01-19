@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
+var Car, mongoose;
 
-var Car = mongoose.model('Car', {
+mongoose = require('mongoose');
+
+Car = mongoose.model('Car', {
     mark: String,
     model: String,
     from: Number,

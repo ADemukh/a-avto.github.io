@@ -41,11 +41,15 @@ module.exports = function exports() {
         },
         // Для запуска браузера локально и синхронизации с исходниками
         browserSync: {
+            // proxy: 'aavto.local.dev',
             proxy: 'http://localhost:3000',
             files: ['./.build/**/*.*'],
             port: 5000
         },
-        nodemon: { script: './bin/www' },
+        nodemon: {
+            script: './bin/www',
+            nodeArgs: ['--inspect']
+        },
         templateCache: {
             filename: 'templates.js',
             options: {

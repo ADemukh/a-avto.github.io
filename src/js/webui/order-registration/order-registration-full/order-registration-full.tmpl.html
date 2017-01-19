@@ -1,32 +1,48 @@
 <div class="container">
-	<div class="row" style="background: white">
+	<div class="row" style="background: white; padding: 50px 20px 20px 0px;">
 		<div class="col-lg-4 col-md-4 col-sm-4 ">
+			<h3>{{::$ctrl.stage1Alt}}</h3>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-8">
-			<div class="panel enter single center">
-				<!--<h1>{{::$ctrl.information}}</h1>	-->
-				<!--<br>-->
-				<!--<span>{{$::ctrl.auto}}</span>	-->
-				<select ng-model="$ctrl.car" ng-options="c for c in $ctrl.cars" style="width: 200px; height: 22px;"></select>
-				<br>
-				<!--<span>{{::$ctrl.modell}}</span>-->
-				<select ng-model="$ctrl.model" ng-options="c for c in $ctrl.models" style="width: 200px; height: 22px;"></select>
-				<br>
-				<!--<span>{{::$ctrl.year}} </span>-->
-				<select ng-model="$ctrl.year" ng-options="c for c in $ctrl.years" style="width: 200px; height: 22px;"></select>
-				<br>
-				<!--<span>{{::$ctrl.typeofmotor}}</span>-->
-				<!--<select ng-model ng-options style="width: 100px"></select>		-->
-				<!--<br>			-->
-				<!--<br>			-->
-				<!--<span>{{::$ctrl.svalue}}</span>-->
-				<!--<select ng-model ng-options style="width: 100px"></select>		-->
-				<!--<span>{{::$ctrl.typeKPP}}</span>-->
-				<!--<select ng-model ng-options style="width: 100px"></select>		-->
-				<!--<span>{{::$ctrl.vinnomber}}</span>-->
-				<!--<select ng-model ng-options style="width: 100px"></select>		-->
+			<div class="panel enter single center" style="border: none">
+				<div style="text-align: left">
+					<select ng-disabled="!$ctrl.canChooseCar()" style="width: 130px; height: 40px;margin-right: 10px;" ng-model="$ctrl.car" ng-options="c for c in ::$ctrl.cars"
+									ng-style="!$ctrl.canChooseCar() && {'background-color':'#cccccc'} ">
+						<option value="" selected="selected">{{::$ctrl.carMarkAlt}}</option>
+					</select>
+					<select ng-disabled="!$ctrl.canChooseCarModel()" style="width: 130px; height: 40px;margin-right: 10px;" ng-model="$ctrl.model"
+									ng-options="m for m in $ctrl.models" ng-style="!$ctrl.canChooseCarModel() && {'background-color':'#cccccc'} ">
+						<option value="" selected="selected">{{::$ctrl.carModelAlt}}</option>
+					</select>
+					<select ng-disabled="!$ctrl.canChooseCarModelYear()" style="width: 130px; height: 40px;;margin-right: 10px;" ng-model="$ctrl.year"
+									ng-options="y for y in $ctrl.years" ng-style="!$ctrl.canChooseCarModelYear() && {'background-color':'#cccccc'} ">
+						<option value="" selected="selected">{{::$ctrl.carYearAlt}}</option>
+					</select>
+					<input type="text" style="width: 130px; height: 40px; padding-left: 5px; border-radius: 0px;" ng-model="$ctrl.vin" placeholder="{{::$ctrl.vinAlt}}"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="background: white; padding: 50px 20px 20px 0px;">
+		<div class="col-lg-4 col-md-4 col-sm-4 ">
+			<h3>{{::$ctrl.stage2Alt}}</h3>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-8">
+			<div class="panel enter single center" style="border: none">
+				<textarea style="display: block; margin-bottom: 20px; width: 100%; height: 120px; resize: none; padding-left: 5px; border-radius: 0px"
+								placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="background: white; padding: 50px 20px 20px 0px;">
+		<div class="col-lg-4 col-md-4 col-sm-4 ">
+			<h3>{{::$ctrl.stage3Alt}}</h3>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-8">
+			<div class="panel enter single center" style="border: none">
+				<h5>TODO here!</h5>
 			</div>
 		</div>
 	</div>
 </div>
-
