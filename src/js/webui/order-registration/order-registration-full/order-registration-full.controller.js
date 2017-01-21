@@ -4,9 +4,9 @@
     angular.module('webui').
 	controller('controllers.orderregistrationfull',  OrderRegistrationFullController);
 
-	OrderRegistrationFullController.$inject = ['newBid', 'cars', '$scope', '$state'];
+	OrderRegistrationFullController.$inject = ['services.order', 'services.cars', '$scope', '$state'];
 
-	function  OrderRegistrationFullController(newBid, cars, $scope, $state) {
+	function  OrderRegistrationFullController(order, cars, $scope, $state) {
 		var vm;
 
 		vm = this;
@@ -25,10 +25,10 @@
 		vm.searchByMapAlt = 'Искать на карте';
 		vm.searchByMapDesciptionAlt = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
 
-		vm.car = newBid.car;
-		vm.model = newBid.model;
-		vm.year = newBid.year;
-		vm.details = newBid.details;
+		vm.car = order.newOrder.car;
+		vm.model = order.newOrder.model;
+		vm.year = order.newOrder.year;
+		vm.details = order.newOrder.details;
 
 		vm.canChooseCar = function canChooseCar() {
 			return vm.cars && vm.cars.length;

@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('webui')
-        .component('qLogin', {
+        .component('qLoginHorizontal', {
             controller: 'controllers.login',
-            templateUrl: 'webui/login/login.tmpl.html'
+            templateUrl: 'webui/login/login-horizontal/login-horizontal.tmpl.html'
         });
 })();

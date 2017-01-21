@@ -24,12 +24,12 @@
             url: '/',
             parent: 'root'
         }).state('login', {
-            template: '<q-login/>',
+            template: '<q-login-vertical/>',
             url: '/login',
             parent: 'root'
-        }).state('passwordrecovery', {
-            template: '<q-password-recovery/>',
-            url: '/passwordrecovery',
+        }).state('password-recovery', {
+            template: '<q-password-recovery-vertical/>',
+            url: '/password-recovery',
             parent: 'root'
         }).state('agreement', {
             templateUrl: 'webui/agreement/agreement.tmpl.html',

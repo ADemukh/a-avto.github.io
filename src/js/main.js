@@ -17,7 +17,7 @@
 //= services/services.module.js
 //= services/cars/cars.service.js
 //= services/shops/shops.service.js
-//= services/newBid/newBid.service.js
+//= services/order/order.service.js
 //= services/registration/registration.service.js
 //= services/identity/identity.service.js
 //= webui/webui.module.js
@@ -28,8 +28,9 @@
 //= webui/how-it-works/how-it-works.component.js
 //= webui/how-it-works/how-it-works.controller.js
 
-//= webui/login/login.component.js
 //= webui/login/login.controller.js
+//= webui/login/login-horizontal/login-horizontal.component.js
+//= webui/login/login-vertical/login-vertical.component.js
 
 //= webui/maps/maps.component.js
 //= webui/maps/maps.controller.js
@@ -42,12 +43,14 @@
 //= webui/order-registration/order-registration-short/order-registration-short.component.js
 //= webui/order-registration/order-registration-short/order-registration-short.controller.js
 
-//= webui/password-recovery/password-recovery.component.js
 //= webui/password-recovery/password-recovery.controller.js
+//= webui/password-recovery/password-recovery-horizontal/password-recovery-horizontal.component.js
+//= webui/password-recovery/password-recovery-vertical/password-recovery-vertical.component.js
 
 //= webui/registration/registration.component.js
-//= webui/registration/registration-user/registration-user.component.js
 //= webui/registration/registration-user/registration-user.controller.js
+//= webui/registration/registration-user/registration-user-horizontal/registration-user-horizontal.component.js
+//= webui/registration/registration-user/registration-user-vertical/registration-user-vertical.component.js
 //= webui/registration/registration-shop/registration-shop.component.js
 //= webui/registration/registration-shop/registration-shop.controller.js
 

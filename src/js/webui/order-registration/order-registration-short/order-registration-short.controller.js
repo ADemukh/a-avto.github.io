@@ -4,9 +4,9 @@
     angular.module('webui').
 	controller('controllers.orderregistrationshort', OrderRegistrationShortController);
 
-	OrderRegistrationShortController.$inject = ['newBid', 'cars', '$scope', '$state'];
+	OrderRegistrationShortController.$inject = ['services.order', 'services.cars', '$scope', '$state'];
 
-	function OrderRegistrationShortController(newBid, cars, $scope, $state) {
+	function OrderRegistrationShortController(order, cars, $scope, $state) {
 		var vm;
 
 		vm = this;
@@ -31,17 +31,17 @@
 			return !!vm.model;
 		};
 		vm.sendToAll = function sendToAll() {
-			newBid.car = vm.car;
-			newBid.model = vm.model;
-			newBid.year = vm.year;
-			newBid.details = vm.details;
+			order.newOrder.car = vm.car;
+			order.newOrder.model = vm.model;
+			order.newOrder.year = vm.year;
+			order.newOrder.details = vm.details;
 			$state.go('order-registration');
 		};
 		vm.searchByMap = function searchByMap() {
-			newBid.car = vm.car;
-			newBid.model = vm.model;
-			newBid.year = vm.year;
-			newBid.details = vm.details;
+			order.newOrder.car = vm.car;
+			order.newOrder.model = vm.model;
+			order.newOrder.year = vm.year;
+			order.newOrder.details = vm.details;
 			$state.go('maps');
 		};
 
