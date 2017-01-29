@@ -37,9 +37,10 @@
                     password: password
                 })
                 .then(function response(resp) {
-                    if (resp.data) {
+                    if (resp.data && resp.data.user) {
                         currentUser = resp.data;
                     }
+                    return resp.data;
                 });
         }
 

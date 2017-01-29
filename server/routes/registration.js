@@ -5,10 +5,10 @@ express = require('express');
 router = express.Router();
 userController = require('../controllers/user');
 
-router.post('/registerUser', function registerUser(req, res, next) {
+router.post('/registerUser', function registerUser(req, res) {
   userController.register(req.body)
-    .then(function success(userId) {
-      res.json(userId);
+    .then(function success(resp) {
+      res.json(resp);
     });
 });
 

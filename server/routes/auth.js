@@ -11,10 +11,24 @@ router.post('/loggedin', function loggedIn(req, res) {
   res.send(req.isAuthenticated() ? req.user : null);
 });
 
-// route to log in
-router.post('/login', passport.authenticate('local'), function login(req, res) {
-  res.send(req.user);
+router.post('/login', function complete(req, res, next) {
+  passport.authenticate('local', function done(err, user, alert) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.json({ alert: alert });
+    }
+    res.json({
+      user: user
+    });
+  })(req, res, next);
 });
+
+// // route to log in
+// router.post('/login', passport.authenticate('local'), function login(req, res) {
+//   res.send(req.user);
+// });
 
 // route to log out
 router.post('/logout', function logout(req, res) {

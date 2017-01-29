@@ -1,11 +1,14 @@
 /*eslint strict:0  */
 var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, config, passport;
+var Shop, User;
 
 // config = require('nconf');
 passport = require('passport');
 AuthLocalStrategy = require('passport-local').Strategy;
 // AuthFacebookStrategy = require('passport-facebook').Strategy;
 // AuthVKStrategy = require('passport-vkontakte').Strategy;
+User = require('../models/user');
+Shop = require('../models/shop');
 
 passport.serializeUser(function serialize(user, done) {
     done(null, user);
@@ -20,16 +23,56 @@ passport.use('local', new AuthLocalStrategy({
         passwordField: 'password'
     },
     function callback(email, password, done) {
-        if (email === 'admin' && password === 'admin@gmail.com') {
+        if (email === 'admin@aavto.com' && password === 'admin') {
             return done(null, {
-                email: 'admin@gmail.com',
-                password: 'admin'
+                contactName: 'admin',
+                email: 'admin@aavto.com',
+                role: 'admin'
             });
         }
 
-        return done(null, false, {
-            message: 'Неверный логин или пароль'
-        });
+        User.findOne({ email: email }).exec()
+            .then(function userFound(user) {
+                return user ? user : Shop.findOne({ email: email }).exec();
+            })
+            .then(function userFound(user) {
+                if (user) {
+                    if (user.password === password) {
+                         done(null, user);
+                    } else {
+                        done(null, false, { message: 'Incorrect password.' });
+                    }
+                } else {
+                    done(null, false, { message: 'Incorrect username.' });
+                }
+            })
+            .catch(function onError(err) {
+                 done(err);
+            });
+
+        // User.findOne({ email: email }).exec()
+        //     .then(function foundUser(err, user) {
+        //         if (err) {
+        //             done(err);
+        //         } else if (user) {
+        //             return user.password === password ?
+        //                  done(null, user) :
+        //                  done(null, false, { message: 'Incorrect password.' });
+        //         } else {
+        //             Shop.findOne({ email: email }).exec()
+        //                 .then(function foundShop(err2, shop) {
+        //                     if (err2) {
+        //                         done(err2);
+        //                     } else if (shop) {
+        //                         return shop.password === password ?
+        //                             done(null, shop) :
+        //                             done(null, false, { message: 'Incorrect password.' });
+        //                     } else {
+        //                         done(null, false, { message: 'Incorrect username.' });
+        //                     }
+        //                 });
+        //         }
+        //     });
     }
 ));
 

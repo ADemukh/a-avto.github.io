@@ -21,7 +21,8 @@
 			userInfo = {
 				contactName: this.contactName,
 				email: this.email,
-				phone: this.phone
+				phone: this.phone,
+				password: this.password
 			};
 			registrationService.registerUser(userInfo)
 				.then(function success(userId) {

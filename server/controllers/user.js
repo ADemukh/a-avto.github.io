@@ -1,15 +1,13 @@
 /*eslint strict:0  */
-var User, mongoose;
+var User;
 
 User = require('../models/user');
-mongoose = require('mongoose');
 
 module.exports = {
 	register: function register(user) {
 		var userModel;
 
 		userModel = new User({
-			userId: new mongoose.Types.ObjectId(),
 			email: user.email,
 			contactName: user.contactName,
 			password: user.password,
@@ -17,16 +15,24 @@ module.exports = {
 			notifications: user.notifications
 		});
 
-		return userModel.save().then(function success(resp) {
-			return resp.userId.toString();
-		});
+		return userModel.save().then(
+			function success(resp) {
+				return {
+					user: resp
+				};
+			},
+			function failure(err) {
+				return {
+					alert: 'Failed to save user.',
+					originalMessage: err
+				};
+			});
 	},
 	registerVk: function registerVk(user) {
 		var userModel;
 
 		userModel = new User({
-			userId: new mongoose.Types.ObjectId()
-			// map properties
+				// map properties
 		});
 
 		return userModel.save(function onSaved(err) {
@@ -41,8 +47,7 @@ module.exports = {
 		var userModel;
 
 		userModel = new User({
-			userId: new mongoose.Types.ObjectId()
-			// map properties
+				// map properties
 		});
 
 		return userModel.save(function onSaved(err) {
@@ -57,8 +62,7 @@ module.exports = {
 		var userModel;
 
 		userModel = new User({
-			userId: new mongoose.Types.ObjectId()
-			// map properties
+				// map properties
 		});
 
 		return userModel.save(function onSaved(err) {
@@ -73,15 +77,17 @@ module.exports = {
 		// find user by id and change user password hash
 	},
 	loadPhoto: function loadPhoto(userId, photo) {
-			User.find({ userId: userId }).exec()
-				.then(function success(user) {
-					user.photo = {
-							photoId: photo.fileName,
-							originalName: photo.originalName,
-							extension: photo.extension,
-							destination: photo.destination
-						};
-					return user.save().exec();
-				});
+		User.find({
+				userId: userId
+			}).exec()
+			.then(function success(user) {
+				user.photo = {
+					photoId: photo.fileName,
+					originalName: photo.originalName,
+					extension: photo.extension,
+					destination: photo.destination
+				};
+				return user.save().exec();
+			});
 	}
 };
