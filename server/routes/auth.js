@@ -1,36 +1,19 @@
 /*eslint strict:0  */
-var express, passport, router;
+var authController, express, router;
 
 express = require('express');
 router = express.Router();
-passport = require('passport');
+authController = require('../controllers/auth');
 
 //==================================================================
-// route to test if the user is logged in or not
 router.post('/loggedin', function loggedIn(req, res) {
   res.send(req.isAuthenticated() ? req.user : null);
 });
 
-router.post('/login', function complete(req, res, next) {
-  passport.authenticate('local', function done(err, user, alert) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.json({ alert: alert });
-    }
-    res.json({
-      user: user
-    });
-  })(req, res, next);
-});
+router.post('/login', authController.authenticate('login'));
 
-// // route to log in
-// router.post('/login', passport.authenticate('local'), function login(req, res) {
-//   res.send(req.user);
-// });
+router.post('/signupuser', authController.authenticate('signupuser'));
 
-// route to log out
 router.post('/logout', function logout(req, res) {
   req.logOut();
   res.send(200);

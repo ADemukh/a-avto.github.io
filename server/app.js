@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, express, favicon, logger, path;
-var authRouter, cars, file, index, registration;
+var authRouter, cars, file, index;
 var app, db, passport;
 
 express = require('express');
@@ -13,7 +13,6 @@ bodyParser = require('body-parser');
 index = require('./routes/index');
 authRouter = require('./routes/auth');
 cars = require('./routes/cars');
-registration = require('./routes/registration');
 
 db = require('./db');
 passport = require('./auth/passport');
@@ -36,7 +35,6 @@ app.use(express.static(path.join(__dirname, '../.build')));
 app.use('/', index);
 app.use('/cars', cars);
 app.use('/auth', authRouter);
-app.use('/registration', registration);
 
 // catch 404 and forward to error handler
 app.use(function use(req, res, next) {

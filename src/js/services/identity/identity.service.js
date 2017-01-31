@@ -4,9 +4,9 @@
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q'];
+    IdentityService.$inject = ['$http'];
 
-    function IdentityService($http, $q) {
+    function IdentityService($http) {
         var currentUser;
 
         checkLoggedIn();
@@ -28,7 +28,9 @@
             checkLoggedIn: checkLoggedIn,
             authVk: authVk,
             authFb: authFb,
-            currentUser: getCurrentUser
+            currentUser: getCurrentUser,
+            signUpUser: signUpUser,
+            signUpShop: signUpShop
         };
 
         function logIn(email, password) {
@@ -61,6 +63,26 @@
 
         function getCurrentUser() {
             return currentUser;
+        }
+
+        function signUpUser(userInfo) {
+            return $http.post('auth/signupuser', userInfo)
+                .then(function response(resp) {
+                    if (resp.data && resp.data.user) {
+                        currentUser = resp.data;
+                    }
+                    return resp.data;
+                });
+        }
+
+        function signUpShop(shopInfo) {
+            return $http.post('auth/signupshop', shopInfo)
+                .then(function response(resp) {
+                    if (resp.data && resp.data.user) {
+                        currentUser = resp.data;
+                    }
+                    return resp.data;
+                });
         }
     }
 })();

@@ -18,7 +18,7 @@ passport.deserializeUser(function deserialize(user, done) {
     done(null, user);
 });
 
-passport.use('local', new AuthLocalStrategy({
+passport.use('login', new AuthLocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     },
@@ -31,50 +31,123 @@ passport.use('local', new AuthLocalStrategy({
             });
         }
 
-        User.findOne({ email: email }).exec()
+        User.findOne({
+                email: email
+            }).exec()
             .then(function userFound(user) {
-                return user ? user : Shop.findOne({ email: email }).exec();
+                return user ? user : Shop.findOne({
+                    email: email
+                }).exec();
             })
             .then(function userFound(user) {
                 if (user) {
                     if (user.password === password) {
-                         done(null, user);
+                        done(null, user);
                     } else {
-                        done(null, false, { message: 'Incorrect password.' });
+                        done(null, false, {
+                            message: 'Incorrect password.'
+                        });
                     }
                 } else {
-                    done(null, false, { message: 'Incorrect username.' });
+                    done(null, false, {
+                        message: 'Incorrect username.'
+                    });
                 }
             })
             .catch(function onError(err) {
-                 done(err);
+                done(err);
             });
-
-        // User.findOne({ email: email }).exec()
-        //     .then(function foundUser(err, user) {
-        //         if (err) {
-        //             done(err);
-        //         } else if (user) {
-        //             return user.password === password ?
-        //                  done(null, user) :
-        //                  done(null, false, { message: 'Incorrect password.' });
-        //         } else {
-        //             Shop.findOne({ email: email }).exec()
-        //                 .then(function foundShop(err2, shop) {
-        //                     if (err2) {
-        //                         done(err2);
-        //                     } else if (shop) {
-        //                         return shop.password === password ?
-        //                             done(null, shop) :
-        //                             done(null, false, { message: 'Incorrect password.' });
-        //                     } else {
-        //                         done(null, false, { message: 'Incorrect username.' });
-        //                     }
-        //                 });
-        //         }
-        //     });
     }
 ));
+
+passport.use('signupuser', new AuthLocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        },
+        function callback(req, email, password, done) {
+            User.findOne({
+                email: email
+            }).exec()
+            .then(function userFound(user) {
+                return user ? user : Shop.findOne({
+                    email: email
+                }).exec();
+            })
+            .then(function userFound(user) {
+                var newUser;
+
+                if (user) {
+                    return done(null, false, {
+                            message: 'User already exists.'
+                        });
+                }
+
+                newUser = new User({
+                    email: email,
+                    password: req.param('password'),
+                    contactName: req.param('contactName'),
+                    phone: req.param('phone')
+                });
+
+                // save our user to the database
+                newUser.save(function complete(err) {
+                    if (err) {
+                        throw err;
+                    }
+
+                    // if successful, return the new user
+                    return done(null, newUser);
+                });
+            })
+            .catch(function onError(err) {
+                done(err);
+            });
+}));
+
+passport.use('signupshop', new AuthLocalStrategy({
+            usernameField: 'email',
+            passwordField: 'password',
+            passReqToCallback: true
+        },
+        function callback(req, email, password, done) {
+            User.findOne({
+                email: email
+            }).exec()
+            .then(function userFound(user) {
+                return user ? user : Shop.findOne({
+                    email: email
+                }).exec();
+            })
+            .then(function userFound(user) {
+                var newShopUser;
+
+                if (user) {
+                    return done(null, false, {
+                            message: 'User already exists.'
+                        });
+                }
+
+                newShopUser = new Shop({
+                    email: email,
+                    password: req.param('password')
+                    // todo: shop parameters
+                });
+
+                // save our user to the database
+                newShopUser.save(function complete(err) {
+                    if (err) {
+                        throw err;
+                    }
+
+                    // if successful, return the new shop user
+                    return done(null, newShopUser);
+                });
+            })
+            .catch(function onError(err) {
+                done(err);
+            });
+}));
 
 // passport.use('facebook', new AuthFacebookStrategy({
 //         clientID: config.get('auth:fb:app_id'),

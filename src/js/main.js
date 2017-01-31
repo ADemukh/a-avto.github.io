@@ -18,7 +18,6 @@
 //= services/cars/cars.service.js
 //= services/shops/shops.service.js
 //= services/order/order.service.js
-//= services/registration/registration.service.js
 //= services/identity/identity.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
