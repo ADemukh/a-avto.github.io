@@ -18,29 +18,30 @@
 		vm.password2Alt = 'Повторите пароль';
 		vm.phonePolicyText = 'Телефон необходим только для регистрации';
 		vm.registerActionText = 'Зарегистрироваться';
-		vm.register = function onRegister() {
-			var userInfo;
-
-			userInfo = {
-				contactName: vm.contactName,
-				email: vm.email,
-				phone: vm.phone,
-				password: vm.password
-			};
-			identity.signUpUser(userInfo)
-				.then(function complete(result) {
-					if (identity.loggedIn()) {
-						$state.go('main');
-					} else if (result.alert) {
-						vm.errorMessage = result.alert.message;
-						alert(result.alert.message);
-					}
-				});
+		vm.register = function onRegister(isValid) {
+			if (isValid) {
+				identity.signUpUser(vm.user)
+					.then(function complete(result) {
+						if (identity.loggedIn()) {
+							$state.go('main');
+						} else if (result.alert) {
+							vm.errorMessage = result.alert.message;
+						}
+					});
+			}
 		};
 		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
 		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
 		vm.policyTextPart3 = ' и даете ';
 		vm.policyLinkTextPart4 = 'Согласие на обработку перносальных данных';
 		vm.policyTextPart5 = '.';
+		vm.goToLoginAlt = 'Войти';
+
+		vm.alertContactNameIsRequired = 'Введите контактное имя';
+		vm.alertEmailIsRequired = 'Введите E-mail';
+		vm.alertEmailIsNotCorrect = 'Неправильный пароль';
+		vm.alertPhoneIsNotCorrect = 'Номер не соответветствует шаблону +375 xx xxx xx xx';
+		vm.alertPasswordIsRequired = 'Введите пароль';
+		vm.alertPasswordsAreDifferent = 'Пароли не совпадают';
 	}
 })();

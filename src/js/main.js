@@ -21,6 +21,7 @@
 //= services/identity/identity.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
+//= webui/common/validators/match.directive.js
 
 //= webui/footer/footer.component.js
 
