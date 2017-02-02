@@ -30,7 +30,8 @@
             authFb: authFb,
             currentUser: getCurrentUser,
             signUpUser: signUpUser,
-            signUpShop: signUpShop
+            signUpShop: signUpShop,
+            recoverPassword: recoverPassword
         };
 
         function logIn(email, password) {
@@ -83,6 +84,12 @@
                     }
                     return resp.data;
                 });
+        }
+
+        function recoverPassword(email) {
+            return $http.post('auth/recoverpassword', {
+                    email: email
+            });
         }
     }
 })();

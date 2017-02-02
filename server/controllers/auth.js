@@ -1,6 +1,8 @@
 /*eslint strict:0  */
-var auth, passport;
+var auth, passport, User, Shop;
 
+User = require('../models/user');
+Shop = require('../models/car');
 passport = require('passport');
 
 auth = {
@@ -27,6 +29,24 @@ auth = {
                 });
             })(req, res, next);
         };
+    }
+
+    recoverPassword: function recoverPassword(email) {
+        User.findOne({
+            email:email
+        }).exec()
+        .then(function userFound(user){
+            return user ? user : Shop.findOne({
+                email: email
+            }).exec();
+        })
+        .then(function userFound(user){
+            if(user){
+                //sens email
+                return true;
+            }
+            return false
+        });
     }
 };
 module.exports = auth;

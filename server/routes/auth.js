@@ -10,6 +10,14 @@ router.post('/loggedin', function loggedIn(req, res) {
   res.send(req.isAuthenticated() ? req.user : null);
 });
 
+router.post('/recoverpassword', function loggedIn(req, res) {
+  authController.recoverPassword(req.body.email)
+  .then(function complete(success) {
+    res.json({ success: success });
+  });
+});
+
+
 router.post('/login', authController.authenticate('login'));
 
 router.post('/signupuser', authController.authenticate('signupuser'));
@@ -19,5 +27,6 @@ router.post('/logout', function logout(req, res) {
   res.send(200);
 });
 //==================================================================
+
 
 module.exports = router;
