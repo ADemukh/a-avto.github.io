@@ -7,16 +7,22 @@
     PasswordRecoveryController.$inject = ['services.identity', '$state'];
 
 	function PasswordRecoveryController(identity) {
-		this.title = 'Восстановление пароля';
-		this.emailOrPhoneAlt = 'E-mail или телефон';
-		this.recoverActionText = 'Восстановить пароль';
-		this.recover = function onRecover() {
-			return identity.recoverPassword(this.email)
+		var vm;
+
+		vm = this;
+		vm.title = 'Восстановление пароля';
+		vm.emailOrPhoneAlt = 'E-mail или телефон';
+		vm.recoverActionText = 'Восстановить пароль';
+		vm.recover = function onRecover() {
+			return identity.recoverPassword(vm.email)
 				.then(function response(resp) {
 					if (resp.data && resp.data.success) {
-						this.successMessage = 'Пароль оправлен на вашу почту';
+						vm.successMessage = 'Пароль оправлен на вашу почту';
+						alert(vm.successMessage);
+					} else {
+						vm.errorMessage = 'Пароль не был оправлен на вашу почту';
+						alert(vm.errorMessage);
 					}
-					this.errorMessage - 'Пароль не был оправлен на вашу почту';
 				});
 		};
 	}

@@ -2,7 +2,7 @@
 var auth, passport, User, Shop;
 
 User = require('../models/user');
-Shop = require('../models/car');
+Shop = require('../models/shop');
 passport = require('passport');
 
 auth = {
@@ -29,23 +29,22 @@ auth = {
                 });
             })(req, res, next);
         };
-    }
-
+    },
     recoverPassword: function recoverPassword(email) {
-        User.findOne({
-            email:email
+       return User.findOne({
+            email: email
         }).exec()
-        .then(function userFound(user){
+        .then(function userFound(user) {
             return user ? user : Shop.findOne({
                 email: email
             }).exec();
         })
-        .then(function userFound(user){
-            if(user){
-                //sens email
+        .then(function userFound(user) {
+            if (user) {
+                //senд email
                 return true;
             }
-            return false
+            return false;
         });
     }
 };
