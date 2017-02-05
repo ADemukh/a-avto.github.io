@@ -26,8 +26,8 @@
             logOut: logOut,
             loggedIn: loggedIn,
             checkLoggedIn: checkLoggedIn,
-            authVk: authVk,
-            authFb: authFb,
+            authVkontakte: authVkontakte,
+            authFacebook: authFacebook,
             currentUser: getCurrentUser,
             signUpUser: signUpUser,
             signUpShop: signUpShop
@@ -57,9 +57,18 @@
             return !!currentUser;
         }
 
-        function authVk() {}
+        function authVkontakte() {
+            return $http.get('auth/facebook')
+                .then(function response(resp) {
+                    return resp;
+                });
+        }
 
-        function authFb() {}
+        function authFacebook() {
+            return $http.get('auth/facebook')
+                .then(function response(resp) {
+                    return resp;
+                });}
 
         function getCurrentUser() {
             return currentUser;

@@ -5,10 +5,11 @@ var Shop, User;
 // config = require('nconf');
 passport = require('passport');
 AuthLocalStrategy = require('passport-local').Strategy;
-// AuthFacebookStrategy = require('passport-facebook').Strategy;
+AuthFacebookStrategy = require('passport-facebook').Strategy;
 // AuthVKStrategy = require('passport-vkontakte').Strategy;
 User = require('../models/user');
 Shop = require('../models/shop');
+config = require('../config/auth');
 
 passport.serializeUser(function serialize(user, done) {
     done(null, user);
@@ -149,32 +150,58 @@ passport.use('signupshop', new AuthLocalStrategy({
             });
 }));
 
-// passport.use('facebook', new AuthFacebookStrategy({
-//         clientID: config.get('auth:fb:app_id'),
-//         clientSecret: config.get('auth:fb:secret'),
-//         callbackURL: config.get('app:url') + '/auth/fb/callback',
-//         profileFields: [
-//             'id',
-//             'displayName',
-//             'profileUrl',
-//             'username',
-//             'link',
-//             'gender',
-//             'photos'
-//         ]
-//     },
-//     function callback(accessToken, refreshToken, profile, done) {
-//         //console.log('facebook auth: ', profile);
+passport.use('facebook', new AuthFacebookStrategy({
+        clientID: config.facebookAuth.clientID,
+        clientSecret: config.facebookAuth.clientSecret,
+        callbackURL: config.facebookAuth.callbackURL,
+        profileFields: [
+            'id',
+            'displayName',
+            'profileUrl',
+            'email'
+        ]
+    },
+    function callback(accessToken, refreshToken, profile, done) {
+        done(null, profile);
+        // find the user in the database based on their facebook id
+            // User.findOne({ 'facebook.id' : profile.id }, function found(err, user) {
+            //     var newUser;
 
-//         return done(null, {
-//             username: profile.displayName,
-//             photoUrl: profile.photos[0].value,
-//             profileUrl: profile.profileUrl
-//         });
-//     }
-// ));
+            //     // if there is an error, stop everything and return that
+            //     // ie an error connecting to the database
+            //     if (err) {
+            //         return done(err);
+            //     }
 
-// passport.use('vk', new AuthVKStrategy({
+            //     // if the user is found, then log them in
+            //     // user found, return that user
+            //     if (user) {
+            //         return done(null, user);
+            //     }
+
+            //     // if there is no user found with that facebook id, create them
+            //     newUser = new User();
+
+            //     // set all of the facebook information in our user model
+            //     newUser.facebook.id    = profile.id; // set the users facebook id                   
+            //     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
+            //     newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+            //     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+
+            //     // save our user to the database
+            //     newUser.save(function saved(err) {
+            //         if (err) {
+            //             throw err;
+            //         }
+
+            //         // if successful, return the new user
+            //         return done(null, newUser);
+            //     });
+            // });
+    }
+));
+
+// passport.use('vkontakte', new AuthVKStrategy({
 //         clientID: config.get('auth:vk:app_id'),
 //         clientSecret: config.get('auth:vk:secret'),
 //         callbackURL: config.get('app:url') + '/auth/vk/callback'

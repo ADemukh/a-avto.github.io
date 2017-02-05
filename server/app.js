@@ -1,13 +1,15 @@
 /*eslint strict:0  */
-var bodyParser, cookieParser, express, favicon, logger, path;
+var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
 var authRouter, cars, file, index;
 var app, db, passport;
 
 express = require('express');
+cors = require('cors')
 path = require('path');
 favicon = require('serve-favicon');
 logger = require('morgan');
 cookieParser = require('cookie-parser');
+cookieSession = require('cookie-session');
 bodyParser = require('body-parser');
 
 index = require('./routes/index');
@@ -25,9 +27,15 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
+app.use(cors());
+app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  keys: ['aavto', 'demukhfamily.com', 'stkvcjhvsgfytzxnjhs'],
+  maxAge: 24 * 60 * 60 * 1000   // 24 hours
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(passport.initialize()); // Add passport initialization
 app.use(passport.session());    // Add passport initialization
 app.use(express.static(path.join(__dirname, '../.build')));

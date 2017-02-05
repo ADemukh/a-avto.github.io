@@ -18,6 +18,9 @@
 		vm.password2Alt = 'Повторите пароль';
 		vm.phonePolicyText = 'Телефон необходим только для регистрации';
 		vm.registerActionText = 'Зарегистрироваться';
+		vm.resetServerError = function onChange() {
+			vm.serverErrorMessage = null;
+		};
 		vm.register = function onRegister(isValid) {
 			if (isValid) {
 				identity.signUpUser(vm.user)
@@ -25,7 +28,7 @@
 						if (identity.loggedIn()) {
 							$state.go('main');
 						} else if (result.alert) {
-							vm.errorMessage = result.alert.message;
+							vm.serverErrorMessage = result.alert.message;
 						}
 					});
 			}

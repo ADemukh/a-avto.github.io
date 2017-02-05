@@ -28,6 +28,9 @@
 //= webui/how-it-works/how-it-works.component.js
 //= webui/how-it-works/how-it-works.controller.js
 
+//= webui/auth-social/auth-social.component.js
+//= webui/auth-social/auth-social.controller.js
+
 //= webui/login/login.controller.js
 //= webui/login/login-horizontal/login-horizontal.component.js
 //= webui/login/login-vertical/login-vertical.component.js
