@@ -1,15 +1,40 @@
+<style>
+    .login-form {
+        margin: 68px auto 38px;
+        width: 490px;
+        padding: 68px 40px;
+        text-align: center;
+    }
+    
+    .login-form input {
+        width: 100%;
+        margin: 0 0 20px 0;
+        font-size: 1.1em;
+        padding: 10px 15px;
+        border-radius: 0px;
+    }
+    
+    .login-form button {
+        width: initial;
+        padding: 10px 50px;
+        text-align: start;
+    }
+    
+    span.help-block {
+        text-align: left;
+    }
+</style>
 <div class="container">
-    <form class="panel enter single center" style="margin: 68px auto 38px;width: 490px; padding: 68px 40px; text-align: center;"
-        ng-submit="::$ctrl.login()">
+    <form class="panel enter single center login-form" ng-submit="::$ctrl.login()">
         <h3>{{::$ctrl.title}}</h3>
         <div>
-            <input type="text" name="email" ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+            <input type="text" name="email" ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}">
         </div>
         <div>
-            <input type="password" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+            <input type="password" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}">
         </div>
         <div style="text-align: start;">
-            <button type="submit" class="button button_blue" style="width: initial; padding: 10px 50px; text-align: start;">
+            <button type="submit" class="button button_blue">
                 <span>{{::$ctrl.loginActinonText}}</span>
             </button>
             <a class="recover" ui-sref="password-recovery" href="#/password-recovery" style="float: right;">{{::$ctrl.forgotPasswordLinkText}}</a>
