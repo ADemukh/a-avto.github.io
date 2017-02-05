@@ -11,18 +11,20 @@
 		padding: 10px 15px;
 		border-radius: 0px;
 	}
+	
 	button.user-form-submit {
 		border-radius: 0px;
 	}
+	
 	span.help-block {
 		text-align: left;
 	}
 </style>
 <form name="userForm" ng-submit="::$ctrl.register(userForm.$valid)" class="panel enter single center user-form" novalidate>
 	<h3>{{::$ctrl.title}}</h3>
-	<!-- Contact name -->
+	<!-- Name -->
 	<div class="form-group" ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
-		<input type="text" name="name" ng-model="$ctrl.user.contactName" required ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.contactNameAlt}}"
+		<input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.contactNameAlt}}"
 						class="form-control user-form-input">
 		<span class="help-block" ng-show="userForm.name.$error.required && !userForm.name.$pristine">{{::$ctrl.alertContactNameIsRequired}}</span>
 	</div>
@@ -33,7 +35,7 @@
 		<span class="help-block" ng-show="userForm.email.$error.required && !userForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
 		<span class="help-block" ng-show="userForm.email.$error.email && !userForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
 	</div>
-	<!-- Phone number -->
+	<!-- Phone -->
 	<div class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && !userForm.phone.$pristine }">
 		<input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
 						placeholder="{{::$ctrl.phoneAlt}}" class="form-control user-form-input">
@@ -45,6 +47,7 @@
 						class="form-control user-form-input">
 		<span class="help-block" ng-show="userForm.password.$invalid && !userForm.password.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
 	</div>
+	<!-- Confirm password -->
 	<div class="form-group" ng-class="{ 'has-error' : userForm.confirmPassword.$invalid && !userForm.confirmPassword.$pristine }">
 		<input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword" required match="$ctrl.user.password"
 						ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.password2Alt}}" class="form-control user-form-input">
@@ -63,4 +66,5 @@
 		<a target="_blank" href="#/agreement">{{::$ctrl.policyLinkTextPart2}}</a> {{::$ctrl.policyTextPart3}}
 		<a target="_blank" href="#/rules">{{::$ctrl.policyLinkTextPart4}}</a> {{::$ctrl.policyTextPart5}}
 	</div>
+	<q-auth-social></q-auth-social>
 </form>

@@ -26,7 +26,7 @@
 				identity.signUpUser(vm.user)
 					.then(function complete(result) {
 						if (identity.loggedIn()) {
-							$state.go('main');
+							$state.go('profile');
 						} else if (result.alert) {
 							vm.serverErrorMessage = result.alert.message;
 						}

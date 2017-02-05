@@ -4,6 +4,11 @@ var User;
 User = require('../models/user');
 
 module.exports = {
+	findByEmail: function findUser(email) {
+		return User.findOne({
+			email: email
+		}).exec();
+	},
 	changePassword: function changePassword(userId, newPassword) {
 		// find user by id and change user password hash
 	},
