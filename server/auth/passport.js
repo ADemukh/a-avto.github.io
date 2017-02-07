@@ -151,42 +151,75 @@ passport.use('facebook', new AuthFacebookStrategy({
         ]
     },
     function callback(accessToken, refreshToken, profile, done) {
-        done(null, profile);
-        // find the user in the database based on their facebook id
-        // User.findOne({ 'facebook.id' : profile.id }, function found(err, user) {
-        //     var newUser;
+        var email;
 
-        //     // if there is an error, stop everything and return that
-        //     // ie an error connecting to the database
-        //     if (err) {
-        //         return done(err);
-        //     }
+        if (profile) {
+            email = profile.emails[0].value;
 
-        //     // if the user is found, then log them in
-        //     // user found, return that user
-        //     if (user) {
-        //         return done(null, user);
-        //     }
+            User.findOne({
+                    email: email
+                }).exec()
+                .then(function userFound(user) {
+                    var newUser;
 
-        //     // if there is no user found with that facebook id, create them
-        //     newUser = new User();
+                    if (user) {
+                        if (user.fb && user.fb.id === profile.id) {
+                            user.password = null;
+                            return done(null, user);
+                        }
 
-        //     // set all of the facebook information in our user model
-        //     newUser.facebook.id    = profile.id; // set the users facebook id                   
-        //     newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
-        //     newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-        //     newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                        if (!user.fb) {
+                            user.fb = {
+                                id: profile.id,
+                                profileUrl: profile.profileUrl
+                            };
 
-        //     // save our user to the database
-        //     newUser.save(function saved(err) {
-        //         if (err) {
-        //             throw err;
-        //         }
+                            // save user with fb details to the database
+                            user.save(function complete(err) {
+                                if (err) {
+                                    throw err;
+                                }
 
-        //         // if successful, return the new user
-        //         return done(null, newUser);
-        //     });
-        // });
+                                // if successful, return the new user without password
+                                user.password = null;
+                                return done(null, user);
+                            });
+                        }
+
+                        return done(null, false, {
+                            message: 'Пользователь с таким e-mail уже существует.'
+                        });
+                    }
+
+                    newUser = new User({
+                        email: email,
+                        name: profile.displayName,
+                        role: config.user.roles.CLIENT,
+                        fb: {
+                            id: profile.id,
+                            profileUrl: profile.profileUrl
+                        }
+                    });
+
+                    // save new user to the database
+                    newUser.save(function complete(err) {
+                        if (err) {
+                            throw err;
+                        }
+
+                        // if successful, return the new user without password
+                        newUser.password = null;
+                        return done(null, newUser);
+                    });
+                })
+                .catch(function onError(err) {
+                    done(err);
+                });
+        } else {
+            return done(null, false, {
+                message: 'Не удалось авторизоваться через социальную сеть.'
+            });
+        }
     }
 ));
 

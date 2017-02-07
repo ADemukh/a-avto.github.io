@@ -48,14 +48,8 @@ User = mongoose.model('User', {
 		type: String,
 		required: true
 	},
-	password: {
-		type: String,
-		required: true
-	},
-	passwordHash: {
-		type: String,
-		required: true
-	},
+	password: String,
+	passwordHash: String,
 	role: {
 		'type': String,
 		'default': config.user.roles.CLIENT
