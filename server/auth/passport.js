@@ -1,5 +1,6 @@
 /*eslint strict:0  */
-var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, User, config, passport;
+var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, config, passport;
+var ClientUser, ShopUser, User;
 
 passport = require('passport');
 config = require('../config');
@@ -7,6 +8,9 @@ config = require('../config');
 AuthLocalStrategy = require('passport-local').Strategy;
 AuthFacebookStrategy = require('passport-facebook').Strategy;
 // AuthVKStrategy = require('passport-vkontakte').Strategy;
+
+ClientUser = require('../models/clientUser');
+ShopUser = require('../models/shopUser');
 User = require('../models/user');
 
 passport.serializeUser(function serialize(user, done) {
@@ -64,32 +68,27 @@ passport.use('signupuser', new AuthLocalStrategy({
                 email: email
             }).exec()
             .then(function userFound(user) {
-                var newUser;
-
                 if (user) {
                     return done(null, false, {
                         message: 'Пользователь с таким e-mail уже существует.'
                     });
                 }
 
-                newUser = new User({
+                new ClientUser({
                     email: email,
                     password: req.param('password'),
                     passwordHash: req.param('password'),
                     name: req.param('name'),
                     phone: req.param('phone'),
                     role: config.user.roles.CLIENT
-                });
-
-                // save new user to the database
-                newUser.save(function complete(err) {
+                }).save(function complete(err, savedClientUser) {
                     if (err) {
                         throw err;
                     }
 
                     // if successful, return the new user without password
-                    newUser.password = null;
-                    return done(null, newUser);
+                    savedClientUser.password = null;
+                    return done(null, savedClientUser);
                 });
             })
             .catch(function onError(err) {
@@ -107,31 +106,25 @@ passport.use('signupshop', new AuthLocalStrategy({
                 email: email
             }).exec()
             .then(function userFound(user) {
-                var newShopUser;
-
                 if (user) {
                     return done(null, false, {
                         message: 'Пользователь с таким e-mail уже существует.'
                     });
                 }
 
-                newShopUser = new User({
+                new ShopUser({
                     email: email,
                     password: req.param('password'),
                     passwordHash: req.param('password'),
-                    name: req.param('name'),
-                    role: config.user.roles.CLIENT
-                });
-
-                // save our user to the database
-                newShopUser.save(function complete(err) {
+                    name: req.param('name')
+                }).save(function complete(err, savedShopUser) {
                     if (err) {
                         throw err;
                     }
 
                     // if successful, return the new shop user
-                    newShopUser.password = null;
-                    return done(null, newShopUser);
+                    savedShopUser.password = null;
+                    return done(null, savedShopUser);
                 });
             })
             .catch(function onError(err) {
@@ -160,29 +153,28 @@ passport.use('facebook', new AuthFacebookStrategy({
                     email: email
                 }).exec()
                 .then(function userFound(user) {
-                    var newUser;
-
                     if (user) {
+                        // what if user is shop?
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
                             return done(null, user);
                         }
 
-                        if (!user.fb) {
+                        if (user.fb && !user.fb.id) {
                             user.fb = {
                                 id: profile.id,
                                 profileUrl: profile.profileUrl
                             };
 
                             // save user with fb details to the database
-                            user.save(function complete(err) {
+                            user.save(function complete(err, updatedUser) {
                                 if (err) {
                                     throw err;
                                 }
 
                                 // if successful, return the new user without password
-                                user.password = null;
-                                return done(null, user);
+                                updatedUser.password = null;
+                                return done(null, updatedUser);
                             });
                         }
 
@@ -191,7 +183,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                         });
                     }
 
-                    newUser = new User({
+                    new ClientUser({
                         email: email,
                         name: profile.displayName,
                         role: config.user.roles.CLIENT,
@@ -199,17 +191,14 @@ passport.use('facebook', new AuthFacebookStrategy({
                             id: profile.id,
                             profileUrl: profile.profileUrl
                         }
-                    });
-
-                    // save new user to the database
-                    newUser.save(function complete(err) {
+                    }).save(function complete(err, savedClientUser) {
                         if (err) {
                             throw err;
                         }
 
                         // if successful, return the new user without password
-                        newUser.password = null;
-                        return done(null, newUser);
+                        savedClientUser.password = null;
+                        return done(null, savedClientUser);
                     });
                 })
                 .catch(function onError(err) {
