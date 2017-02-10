@@ -30,5 +30,16 @@ module.exports = {
             }
         },
         connectionString: 'mongodb://aavto_admin:aavto_admin@ds141098.mlab.com:41098/a_avto_dev'
+    },
+    nodemailer: {
+        options: {
+            service: 'gmail',
+            auth: {
+                user: 'aleksey.demukh',
+                pass: 'aleksey10051990'
+            }
+        },
+        maailFrom: '"Aavto.by" <aleksey.demukh@gmail.com>'
+
     }
 };
