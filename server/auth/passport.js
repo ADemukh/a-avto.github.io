@@ -1,9 +1,10 @@
 /*eslint strict:0  */
-var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, config, passport;
+var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, config, passport, userController;
 var ClientUser, ShopUser, User;
 
 passport = require('passport');
 config = require('../config');
+userController = require('../controllers/user');
 
 AuthLocalStrategy = require('passport-local').Strategy;
 AuthFacebookStrategy = require('passport-facebook').Strategy;
@@ -34,24 +35,20 @@ passport.use('login', new AuthLocalStrategy({
             });
         }
 
-        User.findOne({
-                email: email
-            }).exec()
+        userController.findByEmail(email)
             .then(function userFound(user) {
-                if (user) {
-                    if (user.password === password) {
-                        user.password = null;
-                        done(null, user);
-                    } else {
-                        done(null, false, {
-                            message: 'Неправильный пароль.'
-                        });
-                    }
+                if (user.password === password) {
+                    user.password = null;
+                    done(null, user);
                 } else {
                     done(null, false, {
-                        message: 'Пользователь не найден.'
+                        message: 'Неправильный пароль.'
                     });
                 }
+            }, function userNotFound(error) {
+                done(null, false, {
+                    message: error
+                });
             })
             .catch(function onError(err) {
                 done(err);
@@ -64,32 +61,28 @@ passport.use('signupuser', new AuthLocalStrategy({
         passReqToCallback: true
     },
     function callback(req, email, password, done) {
-        User.findOne({
-                email: email
-            }).exec()
+        userController.findByEmail(email)
             .then(function userFound(user) {
-                if (user) {
-                    return done(null, false, {
-                        message: 'Пользователь с таким e-mail уже существует.'
-                    });
-                }
+                return done(null, false, {
+                    message: 'Пользователь с таким e-mail уже существует.'
+                });
+            }, function userNotFound() {
+                var clientUser;
 
-                new ClientUser({
+                clientUser = new ClientUser({
                     email: email,
                     password: req.param('password'),
                     passwordHash: req.param('password'),
                     name: req.param('name'),
                     phone: req.param('phone'),
                     role: config.user.roles.CLIENT
-                }).save(function complete(err, savedClientUser) {
-                    if (err) {
-                        throw err;
-                    }
-
-                    // if successful, return the new user without password
-                    savedClientUser.password = null;
-                    return done(null, savedClientUser);
                 });
+
+                return userController.saveOrUpdate(clientUser)
+                    .then(function successful(savedUser) {
+                        savedUser.password = null;
+                        return done(null, savedUser);
+                    });
             })
             .catch(function onError(err) {
                 done(err);
@@ -102,30 +95,26 @@ passport.use('signupshop', new AuthLocalStrategy({
         passReqToCallback: true
     },
     function callback(req, email, password, done) {
-        User.findOne({
-                email: email
-            }).exec()
+        userController.findByEmail(email)
             .then(function userFound(user) {
-                if (user) {
-                    return done(null, false, {
-                        message: 'Пользователь с таким e-mail уже существует.'
-                    });
-                }
+                return done(null, false, {
+                    message: 'Пользователь с таким e-mail уже существует.'
+                });
+            }, function userNotFound() {
+                var shopUser;
 
-                new ShopUser({
+                shopUser = new ShopUser({
                     email: email,
                     password: req.param('password'),
                     passwordHash: req.param('password'),
                     name: req.param('name')
-                }).save(function complete(err, savedShopUser) {
-                    if (err) {
-                        throw err;
-                    }
-
-                    // if successful, return the new shop user
-                    savedShopUser.password = null;
-                    return done(null, savedShopUser);
                 });
+
+                return userController.saveOrUpdate(shopUser)
+                    .then(function successful(savedUser) {
+                        savedUser.password = null;
+                        return done(null, savedUser);
+                    });
             })
             .catch(function onError(err) {
                 done(err);
@@ -149,58 +138,47 @@ passport.use('facebook', new AuthFacebookStrategy({
         if (profile) {
             email = profile.emails[0].value;
 
-            User.findOne({
-                    email: email
-                }).exec()
+            userController.findByEmail(email)
                 .then(function userFound(user) {
-                    if (user) {
-                        // what if user is shop?
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
-                            return done(null, user);
-                        }
-
-                        if (user.fb && !user.fb.id) {
+                            done(null, user);
+                        } else if (user.fb && user.fb.id !== profile.id) {
+                            done(null, false, {
+                                message: 'Пользователь с таким e-mail уже существует.'
+                            });
+                        } else {
                             user.fb = {
                                 id: profile.id,
                                 profileUrl: profile.profileUrl
                             };
 
-                            // save user with fb details to the database
-                            user.save(function complete(err, updatedUser) {
-                                if (err) {
-                                    throw err;
-                                }
-
-                                // if successful, return the new user without password
-                                updatedUser.password = null;
-                                return done(null, updatedUser);
-                            });
+                            return userController.saveOrUpdate(user)
+                                .then(function successful(savedUser) {
+                                    savedUser.password = null;
+                                    return done(null, savedUser);
+                                });
                         }
+                    },
+                    function userNotFound() {
+                        var clientUser;
 
-                        return done(null, false, {
-                            message: 'Пользователь с таким e-mail уже существует.'
+                        clientUser = new ClientUser({
+                            email: email,
+                            name: profile.displayName,
+                            role: config.user.roles.CLIENT,
+                            fb: {
+                                id: profile.id,
+                                profileUrl: profile.profileUrl
+                            }
                         });
-                    }
 
-                    new ClientUser({
-                        email: email,
-                        name: profile.displayName,
-                        role: config.user.roles.CLIENT,
-                        fb: {
-                            id: profile.id,
-                            profileUrl: profile.profileUrl
-                        }
-                    }).save(function complete(err, savedClientUser) {
-                        if (err) {
-                            throw err;
-                        }
-
-                        // if successful, return the new user without password
-                        savedClientUser.password = null;
-                        return done(null, savedClientUser);
-                    });
-                })
+                        return userController.saveOrUpdate(clientUser)
+                            .then(function successful(savedUser) {
+                                savedUser.password = null;
+                                return done(null, savedUser);
+                            });
+                    })
                 .catch(function onError(err) {
                     done(err);
                 });
@@ -209,8 +187,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                 message: 'Не удалось авторизоваться через социальную сеть.'
             });
         }
-    }
-));
+    }));
 
 // passport.use('vkontakte', new AuthVKStrategy({
 //         clientID: config.get('auth:vk:app_id'),

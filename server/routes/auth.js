@@ -46,6 +46,9 @@ router.post('/signupuser', authenticate('signupuser'));
 router.get('/facebook', passport.authenticate('facebook', {
   scope: 'email'
 }));
+
+// send 401 if failed
+// send with redirection url if succeded
 router.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: '/#!/',
   failureRedirect: '/#!/login'

@@ -3,27 +3,39 @@ var User;
 
 User = require('../models/user');
 
-module.exports = {
-	findByEmail: function findUser(email) {
-		return User.findOne({
+function findUserByEmail(email) {
+	return User.findOne({
 			email: email
-		}).exec();
-	},
-	changePassword: function changePassword(userId, newPassword) {
-		// find user by id and change user password hash
-	},
-	loadPhoto: function loadPhoto(userId, photo) {
-		User.find({
-				userId: userId
-			}).exec()
-			.then(function success(user) {
-				user.photo = {
-					photoId: photo.fileName,
-					originalName: photo.originalName,
-					extension: photo.extension,
-					destination: photo.destination
-				};
-				return user.save().exec();
-			});
-	}
+		}).exec()
+		.then(function userFound(user) {
+			return user || Promise.reject('Пользователь не найден.');
+		});
+}
+
+function saveOrUpdateUser(user) {
+	return user.save();
+}
+
+function changeUserPassword(email, newPassword) {
+	return findUserByEmail(email)
+		.then(function foundUser(user) {
+			user.password = newPassword;
+			user.passwordHash = newPassword;
+			return saveOrUpdateUser(user);
+		});
+}
+
+function loadPhoto(email, photo) {
+	return findUserByEmail(email)
+		.then(function foundUser(user) {
+			user.photo = photo;
+			return saveOrUpdateUser(user);
+		});
+}
+
+module.exports = {
+	findByEmail: findUserByEmail,
+	saveOrUpdate: saveOrUpdateUser,
+	changePassword: changeUserPassword,
+	loadPhoto: loadPhoto
 };
