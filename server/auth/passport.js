@@ -8,7 +8,7 @@ userController = require('../controllers/user');
 
 AuthLocalStrategy = require('passport-local').Strategy;
 AuthFacebookStrategy = require('passport-facebook').Strategy;
-// AuthVKStrategy = require('passport-vkontakte').Strategy;
+AuthVKStrategy = require('passport-vkontakte').Strategy;
 
 ClientUser = require('../models/clientUser');
 ShopUser = require('../models/shopUser');
@@ -201,20 +201,20 @@ passport.use('facebook', new AuthFacebookStrategy({
         }
     }));
 
-// passport.use('vkontakte', new AuthVKStrategy({
-//         clientID: config.get('auth:vk:app_id'),
-//         clientSecret: config.get('auth:vk:secret'),
-//         callbackURL: config.get('app:url') + '/auth/vk/callback'
-//     },
-//     function callback(accessToken, refreshToken, profile, done) {
-//         //console.log('facebook auth: ', profile);
+passport.use('vk', new AuthVKStrategy({
+        clientID: config.auth.vkontakteAuth.clientID,
+        clientSecret: config.auth.vkontakteAuth.clientSecret,
+        callbackURL: config.auth.vkontakteAuth.callbackURL
+    },
+    function callback(accessToken, refreshToken, profile, done) {
+        //console.log('facebook auth: ', profile);
 
-//         return done(null, {
-//             username: profile.displayName,
-//             photoUrl: profile.photos[0].value,
-//             profileUrl: profile.profileUrl
-//         });
-//     }
-// ));
+        return done(null, {
+            username: profile.displayName,
+            photoUrl: profile.photos[0].value,
+            profileUrl: profile.profileUrl
+        });
+    }
+));
 
 module.exports = passport;

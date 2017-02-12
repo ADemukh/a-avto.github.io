@@ -11,8 +11,8 @@ module.exports = {
             callbackURL: 'http://localhost:3000/auth/facebook/callback'
         },
         vkontakteAuth: {
-            clientID: 'your-consumer-key-here',
-            clientSecret: 'your-client-secret-here',
+            clientID: '5819748',
+            clientSecret: 'nCcPC2B3vGmmFha42wh0',
             callbackURL: 'http://localhost:3000/auth/vk/callback'
         }
     },
