@@ -105,9 +105,17 @@ passport.use('signupshop', new AuthLocalStrategy({
 
                 shopUser = new ShopUser({
                     email: email,
+                    name: req.param('name'),
+                    www: req.param('www'),
+                    address: req.param('address'),
+                    longitude: req.param('longitude'),
+                    latitude: req.param('latitude'),
+                    phone: req.param('phone'),
+                    about: req.param('about'),
+                    isDealer: req.param('isDealer'),
                     password: req.param('password'),
                     passwordHash: req.param('password'),
-                    name: req.param('name')
+                    role: config.user.roles.SHOP
                 });
 
                 return userController.saveOrUpdate(shopUser)

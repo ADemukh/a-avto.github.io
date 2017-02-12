@@ -1,53 +1,48 @@
 <style type="text/css">
+    .container-fluid {
+        background:  #FfFfFF;
+        width: 100%;
+        height: 800px;
+    }
+    .maps {
+        width: 100%;
+        height: 800px;
+    }
     ya-map {
-        position: absolute;
         display: block;
         width: 100%;
-        height: 600px;   
+        height: 100%;   
     }
-    .maps{
-        position: relative; /* Относительное позиционирование */
-        float: left; /* Совмещение колонок по горизонтали */
-        width: 100%; /* Ширина слоя */
-        height: 600px; 
-
-
-    }
-    .item{
-        position: relative; /* Относительное позиционирование */
-        float: right; /* Совмещение колонок по горизонтали */
-        width: 300px; /* Ширина слоя */
-        height: 500px;
-        background: #F0F8FF; /* Цвет фона */
-        left: -50px;
-        top: -550px;
-        text-align: center;
-        }
 </style>
-
-
-<div class="maps">
-    <ya-map ya-zoom="10"   ya-center="{{ center }}" ya-controls="zoomControl " ya-before-init="beforeInit()">
-        <ya-cluster
-                ya-options="{preset:'islands#invertedVioletClusterIcons'}">
-            <ya-geo-object ya-options="{preset: 'islands#violetIcon'}" ng-repeat="o in geoObjects" ya-source="o"></ya-geo-object>
-        </ya-cluster>
-
-    </ya-map>
-</div>
-
-<div class="item">
-    <h2>Поиск магазинов на карте</h2>
-    <br>
-    <h3>Найдено ... магазинов</h3>
-    <br>
-    <h4>Город:</h4>
-    <select style="width: 200px; height: 22px;" ng-model="vm.city" ng-options="c for c in vm.citys" >
-    <h4>Марка:</h4>
-    <select style="width: 200px; height: 22px;" ></select>
-    <h4>Категория запчасти:</h4>
-    <select style="width: 200px; height: 22px;" ></select>
-    <h4>Б/у / Новая:</h4>
-    <select style="width: 200px; height: 22px;" ></select>
-</div>
-{{vm.city}}
+{{$ctrl.map}}
+<div class="container-fluid">
+     <div class="row">
+    <div class="col-md-10">
+        <div class="maps">
+            <ya-map ya-zoom="10"   ya-center="{{ $ctrl.center }}" ya-controls="zoomControl ">
+                <ya-cluster ya-options="{preset:'islands#circleIcon',iconColor: '#4d7198'}">
+                <ya-geo-object ya-options="{preset: 'islands#circleIcon',iconColor: '#4d7198'}" ng-repeat="o in $ctrl.geoObjects" ya-source="o"></ya-geo-object>     
+                </ya-cluster>              
+            </ya-map>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="item">
+            <div style="text-align: center">
+                <h2>Поиск магазинов на карте</h2>
+                <br>
+                <h3>По вашему запросу найдено {{$ctrl.coll}} магазина</h3>
+                <br>
+                <h4>Город:</h4>
+                <select  ng-model="$ctrl.center" ng-options="c for c in $ctrl.citys" ></select>
+                <h4>Марка:</h4>
+                <select style="width: 20px; height: 22px;" ></select>
+                <h4>Категория запчасти:</h4>
+                <select style="width: 20px; height: 22px;" ></select>
+                <h4>Б/у / Новая:</h4>
+                <select style="width: 20px; height: 22px;" ></select>
+            </div>
+        </div>
+    </div>
+</div> 
+</div>   

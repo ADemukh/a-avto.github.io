@@ -43,6 +43,8 @@ router.post('/login', authenticate('login'));
 
 router.post('/signupuser', authenticate('signupuser'));
 
+router.post('/signupshop', authenticate('signupshop'));
+
 router.get('/facebook', passport.authenticate('facebook', {
   scope: 'email'
 }));

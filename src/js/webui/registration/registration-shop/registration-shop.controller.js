@@ -4,9 +4,9 @@
     angular.module('webui').
 	controller('controllers.registrationshop', RegistrationShopController);
 
-	RegistrationShopController.$inject = [];
+	RegistrationShopController.$inject = ['services.identity', '$state'];
 
-	function RegistrationShopController() {
+	function RegistrationShopController(identity, $state) {
 		var vm;
 
 		vm = this;
@@ -23,19 +23,34 @@
 		vm.shopIsDealerAlt = 'Официальный дилер';
 		vm.findShopOnMapAlt = 'Обозначьте на карте местоположение вашего магазина';
 		vm.registerActionText = 'Зарегистрироваться';
-
+		vm.passwordAlt = 'Пароль';
+		vm.password2Alt = 'Повторите пароль';
 		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
 		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
 		vm.policyTextPart3 = ' и даете ';
 		vm.policyLinkTextPart4 = 'Согласие на обработку перносальных данных';
 		vm.policyTextPart5 = '.';
+		vm.shop = {
+			longitude: '',
+			latitude: '' };
 
-		vm.register = function onRegister() {
-			alert('on register!');
+		vm.register = function register() {
+			identity.signUpShop(vm.shop)
+				.then(function complete(result) {
+					if (result.alert) {
+						vm.errorMessage = result.alert.message;
+						alert(result.alert.message);
+					} else {
+						alert('Ваш магазин успешно зарегистрирован!');
+						$state.go('main');
+					}
+				});
 		};
+
 		vm.afterInit = function onInited($map) {
 			vm.map = $map;
 		};
+
 		vm.mapClick = function onMapCLick(e) {
 			var coords;
 
@@ -47,15 +62,9 @@
 					contentHeader: 'Отлично!',
 					contentBody: 'Щелкнув по карте, вы занесли координаты в поля регистрации.'
 				});
-				vm.shopAddressLongitude = coords[0].toPrecision(6);
-				vm.shopAddressLatitude = coords[1].toPrecision(6);
+				vm.shop.longitude = coords[0].toPrecision(12);
+				vm.shop.latitude = coords[1].toPrecision(12);
 			}
-		};
-		vm.handleContext = function handleContext(e) {
-			// map.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
-		};
-		vm.balloonOpen = function balloonOpen() {
-			vm.map.hint.close();
 		};
 	}
 })();

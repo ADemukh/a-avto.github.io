@@ -1,10 +1,10 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, cars, file, index;
+var authRouter, cars, file, index, shops;
 var app, db, passport;
 
 express = require('express');
-cors = require('cors')
+cors = require('cors');
 path = require('path');
 favicon = require('serve-favicon');
 logger = require('morgan');
@@ -15,6 +15,7 @@ bodyParser = require('body-parser');
 index = require('./routes/index');
 authRouter = require('./routes/auth');
 cars = require('./routes/cars');
+shops = require('./routes/shops');
 
 db = require('./db');
 passport = require('./auth/passport');
@@ -43,10 +44,13 @@ app.use(express.static(path.join(__dirname, '../.build')));
 app.use('/', index);
 app.use('/cars', cars);
 app.use('/auth', authRouter);
+app.use('/shops', shops);
 
 // catch 404 and forward to error handler
 app.use(function use(req, res, next) {
-  var err = new Error('Not Found');
+  var err;
+
+  err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

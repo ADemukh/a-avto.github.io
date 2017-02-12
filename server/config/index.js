@@ -40,6 +40,8 @@ module.exports = {
             }
         },
         maailFrom: '"Aavto.by" <aleksey.demukh@gmail.com>'
-
+    },
+    bcrypt: {
+        salt: 10
     }
 };
