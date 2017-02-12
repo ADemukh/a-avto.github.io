@@ -59,10 +59,36 @@
             template: '<q-maps/>',
             url: '/maps',
             parent: 'root'
-        }).state('profile', {
-            templateUrl: 'webui/profile/profile-user/profile-user.tmpl.html',
-            url: '/profile',
+        }).state('profile-client', {
+            templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',
+            url: '/profile/client',
+            abstract: true,
             parent: 'root'
+        }).state('profile-client-cars', {
+            template: '<q-profile-client-cars/>',
+            url: '/cars',
+            parent: 'profile-client'
+        }).state('profile-client-orders', {
+            template: '<q-profile-client-orders/>',
+            url: '/orders',
+            parent: 'profile-client'
+        }).state('profile-client-settings', {
+            template: '<q-profile-client-settings/>',
+            url: '/settings',
+            parent: 'profile-client'
+        }).state('profile-shop', {
+            templateUrl: 'webui/profile/profile-shop/profile-shop.tmpl.html',
+            url: '/profile/shop',
+            abstract: true,
+            parent: 'root'
+        }).state('profile-shop-orders', {
+            template: '<q-profile-shop-orders/>',
+            url: '/orders',
+            parent: 'profile-shop'
+        }).state('profile-shop-settings', {
+            template: '<q-profile-shop-settings/>',
+            url: '/settings',
+            parent: 'profile-shop'
         });
         //================================================
 

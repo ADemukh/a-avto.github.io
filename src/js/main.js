@@ -58,4 +58,16 @@
 //= webui/registration/registration-shop/registration-shop.component.js
 //= webui/registration/registration-shop/registration-shop.controller.js
 
+//= webui/profile/profile-client/profile-client-cars/profile-client-cars.controller.js
+//= webui/profile/profile-client/profile-client-cars/profile-client-cars.component.js
+//= webui/profile/profile-client/profile-client-orders/profile-client-orders.controller.js
+//= webui/profile/profile-client/profile-client-orders/profile-client-orders.component.js
+//= webui/profile/profile-client/profile-client-settings/profile-client-settings.controller.js
+//= webui/profile/profile-client/profile-client-settings/profile-client-settings.component.js
+
+//= webui/profile/profile-shop/profile-shop-orders/profile-shop-orders.controller.js
+//= webui/profile/profile-shop/profile-shop-orders/profile-shop-orders.component.js
+//= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.controller.js
+//= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.component.js
+
 //= webui/video/video.component.js
