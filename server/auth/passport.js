@@ -151,7 +151,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
                             done(null, user);
-                        } else if (user.fb && user.fb.id !== profile.id) {
+                        } else if (user.fb && user.fb.id && user.fb.id !== profile.id) {
                             done(null, false, {
                                 message: 'Пользователь с таким e-mail уже существует.'
                             });

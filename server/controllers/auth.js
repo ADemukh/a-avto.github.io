@@ -51,7 +51,7 @@ auth = {
                     console.log('Письмо успешно отправлено.');
                     return true;
                 }
-                console.log('письмо небыло оправлено');
+                console.log('Письмо не было оправлено');
                 return false;
             })
             .catch(function failed(error) {
