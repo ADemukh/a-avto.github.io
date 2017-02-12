@@ -30,5 +30,8 @@ module.exports = {
             }
         },
         connectionString: 'mongodb://aavto_admin:aavto_admin@ds141098.mlab.com:41098/a_avto_dev'
+    },
+    bcrypt: {
+        salt: 10
     }
 };

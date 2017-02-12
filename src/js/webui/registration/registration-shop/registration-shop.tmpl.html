@@ -7,47 +7,54 @@
 </style>
 
 <div class="panel enter single center" style="padding: 30px; text-align: center;">
+	<form class="panel enter single center login-form" ng-submit="::$ctrl.register()">
 	<h3>{{::$ctrl.title}}</h3>
 	<div>
-		<input ng-model="$ctrl.shopName" placeholder="{{::$ctrl.shopNameAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input ng-model="$ctrl.shop.name" placeholder="{{::$ctrl.shopNameAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopEmail" placeholder="{{::$ctrl.shopEmailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input type="password" ng-model="$ctrl.shop.password" placeholder="{{::$ctrl.passwordAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopUrl" placeholder="{{::$ctrl.shopUrlAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input type="password" ng-model="$ctrl.shop.password2" placeholder="{{::$ctrl.password2Alt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopAddress" placeholder="{{::$ctrl.shopAddressAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input ng-model="$ctrl.shop.email" placeholder="{{::$ctrl.shopEmailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopAddressLongitude" placeholder="{{::$ctrl.shopAddressLongitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input ng-model="$ctrl.shop.www" placeholder="{{::$ctrl.shopUrlAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopAddressLatitude" placeholder="{{::$ctrl.shopAddressLatitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input ng-model="$ctrl.shop.address" placeholder="{{::$ctrl.shopAddressAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<input ng-model="$ctrl.shopPhone" placeholder="{{::$ctrl.shopPhoneAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+		<input ng-model="$ctrl.shop.longitude" placeholder="{{::$ctrl.shopAddressLongitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
 	</div>
 	<div>
-		<textarea ng-model="$ctrl.shopDescription" placeholder="{{::$ctrl.shopDescriptionAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;"></textarea>
+		<input ng-model="$ctrl.shop.latitude" placeholder="{{::$ctrl.shopAddressLatitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<input ng-model="$ctrl.shop.phone" placeholder="{{::$ctrl.shopPhoneAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
+	</div>
+	<div>
+		<textarea ng-model="$ctrl.shop.about" placeholder="{{::$ctrl.shopDescriptionAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;"></textarea>
 	</div>
 	<div style="text-align: start;">
 		<h5>{{::$ctrl.findShopOnMapAlt}}</h5>
 	</div>
 
-	<ya-map ya-zoom="8" ya-search="Гродно" ya-center="[27.561831, 53.902257]" ya-controls="zoomControl searchControl"  ya-options="{balloonMaxWidth: 200}"
+	<ya-map ya-zoom="6"  ya-center="Минск" ya-controls="zoomControl"  ya-options="{balloonMaxWidth: 200}"
 		ya-after-init="$ctrl.afterInit($target)"
 		ya-event-click="$ctrl.mapClick($event)"
-		ya-event-balloonopen="$ctrl.balloonOpen()"
-		ya-event-contextmenu="$ctrl.handleContext($event)">
+		>
 	</ya-map>
 
 	<div style="text-align: start; padding-top: 20px;">
 		<div style="display: inline-block;">
-					<input type="checkbox" ng-model="$ctrl.shopIsDealer">
+					<input type="checkbox" ng-model="$ctrl.shop.isDealer">
 					<label>{{::$ctrl.shopIsDealerAlt}}</label>
 				</div>
-		<button type="button" ng-click="::$ctrl.register()" style="float: right;width: initial; padding: 10px 50px; text-align: start;">{{::$ctrl.registerActionText}}</button>
+		<button type="submit" style="float: right;width: initial; padding: 10px 50px; text-align: start;">{{::$ctrl.registerActionText}}</button>
 	</div>	
+	</form>
 </div>
