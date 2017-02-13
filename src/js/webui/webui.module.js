@@ -3,7 +3,7 @@
 (function WebUIModuleInit() {
 	'use strict';
 
-	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate'])
+	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
@@ -121,6 +121,8 @@
         }
 
         function setTranslations() {
+            $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
             $translateProvider.translations('ru', {
                 AUTH_SOCIAL_TITLE: 'Войдите, используя аккаунт соцсети',
                 HOW_IT_WORKS_TITLE: 'Как работает aAvto.by',
@@ -134,6 +136,9 @@
                 HOW_IT_WORKS_OPTION2_ACTION1: 'Ищете нужные вам работы по прайс-листам во всех магазинах',
                 HOW_IT_WORKS_OPTION2_ACTION2: 'Выбираете лучшие предложения и договариваетесь с магазином',
                 HOW_IT_WORKS_OPTION2_ACTION_BUTTON: 'Искать на карте',
+                ORDER_REGISTRATION_CHOOSE_MARK: 'Марка',
+                ORDER_REGISTRATION_CHOOSE_MODEL: 'Модель',
+                ORDER_REGISTRATION_CHOOSE_YEAR: 'Год',
                 PROFILE_CLIENT_CARS: 'Гараж',
                 PROFILE_CLIENT_ORDERS: 'Заявки',
                 PROFILE_CLIENT_SETTINGS: 'Настройки',

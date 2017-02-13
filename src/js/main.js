@@ -2,16 +2,7 @@
  * Third party
  */
 
-/*
-* Now as CDN:
-* //= ../../bower_components/jquery/dist/jquery.min.js
-* //= ../../bower_components/bootstrap/dist/js/bootstrap.min.js
-* //= ../../bower_components/angular/angular.min.js
-* //= ../../bower_components/angular-ui-router/release/angular-ui-router.min.js
-* //= ../../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js
-* //= ../../bower_components/lodash/dist/lodash.min.js
-*/
-
+//= ../../bower_components/oi.select/dist/select-tpls.min.js
 //= ya-map/ya-map-2.1.min.js
 
 /*

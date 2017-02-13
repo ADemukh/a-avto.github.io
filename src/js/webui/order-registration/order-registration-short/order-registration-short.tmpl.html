@@ -13,32 +13,25 @@
 				<div>
 					<p style="display: block;text-align: left;">{{::$ctrl.setCarDetailsAlt}}</p>
 					<div style="text-align: left">
-						<select ng-disabled="!$ctrl.canChooseCar()" style="width: 130px; height: 40px;margin-right: 10px;" ng-model="$ctrl.car" ng-options="c for c in ::$ctrl.cars"
-							ng-style="!$ctrl.canChooseCar() && {'background-color':'#cccccc'} ">
-							<option value="" selected="selected">{{::$ctrl.carMarkAlt}}</option>
-						</select>
-						<select ng-disabled="!$ctrl.canChooseCarModel()" style="width: 130px; height: 40px;margin-right: 10px;" ng-model="$ctrl.model" ng-options="m for m in $ctrl.models"
-							ng-style="!$ctrl.canChooseCarModel() && {'background-color':'#cccccc'} ">
-							<option value="" selected="selected">{{::$ctrl.carModelAlt}}</option>
-						</select>
-						<select ng-disabled="!$ctrl.canChooseCarModelYear()" style="width: 130px; height: 40px;" ng-model="$ctrl.year" ng-options="y for y in $ctrl.years"
-							ng-style="!$ctrl.canChooseCarModelYear() && {'background-color':'#cccccc'} ">
-							<option value="" selected="selected">{{::$ctrl.carYearAlt}}</option>
-						</select>
+						<oi-select oi-options="c for c in ::$ctrl.cars" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MARK' | translate }}"
+										ng-disabled="!$ctrl.canChooseCar()" style="width: 130px; height: 40px;margin-right: 10px; display: inline-block;"></oi-select>
+						<oi-select oi-options="m for m in $ctrl.models" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.model" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MODEL' | translate }}"
+										ng-disabled="!$ctrl.canChooseCarModel()" style="width: 130px; height: 40px;margin-right: 10px; display: inline-block;"></oi-select>
+						<oi-select oi-options="(y + '') for y in $ctrl.years" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.year" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_YEAR' | translate }}"
+										ng-disabled="!$ctrl.canChooseCarModelYear()" style="width: 130px; height: 40px; display: inline-block;"></oi-select>
 					</div>
 					<p style="padding-top: 10px;text-align: left;">{{::$ctrl.whatShouldBeRepairedAlt}}</p>
-					<textarea style="display: block; margin-bottom: 20px; width: 415px; height: 70px; resize: none;" placeholder="Например: Замена масла" ng-model="$ctrl.details"></textarea>
+					<textarea style="display: block; margin-bottom: 20px; width: 415px; height: 70px; resize: none;" placeholder="Например: Замена масла"
+									ng-model="$ctrl.details"></textarea>
 					<div style="">
 						<div style="float: left; width: 50%; display: inline-block;">
-							<button type="button" style="height: 40px; line-height: 40px;margin: 0; display: block; width: 92%;"
-								ng-click="::$ctrl.sendToAll()">
+							<button type="button" style="height: 40px; line-height: 40px;margin: 0; display: block; width: 92%;" ng-click="::$ctrl.sendToAll()">
 								<span>{{::$ctrl.toAllShopsAlt}}</span>
 							</button>
 							<p style="text-align: left; width: 210px; display: block; font-size: 14px; margin-top: 15px;">{{::$ctrl.toAllShopsDescriptionAlt}}</p>
 						</div>
 						<div style="width: 50%; display: inline-block;">
-							<button type="submit" style="height: 40px; line-height: 40px;margin: 0; display: block; width: 92%;"
-								ng-click="::$ctrl.searchByMap()">
+							<button type="submit" style="height: 40px; line-height: 40px;margin: 0; display: block; width: 92%;" ng-click="::$ctrl.searchByMap()">
 								<span>{{::$ctrl.searchByMapAlt}}</span>
 							</button>
 							<p style="text-align: left; width: 210px; display: block; font-size: 14px; margin-top: 15px;">{{::$ctrl.searchByMapDesciptionAlt}}</p>

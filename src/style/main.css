@@ -1,10 +1,8 @@
 /*
 * Third Party styles
 */
-/*@import "../../bower_components/normalize.css/normalize.css";*/
+@import url('../../bower_components/oi.select/dist/select.min.css');
 
-/*@import url('../../bower_components/bootstrap/dist/css/bootstrap.css');
-@import url('../../bower_components/bootstrap/dist/css/bootstrap-theme.css');*/
 /*
 * Custom styles
 */
