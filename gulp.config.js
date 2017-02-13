@@ -47,8 +47,7 @@ module.exports = function exports() {
             port: 5000
         },
         nodemon: {
-            script: './bin/www',
-            nodeArgs: ['--inspect']
+            script: './bin/www'
         },
         templateCache: {
             filename: 'templates.js',
