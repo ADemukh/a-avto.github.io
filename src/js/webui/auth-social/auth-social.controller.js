@@ -10,7 +10,6 @@
 		var vm;
 
 		vm = this;
-		vm.title = 'Войдите, используя аккаунт соцсети';
 		vm.authFacebook = function authFacebook() {
 			identity.authFacebook();
 		};

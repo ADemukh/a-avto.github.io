@@ -21,46 +21,46 @@
 <div class="panel enter single" style="padding-top: 30px; padding-bottom: 30px;">
 	<center>
 		<div class="item">
-			<h1>{{::$ctrl.title}}</h1>
-			<p>{{::$ctrl.optionsAlt}}</p>
+			<h1 translate>HOW_IT_WORKS_TITLE</h1>
+			<p translate>HOW_IT_WORKS_OPTIONS</p>
 		</div>
     </center>
    	<uib-tabset type="pills centered-pills how-it-works-tab" style="text-align: center;">
-        <uib-tab heading="{{::$ctrl.option1Alt}}" >
+        <uib-tab heading="{{::'HOW_IT_WORKS_OPTION1' | translate }}" >
             <div class="container" style="text-align: center;">
                 <div class="col-lg-4">
                     <a ui-sref="order-registration" href="#/order-registration">
                         <div>
                             <img src="img/1.PNG" style="width: 150px; height: 150px;">
                         </div>
-                        <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action1Alt}}</p>
+                        <p style="margin: auto;width: 60%;" translate>HOW_IT_WORKS_OPTION1_ACTION1</p>
                     </a>
                 </div>
                 <div class="col-lg-4">
                     <img src="img/2.PNG" style="width: 150px; height: 150px;">
-                    <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action2Alt}}</p>
+                    <p style="margin: auto;width: 60%;" translate>HOW_IT_WORKS_OPTION1_ACTION2</p>
                 </div>
                 <div class="col-lg-4">
                     <img src="img/3.PNG" style="width: 150px; height: 150px;">
-                    <p style="margin: auto;width: 60%;">{{::$ctrl.option1Action3Alt}}</p>
+                    <p style="margin: auto;width: 60%;" translate>HOW_IT_WORKS_OPTION1_ACTION3</p>
                 </div>
             </div>
-        <button type="button" ui-sref="order-registration" class="btn btn-warning btn-lg center-block">{{::$ctrl.option1ActionButtonAlt}}</button>
+        <button type="button" ui-sref="order-registration" class="btn btn-warning btn-lg center-block" translate>HOW_IT_WORKS_OPTION1_ACTION_BUTTON</button>
         </uib-tab>
-        <uib-tab heading="{{::$ctrl.option2Alt}}">
+        <uib-tab heading="{{::'HOW_IT_WORKS_OPTION2' | translate }}">
             <div class="container">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-4 col-md-6 col-sm-6" style="text-align: center;">
                     <img src="img/4.PNG" style="width: 150px; height: 150px;">
-                    <p style="margin: auto;width: 80%;">{{::$ctrl.option2Action1Alt}}</p>
+                    <p style="margin: auto;width: 80%;" translate>HOW_IT_WORKS_OPTION2_ACTION1</p>
                 </div>
                 <div class="col-lg-4 col-md-6  col-sm-6" style="text-align: center;">
                     <img src="img/5.PNG" style="width: 150px; height: 150px;">
-                    <p style="margin: auto;width: 80%;">{{::$ctrl.option2Action2Alt}}</p>
+                    <p style="margin: auto;width: 80%;" translate>HOW_IT_WORKS_OPTION2_ACTION2</p>
                 </div>
                 <div class="col-lg-2"></div>
             </div>
-            <button type="button" ui-sref="maps" class="btn btn-info btn-lg center-block">{{::$ctrl.option2ActionButtonAlt}}</button>
+            <button type="button" ui-sref="maps" class="btn btn-info btn-lg center-block" translate>HOW_IT_WORKS_OPTION2_ACTION_BUTTON</button>
         </uib-tab>
     </uib-tabset>
 </div>
