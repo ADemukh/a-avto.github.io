@@ -33,7 +33,7 @@ app.use(cookieParser());
 app.use(cookieSession({
   name: 'session',
   keys: ['aavto', 'demukhfamily.com', 'stkvcjhvsgfytzxnjhs'],
-  maxAge: 24 * 60 * 60 * 1000   // 24 hours
+  maxAge: 48 * 60 * 60 * 1000   // 48 hours
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

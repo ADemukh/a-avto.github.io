@@ -1,6 +1,9 @@
-var User, mongoose, options, userSchema;
+/*eslint strict:0  */
+var bcrypt, config, mongoose, options, userSchema;
 
 mongoose = require('mongoose');
+bcrypt = require('bcryptjs');
+config = require('../config');
 
 options = {
 	discriminatorKey: 'role'
@@ -20,11 +23,16 @@ userSchema = new mongoose.Schema({
 	phone: String,
 	changesFrom: {
 		'type': Date,
-		// `Date.now()` returns the current unix timestamp as a number
 		'default': Date.now
 	}
 }, options);
 
-User = mongoose.model('User', userSchema);
+userSchema.methods.generateHash = function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(config.bcrypt.salt));
+};
 
-module.exports = User;
+userSchema.methods.validPassword = function validPassword(password) {
+    return bcrypt.compareSync(password, this.passwordHash);
+};
+
+module.exports = mongoose.model('User', userSchema);

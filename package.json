@@ -8,6 +8,7 @@
     "postinstall": "bower install"
   },
   "dependencies": {
+    "bcryptjs": "2.4.3",
     "body-parser": "1.15.2",
     "bower": "1.7.9",
     "browser-sync": "2.14.0",

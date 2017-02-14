@@ -15,11 +15,13 @@ ShopUser = require('../models/shopUser');
 User = require('../models/user');
 
 passport.serializeUser(function serialize(user, done) {
-    done(null, user);
+    done(null, user.id);
 });
 
-passport.deserializeUser(function deserialize(user, done) {
-    done(null, user);
+passport.deserializeUser(function deserialize(id, done) {
+    User.findById(id, function callback(err, user) {
+        done(err, user);
+    });
 });
 
 passport.use('login', new AuthLocalStrategy({
@@ -37,7 +39,7 @@ passport.use('login', new AuthLocalStrategy({
 
         userController.findByEmail(email)
             .then(function userFound(user) {
-                if (user.password === password) {
+                if (user.validPassword(password)) {
                     user.password = null;
                     done(null, user);
                 } else {
@@ -69,14 +71,13 @@ passport.use('signupuser', new AuthLocalStrategy({
             }, function userNotFound() {
                 var clientUser;
 
-                clientUser = new ClientUser({
-                    email: email,
-                    password: req.param('password'),
-                    passwordHash: req.param('password'),
-                    name: req.param('name'),
-                    phone: req.param('phone'),
-                    role: config.user.roles.CLIENT
-                });
+                clientUser = new ClientUser();
+
+                clientUser.email = email;
+                clientUser.password = req.param('password');
+                clientUser.passwordHash = clientUser.generateHash(req.param('password'));
+                clientUser.name = req.param('name');
+                clientUser.phone = req.param('phone');
 
                 return userController.saveOrUpdate(clientUser)
                     .then(function successful(savedUser) {
