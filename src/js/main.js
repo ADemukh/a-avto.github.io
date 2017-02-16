@@ -13,6 +13,7 @@
 //= services/cars/cars.service.js
 //= services/shops/shops.service.js
 //= services/order/order.service.js
+//= services/popup/popup.service.js
 //= services/identity/identity.service.js
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js

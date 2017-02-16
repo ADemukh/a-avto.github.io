@@ -4,9 +4,9 @@
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup'];
 
-    function IdentityService($http) {
+    function IdentityService($http, $q, popupService) {
         var currentUser;
 
         checkLoggedIn();
@@ -59,17 +59,27 @@
         }
 
         function authVkontakte() {
-            return $http.get('auth/facebook')
-                .then(function response(resp) {
-                    return resp;
-                });
+            return authSocial('/auth/vk', 'VK Connect');
         }
 
         function authFacebook() {
-            return $http.get('auth/facebook')
-                .then(function response(resp) {
-                    return resp;
-                });}
+            return authSocial('/auth/popup/facebook', 'Facebook Connect');
+        }
+
+        function authSocial(url, strategy) {
+            var dfd;
+
+            dfd = $q.defer();
+            popupService.popup(url, strategy, {}, function callback(err, user) {
+                if (!err && user) {
+                    currentUser = user;
+                    return dfd.resolve(user);
+                }
+                return dfd.reject(err);
+            });
+
+            return dfd.promise;
+        }
 
         function getCurrentUser() {
             return currentUser;
@@ -97,7 +107,7 @@
 
         function recoverPassword(email) {
             return $http.post('auth/recoverpassword', {
-                    email: email
+                email: email
             });
         }
     }

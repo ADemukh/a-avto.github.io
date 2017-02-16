@@ -20,6 +20,9 @@ passport.serializeUser(function serialize(user, done) {
 
 passport.deserializeUser(function deserialize(id, done) {
     User.findById(id, function callback(err, user) {
+        if (user) {
+            user.password = null;
+        }
         done(err, user);
     });
 });
