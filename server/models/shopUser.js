@@ -23,10 +23,11 @@ options = {
 shopUserSchema = new mongoose.Schema({
 	www: String,
 	address: String,
-	about: String,
 	longitude: String,
 	latitude: String,
-	isDealer: Boolean
+	cities: [String],
+	spareCategories: [String],
+	carMarks: [String]
 }, options);
 
 ShopUser = User.discriminator(config.user.roles.SHOP, shopUserSchema);
