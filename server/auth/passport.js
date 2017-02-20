@@ -209,12 +209,65 @@ passport.use('vk', new AuthVKStrategy({
     function callback(accessToken, refreshToken, profile, done) {
         //console.log('facebook auth: ', profile);
 
-        return done(null, {
-            username: profile.displayName,
-            photoUrl: profile.photos[0].value,
-            profileUrl: profile.profileUrl
-        });
-    }
-));
+        // return done(null, {
+        //     username: profile.displayName,
+        //     photoUrl: profile.photos[0].value,
+        //     profileUrl: profile.profileUrl
+        // });
+        var email;
+
+        if (profile) {
+            email = profile.emails[0].value;
+
+            userController.findByEmail(email)
+                .then(function userFound(user) {
+                        if (user.vk && user.vk.id === profile.id) {
+                            user.password = null;
+                            done(null, user);
+                        } else if (user.vk && user.vk.id && user.vk.id !== profile.id) {
+                            done(null, false, {
+                                message: 'Пользователь с таким e-mail уже существует.'
+                            });
+                        } else {
+                            user.vk = {
+                                id: profile.id,
+                                profileUrl: profile.profileUrl
+                            };
+
+                            return userController.saveOrUpdate(user)
+                                .then(function successful(savedUser) {
+                                    savedUser.password = null;
+                                    return done(null, savedUser);
+                                });
+                        }
+                    },
+                    function userNotFound() {
+                        var clientUser;
+
+                        clientUser = new ClientUser({
+                            email: email,
+                            name: profile.displayName,
+                            role: config.user.roles.CLIENT,
+                            vk: {
+                                id: profile.id,
+                                profileUrl: profile.profileUrl
+                            }
+                        });
+
+                        return userController.saveOrUpdate(clientUser)
+                            .then(function successful(savedUser) {
+                                savedUser.password = null;
+                                return done(null, savedUser);
+                            });
+                    })
+                .catch(function onError(err) {
+                    done(err);
+                });
+        } else {
+            return done(null, false, {
+                message: 'Не удалось авторизоваться через социальную сеть.'
+            });
+        }
+    }));
 
 module.exports = passport;
