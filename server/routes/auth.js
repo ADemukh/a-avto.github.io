@@ -36,8 +36,8 @@ function onAuthenticatedSocial(req, res, next) {
       };
     }
 
-    return response.alert ? res.redirect('/#!/login') : res.redirect('/#!/');
-    // res.send(popupResponse(response));
+    // return response.alert ? res.redirect('/#!/login') : res.redirect('/#!/');
+    res.send(popupResponse(response));
   };
 }
 
