@@ -42,7 +42,7 @@
 
 		vm.alertContactNameIsRequired = 'Введите контактное имя';
 		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный пароль';
+		vm.alertEmailIsNotCorrect = 'Неправильный e-mail';
 		vm.alertPhoneIsNotCorrect = 'Номер не соответветствует шаблону +375 xx xxx xx xx';
 		vm.alertPasswordIsRequired = 'Введите пароль';
 		vm.alertPasswordsAreDifferent = 'Пароли не совпадают';
