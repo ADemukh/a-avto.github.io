@@ -10,9 +10,6 @@
 		var vm;
 
 		vm = this;
-		vm.title = 'Восстановление пароля';
-		vm.emailOrPhoneAlt = 'E-mail или телефон';
-		vm.recoverActionText = 'Восстановить пароль';
 		vm.recover = function onRecover() {
 			return identity.recoverPassword(vm.email)
 				.then(function response(resp) {

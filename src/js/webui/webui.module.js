@@ -153,7 +153,15 @@ var WEBUI_MODULE_NAME;
                 VIDEO_TITLE: 'Обучающий ролик aAvto.by',
                 OK: 'ОК',
                 BUTTON_LANG_EN: 'английский',
-                BUTTON_LANG_RU: 'русский'
+                BUTTON_LANG_RU: 'русский',
+                LOGIN_VERTICAL_TITLE: 'Вход на сайт',
+                LOGIN_VERTICAL_EMAILALT: 'E-mail',
+                LOGIN_VERTICAL_PASSWORDALT: 'Пароль',
+                LOGIN_VERTICAL_LOGINACTIONTEXT: 'Войти',
+                LOGIN_VERTICAL_FORGOTPASSWORDLINKTEXT: 'Забыли пароль?',
+                PASSWORD_RECOVERY_TITLE: 'Восстановление пароля',
+                PASSWORD_RECOVERY_EMILORPHONEALT: 'E-mail или телефон',
+                PASSWORD_RECOVERY_RECOVERACTIONTEXT: 'Восстановить пароль'
             });
             $translateProvider.translations('en', {
                 // english translations here
