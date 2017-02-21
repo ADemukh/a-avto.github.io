@@ -21,8 +21,7 @@
 		vm.resetServerError = function onChange() {
 			vm.serverErrorMessage = null;
 		};
-		vm.register = function onRegister(isValid) {
-			if (isValid) {
+		vm.register = function onRegister() {
 				identity.signUpUser(vm.user)
 					.then(function complete(result) {
 						if (identity.loggedIn()) {
@@ -31,7 +30,6 @@
 							vm.serverErrorMessage = result.alert.message;
 						}
 					});
-			}
 		};
 		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
 		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
