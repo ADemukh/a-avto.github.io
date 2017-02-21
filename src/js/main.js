@@ -43,6 +43,8 @@
 //= webui/password-recovery/password-recovery.controller.js
 //= webui/password-recovery/password-recovery-horizontal/password-recovery-horizontal.component.js
 //= webui/password-recovery/password-recovery-vertical/password-recovery-vertical.component.js
+//= webui/password-set/password-set-vertical/password-set-vertical.component.js
+//= webui/password-set/password-set.controller.js
 
 //= webui/registration/registration.component.js
 //= webui/registration/registration-user/registration-user.controller.js

@@ -1,9 +1,9 @@
 //webui.module.js
 // eslint no-reserved-keys: 2
 (function WebUIModuleInit() {
-	'use strict';
+    'use strict';
 
-	angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
+    angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
@@ -95,6 +95,10 @@
                 template: '<q-profile-shop-settings/>',
                 url: '/settings',
                 parent: 'profile-shop'
+            }).state('password-set', {
+                template: '<q-password-set-vertical/>',
+                url: '/password-set',
+                parent: 'root'
             });
             //================================================
         }
