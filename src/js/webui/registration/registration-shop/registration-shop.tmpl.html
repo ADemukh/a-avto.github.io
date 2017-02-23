@@ -41,8 +41,8 @@
 	<div class="form-group" ng-class="{ 'has-error' : shopForm.email.$invalid && !shopForm.email.$pristine }">
 		<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.shopEmailAlt}}"
 						class="form-control user-form-input">
-		<span class="help-block" ng-show="userForm.email.$error.required && !userForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
-		<span class="help-block" ng-show="userForm.email.$error.email && !userForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
+		<span class="help-block" ng-show="shopForm.email.$error.required && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
+		<span class="help-block" ng-show="shopForm.email.$error.email && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
 	</div>	
 
 	<!-- Phone -->
@@ -68,17 +68,17 @@
 	</div>
 
 	<!-- WWW -->		
-	<div class="form-group" ng-class="{ 'has-error' : shopForm.name.$invalid && !shopForm.name.$pristine }">
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.www.$invalid && !shopForm.www.$pristine }">
 		<input type="text" name="www" ng-model="$ctrl.shop.www" required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopUrlAlt}}"
 						class="form-control shop-form-input">
-		<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine">{{::$ctrl.alertWWW}}</span>
+		<span class="help-block" ng-show="shopForm.www.$error.required && !shopForm.www.$pristine">{{::$ctrl.alertWWW}}</span>
 	</div> 
 
 	<!-- Adress -->
-	<div class="form-group" ng-class="{ 'has-error' : shopForm.name.$invalid && !shopForm.name.$pristine }">
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.adress.$invalid && !shopForm.adress.$pristine }">
 		<input type="text" name="adress" ng-model="$ctrl.shop.address" required ng-change="c.resetServerError()" placeholder="{{$ctrl.shopAddressAlt}}"
 						class="form-control shop-form-input">
-		<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine">{{::$ctrl.alertAdress}}</span>
+		<span class="help-block" ng-show="shopForm.adress.$error.required && !shopForm.adress.$pristine">{{::$ctrl.alertAdress}}</span>
 	</div>
 	<ya-map ya-zoom="6"  
 			ya-controls="zoomControl searchControl fullscreenControl" 

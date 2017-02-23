@@ -21,7 +21,6 @@
 		vm.shopPhoneAlt = '+375 xx xxx xx xx';
 		vm.shopDescriptionAlt = 'Информация о магазине';
 		vm.shopIsDealerAlt = 'Официальный дилер';
-		vm.findShopOnMapAlt = 'Обозначьте на карте местоположение вашего магазина';
 		vm.registerActionText = 'Зарегистрироваться';
 		vm.passwordAlt = 'Пароль';
 		vm.password2Alt = 'Повторите пароль';
@@ -32,9 +31,9 @@
 
 		vm.alertContactNameIsRequired = 'Введите наименование компании';
 		vm.alertWWW = 'Введите адрес сайта магазина';
-		vm.alertAdress = 'Введите адрес сайта магазина';
+		vm.alertAdress = 'Отметьте адрес магазина на карте';
 		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный пароль';
+		vm.alertEmailIsNotCorrect = 'Неправильный E-mail';
 		vm.alertPhoneIsNotCorrect = 'Номер не соответветствует шаблону +375 xx xxx xx xx';
 		vm.alertPasswordIsRequired = 'Введите пароль';
 		vm.alertPasswordsAreDifferent = 'Пароли не совпадают';
