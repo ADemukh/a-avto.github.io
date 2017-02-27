@@ -1,5 +1,5 @@
 /*eslint strict:0  */
-var AuthFacebookStrategy, AuthLocalStrategy, AuthVKStrategy, config, passport, userController;
+var AuthFacebookStrategy, AuthLocalStrategy, AuthVkStrategy, config, passport, userController;
 var ClientUser, ShopUser, User;
 
 passport = require('passport');
@@ -8,7 +8,7 @@ userController = require('../controllers/user');
 
 AuthLocalStrategy = require('passport-local').Strategy;
 AuthFacebookStrategy = require('passport-facebook').Strategy;
-AuthVKStrategy = require('passport-vkontakte').Strategy;
+AuthVkStrategy = require('passport-vkontakte').Strategy;
 
 ClientUser = require('../models/clientUser');
 ShopUser = require('../models/shopUser');
@@ -201,23 +201,17 @@ passport.use('facebook', new AuthFacebookStrategy({
         }
     }));
 
-passport.use('vk', new AuthVKStrategy({
-        clientID: config.auth.vkontakteAuth.clientID,
-        clientSecret: config.auth.vkontakteAuth.clientSecret,
-        callbackURL: config.auth.vkontakteAuth.callbackURL
+passport.use('vk', new AuthVkStrategy({
+        clientID: config.auth.vkAuth.clientID,
+        clientSecret: config.auth.vkAuth.clientSecret,
+        callbackURL: config.auth.vkAuth.callbackURL
     },
-    function callback(accessToken, refreshToken, profile, done) {
-        //console.log('facebook auth: ', profile);
-
-        // return done(null, {
-        //     username: profile.displayName,
-        //     photoUrl: profile.photos[0].value,
-        //     profileUrl: profile.profileUrl
-        // });
+    function callback(accessToken, refreshToken, params, profile, done) {
         var email;
 
-        if (profile) {
-            email = profile.emails[0].value;
+        if (params && profile) {
+            profile.id += '';
+            email = params.email;
 
             userController.findByEmail(email)
                 .then(function userFound(user) {

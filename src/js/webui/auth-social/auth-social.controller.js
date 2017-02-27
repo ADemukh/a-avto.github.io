@@ -14,8 +14,8 @@
 			identity.authFacebook()
 				.then(successAuth, failedAuth);
 		};
-		vm.authVkontakte = function authVkontakte() {
-			identity.authVkontakte()
+		vm.authVk = function authVk() {
+			identity.authVk()
 				.then(successAuth, failedAuth);
 		};
 

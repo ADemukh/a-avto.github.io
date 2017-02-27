@@ -17,14 +17,17 @@ options = {
 // 	changesFrom: Date
 // 	photo: String
 // 	notifications: []
-// 	vk: { vkontakte profile fields }
+// 	vk: { id, profileUrl }
 // 	fb: { id, profileUrl }
 // 	g: { gogle profile fields }
 
 clientUserSchema = new mongoose.Schema({
 	photo: String,
 	notifications: [String],
-	vk: {},
+	vk: {
+		id: String,
+		profileUrl: String
+	},
 	fb: {
 		id: String,
 		profileUrl: String

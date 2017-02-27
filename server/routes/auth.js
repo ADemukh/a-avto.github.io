@@ -73,15 +73,12 @@ router.get('/popup/:strategy', function logout(req, res) {
 router.get('/facebook', passport.authenticate('facebook', {
   scope: 'email'
 }));
-
 router.get('/facebook/callback', authenticateSocial('facebook'));
 
 router.get('/vk', passport.authenticate('vk', {
   scope: 'email'
 }));
 
-// send 401 if failed
-// send with redirection url if succeded
 router.get('/vk/callback', authenticateSocial('vk'));
 
 router.post('/logout', function logout(req, res) {

@@ -26,7 +26,7 @@
             logOut: logOut,
             loggedIn: loggedIn,
             checkLoggedIn: checkLoggedIn,
-            authVkontakte: authVkontakte,
+            authVk: authVk,
             authFacebook: authFacebook,
             currentUser: getCurrentUser,
             signUpUser: signUpUser,
@@ -58,8 +58,8 @@
             return !!currentUser;
         }
 
-        function authVkontakte() {
-            return authSocial('/auth/vk', 'VK Connect');
+        function authVk() {
+            return authSocial('/auth/popup/vk', 'VK Connect');
         }
 
         function authFacebook() {
