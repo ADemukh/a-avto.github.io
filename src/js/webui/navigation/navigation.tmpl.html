@@ -6,16 +6,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span> 
 			</button>
-			<a class="navbar-brand" ui-sref="main" href="#/">aAvto.by</a>
+			<a class="navbar-brand" ui-sref="main">aAvto.by</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="maps" href>{{::$ctrl.mapsAlt}}</a></li>
-				<li ng-if="$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="profile" href>{{::$ctrl.profileAlt}}</a></li>
-				<li ng-if="$ctrl.loggedIn()"><a href="" ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
-				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login" href><i class="fa fa-sign-in" aria-hidden="true"></i> {{::$ctrl.logInAlt}}</a></li>
-				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="registration" href>{{::$ctrl.registrationAlt}}</a></li>
-				<li ui-sref-active="active"><a ui-sref="order-registration" href>{{::$ctrl.orderRegistrationAlt}}</a></li>
+				<li ui-sref-active="active"><a ui-sref="maps">{{::$ctrl.mapsAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="profile">{{::$ctrl.profileAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()"><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
+				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{::$ctrl.logInAlt}}</a></li>
+				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="registration"><i class="fa fa-wrench" aria-hidden="true"></i> {{::$ctrl.registrationAlt}}</a></li>
+				<li ui-sref-active="active"><a ui-sref="order-registration">{{::$ctrl.orderRegistrationAlt}}</a></li>
 			</ul>
 		</div>
 	</div>
