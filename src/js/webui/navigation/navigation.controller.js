@@ -7,14 +7,12 @@
     NavigationController.$inject = ['services.identity'];
 
 	function NavigationController(identity) {
-		this.mapsAlt = 'Поиск на карте';
-		this.loginAlt = 'Войти';
-		this.registrationAlt = 'Регистрация';
-		this.profileAlt = 'Профиль';
-		this.logOutAlt = 'Выйти';
-		this.orderRegistrationAlt = 'Регистрация на ремонт';
-		this.loginActinonText = 'Войти';
-		this.forgotPasswordLinkText = 'Забыли пароль?';
+		this.mapsAlt = 'ПОИСК МАГАЗИНА';
+		this.logInAlt = 'ВОЙТИ';
+		this.logOutAlt = 'ВЫЙТИ';
+		this.registrationAlt = 'РЕГИСТРАЦИЯ';
+		this.profileAlt = 'ПРОФИЛЬ';
+		this.orderRegistrationAlt = 'ЗАЯВКИ';
 		this.loggedIn = identity.loggedIn;
 		this.logOut = identity.logOut;
 	}

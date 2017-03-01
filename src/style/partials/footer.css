@@ -1,5 +1,5 @@
 footer{
-  background-color: #585a56;
+  background-color: #383838;
   color: #cccccc;
 }
 
@@ -7,7 +7,40 @@ footer .footer-above {
     padding-top: 20px;
 }
 
+footer h3 {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a, footer a:hover, footer a:focus {
+    color: white;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer a:hover, footer a:focus {
+    text-decoration: underline;
+}
+
+footer ul,
+footer h3 {
+    list-style-type: none;
+    text-align: left;
+}
+
+footer p {
+    text-align: left;
+    padding-left: 40px;
+    font-size: 26px;
+}
+
 footer .footer-below {
     padding: 10px 0;
-    background-color: #585a56;
+    background-color: #383838;
+}
+
+footer .social-icons {
+    font-size: 30px;
 }
