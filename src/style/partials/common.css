@@ -12,3 +12,7 @@ a {
   color: #666666;
   text-decoration: underline;
 }
+
+.panel {
+  margin-bottom: 0px;
+}
