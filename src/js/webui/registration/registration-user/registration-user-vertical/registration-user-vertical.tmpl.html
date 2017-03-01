@@ -20,6 +20,7 @@
 		text-align: left;
 	}
 </style>
+
 <form name="userForm" ng-submit="::$ctrl.register(userForm.$valid)" class="panel enter single center user-form" novalidate>
 	<h3>{{::$ctrl.title}}</h3>
 	<!-- Name -->
@@ -54,6 +55,7 @@
 		<span class="help-block" ng-show="userForm.confirmPassword.$error.required && !userForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
 		<span class="help-block" ng-show="userForm.confirmPassword.$error.match && !userForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordsAreDifferent}}</span>
 	</div>
+
 	<div ng-show="$ctrl.serverErrorMessage" class="form-group" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
 		<span class="help-block">{{$ctrl.serverErrorMessage}}</span>
 		<a ui-sref="login" href="#/login">{{::$ctrl.goToLoginAlt}}</a>

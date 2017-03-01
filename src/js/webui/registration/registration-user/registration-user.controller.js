@@ -36,7 +36,7 @@
 		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
 		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
 		vm.policyTextPart3 = ' и даете ';
-		vm.policyLinkTextPart4 = 'Согласие на обработку перносальных данных';
+		vm.policyLinkTextPart4 = 'Согласие на обработку персональных данных';
 		vm.policyTextPart5 = '.';
 		vm.goToLoginAlt = 'Войти';
 

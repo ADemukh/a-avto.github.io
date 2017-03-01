@@ -1,60 +1,96 @@
-<style type="text/css">
+<style>
     ya-map {
         display: block;
         width: 100%;
         height: 350px;   
     }
+	.shop-form {
+		padding: 30px;
+		text-align: center;
+		margin: 0 0 20px 0;
+	}
+	
+	input.shop-form-input {
+		width: 100%;
+		font-size: 1.1em;
+		padding: 10px 15px;
+		border-radius: 0px;
+	}
+	
+	button.shop-form-submit {
+		border-radius: 0px;
+	}
+	
+	span.help-block {
+		text-align: left;
+	}
 </style>
+ 
+<form name="shopForm" ng-submit="::$ctrl.register(shopForm.$valid)" class="panel enter single center shop-form" novalidate>
 
-<div class="panel enter single center" style="padding: 30px; text-align: center;">
-	<form class="panel enter single center login-form" ng-submit="::$ctrl.register()">
 	<h3>{{::$ctrl.title}}</h3>
-	<div>
-		<input ng-model="$ctrl.shop.name" placeholder="{{::$ctrl.shopNameAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input type="password" ng-model="$ctrl.shop.password" placeholder="{{::$ctrl.passwordAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input type="password" ng-model="$ctrl.shop.password2" placeholder="{{::$ctrl.password2Alt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.email" placeholder="{{::$ctrl.shopEmailAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.www" placeholder="{{::$ctrl.shopUrlAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.address" placeholder="{{::$ctrl.shopAddressAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.longitude" placeholder="{{::$ctrl.shopAddressLongitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.latitude" placeholder="{{::$ctrl.shopAddressLatitudeAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<input ng-model="$ctrl.shop.phone" placeholder="{{::$ctrl.shopPhoneAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;">
-	</div>
-	<div>
-		<textarea ng-model="$ctrl.shop.about" placeholder="{{::$ctrl.shopDescriptionAlt}}" style="width: 100%; margin: 0 0 20px 0; font-size: 1.1em; padding: 10px 15px;"></textarea>
-	</div>
-	<div style="text-align: start;">
-		<h5>{{::$ctrl.findShopOnMapAlt}}</h5>
+		
+	<!-- Name -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.name.$invalid && !shopForm.name.$pristine }">
+		<input type="text" name="name" ng-model="$ctrl.shop.name" required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopNameAlt}}"
+						class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine">{{::$ctrl.alertContactNameIsRequired}}</span>
 	</div>
 
-	<ya-map ya-zoom="6"  ya-center="Минск" ya-controls="zoomControl"  ya-options="{balloonMaxWidth: 200}"
-		ya-after-init="$ctrl.afterInit($target)"
-		ya-event-click="$ctrl.mapClick($event)"
-		>
-	</ya-map>
-
-	<div style="text-align: start; padding-top: 20px;">
-		<div style="display: inline-block;">
-					<input type="checkbox" ng-model="$ctrl.shop.isDealer">
-					<label>{{::$ctrl.shopIsDealerAlt}}</label>
-				</div>
-		<button type="submit" style="float: right;width: initial; padding: 10px 50px; text-align: start;">{{::$ctrl.registerActionText}}</button>
+	<!-- Email -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.email.$invalid && !shopForm.email.$pristine }">
+		<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.shopEmailAlt}}"
+						class="form-control user-form-input">
+		<span class="help-block" ng-show="shopForm.email.$error.required && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
+		<span class="help-block" ng-show="shopForm.email.$error.email && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
 	</div>	
-	</form>
-</div>
+
+	<!-- Phone -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.phone.$invalid && !shopForm.phone.$pristine }">
+		<input type="text" name="phone" ng-model="$ctrl.shop.phone" ng-change="$ctrl.resetServerError()" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
+						placeholder="{{::$ctrl.shopPhoneAlt}}" class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.phone.$invalid && !shopForm.phone.$pristine">{{::$ctrl.alertPhoneIsNotCorrect}}</span>
+	</div>
+
+	<!-- Password -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.password.$invalid && !shopForm.password.$pristine }">
+		<input type="password" name="password" ng-model="$ctrl.shop.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::$ctrl.passwordAlt}}"
+						class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.password.$invalid && !shopForm.password.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
+	</div>
+
+	<!-- Confirm password -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.confirmPassword.$invalid && !shopForm.confirmPassword.$pristine }">
+		<input type="password" name="confirmPassword" ng-model="$ctrl.shop.confirmPassword" required match="$ctrl.shop.password"
+						ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.password2Alt}}" class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.confirmPassword.$error.required && !shopForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
+		<span class="help-block" ng-show="shopForm.confirmPassword.$error.match && !shopForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordsAreDifferent}}</span>
+	</div>
+
+	<!-- WWW -->		
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.www.$invalid && !shopForm.www.$pristine }">
+		<input type="text" name="www" ng-model="$ctrl.shop.www" required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopUrlAlt}}"
+						class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.www.$error.required && !shopForm.www.$pristine">{{::$ctrl.alertWWW}}</span>
+	</div> 
+
+	<!-- Adress -->
+	<div class="form-group" ng-class="{ 'has-error' : shopForm.adress.$invalid && !shopForm.adress.$pristine }">
+		<input type="text" name="adress" ng-model="$ctrl.shop.address" required ng-change="c.resetServerError()" placeholder="{{$ctrl.shopAddressAlt}}"
+						class="form-control shop-form-input">
+		<span class="help-block" ng-show="shopForm.adress.$error.required && !shopForm.adress.$pristine">{{::$ctrl.alertAdress}}</span>
+	</div>
+	<ya-map ya-zoom="6"  
+			ya-controls="zoomControl searchControl fullscreenControl" 
+			ya-center="Минск" 
+			ya-after-init="afterInit($target)"
+			ya-event-click="mapClick($event)" >
+			<ya-collection ya-options="{preset: 'islands#icon',iconColor: '#0095b6',balloonMaxWidth:250}">
+				<ya-geo-object ng-repeat="o in geoObjects" ya-source="o"></ya-geo-object>
+			</ya-collection>
+	</ya-map>
+	<br>
+	<button type="submit" class="btn btn-primary shop-form-submit" ng-disabled="shopForm.$invalid" style="width: 100%; padding: 10px 35px;">
+		<span>{{::$ctrl.registerActionText}}</span>
+	</button>
+</form>
