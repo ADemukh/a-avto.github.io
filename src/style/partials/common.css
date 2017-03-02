@@ -1,11 +1,12 @@
 /*app.css*/
+
 body {
-    overflow-x: hidden;    
-    background-color: #e9ebee;
+  overflow-x: hidden;
+  background-color: #e9ebee;
 }
 
-.jumbotron{
-	background-color: transparent; 
+.jumbotron {
+  background-color: transparent;
 }
 
 a {
@@ -15,4 +16,20 @@ a {
 
 .panel {
   margin-bottom: 0px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }

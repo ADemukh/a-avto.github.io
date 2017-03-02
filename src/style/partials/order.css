@@ -1,0 +1,50 @@
+    .order-registration-title h1{
+        font-size: 40px;
+        font-weight: bold;
+    }
+	
+	.order-registration {
+		width: 635px;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	
+	.order-registration-about {
+		display: block;
+		margin-bottom: 20px;
+		width: 615px;
+		height: 150px;
+		resize: none;
+		border-radius: 15px;
+        padding: 10px;
+	}
+	
+	.order-registration-select {
+		width: 195px;
+		height: 40px;
+		display: inline-block;
+	}
+
+	.order-registration-select-margin {
+		margin-right: 10px;
+	}
+	
+	.order-registration-action {
+		width: 40%;
+		display: inline-block;
+	}
+	.order-registration-action-button {
+		height: 50px;
+		line-height: 50px;
+		margin: 0;
+		display: block;
+		width: 92%;
+		background-color: #ff6600;
+		color: #fff;
+		border-radius: 20px;
+        font-size: 18px;
+	}
+
+    .order-registration	oi-select .select-dropdown {
+		max-height: 130px;
+	}

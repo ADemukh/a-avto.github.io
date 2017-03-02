@@ -10,7 +10,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="maps">{{::$ctrl.mapsAlt}}</a></li>
+				<li ui-sref-active="active"><a ui-sref="maps"><i class="fa fa-search" aria-hidden="true"></i> {{::$ctrl.mapsAlt}}</a></li>
 				<li ng-if="$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="profile">{{::$ctrl.profileAlt}}</a></li>
 				<li ng-if="$ctrl.loggedIn()"><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
 				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{::$ctrl.logInAlt}}</a></li>

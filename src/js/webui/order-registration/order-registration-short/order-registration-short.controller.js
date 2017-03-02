@@ -10,15 +10,15 @@
 		var vm;
 
 		vm = this;
-		vm.titleAlt = 'Все автосервисы под рукой';
+		vm.titleAlt = 'Форма заявки';
 		vm.setCarDetailsAlt = 'Укажите информацию по автомобилю';
 		vm.carMarkAlt = 'Марка';
 		vm.carModelAlt = 'Модель';
 		vm.carYearAlt = 'Год';
 		vm.whatShouldBeRepairedAlt = 'Что именно нужно починить?';
-		vm.toAllShopsAlt = 'Заявка во все сервисы';
+		vm.toAllShopsAlt = 'Заявка во магазины';
 		vm.toAllShopsDescriptionAlt = 'Ваша заявка будет отправлена во все сервисы, и вы сможете выбрать лучший';
-		vm.searchByMapAlt = 'Искать на карте';
+		vm.searchByMapAlt = 'Поиск по магазинам';
 		vm.searchByMapDesciptionAlt = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
 
 		vm.canChooseCar = function canChooseCar() {
