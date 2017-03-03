@@ -90,3 +90,7 @@
 .navbar-brand {
   padding: 10px;
 }
+
+.navbar-top-offset {
+  margin-top: 50px;
+}

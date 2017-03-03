@@ -1,0 +1,17 @@
+    .blue-pills.nav-pills>li.active>a,
+    .blue-pills.nav-pills>li.active>a:focus,
+    .blue-pills.nav-pills>li.active>a:hover,
+    .blue-pills.nav-pills>li>a:hover {
+       color: #fff;
+       background-color: #005c9d;
+    }
+
+   .blue-pills a {
+       background: #fff;
+       color: rgb(0, 0, 0);
+   }
+
+   .blue-pills.centered-pills {
+       display: inline-block;
+       margin: auto;
+   }

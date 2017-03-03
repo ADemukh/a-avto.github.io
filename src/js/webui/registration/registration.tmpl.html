@@ -1,29 +1,28 @@
 <style>
-    .registration-tab>li.active>a,
-    .registration-tab>li.active>a:focus,
-    .registration-tab>li.active>a:hover,
-    .registration-tab>li>a:hover {
-       color: #fff;
-       background-color: #91979c;
-    }
-
-   registration-tab a {
-       background: #fff;
-       color: rgb(0, 0, 0);
-   }
+	.registration-tab>li.active>a,
+	.registration-tab>li.active>a:focus,
+	.registration-tab>li.active>a:hover,
+	.registration-tab>li>a:hover {
+		color: #fff;
+		background-color: #91979c;
+	}
+	
+	registration-tab a {
+		background: #fff;
+		color: rgb(0, 0, 0);
+	}
 </style>
-
-<div class="container" style="margin-top:40px;">
+<div class="container">
 	<div class="visible-xs">
-		<uib-tabset active="activePill" vertical="true" type="pills registration-tab">
-			<uib-tab index="0" heading="Регистрация клиента">
+		<uib-tabset type="pills centered-pills blue-pills" style="text-align: center;">
+			<uib-tab heading="Регистрация клиента">
 				<q-registration-user-vertical/>
 			</uib-tab>
-			<uib-tab index="1" heading="Регистрация автосервиса">
+			<uib-tab heading="Регистрация автосервиса">
 				<q-registration-shop/>
 			</uib-tab>
 		</uib-tabset>
-    </div>
+	</div>
 	<div class="visible-sm visible-md visible-lg">
 		<div class="row">
 			<div class="col-sm-6">
@@ -33,5 +32,5 @@
 				<q-registration-shop/>
 			</div>
 		</div>
-    </div>
+	</div>
 </div>

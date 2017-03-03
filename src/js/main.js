@@ -28,7 +28,6 @@
 //= webui/auth-social/auth-social.controller.js
 
 //= webui/login/login.controller.js
-//= webui/login/login-horizontal/login-horizontal.component.js
 //= webui/login/login-vertical/login-vertical.component.js
 
 //= webui/maps/maps.component.js
@@ -43,12 +42,10 @@
 //= webui/order-registration/order-registration-short/order-registration-short.controller.js
 
 //= webui/password-recovery/password-recovery.controller.js
-//= webui/password-recovery/password-recovery-horizontal/password-recovery-horizontal.component.js
 //= webui/password-recovery/password-recovery-vertical/password-recovery-vertical.component.js
 
 //= webui/registration/registration.component.js
 //= webui/registration/registration-user/registration-user.controller.js
-//= webui/registration/registration-user/registration-user-horizontal/registration-user-horizontal.component.js
 //= webui/registration/registration-user/registration-user-vertical/registration-user-vertical.component.js
 //= webui/registration/registration-shop/registration-shop.component.js
 //= webui/registration/registration-shop/registration-shop.controller.js

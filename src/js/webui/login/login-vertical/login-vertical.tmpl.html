@@ -1,44 +1,23 @@
-<style>
-    .login-form {
-        margin: 68px auto 38px;
-        width: 490px;
-        padding: 68px 40px;
-        text-align: center;
-    }
-    
-    .login-form input {
-        width: 100%;
-        margin: 0 0 20px 0;
-        font-size: 1.1em;
-        padding: 10px 15px;
-        border-radius: 0px;
-    }
-    
-    .login-form button {
-        width: initial;
-        padding: 10px 50px;
-        text-align: start;
-    }
-    
-    span.help-block {
-        text-align: left;
-    }
-</style>
 <div class="container">
-    <form class="panel enter single center login-form" ng-submit="::$ctrl.login()">
-        <h3>{{::$ctrl.title}}</h3>
-        <div>
-            <input type="text" name="email" ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}">
+    <div class="row">
+        <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+            <h1 class="text-center input-title">{{::$ctrl.title}}</h1>
+            <div class="input-wall">
+                <img class="profile-img" src="/img/profile-img.png">
+                <form class="form-input" ng-submit="::$ctrl.login()">
+                    <div>
+                        <input type="text" class="form-control" name="email" ng-model="$ctrl.email" placeholder="{{::$ctrl.emailAlt}}">
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}">
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-lg btn-primary btn-block"><span>{{::$ctrl.loginActinonText}}</span></button>
+                        <a class="pull-right need-help" ui-sref="password-recovery">{{::$ctrl.forgotPasswordLinkText}}</a>
+                    </div>
+                    <q-auth-social class="clear"></q-auth-social>
+                </form>
+            </div>
         </div>
-        <div>
-            <input type="password" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}">
-        </div>
-        <div style="text-align: start;">
-            <button type="submit" class="btn btn-default">
-                <span>{{::$ctrl.loginActinonText}}</span>
-            </button>
-            <a class="recover" ui-sref="password-recovery" href="#/password-recovery" style="float: right;">{{::$ctrl.forgotPasswordLinkText}}</a>
-        </div>
-        <q-auth-social></q-auth-social>
-    </form>
+    </div>
 </div>
