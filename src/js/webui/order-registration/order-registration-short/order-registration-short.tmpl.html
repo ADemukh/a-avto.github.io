@@ -1,8 +1,38 @@
+<style>
+	.bgimg {
+		background: url('../img/car_on_header.jpg') center;
+		height: 500px;
+	}
+	
+	/* WebKit, Blink, Edge */
+	/*input::-webkit-input-placeholder {
+		color: #909;
+	}*/
+	
+	/* Mozilla Firefox 4 to 18 */
+	/*input:-moz-placeholder {
+		color: #909;
+		opacity: 1;
+	}*/
+	
+	/* Mozilla Firefox 19+ */
+	/*input::-moz-placeholder {
+		color: #909;
+		opacity: 1;
+	}*/
+	
+	/* Internet Explorer 10-11 */
+	/*input:-ms-input-placeholder {
+		color: #909;
+	}*/
+</style>
 <div class="panel enter single center">
-	<div class="text-align-center">
+	<div class="text-align-center bgimg">
 		<div class="container">
 			<div class="text-align-center order-registration-title">
 				<h1>{{::$ctrl.titleAlt}}</h1>
+				<br>
+				<br>
 			</div>
 			<div class="order-registration">
 				<div class="text-align-left">
@@ -16,12 +46,12 @@
 				<textarea class="order-registration-about" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
 				<div class="text-align-center">
 					<div class="left order-registration-action">
-						<button type="button" class="order-registration-action-button" ng-click="::$ctrl.sendToAll()">
+						<button type="button" class="btn btn-action btn-lg center-block order-registration-action-button" ng-click="::$ctrl.sendToAll()">
 								<span>{{::$ctrl.toAllShopsAlt}}</span>
 							</button>
 					</div>
 					<div class="right order-registration-action">
-						<button type="button" class="order-registration-action-button" ng-click="::$ctrl.searchByMap()">
+						<button type="button" class="btn btn-action btn-lg center-block order-registration-action-button" ng-click="::$ctrl.searchByMap()">
 								<span>{{::$ctrl.searchByMapAlt}}</span>
 							</button>
 					</div>

@@ -1,10 +1,12 @@
     .order-registration-title h1{
         font-size: 40px;
         font-weight: bold;
+		color: #fff;
     }
 	
 	.order-registration {
 		width: 635px;
+		min-width: 635px;
 		margin: 0 auto;
 		margin-bottom: 20px;
 	}
@@ -13,7 +15,7 @@
 		display: block;
 		margin-bottom: 20px;
 		width: 615px;
-		height: 150px;
+		height: 200px;
 		resize: none;
 		border-radius: 15px;
         padding: 10px;
@@ -34,15 +36,9 @@
 		display: inline-block;
 	}
 	.order-registration-action-button {
-		height: 50px;
-		line-height: 50px;
 		margin: 0;
 		display: block;
 		width: 92%;
-		background-color: #ff6600;
-		color: #fff;
-		border-radius: 20px;
-        font-size: 18px;
 	}
 
     .order-registration	oi-select .select-dropdown {

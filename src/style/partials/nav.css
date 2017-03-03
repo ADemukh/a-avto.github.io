@@ -86,3 +86,7 @@
     box-shadow: none;
   }
 }
+
+.navbar-brand {
+  padding: 10px;
+}

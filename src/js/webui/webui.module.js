@@ -135,7 +135,7 @@
                 HOW_IT_WORKS_OPTION2: 'Ищите магазины по цене на карте',
                 HOW_IT_WORKS_OPTION2_ACTION1: 'Ищете нужные вам работы по прайс-листам во всех магазинах',
                 HOW_IT_WORKS_OPTION2_ACTION2: 'Выбираете лучшие предложения и договариваетесь с магазином',
-                HOW_IT_WORKS_OPTION2_ACTION_BUTTON: 'Искать на карте',
+                HOW_IT_WORKS_OPTION2_ACTION_BUTTON: 'Искать магазины',
                 ORDER_REGISTRATION_CHOOSE_MARK: 'Марка',
                 ORDER_REGISTRATION_CHOOSE_MODEL: 'Модель',
                 ORDER_REGISTRATION_CHOOSE_YEAR: 'Год',
