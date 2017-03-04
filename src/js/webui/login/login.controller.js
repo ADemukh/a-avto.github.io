@@ -15,8 +15,9 @@
 		vm.passwordAlt = 'Пароль';
 		vm.loginActinonText = 'Войти';
 		vm.forgotPasswordLinkText = 'Забыли пароль?';
-		vm.login = function login() {
-			identity.logIn(vm.email, vm.password)
+		vm.login = function login(isValid) {
+			if (isValid) {
+				identity.logIn(vm.email, vm.password)
 				.then(function complete(result) {
 					if (identity.loggedIn()) {
 						$state.go('main');
@@ -25,6 +26,10 @@
 						alert(result.alert.message);
 					}
 				});
+			}
 		};
+		vm.alertPasswordIsRequired = 'Введите пароль';
+		vm.alertEmailIsRequired = 'Введите E-mail';
+		vm.alertEmailIsNotCorrect = 'Неправильный e-mail';
 	}
 })();
