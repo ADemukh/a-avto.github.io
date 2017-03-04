@@ -25,12 +25,12 @@
     <form name="loginForm" class="panel enter single center login-form" ng-submit="::$ctrl.login(loginForm.$valid)">
         <h3>{{::$ctrl.title}}</h3>
         <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine }"> 
-            <input type="email" name="email" required ng-change="$ctrl.resetServerError()" ng-model="$ctrl.user.email" placeholder="{{::$ctrl.emailAlt}}">
+            <input type="email" name="email" required ng-change="$ctrl.resetServerError()" ng-model="$ctrl.user.email" placeholder="{{::$ctrl.emailAlt}}" class="form-control">
              <span class="help-block" ng-show="loginForm.email.$error.required && !loginForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
 		     <span class="help-block" ng-show="loginForm.email.$error.email && !loginForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-            <input type="password" name="password" ng-model="$ctrl.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::$ctrl.passwordAlt}} ">
+            <input type="password" name="password" ng-model="$ctrl.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::$ctrl.passwordAlt}}" class="form-control">
              <span class="help-block" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
         </div>
         <div style="text-align: start;">
