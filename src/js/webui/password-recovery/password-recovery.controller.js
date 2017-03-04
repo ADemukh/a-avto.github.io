@@ -1,10 +1,10 @@
 (function PasswordRecoveryControllerInit() {
-    'use strict';
+	'use strict';
 
-    angular.module('webui').
+	angular.module('webui').
 	controller('controllers.passwordrecovery', PasswordRecoveryController);
 
-    PasswordRecoveryController.$inject = ['services.identity', '$state'];
+	PasswordRecoveryController.$inject = ['services.identity', '$state'];
 
 	function PasswordRecoveryController(identity) {
 		var vm;
@@ -25,5 +25,8 @@
 					}
 				});
 		};
+
+		vm.alertEmailIsRequired = 'Введите E-mail';
+		vm.alertEmailIsNotCorrect = 'Неправильный E-mail';
 	}
 })();
