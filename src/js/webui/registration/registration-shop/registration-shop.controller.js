@@ -1,12 +1,12 @@
 (function RegistrationShopControllerInit() {
-    'use strict';
+	'use strict';
 
-    angular.module('webui').
-	controller('controllers.registrationshop', RegistrationShopController);
+	angular.module('webui').
+		controller('controllers.registrationshop', RegistrationShopController);
 
-	RegistrationShopController.$inject = ['services.identity', '$state', '$scope'];
+	RegistrationShopController.$inject = ['services.identity', '$state', '$scope', '$uibModal'];
 
-	function RegistrationShopController(identity, $state, $scope) {
+	function RegistrationShopController(identity, $state, $scope, $uibModal) {
 		var vm;
 
 		vm = this;
@@ -41,8 +41,9 @@
 		vm.policyTextPart5 = '.';
 		vm.shop = {
 			longitude: '',
-			latitude: '' ,
-			address: ''};
+			latitude: '',
+			address: ''
+		};
 
 		vm.resetServerError = function onChange() {
 			vm.serverErrorMessage = null;
@@ -63,39 +64,78 @@
 			}
 		};
 
-		$scope.afterInit = function afterInit(map) {
-			$scope.map = map;
-		};
+		vm.selectAddressOnMap = function selectAddressOnMap() {
+			var modalInstance;
 
-		$scope.mapClick = function mapClick(e) {
-			$scope.geoObjects = [];
-			var coords;
-
-			coords = e.get('coords');
-			ymaps.geocode(coords).then(function geocode(res) {
-				var names;
-				names = [];
-				res.geoObjects.each(function each(obj) {
-					names.push(obj.properties.get('name'));
-				});
-				var geoObj;
-				geoObj = {
-					geometry: {
-						type: 'Point',
-						coordinates: coords
-					},
-					properties: {
-						balloonContent: names.reverse().join(', ')
+			modalInstance = $uibModal.open({
+				animation: false,
+				component: 'qSelectShopAddressOnMap',
+				resolve: {
+					options: function options() {
+						return {
+							longitude: vm.shop.longitude,
+							latitude: vm.shop.latitude
+						};
 					}
-				};
-
-				vm.shop.longitude = coords[0].toPrecision(12);
-				vm.shop.latitude = coords[1].toPrecision(12);
-				$scope.$apply(function apply() {
-					$scope.geoObjects = [];
-					$scope.geoObjects.push(geoObj);
-					vm.shop.address = geoObj.properties.balloonContent;
-				});
+				}
 			});
+
+			modalInstance.result.then(
+				function selected(selectedAddress) {
+					vm.shop.longitude = selectedAddress.longitude;
+					vm.shop.latitude = selectedAddress.latitude;
+					vm.shop.address = selectedAddress.address;
+				},
+				function closed() {
+				});
 		};
-}})();
+
+		// vm.mapClick = function mapClick(e) {
+		// 	var coords;
+
+		// 	vm.geoObjects = [];
+		// 	coords = e.get('coords');
+
+		// 	ymaps.geocode(coords)
+		// 		.then(function getGeoObj(res) {
+		// 			var geoObj, names;
+
+		// 			names = [];
+		// 			res.geoObjects.each(function each(obj) {
+		// 				names.push(obj.properties.get('name'));
+		// 			});
+
+		// 			geoObj = {
+		// 				geometry: {
+		// 					type: 'Point',
+		// 					coordinates: coords
+		// 				},
+		// 				properties: {
+		// 					balloonContent: names.reverse().join(', ')
+		// 				}
+		// 			};
+
+		// 			$scope.$apply(function apply() {
+		// 				vm.geoObjects = [];
+		// 				vm.geoObjects.push(geoObj);
+		// 			});
+
+		// 			return geoObj;
+		// 		})
+		// 		.then(function mapResult(geoObj) {
+		// 			return {
+		// 				longitude: geoObj.geometry.coordinates[0].toPrecision(12),
+		// 				latitude: geoObj.geometry.coordinates[1].toPrecision(12),
+		// 				address: geoObj.properties.balloonContent
+		// 			};
+		// 		})
+		// 		.then(function saveGeoData(geoObj) {
+		// 			$scope.$apply(function apply() {
+		// 				vm.shop.longitude = geoObj.longitude;
+		// 				vm.shop.latitude = geoObj.latitude;
+		// 				vm.shop.address = geoObj.address;
+		// 			});
+		// 		});
+		// };
+	}
+})();

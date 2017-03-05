@@ -149,6 +149,7 @@
                 PROFILE_SHOP_ORDERS: 'Заявки',
                 PROFILE_SHOP_SETTINGS: 'Настройки',
                 VIDEO_TITLE: 'Обучающий ролик aAvto.by',
+                OK: 'ОК',
                 BUTTON_LANG_EN: 'английский',
                 BUTTON_LANG_RU: 'русский'
             });

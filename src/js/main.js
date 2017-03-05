@@ -51,6 +51,8 @@
 //= webui/registration/registration-user/registration-user-vertical/registration-user-vertical.component.js
 //= webui/registration/registration-shop/registration-shop.component.js
 //= webui/registration/registration-shop/registration-shop.controller.js
+//= webui/registration/registration-shop/select-shop-address-on-map/select-shop-address-on-map.component.js
+//= webui/registration/registration-shop/select-shop-address-on-map/select-shop-address-on-map.controller.js
 
 //= webui/profile/profile-client/profile-client-cars/profile-client-cars.controller.js
 //= webui/profile/profile-client/profile-client-cars/profile-client-cars.component.js
