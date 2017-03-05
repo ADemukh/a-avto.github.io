@@ -11,11 +11,32 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<li ui-sref-active="active"><a ui-sref="maps"><i class="fa fa-search" aria-hidden="true"></i> {{::$ctrl.mapsAlt}}</a></li>
-				<li ng-if="$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="profile">{{::$ctrl.profileAlt}}</a></li>
-				<li ng-if="$ctrl.loggedIn()"><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
 				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{::$ctrl.logInAlt}}</a></li>
 				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="registration"><i class="fa fa-wrench" aria-hidden="true"></i> {{::$ctrl.registrationAlt}}</a></li>
-				<li ui-sref-active="active"><a ui-sref="order-registration">{{::$ctrl.orderRegistrationAlt}}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li ng-if="$ctrl.loggedIn()" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href>
+					<span class="glyphicon glyphicon-user">
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu text-center">
+						<li ui-sref-active="active"><a ui-sref="profile-client-orders">{{::$ctrl.userOrdersAlt}}</a></li>
+						<li ui-sref-active="active"><a ui-sref="profile-client-cars">{{::$ctrl.userCarsAlt}}</a></li>
+						<li ui-sref-active="active"><a ui-sref="profile-client-settings">{{::$ctrl.userSettingsAlt}}</a></li>
+						<li><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
+					</ul>
+				</li>
+				<li ng-if="$ctrl.loggedIn()" class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href>
+					<span class="glyphicon glyphicon-user">
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu text-center">
+						<li ui-sref-active="active"><a ui-sref="profile-shop-orders">{{::$ctrl.userOrdersAlt}}</a></li>
+						<li ui-sref-active="active"><a ui-sref="profile-shop-settings">{{::$ctrl.userSettingsAlt}}</a></li>
+						<li><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
+					</ul>
+				</li>
+				<li class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="order-registration">{{::$ctrl.ordersAlt}}</a></li>
 			</ul>
 		</div>
 	</div>

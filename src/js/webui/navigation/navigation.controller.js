@@ -11,8 +11,10 @@
 		this.logInAlt = 'ВОЙТИ';
 		this.logOutAlt = 'ВЫЙТИ';
 		this.registrationAlt = 'РЕГИСТРАЦИЯ';
-		this.profileAlt = 'ПРОФИЛЬ';
-		this.orderRegistrationAlt = 'ЗАЯВКИ';
+		this.ordersAlt = 'ЗАЯВКИ';
+		this.userOrdersAlt = 'ЗАЯВКИ';
+		this.userCarsAlt = 'ГАРАЖ';
+		this.userSettingsAlt = 'НАСТРОЙКИ';
 		this.loggedIn = identity.loggedIn;
 		this.logOut = identity.logOut;
 	}
