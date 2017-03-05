@@ -58,6 +58,7 @@
 
 #navigation .dropdown-menu>li>a {
   color: #ffffff;
+  text-decoration: none;
   background-color: #004373;
 }
 
