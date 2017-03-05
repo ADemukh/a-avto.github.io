@@ -12,7 +12,7 @@
                         <span class="help-block" ng-show="loginForm.email.$error.email && !loginForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
-                        <input type="password" name="password" ng-model="$ctrl.password" placeholder="{{::$ctrl.passwordAlt}}" class="form-control"
+                        <input type="password" name="password" ng-model="$ctrl.user.password" placeholder="{{::$ctrl.passwordAlt}}" class="form-control"
                             ng-change="$ctrl.resetServerError()" required>
                         <span class="help-block" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
                     </div>

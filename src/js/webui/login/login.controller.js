@@ -17,7 +17,7 @@
 		vm.forgotPasswordLinkText = 'Забыли пароль?';
 		vm.login = function login(isValid) {
 			if (isValid) {
-				identity.logIn(vm.email, vm.password)
+				identity.logIn(vm.user.email, vm.user.password)
 				.then(function complete(result) {
 					if (identity.loggedIn()) {
 						$state.go('main');
