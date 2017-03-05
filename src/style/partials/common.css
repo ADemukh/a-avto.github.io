@@ -5,6 +5,16 @@ body {
   background-color: #e9ebee;
 }
 
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
 .jumbotron {
   background-color: transparent;
 }
