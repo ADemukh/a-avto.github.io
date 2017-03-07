@@ -3,16 +3,37 @@
 body {
   overflow-x: hidden;
   background-color: #e9ebee;
+  height: 100vh;
 }
 
-.site {
+.layout-column {
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
 }
 
-.site-content {
+.layout-row {
+  display: flex;
+  flex-direction: row;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+
+.height-full {
+  height: 100%;
+}
+
+.layout-content-stretch {
   flex: 1;
+}
+
+.display-block {
+  display: block;
 }
 
 .jumbotron {

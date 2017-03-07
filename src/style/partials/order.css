@@ -1,4 +1,20 @@
-    .order-registration-title h1{
+    .search-shop-options {
+        width: 350px;
+        padding: 5px;
+    }
+
+    .search-shop-options oi-select {
+        width: 100%;
+    }
+
+	.search-shop-map {
+		width: 100%;
+		min-height: 500px;
+	}
+
+	/*next is point to refactor:*/
+	
+	.order-registration-title h1{
         font-size: 40px;
         font-weight: bold;
 		color: #fff;
@@ -15,19 +31,19 @@
 		display: block;
 		margin-bottom: 20px;
 		width: 615px;
-		height: 200px;
+		height: 100px;
 		resize: none;
 		border-radius: 15px;
         padding: 10px;
 	}
 	
 	.order-registration-select {
-		width: 195px;
+		max-width: 200px;
 		height: 40px;
 		display: inline-block;
 	}
 
-	.order-registration-select-margin {
+	.order-registration-select-right-offset {
 		margin-right: 10px;
 	}
 	

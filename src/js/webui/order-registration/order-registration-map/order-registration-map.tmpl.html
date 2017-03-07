@@ -1,0 +1,25 @@
+<style type="text/css">
+</style>
+<div class="height-full layout-row">
+    <div class="height-full search-shop-options">
+        <h3>Поиск магазинов на карте</h3>
+        <h4>Найдено {{$ctrl.shopsCount}}</h4>
+        <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.city" placeholder="Город"
+            class="search-shop-options"></oi-select>
+        <oi-select oi-options="c for c in $ctrl.cars" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.carMark" placeholder="Марка"
+            class="search-shop-options"></oi-select>
+        <oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.category" placeholder="Категория"
+            class="search-shop-options"></oi-select>
+        <h4>Состояние:</h4>
+        <div>
+            <input type="radio" ng-model="$ctrl.isNew" value="true"> Новая
+            <input type="radio" ng-model="$ctrl.isNew" value="false"> Б/у
+        </div>
+    </div>
+    <ya-map ya-zoom="10" ya-center="{{$ctrl.center}}" ya-controls="zoomControl" class="height-full search-shop-map">
+        <ya-cluster ya-options="{preset: 'islands#circleIcon',iconColor: '#4d7198'}">
+            <ya-geo-object ya-options="{preset: 'islands#circleIcon',iconColor: '#4d7198'}" ng-repeat="o in $ctrl.geoObjects" ya-source="o">
+            </ya-geo-object>
+        </ya-cluster>
+    </ya-map>
+</div>

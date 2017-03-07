@@ -4,17 +4,40 @@
     angular.module('services')
         .factory('services.adress', AdressService);
 
-    function AdressService() {
-        var adress;
+    AdressService.$inject = ['$q'];
 
-        adress = ['Минск', 'Гомель', 'Могилёв', 'Витебск', 'Гродно', 'Брест', 'Бобруйск', 'Барановичи', 'Борисов', 'Пинск', 'Орша', 'Мозырь', 'Солигорск', 'Новополоцк', 'Лида', 'Молодечно', 'Полоцк', 'Жлобин', 'Светлогорск', 'Речица'];
+    function AdressService($q) {
+        var cities;
+
+        cities = [
+            'Минск',
+            'Гомель',
+            'Могилёв',
+            'Витебск',
+            'Гродно',
+            'Брест',
+            'Бобруйск',
+            'Барановичи',
+            'Борисов',
+            'Пинск',
+            'Орша',
+            'Мозырь',
+            'Солигорск',
+            'Новополоцк',
+            'Лида',
+            'Молодечно',
+            'Полоцк',
+            'Жлобин',
+            'Светлогорск',
+            'Речица'
+        ];
 
         return {
-            getAdress: getAdress
+            getCities: getCities
         };
 
-        function getAdress() {
-            return adress;
+        function getCities() {
+            return $q.resolve(cities);
         }
     }
 })();

@@ -1,55 +1,46 @@
-<style>	
+<style>
 	/* WebKit, Blink, Edge */
 	/*input::-webkit-input-placeholder {
 		color: #909;
 	}*/
-	
 	/* Mozilla Firefox 4 to 18 */
 	/*input:-moz-placeholder {
 		color: #909;
 		opacity: 1;
 	}*/
-	
 	/* Mozilla Firefox 19+ */
 	/*input::-moz-placeholder {
 		color: #909;
 		opacity: 1;
 	}*/
-	
 	/* Internet Explorer 10-11 */
 	/*input:-ms-input-placeholder {
 		color: #909;
 	}*/
 </style>
 <div class="panel enter single center">
-	<div class="text-align-center header-img">
+	<div class="text-align-center">
 		<div class="container">
-			<div class="text-align-center order-registration-title">
+			<div class="">
 				<h1>{{::$ctrl.titleAlt}}</h1>
-				<br>
-				<br>
 			</div>
-			<div class="order-registration">
-				<div class="text-align-left">
+			<div class="">
+				<div class="">
 					<oi-select oi-options="c for c in ::$ctrl.cars" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MARK' | translate }}"
-									ng-disabled="!$ctrl.canChooseCar()" class="order-registration-select order-registration-select-margin"></oi-select>
+									ng-disabled="!$ctrl.canChooseCar()" class="order-registration-select order-registration-select-right-offset"></oi-select>
 					<oi-select oi-options="m for m in $ctrl.models" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.model" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MODEL' | translate }}"
-									ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-margin"></oi-select>
+									ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-right-offset"></oi-select>
 					<oi-select oi-options="(y + '') for y in $ctrl.years" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.year" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_YEAR' | translate }}"
 									ng-disabled="!$ctrl.canChooseCarModelYear()" class="order-registration-select"></oi-select>
 				</div>
-				<textarea class="order-registration-about" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
-				<div class="text-align-center">
-					<div class="left order-registration-action">
-						<button type="button" class="btn btn-action btn-lg center-block order-registration-action-button" ng-click="::$ctrl.sendToAll()">
-								<span>{{::$ctrl.toAllShopsAlt}}</span>
-							</button>
-					</div>
-					<div class="right order-registration-action">
-						<button type="button" class="btn btn-action btn-lg center-block order-registration-action-button" ng-click="::$ctrl.searchByMap()">
-								<span>{{::$ctrl.searchByMapAlt}}</span>
-							</button>
-					</div>
+				<textarea class="" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
+				<div class="">
+					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.sendToAll()">
+						<span>{{::$ctrl.toAllShopsAlt}}</span>
+					</button>
+					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.searchByMap()">
+						<span>{{::$ctrl.searchByMapAlt}}</span>
+					</button>
 				</div>
 			</div>
 		</div>

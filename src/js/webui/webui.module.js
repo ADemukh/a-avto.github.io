@@ -57,13 +57,13 @@
                 templateUrl: 'webui/rules/rules.tmpl.html',
                 url: '/rules',
                 parent: 'root'
-            }).state('order-registration', {
+            }).state('order-registration-full', {
                 template: '<q-order-registration-full/>',
                 url: '/order-registration',
                 parent: 'root'
-            }).state('maps', {
-                template: '<q-maps/>',
-                url: '/maps',
+            }).state('order-registration-map', {
+                template: '<q-order-registration-map class="height-full display-block"/>',
+                url: '/find-shop-by-map',
                 parent: 'root'
             }).state('profile-client', {
                 templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',

@@ -30,12 +30,13 @@
 //= webui/login/login.controller.js
 //= webui/login/login-vertical/login-vertical.component.js
 
-//= webui/maps/maps.component.js
-//= webui/maps/maps.controller.js
+
 
 //= webui/navigation/navigation.component.js
 //= webui/navigation/navigation.controller.js
 
+//= webui/order-registration/order-registration-map/order-registration-map.component.js
+//= webui/order-registration/order-registration-map/order-registration-map.controller.js
 //= webui/order-registration/order-registration-full/order-registration-full.component.js
 //= webui/order-registration/order-registration-full/order-registration-full.controller.js
 //= webui/order-registration/order-registration-short/order-registration-short.component.js

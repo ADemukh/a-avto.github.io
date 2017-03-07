@@ -10,7 +10,7 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="maps"><i class="fa fa-search" aria-hidden="true"></i> {{::$ctrl.mapsAlt}}</a></li>
+				<li ui-sref-active="active"><a ui-sref="order-registration-map"><i class="fa fa-search" aria-hidden="true"></i> {{::$ctrl.mapsAlt}}</a></li>
 				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{::$ctrl.logInAlt}}</a></li>
 				<li ng-if="!$ctrl.loggedIn()" ui-sref-active="active"><a ui-sref="registration"><i class="fa fa-wrench" aria-hidden="true"></i> {{::$ctrl.registrationAlt}}</a></li>
 			</ul>
@@ -36,7 +36,9 @@
 						<li><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::$ctrl.logOutAlt}}</a></li>
 					</ul>
 				</li>
-				<li class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="order-registration">{{::$ctrl.ordersAlt}}</a></li>
+				<li ng-if="!$ctrl.loggedIn()" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="order-registration-full">{{::$ctrl.ordersAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="profile-client-orders">{{::$ctrl.ordersAlt}}</a></li>
+				<li ng-if="$ctrl.loggedIn()" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="profile-shop-orders">{{::$ctrl.ordersAlt}}</a></li>
 			</ul>
 		</div>
 	</div>
