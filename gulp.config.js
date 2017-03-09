@@ -7,10 +7,25 @@ module.exports = function exports() {
         // Пути откуда брать исходники
         src: {
             // Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-            html: 'src/*.html',
-            // В стилях и скриптах нам понадобятся только main файлы
-            js: 'src/js/main.js',
-            alljs: 'src/**/!(*.min)+(.js)',
+            html: './src/*.html',
+            indexjs: [
+                'src/**/*.module.js',
+                '.build/js/tmp/*.js',
+                'src/**/*.controller.js',
+                'src/**/*.service.js',
+                'src/**/*.directive.js',
+                'src/**/*.filter.js',
+                'src/**/*.component.js'
+            ],
+            srcjs: [
+                'src/**/*.module.js',
+                'src/**/*.controller.js',
+                'src/**/*.service.js',
+                'src/**/*.directive.js',
+                'src/**/*.filter.js',
+                'src/**/*.component.js'
+            ],
+            libsjs: 'src/js/libs/libs.js',
             style: 'src/style/main.css',
             // Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
             img: 'src/img/**/*.*',
@@ -24,7 +39,8 @@ module.exports = function exports() {
             css: '.build/css/',
             img: '.build/img/',
             fonts: '.build/fonts/',
-            templates: '.tmp/tempjs'
+            templates: '.build/js/tmp',
+            libs: '.build/js/tmp'
         },
         // Тут мы указываем, какую папку чистить
         clean: {
