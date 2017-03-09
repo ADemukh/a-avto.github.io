@@ -1,0 +1,20 @@
+<div class="height-full search-shop-options">
+    <h3>Поиск магазинов на карте</h3>
+    <h4>Найдено {{$ctrl.shopsCount}}</h4>
+    <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
+        placeholder="Город" class="search-shop-options"></oi-select>
+    <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
+        placeholder="Марка" class="search-shop-options"></oi-select>
+    <oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.category"
+        placeholder="Категория" class="search-shop-options"></oi-select>
+    <h4>Состояние:</h4>
+    <div>
+        <input type="radio" ng-model="$ctrl.newOrder.isNewDetail" value="true"> Новая
+        <input type="radio" ng-model="$ctrl.newOrder.isNewDetail" value="false"> Б/у
+    </div>
+    <div>
+        <button type="button" class="btn btn-action" ng-click="::$ctrl.applyFilters()">
+            <span>Применить</span>
+        </button>
+    </div>
+</div>

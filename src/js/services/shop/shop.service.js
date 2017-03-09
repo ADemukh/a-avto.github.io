@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('services')
-        .factory('services.shops', ShopsService);
+        .factory('services.shop', ShopsService);
     ShopsService.$inject = ['_',  '$http', '$q'];
 
     function ShopsService(_,  $http, $q) {

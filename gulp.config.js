@@ -53,7 +53,7 @@ module.exports = function exports() {
             filename: 'templates.js',
             options: {
                 base: '',
-                module: 'webui',
+                module: 'aAvto.webui',
                 standalone: false,
                 templateHeader: '//templates\r\nangular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
                 templateFooter: '}]);'

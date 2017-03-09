@@ -26,14 +26,15 @@
 			</div>
 			<div class="">
 				<div class="">
-					<oi-select oi-options="c for c in ::$ctrl.cars" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MARK' | translate }}"
-									ng-disabled="!$ctrl.canChooseCar()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="m for m in $ctrl.models" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.model" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_MODEL' | translate }}"
-									ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="(y + '') for y in $ctrl.years" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.year" placeholder="{{::'ORDER_REGISTRATION_CHOOSE_YEAR' | translate }}"
-									ng-disabled="!$ctrl.canChooseCarModelYear()" class="order-registration-select"></oi-select>
+					<oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.mark"
+									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MARK' | translate }}" ng-disabled="!$ctrl.canChooseCarMark()" class="order-registration-select order-registration-select-right-offset"></oi-select>
+					<oi-select oi-options="m for m in $ctrl.carModels" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.model"
+									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL' | translate }}" ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-right-offset"></oi-select>
+					<oi-select oi-options="(y + '') for y in $ctrl.carModelYears" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.year"
+									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL_YEAR' | translate }}" ng-disabled="!$ctrl.canChooseCarModelYear()"
+									class="order-registration-select"></oi-select>
 				</div>
-				<textarea class="" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
+				<textarea class="" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.newOrder.details"></textarea>
 				<div class="">
 					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.sendToAll()">
 						<span>{{::$ctrl.toAllShopsAlt}}</span>

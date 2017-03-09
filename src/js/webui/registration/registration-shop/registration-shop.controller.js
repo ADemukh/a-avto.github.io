@@ -1,7 +1,7 @@
 (function RegistrationShopControllerInit() {
 	'use strict';
 
-	angular.module('webui').
+	angular.module(WEBUI_MODULE_NAME).
 		controller('controllers.registrationshop', RegistrationShopController);
 
 	RegistrationShopController.$inject = ['services.identity', '$state', '$scope', '$uibModal'];

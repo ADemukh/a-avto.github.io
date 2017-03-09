@@ -28,6 +28,10 @@ body {
   height: 100%;
 }
 
+.width-full {
+  width: 100%;
+}
+
 .layout-content-stretch {
   flex: 1;
 }

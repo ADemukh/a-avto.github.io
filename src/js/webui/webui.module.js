@@ -1,9 +1,11 @@
 //webui.module.js
-// eslint no-reserved-keys: 2
+var WEBUI_MODULE_NAME;
+
 (function WebUIModuleInit() {
     'use strict';
 
-    angular.module('webui', ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
+    WEBUI_MODULE_NAME = 'aAvto.webui';
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
@@ -61,8 +63,8 @@
                 template: '<q-order-registration-full/>',
                 url: '/order-registration',
                 parent: 'root'
-            }).state('order-registration-map', {
-                template: '<q-order-registration-map class="height-full display-block"/>',
+            }).state('order-registration-search', {
+                template: '<q-order-registration-search class="height-full display-block"/>',
                 url: '/find-shop-by-map',
                 parent: 'root'
             }).state('profile-client', {
@@ -140,9 +142,9 @@
                 HOW_IT_WORKS_OPTION2_ACTION1: 'Ищете удобный вам магазин на карте',
                 HOW_IT_WORKS_OPTION2_ACTION2: 'Отправляете заявку',
                 HOW_IT_WORKS_OPTION2_ACTION_BUTTON: 'Искать магазины',
-                ORDER_REGISTRATION_CHOOSE_MARK: 'Марка',
-                ORDER_REGISTRATION_CHOOSE_MODEL: 'Модель',
-                ORDER_REGISTRATION_CHOOSE_YEAR: 'Год',
+                ORDER_REGISTRATION_CHOOSE_CAR_MARK: 'Марка',
+                ORDER_REGISTRATION_CHOOSE_CAR_MODEL: 'Модель',
+                ORDER_REGISTRATION_CHOOSE_CAR_MODEL_YEAR: 'Год',
                 PROFILE_CLIENT_CARS: 'Гараж',
                 PROFILE_CLIENT_ORDERS: 'Заявки',
                 PROFILE_CLIENT_SETTINGS: 'Настройки',

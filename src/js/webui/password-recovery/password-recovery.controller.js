@@ -1,7 +1,7 @@
 (function PasswordRecoveryControllerInit() {
 	'use strict';
 
-	angular.module('webui').
+	angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.passwordrecovery', PasswordRecoveryController);
 
 	PasswordRecoveryController.$inject = ['services.identity', '$state'];

@@ -1,7 +1,7 @@
 (function AuthSocialControllerInit() {
     'use strict';
 
-    angular.module('webui').
+    angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.authsocial', AuthSocialController);
 
     AuthSocialController.$inject = ['services.identity', '$state'];

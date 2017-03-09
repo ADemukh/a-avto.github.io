@@ -1,7 +1,7 @@
 (function MatchDirectiveInit() {
     'use strict';
 
-    angular.module('webui').directive('match', MatchDirective);
+    angular.module(WEBUI_MODULE_NAME).directive('match', MatchDirective);
 
     function MatchDirective($parse) {
         return {

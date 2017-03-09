@@ -1,7 +1,7 @@
 (function LoginControllerInit() {
     'use strict';
 
-    angular.module('webui').
+    angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.login', LoginController);
 
     LoginController.$inject = ['services.identity', '$state'];

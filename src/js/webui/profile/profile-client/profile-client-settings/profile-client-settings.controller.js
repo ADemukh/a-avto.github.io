@@ -1,7 +1,7 @@
 (function ProfileClientSettingsControllerInit() {
 	'use strict';
 
-	angular.module('webui')
+	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileclientsettings', ProfileClientSettingsController);
 
 	ProfileClientSettingsController.$inject = [];

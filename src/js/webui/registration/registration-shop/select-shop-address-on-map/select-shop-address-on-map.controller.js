@@ -1,7 +1,7 @@
 (function SelectShopAddressOnMapControllerInit() {
 	'use strict';
 
-    angular.module('webui').
+    angular.module(WEBUI_MODULE_NAME).
 	    controller('controllers.selectshopaddressonmap', SelectShopAddressOnMapController);
 
 	SelectShopAddressOnMapController.$inject = ['$scope'];

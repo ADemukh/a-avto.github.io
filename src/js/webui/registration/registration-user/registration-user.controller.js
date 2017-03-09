@@ -1,7 +1,7 @@
 (function RegistrationUserControllerInit() {
     'use strict';
 
-    angular.module('webui').
+    angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.registrationuser', RegistrationUserController);
 
 	RegistrationUserController.$inject = ['services.identity', '$state'];

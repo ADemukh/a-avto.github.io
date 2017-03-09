@@ -1,7 +1,7 @@
 (function ProfileClientOrdersControllerInit() {
 	'use strict';
 
-	angular.module('webui')
+	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileclientorders', ProfileClientOrdersController);
 
 	ProfileClientOrdersController.$inject = [];

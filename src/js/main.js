@@ -10,13 +10,15 @@
  */
 
 //= services/services.module.js
-//= services/cars/cars.service.js
-//= services/shops/shops.service.js
-//= services/order/order.service.js
 //= services/adress/adress.service.js
+//= services/car/car.service.js
 //= services/category/category.service.js
-//= services/popup/popup.service.js
+//= services/common/common.service.js
 //= services/identity/identity.service.js
+//= services/new-order/new-order.service.js
+//= services/shop/shop.service.js
+//= services/popup/popup.service.js
+
 //= webui/webui.module.js
 //= ../../.tmp/tempjs/templates.js
 //= webui/common/validators/match.directive.js
@@ -30,17 +32,21 @@
 //= webui/login/login.controller.js
 //= webui/login/login-vertical/login-vertical.component.js
 
-
-
 //= webui/navigation/navigation.component.js
 //= webui/navigation/navigation.controller.js
 
-//= webui/order-registration/order-registration-map/order-registration-map.component.js
-//= webui/order-registration/order-registration-map/order-registration-map.controller.js
 //= webui/order-registration/order-registration-full/order-registration-full.component.js
 //= webui/order-registration/order-registration-full/order-registration-full.controller.js
 //= webui/order-registration/order-registration-short/order-registration-short.component.js
 //= webui/order-registration/order-registration-short/order-registration-short.controller.js
+//= webui/order-registration/order-registration-search/order-registration-search.component.js
+//= webui/order-registration/order-registration-search/order-registration-search.controller.js
+//= webui/order-registration/order-registration-search/order-registration-search-filters/order-registration-search-filters.component.js
+//= webui/order-registration/order-registration-search/order-registration-search-filters/order-registration-search-filters.controller.js
+//= webui/order-registration/order-registration-search/order-registration-search-map/order-registration-search-map.component.js
+//= webui/order-registration/order-registration-search/order-registration-search-map/order-registration-search-map.controller.js
+//= webui/order-registration/order-registration-search/order-registration-search-results/order-registration-search-results.component.js
+//= webui/order-registration/order-registration-search/order-registration-search-results/order-registration-search-results.controller.js
 
 //= webui/password-recovery/password-recovery.controller.js
 //= webui/password-recovery/password-recovery-vertical/password-recovery-vertical.component.js

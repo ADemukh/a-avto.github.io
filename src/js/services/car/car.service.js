@@ -1,12 +1,12 @@
-(function CarsServiceInit() {
+(function CarServiceInit() {
     'use strict';
 
     angular.module('services')
-        .factory('services.cars', CarsService);
+        .factory('services.car', CarService);
 
-    CarsService.$inject = ['_', '$http', '$q'];
+    CarService.$inject = ['_', '$http', '$q'];
 
-    function CarsService(_, $http, $q) {
+    function CarService(_, $http, $q) {
         var allCars, dfd;
 
         function getAllCars() {

@@ -1,7 +1,7 @@
 (function ProfileClientCarsControllerInit() {
 	'use strict';
 
-	angular.module('webui')
+	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileclientcars', ProfileClientCarsController);
 
 	ProfileClientCarsController.$inject = [];

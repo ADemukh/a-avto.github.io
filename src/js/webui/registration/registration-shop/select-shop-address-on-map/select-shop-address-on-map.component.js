@@ -1,7 +1,7 @@
 (function SelectShopAddressOnMapComponentInit() {
 	'use strict';
 
-	angular.module('webui')
+	angular.module(WEBUI_MODULE_NAME)
 		.component('qSelectShopAddressOnMap', {
 			controller: 'controllers.selectshopaddressonmap',
 			bindings: {
