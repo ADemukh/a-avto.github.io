@@ -7,7 +7,10 @@
     CarService.$inject = ['_', '$http', '$q'];
 
     function CarService(_, $http, $q) {
-        var allCars, dfd;
+        var allCars, clientCars, dfd;
+
+        clientCars = [{ model: 'Volvo', mark: 'XC60', year: '2009' }, { model: 'BMW', mark: '5-series', year: '2002' }, { model: 'Renault', mark: 'Megane', year: '2010' }, { model: 'Ford', mark: 'Galaxy', year: '2011' }];
+
 
         function getAllCars() {
             if (!dfd) {
@@ -28,8 +31,15 @@
         return {
             getCars: getCars,
             getCarModels: getCarModels,
-            getCarModelYears: getYears
+            getCarModelYears: getYears,
+            getClientCars: getClientCars
         };
+
+
+        function getClientCars() {
+            return clientCars;
+                }
+
 
         function getCars() {
             return getAllCars()

@@ -73,4 +73,7 @@
 //= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.controller.js
 //= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.component.js
 
+//= webui/profile/profile-client/profile-client-cars/client-car/client-car.controller.js
+//= webui/profile/profile-client/profile-client-cars/client-car/client-car.component.js
+
 //= webui/video/video.component.js

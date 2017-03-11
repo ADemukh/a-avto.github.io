@@ -1,0 +1,23 @@
+<q-client-car-read ng-if="">
+
+
+</q-client-car-read>
+
+
+<q-client-car-edit ng-if="$ctrl.checked">
+
+</q-client-car-edit>
+
+<div class="car-item">
+    <h4>Модель: {{::$ctrl.car.model}}</h4>
+    <h4>Марка: {{::$ctrl.car.mark}}</h4>
+    <h4>Год: {{::$ctrl.car.year}}</h4>
+    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-submit="$ctrl.delete()">
+        <span>Удалить</span>
+    </button>
+    <button type="submit"  class="btn btn-lg btn-primary btn-block" ng-submit="$ctrl.checked">
+        <span>Изменить</span>
+    </button>
+    
+</div>
+
