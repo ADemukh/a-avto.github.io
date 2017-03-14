@@ -4,75 +4,65 @@ module.exports = function exports() {
     var config;
 
     config = {
-        // Пути откуда брать исходники
         src: {
-            // Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-            html: './src/*.html',
-            indexjs: [
-                'src/**/*.module.js',
-                '.build/js/tmp/*.js',
-                'src/**/*.controller.js',
-                'src/**/*.service.js',
-                'src/**/*.directive.js',
-                'src/**/*.filter.js',
-                'src/**/*.component.js'
-            ],
-            srcjs: [
-                'src/**/*.module.js',
-                'src/**/*.controller.js',
-                'src/**/*.service.js',
-                'src/**/*.directive.js',
-                'src/**/*.filter.js',
-                'src/**/*.component.js'
-            ],
-            libsjs: 'src/js/libs/libs.js',
+            html: 'src/*.html',
+            js: 'src/js/**/*.js',
             style: 'src/style/main.css',
-            // Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
             img: 'src/img/**/*.*',
-            fonts: 'src/fonts/**/*.*',
-            templates: 'src/js/**/*.tmpl.html'
+            fonts: 'src/fonts/**/*.*'
         },
-        // Тут мы укажем куда складывать готовые после сборки файлы
         build: {
             html: '.build/',
             js: '.build/js/',
             css: '.build/css/',
             img: '.build/img/',
             fonts: '.build/fonts/',
-            templates: '.build/js/tmp',
-            libs: '.build/js/tmp'
+            templates: '.build/js/templates/',
+            indexjs: '.build/'
         },
-        // Тут мы указываем, какую папку чистить
         clean: {
-            build: './.build',
-            tmp: './.tmp'
+            build: './.build'
         },
-        // Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         watch: {
-            html: 'src/**/*.html',
-            js: 'src/js/**/*.js',
+            indexhtml: 'src/index.html',
+            js: 'src/js/**/!(*.min)+(.js)',
             style: 'src/style/**/*.css',
             img: 'src/img/**/*.*',
-            fonts: 'src/fonts/**/*.*'
+            fonts: 'src/fonts/**/*.*',
+            templates: 'src/js/**/*.tmpl.html'
         },
-        // Для запуска браузера локально и синхронизации с исходниками
         browserSync: {
-            // proxy: 'aavto.local.dev',
             proxy: 'http://localhost:3000',
-            files: ['./.build/**/*.*'],
+            files: ['.build/**/*.*'],
             port: 5000
         },
         nodemon: {
             script: './bin/www'
         },
-        templateCache: {
+        templates: {
+            src: 'src/js/**/*.tmpl.html',
             filename: 'templates.js',
             options: {
                 base: '',
-                module: 'aAvto.webui',
-                standalone: false,
+                module: 'templates',
+                standalone: true,
                 templateHeader: '//templates\r\nangular.module("<%= module %>"<%= standalone %>).run(["$templateCache", function($templateCache) {',
                 templateFooter: '}]);'
+            },
+            dest: '.build/js/templates/'
+        },
+        indexjs: {
+            src: {
+                indexhtml: 'src/index.html',
+                js: '.build/js/**/*.js'
+            },
+            options: {
+                read: false
+            },
+            dest: '.build',
+            destOptions: {
+                ignorePath: ['../.build'],
+                relative: true
             }
         }
     };

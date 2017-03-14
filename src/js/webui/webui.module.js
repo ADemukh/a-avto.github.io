@@ -5,7 +5,7 @@ var WEBUI_MODULE_NAME;
     'use strict';
 
     WEBUI_MODULE_NAME = 'aAvto.webui';
-    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
         .constant('_', window._);
 
