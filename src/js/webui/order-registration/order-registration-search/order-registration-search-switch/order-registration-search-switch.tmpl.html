@@ -1,0 +1,7 @@
+<div class="layout-row layout-align-center">
+    <ul class="nav nav-pills">
+        <li ng-repeat="option in $ctrl.options" ng-class="{ active: $ctrl.isActive(option), 'round-left': $first, 'round-right': $last }">
+            <a href ng-click="$ctrl.setActive(option)">{{option}}</a>
+        </li>
+    </ul>
+</div>

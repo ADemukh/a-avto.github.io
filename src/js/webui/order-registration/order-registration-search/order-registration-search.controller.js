@@ -7,6 +7,14 @@
 	OrderRegistrationSearchController.$inject = ['services.neworder'];
 
 	function OrderRegistrationSearchController(newOrderService) {
+		var FILTERS, MAP, MAP_FILTERS, MAP_RESULTS, RESULTS;
+
+		FILTERS = 'filters';
+		MAP = 'map';
+		RESULTS = 'results';
+		MAP_FILTERS = 'map,filters';
+		MAP_RESULTS = 'map,results';
+
 		this.$onInit = function init() {
 			this.filters = {
 				shopCity: newOrderService.newOrder.shopCity,
@@ -14,7 +22,11 @@
 				category: newOrderService.newOrder.category,
 				isNewDetail: newOrderService.newOrder.isNewDetail
 			};
-        };
+
+			this.filtersMapResults = [MAP, FILTERS, RESULTS];
+			this.filtersResults = [MAP_FILTERS, MAP_RESULTS];
+			this.option = MAP_FILTERS;
+		};
 		this.updateFilters = function onUpdateFilters(event) {
 			if (event.filters) {
 				this.filters = event.filters;
@@ -24,5 +36,23 @@
 				newOrderService.newOrder.isNewDetail = event.filters.isNewDetail;
 			}
 		};
+		this.switchTo = function onSwitchTo(event) {
+			if (event.option) {
+				this.option = event.option;
+			}
+		};
+		this.showFilters = function showFilters() {
+			return containOption(this.option, FILTERS);
+		};
+		this.showMap = function showMap() {
+			return containOption(this.option, MAP);
+		};
+		this.showResults = function showResults() {
+			return containOption(this.option, RESULTS);
+		};
+
+		function containOption(option, compareToOption) {
+			return option.indexOf(compareToOption) >= 0;
+		}
 	}
 })();

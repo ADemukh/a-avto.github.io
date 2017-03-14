@@ -21,6 +21,9 @@
 		this.$onChanges = function onChanges(changes) {
 			if (changes.filters) {
 				this.filters = angular.copy(this.filters);
+				this.filters.newDetail = true;
+				this.filters.worksNow = true;
+				this.filters.worksOnWeekend = true;
 			}
 		};
 		this.applyFilters = function applyFilters() {

@@ -1,6 +1,12 @@
 <div class="height-full layout-row">
-   <q-order-registration-search-filters filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" class="display-block height-full">
-    </q-order-registration-search-filters>
-    <q-order-registration-search-map filters="$ctrl.filters" class="display-block height-full width-full">
+    <div class="height-full layout-column">
+        <q-order-registration-search-filters  ng-show="$ctrl.showFilters()" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" class="display-block flex">
+        </q-order-registration-search-filters>
+        <q-order-registration-search-results  ng-show="$ctrl.showResults()" class="display-block flex">
+        </q-order-registration-search-results>
+        <q-order-registration-search-switch options="$ctrl.filtersResults" active="$ctrl.option" on-switch="$ctrl.switchTo($event);" class="display-block">
+        </q-order-registration-search-switch>
+    </div>
+    <q-order-registration-search-map ng-show="$ctrl.showMap()" filters="$ctrl.filters" class="display-block width-full flex">
     </q-order-registration-search-map>
 </div>

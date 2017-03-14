@@ -9,8 +9,16 @@
         placeholder="Категория" class="search-shop-options"></oi-select>
     <h4>Состояние:</h4>
     <div>
-        <input type="radio" ng-model="$ctrl.newOrder.isNewDetail" value="true"> Новая
-        <input type="radio" ng-model="$ctrl.newOrder.isNewDetail" value="false"> Б/у
+        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="true"> Новая
+        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="false"> Б/у
+    </div>
+    <div class="">
+        Работает сейчас
+        <input type="checkbox" ng-model="$ctrl.filters.worksNow">
+    </div>
+    <div class="">
+        Работает в выходные
+        <input type="checkbox" ng-model="$ctrl.filters.worksOnWeekend">
     </div>
     <div>
         <button type="button" class="btn btn-action" ng-click="::$ctrl.applyFilters()">

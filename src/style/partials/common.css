@@ -6,34 +6,12 @@ body {
   height: 100vh;
 }
 
-.layout-column {
-  display: flex;
-  flex-direction: column;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-}
-
-.layout-row {
-  display: flex;
-  flex-direction: row;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-}
-
 .height-full {
   height: 100%;
 }
 
 .width-full {
   width: 100%;
-}
-
-.layout-content-stretch {
-  flex: 1;
 }
 
 .display-block {
