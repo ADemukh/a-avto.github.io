@@ -10,35 +10,6 @@
 		var vm;
 
 		vm = this;
-
-		vm.title = 'Регистрация магазина';
-		vm.shopNameAlt = 'Наименование компании';
-		vm.shopEmailAlt = 'E-mail';
-		vm.shopUrlAlt = 'Адрес сайта';
-		vm.shopAddressAlt = 'Отметить адрес магазина на карте';
-		vm.shopAddressLongitudeAlt = 'Долгота. Выбрать на карте';
-		vm.shopAddressLatitudeAlt = 'Долгота. Выбрать на карте';
-		vm.shopPhoneAlt = '+375 xx xxx xx xx';
-		vm.shopDescriptionAlt = 'Информация о магазине';
-		vm.shopIsDealerAlt = 'Официальный дилер';
-		vm.registerActionText = 'Зарегистрироваться';
-		vm.passwordAlt = 'Пароль';
-		vm.password2Alt = 'Повторите пароль';
-		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
-		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
-		vm.policyTextPart3 = ' и даете ';
-		vm.policyLinkTextPart4 = 'Согласие на обработку перносальных данных';
-
-		vm.alertContactNameIsRequired = 'Введите наименование компании';
-		vm.alertWWW = 'Введите адрес сайта магазина';
-		vm.alertAdress = 'Отметьте адрес магазина на карте';
-		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный E-mail';
-		vm.alertPhoneIsNotCorrect = 'Номер не соответветствует шаблону +375 xx xxx xx xx';
-		vm.alertPasswordIsRequired = 'Введите пароль';
-		vm.alertPasswordsAreDifferent = 'Пароли не совпадают';
-
-		vm.policyTextPart5 = '.';
 		vm.shop = {
 			longitude: '',
 			latitude: '',

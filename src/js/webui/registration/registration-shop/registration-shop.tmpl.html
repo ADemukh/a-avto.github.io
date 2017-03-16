@@ -1,54 +1,52 @@
-<h1 class="text-center input-title">
-	{{::$ctrl.title}}
-</h1>
+<h1 class="text-center input-title" translate>REGISTRATION_SHOP_TITLE</h1>
 <div class="input-wall">
 	<form name="shopForm" ng-submit="::$ctrl.register(shopForm.$valid)" class="form-input" novalidate>
 		<!-- Name -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.name.$invalid && !shopForm.name.$pristine }">
-			<input type="text" name="name" ng-model="$ctrl.shop.name" required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopNameAlt}}"
+			<input type="text" name="name" ng-model="$ctrl.shop.name" required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_NAME' | translate }}"
 							class="form-control">
-			<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine">{{::$ctrl.alertContactNameIsRequired}}</span>
+			<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine" translate>REGISTRATION_SHOP_NAME_IS_REQUIRED</span>
 		</div>
 		<!-- Email -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.email.$invalid && !shopForm.email.$pristine }">
-			<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.shopEmailAlt}}"
+			<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_EMAIL' | translate }}"
 							class="form-control user-form-input">
-			<span class="help-block" ng-show="shopForm.email.$error.required && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsRequired}}</span>
-			<span class="help-block" ng-show="shopForm.email.$error.email && !shopForm.email.$pristine">{{::$ctrl.alertEmailIsNotCorrect}}</span>
+			<span class="help-block" ng-show="shopForm.email.$error.required && !shopForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_REQUIRED</span>
+			<span class="help-block" ng-show="shopForm.email.$error.email && !shopForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT</span>
 		</div>
 		<!-- Phone -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.phone.$invalid && !shopForm.phone.$pristine }">
 			<input type="text" name="phone" ng-model="$ctrl.shop.phone" ng-change="$ctrl.resetServerError()" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
-							placeholder="{{::$ctrl.shopPhoneAlt}}" class="form-control">
-			<span class="help-block" ng-show="shopForm.phone.$invalid && !shopForm.phone.$pristine">{{::$ctrl.alertPhoneIsNotCorrect}}</span>
+							placeholder="{{::'REGISTRATION_SHOP_PHONE' | translate }}" class="form-control">
+			<span class="help-block" ng-show="shopForm.phone.$invalid && !shopForm.phone.$pristine" translate>REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT</span>
 		</div>
 		<!-- Password -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.password.$invalid && !shopForm.password.$pristine }">
-			<input type="password" name="password" ng-model="$ctrl.shop.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::$ctrl.passwordAlt}}"
+			<input type="password" name="password" ng-model="$ctrl.shop.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::'REGISTRATION_SHOP_PASSWORD' | translate }}"
 							class="form-control">
-			<span class="help-block" ng-show="shopForm.password.$invalid && !shopForm.password.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
+			<span class="help-block" ng-show="shopForm.password.$invalid && !shopForm.password.$pristine" translate>REGISTRATION_SHOP_PASSWORD_IS_REQUIRED</span>
 		</div>
 		<!-- Confirm password -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.confirmPassword.$invalid && !shopForm.confirmPassword.$pristine }">
 			<input type="password" name="confirmPassword" ng-model="$ctrl.shop.confirmPassword" required match="$ctrl.shop.password"
-							ng-change="$ctrl.resetServerError()" placeholder="{{::$ctrl.password2Alt}}" class="form-control">
-			<span class="help-block" ng-show="shopForm.confirmPassword.$error.required && !shopForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordIsRequired}}</span>
-			<span class="help-block" ng-show="shopForm.confirmPassword.$error.match && !shopForm.confirmPassword.$pristine">{{::$ctrl.alertPasswordsAreDifferent}}</span>
+							ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_PASSWORD_CONFIRM' | translate }}" class="form-control">
+			<span class="help-block" ng-show="shopForm.confirmPassword.$error.required && !shopForm.confirmPassword.$pristine" translate>REGISTRATION_SHOP_PASSWORD_IS_REQUIRED</span>
+			<span class="help-block" ng-show="shopForm.confirmPassword.$error.match && !shopForm.confirmPassword.$pristine" translate>REGISTRATION_SHOP_PASSWORDS_ARE_DIFFERENT</span>
 		</div>
 		<!-- WWW -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.www.$invalid && !shopForm.www.$pristine }">
-			<input type="text" name="www" ng-model="$ctrl.shop.www" required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopUrlAlt}}"
+			<input type="text" name="www" ng-model="$ctrl.shop.www" required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_WWW' | translate }}"
 							class="form-control">
-			<span class="help-block" ng-show="shopForm.www.$error.required && !shopForm.www.$pristine">{{::$ctrl.alertWWW}}</span>
+			<span class="help-block" ng-show="shopForm.www.$error.required && !shopForm.www.$pristine" translate>REGISTRATION_SHOP_WWW_IS_REQUIRED</span>
 		</div>
 		<!-- Adress -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.adress.$invalid && !shopForm.adress.$pristine }" style="position: relative;">
 			<div ng-click="$ctrl.selectAddressOnMap()">
 				<a class="show-on-map" style="position: absolute; top: 6px; left: 10px; z-index: 1;cursor: pointer;"><img src="/img/map-marker.png"></a>
-				<textarea type="text" name="adress" ng-model="$ctrl.shop.address" disabled required ng-change="$ctrl.resetServerError()" placeholder="{{$ctrl.shopAddressAlt}}"
+				<textarea type="text" name="adress" ng-model="$ctrl.shop.address" disabled required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_ADDRESS' | translate }}"
 								class="form-control" style="padding-left: 36px; cursor: pointer; background-color: #fff;"></textarea>
 			</div>
-			<span class="help-block" ng-show="shopForm.adress.$error.required && !shopForm.adress.$pristine">{{::$ctrl.alertAdress}}</span>
+			<span class="help-block" ng-show="shopForm.adress.$error.required && !shopForm.adress.$pristine" translate>REGISTRATION_SHOP_ADDRESS_IS_REQUIRED</span>
 		</div>
 		<!--<ya-map ya-zoom="12" ya-controls="zoomControl searchControl fullscreenControl" ya-event-click="$ctrl.mapClick($event)">
 			<ya-collection ya-options="{preset: 'islands#icon', iconColor: '#0095b6', balloonMaxWidth: 250}">
@@ -57,7 +55,7 @@
 		</ya-map>-->
 		<br>
 		<button type="submit" class="btn btn-primary shop-form-submit" ng-disabled="shopForm.$invalid" style="width: 100%; padding: 10px 35px;">
-		<span>{{::$ctrl.registerActionText}}</span>
+		<span translate>REGISTRATION_SHOP_REGISTER</span>
 	</button>
 	</form>
 </div>

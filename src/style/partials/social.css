@@ -46,3 +46,8 @@
 .btn-vk:active,.btn-vk.active,.open>.dropdown-toggle.btn-vk{background-image:none}
 .btn-vk.disabled:hover,.btn-vk[disabled]:hover,fieldset[disabled] .btn-vk:hover,.btn-vk.disabled:focus,.btn-vk[disabled]:focus,fieldset[disabled] .btn-vk:focus,.btn-vk.disabled.focus,.btn-vk[disabled].focus,fieldset[disabled] .btn-vk.focus{background-color:#587ea3;border-color:rgba(0,0,0,0.2)}
 .btn-vk .badge{color:#587ea3;background-color:#fff}
+
+.social p { font-size: 12px; line-height: 16.4px; letter-spacing: 0.24px; color: #7F7F7F; }
+.social ul { text-align: left; padding-left: 0; }
+.social ul li { display: inline; }
+div.social { margin-top: 20px; text-align: left; }

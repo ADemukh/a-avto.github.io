@@ -10,11 +10,6 @@
 		var vm;
 
 		vm = this;
-		vm.title = 'Вход на сайт';
-		vm.emailAlt = 'E-mail';
-		vm.passwordAlt = 'Пароль';
-		vm.loginActinonText = 'Войти';
-		vm.forgotPasswordLinkText = 'Забыли пароль?';
 		vm.login = function login(isValid) {
 			if (isValid) {
 				identity.logIn(vm.user.email, vm.user.password)
@@ -28,8 +23,5 @@
 				});
 			}
 		};
-		vm.alertPasswordIsRequired = 'Введите пароль';
-		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный e-mail';
 	}
 })();

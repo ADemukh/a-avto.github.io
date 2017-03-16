@@ -1,28 +1,28 @@
 <div class="height-full search-shop-options">
-    <h3>Поиск магазинов на карте</h3>
-    <h4>Найдено {{$ctrl.shopsCount}}</h4>
+    <h3 translate>ORDER_REGISTRATION_FILTERS_TITLE</h3>
+    <h4>{{::'ORDER_REGISTRATION_FILTERS_FOUND_SHOPS' | translate }}{{$ctrl.shopsCount}}</h4>
     <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
-        placeholder="Город" class="search-shop-options"></oi-select>
+        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CITIES' | translate }}" class="search-shop-options"></oi-select>
     <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
-        placeholder="Марка" class="search-shop-options"></oi-select>
+        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CARS' | translate }}" class="search-shop-options"></oi-select>
     <oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.category"
-        placeholder="Категория" class="search-shop-options"></oi-select>
+        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CATEGORY' | translate }}" class="search-shop-options"></oi-select>
     <h4>Состояние:</h4>
     <div>
-        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="true"> Новая
-        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="false"> Б/у
+        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="true"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_NEW' | translate }}
+        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="false"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_OLD' | translate }}
     </div>
     <div class="">
-        Работает сейчас
+        {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_NOW' | translate }}
         <input type="checkbox" ng-model="$ctrl.filters.worksNow">
     </div>
     <div class="">
-        Работает в выходные
+        {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_ON_WEEKEND' | translate }}
         <input type="checkbox" ng-model="$ctrl.filters.worksOnWeekend">
     </div>
     <div>
         <button type="button" class="btn btn-action" ng-click="::$ctrl.applyFilters()">
-            <span>Применить</span>
+            <span translate>ORDER_REGISTRATION_FILTERS_APPLY</span>
         </button>
     </div>
 </div>

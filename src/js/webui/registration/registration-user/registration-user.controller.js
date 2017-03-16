@@ -10,14 +10,6 @@
 		var vm;
 
 		vm = this;
-		vm.title = 'Регистрация клиента';
-		vm.contactNameAlt = 'Контактное имя';
-		vm.emailAlt = 'E-mail';
-		vm.phoneAlt = '+375 xx xxx xx xx';
-		vm.passwordAlt = 'Пароль';
-		vm.password2Alt = 'Повторите пароль';
-		vm.phonePolicyText = 'Телефон необходим только для регистрации';
-		vm.registerActionText = 'Зарегистрироваться';
 		vm.resetServerError = function onChange() {
 			vm.serverErrorMessage = null;
 		};
@@ -33,18 +25,5 @@
 					});
 			}
 		};
-		vm.policyTextPart1 = 'Нажимая кнопку зарегистрироваться вы соглашаетесь с ';
-		vm.policyLinkTextPart2 = 'Пользовательским соглашением';
-		vm.policyTextPart3 = ' и даете ';
-		vm.policyLinkTextPart4 = 'Согласие на обработку персональных данных';
-		vm.policyTextPart5 = '.';
-		vm.goToLoginAlt = 'Войти';
-
-		vm.alertContactNameIsRequired = 'Введите контактное имя';
-		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный e-mail';
-		vm.alertPhoneIsNotCorrect = 'Номер не соответветствует шаблону +375 xx xxx xx xx';
-		vm.alertPasswordIsRequired = 'Введите пароль';
-		vm.alertPasswordsAreDifferent = 'Пароли не совпадают';
 	}
 })();

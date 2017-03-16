@@ -7,12 +7,5 @@
 	PasswordSetController.$inject = ['services.identity', '$state'];
 
 	function PasswordSetController() {
-		var vm;
-
-		vm = this;
-		vm.title = ' Изменение пороля';
-		vm.oldPasswordAlt = 'Старый пороль';
-		vm.newPasswordAlt = 'Новый пороль';
-		vm.loginActinonText = 'Сохранить';
 	}
 })();

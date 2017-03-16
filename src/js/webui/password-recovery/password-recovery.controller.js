@@ -22,8 +22,5 @@
 					}
 				});
 		};
-
-		vm.alertEmailIsRequired = 'Введите E-mail';
-		vm.alertEmailIsNotCorrect = 'Неправильный E-mail';
 	}
 })();
