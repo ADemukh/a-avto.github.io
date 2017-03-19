@@ -1,6 +1,10 @@
-<ul class="nav nav-tabs">
-    <li ui-sref-active="active"><a ui-sref="profile-client-orders" href="#!/profile/client/orders" translate>PROFILE_CLIENT_ORDERS</a></li>
-    <li ui-sref-active="active"><a ui-sref="profile-client-cars" href="#!/profile/client/cars" translate>PROFILE_CLIENT_CARS</a></li>
-    <li ui-sref-active="active"><a ui-sref="profile-client-settings" href="#!/profile/client/settings" translate>PROFILE_CLIENT_SETTINGS</a></li>
-</ul>
-<div ui-view>
+<div class="height-full layout-column container" style="padding: 15px 0px 15px;">
+    <ul class="nav nav-tabs">
+        <li ui-sref-active="active"><a ui-sref="profile-client-orders" href="#!/profile/client/orders" translate>PROFILE_CLIENT_ORDERS</a></li>
+        <li ui-sref-active="active"><a ui-sref="profile-client-cars" href="#!/profile/client/cars" translate>PROFILE_CLIENT_CARS</a></li>
+        <li ui-sref-active="active"><a ui-sref="profile-client-settings" href="#!/profile/client/settings" translate>PROFILE_CLIENT_SETTINGS</a></li>
+    </ul>
+    <div class="" style="background-color: white;">
+        <div class="" ui-view />
+    </div>
+</div>

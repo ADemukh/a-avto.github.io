@@ -211,7 +211,7 @@ var WEBUI_MODULE_NAME;
                 REGISTRATION_CLIENT_EMAIL_IS_REQUIRED: 'Введите E-mail',
                 REGISTRATION_CLIENT_EMAIL_IS_NOT_CORRECT: 'Неправильный E-mail',
                 REGISTRATION_CLIENT_PHONE_IS_NOT_CORRECT: 'Номер не соответветствует шаблону +375 xx xxx xx xx',
-                REGISTRATION_CLIENT_PASSWORD_IS_REQUIRED: 'Введите E-mail',
+                REGISTRATION_CLIENT_PASSWORD_IS_REQUIRED: 'Введите пароль',
                 REGISTRATION_CLIENT_PASSWORDS_ARE_DIFFERENT: 'Пароли не совпадают',
                 REGISTRATION_CLIENT_REGISTER: 'Зарегистрироваться',
                 REGISTRATION_SHOP_TITLE: 'Регистрация магазина',

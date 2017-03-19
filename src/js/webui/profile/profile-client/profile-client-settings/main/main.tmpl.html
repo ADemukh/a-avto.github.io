@@ -1,0 +1,44 @@
+<form name="settingsMainForm" ng-submit="::$ctrl.register(settingsMainForm.$valid)" class="settings-line layout-column" novalidate>
+    <!-- Name -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.name.$invalid && !settingsMainForm.name.$pristine }">
+        <div class="settings-line-caption" translate>REGISTRATION_CLIENT_CONTACT_NAME</div>
+        <div class="layout-column  settings-line-content-input">
+            <input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.name.$error.required && !settingsMainForm.name.$pristine" translate>REGISTRATION_CLIENT_CONTACT_NAME_IS_REQUIRED</span>
+        </div>
+    </div>
+    <!-- Email -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.email.$invalid && !settingsMainForm.email.$pristine }">
+        <div class="settings-line-caption" translate>REGISTRATION_CLIENT_EMAIL</div>
+        <div class="layout-column settings-line-content-input">
+            <input type="email" name="email" ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.email.$error.required && !settingsMainForm.email.$pristine" translate>REGISTRATION_CLIENT_EMAIL_IS_REQUIRED</span>
+            <span class="help-block" ng-show="settingsMainForm.email.$error.email && !settingsMainForm.email.$pristine" translate>REGISTRATION_CLIENT_EMAIL_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+    <!-- Phone -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine }">
+        <div class="settings-line-caption" translate>Контактный телефон</div>
+        <div class="layout-column settings-line-content-input">
+            <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
+                placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_CLIENT_PHONE_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+    <!-- Server error -->
+    <div ng-show="$ctrl.serverErrorMessage" class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+        <div class="settings-line-caption"></div>
+        <div class="layout-column settings-line-content-input">
+            <span class="help-block">{{$ctrl.serverErrorMessage}}</span>
+        </div>
+    </div>
+    <!-- Submit -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+        <div class="settings-line-caption"></div>
+        <div class="layout-row settings-line-content-input">
+            <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
+			    <span>Сохранить</span>
+		    </button>
+        </div>
+    </div>
+</form>
