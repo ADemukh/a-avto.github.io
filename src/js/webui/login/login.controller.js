@@ -4,9 +4,9 @@
     angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.login', LoginController);
 
-    LoginController.$inject = ['services.identity', '$state'];
+    LoginController.$inject = ['services.identity', '$state', 'services.webui.alerts'];
 
-	function LoginController(identity, $state) {
+	function LoginController(identity, $state, alerts) {
 		var vm;
 
 		vm = this;
@@ -17,8 +17,7 @@
 					if (identity.loggedIn()) {
 						$state.go('main');
 					} else if (result.alert) {
-						vm.errorMessage = result.alert.message;
-						alert(result.alert.message);
+						vm.alerts = [alerts.danger(result.alert.message)];
 					}
 				});
 			}

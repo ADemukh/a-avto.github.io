@@ -31,7 +31,8 @@
             currentUser: getCurrentUser,
             signUpUser: signUpUser,
             signUpShop: signUpShop,
-            recoverPassword: recoverPassword
+            recoverPassword: recoverPassword,
+            changePassword: changePassword
         };
 
         function logIn(email, password) {
@@ -108,6 +109,13 @@
         function recoverPassword(email) {
             return $http.post('auth/recoverpassword', {
                 email: email
+            });
+        }
+
+        function changePassword(email, newPassword) {
+            return $http.post('auth/changepassword', {
+                email: email,
+                password: newPassword
             });
         }
     }

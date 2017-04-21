@@ -4,9 +4,9 @@
 	angular.module(WEBUI_MODULE_NAME).
 		controller('controllers.registrationshop', RegistrationShopController);
 
-	RegistrationShopController.$inject = ['services.identity', '$state', '$scope', '$uibModal'];
+	RegistrationShopController.$inject = ['services.identity', '$state', '$scope', '$uibModal', 'services.webui.alerts'];
 
-	function RegistrationShopController(identity, $state, $scope, $uibModal) {
+	function RegistrationShopController(identity, $state, $scope, $uibModal, alerts) {
 		var vm;
 
 		vm = this;
@@ -17,7 +17,7 @@
 		};
 
 		vm.resetServerError = function onChange() {
-			vm.serverErrorMessage = null;
+			// vm.alerts = null;
 		};
 
 		vm.register = function onRegister(isValid) {
@@ -25,10 +25,9 @@
 				identity.signUpShop(vm.shop)
 					.then(function complete(result) {
 						if (result.alert) {
-							vm.errorMessage = result.alert.message;
-							alert(result.alert.message);
+							vm.alerts = [alerts.danger(result.alert.message)];
 						} else {
-							alert('Ваш магазин успешно зарегистрирован!');
+							vm.alerts = [alerts.success('Ваш магазин успешно зарегистрирован!')];
 							$state.go('main');
 						}
 					});

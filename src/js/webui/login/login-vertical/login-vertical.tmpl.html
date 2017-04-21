@@ -16,6 +16,7 @@
                             ng-change="$ctrl.resetServerError()" required>
                         <span class="help-block" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" translate>LOGIN_PASSWORD_IS_REQUIRED</span>
                     </div>
+                    <q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts"/>
                     <div>
                         <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid">
                             <span translate>LOGIN_SIGN_IN</span>

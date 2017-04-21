@@ -53,7 +53,7 @@
 				<ya-geo-object ng-repeat="o in $ctrl.geoObjects" ya-source="o"></ya-geo-object>
 			</ya-collection>
 		</ya-map>-->
-		<br>
+		<q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts"/>
 		<button type="submit" class="btn btn-primary shop-form-submit" ng-disabled="shopForm.$invalid" style="width: 100%; padding: 10px 35px;">
 		<span translate>REGISTRATION_SHOP_REGISTER</span>
 	</button>

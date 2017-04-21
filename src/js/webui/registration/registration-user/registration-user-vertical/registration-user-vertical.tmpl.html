@@ -33,10 +33,7 @@
 			<span class="help-block" ng-show="userForm.confirmPassword.$error.required && !userForm.confirmPassword.$pristine" translate>REGISTRATION_CLIENT_PASSWORD_IS_REQUIRED</span>
 			<span class="help-block" ng-show="userForm.confirmPassword.$error.match && !userForm.confirmPassword.$pristine" translate>REGISTRATION_CLIENT_PASSWORDS_ARE_DIFFERENT</span>
 		</div>
-		<div ng-show="$ctrl.serverErrorMessage" class="form-group" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
-			<span class="help-block">{{$ctrl.serverErrorMessage}}</span>
-			<a ui-sref="login" href="#/login" translate>REGISTRATION_CLIENT_TO_LOGIN</a>
-		</div>
+		<q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts"/>
 		<button type="submit" class="btn btn-primary user-form-submit" ng-disabled="userForm.$invalid" style="width: 100%; padding: 10px 35px;">
 			<span translate>REGISTRATION_CLIENT_REGISTER</span>
 		</button>

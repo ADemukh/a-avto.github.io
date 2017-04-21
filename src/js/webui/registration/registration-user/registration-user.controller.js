@@ -4,14 +4,14 @@
     angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.registrationuser', RegistrationUserController);
 
-	RegistrationUserController.$inject = ['services.identity', '$state'];
+	RegistrationUserController.$inject = ['services.identity', '$state', 'services.webui.alerts'];
 
-	function RegistrationUserController(identity, $state) {
+	function RegistrationUserController(identity, $state, alerts) {
 		var vm;
 
 		vm = this;
 		vm.resetServerError = function onChange() {
-			vm.serverErrorMessage = null;
+			// vm.alerts = null;
 		};
 		vm.register = function onRegister(isValid) {
 			if (isValid) {
@@ -20,7 +20,7 @@
 						if (identity.loggedIn()) {
 							$state.go('profile');
 						} else if (result.alert) {
-							vm.serverErrorMessage = result.alert.message;
+							vm.alerts = [alerts.danger(result.alert.message)];
 						}
 					});
 			}
