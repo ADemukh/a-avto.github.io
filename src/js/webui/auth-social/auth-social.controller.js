@@ -1,33 +1,27 @@
 (function AuthSocialControllerInit() {
-    'use strict';
+	'use strict';
 
-    angular.module(WEBUI_MODULE_NAME).
+	angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.authsocial', AuthSocialController);
 
-    AuthSocialController.$inject = ['services.identity', '$state'];
+	AuthSocialController.$inject = ['services.identity', '$state', 'services.webui.alerts'];
 
-	function AuthSocialController(identity, $state) {
-		var vm;
-
-		vm = this;
-		vm.authFacebook = function authFacebook() {
+	function AuthSocialController(identity, $state, alerts) {
+		this.authFacebook = function authFacebook() {
 			identity.authFacebook()
-				.then(successAuth, failedAuth);
+				.then(successAuth.bind(this), failedAuth.bind(this));
 		};
-		vm.authVk = function authVk() {
+		this.authVk = function authVk() {
 			identity.authVk()
-				.then(successAuth, failedAuth);
+				.then(successAuth.bind(this), failedAuth.bind(this));
 		};
 
 		function successAuth() {
-			if (identity.loggedIn()) {
-				$state.go('main');
-			}
+			$state.go('public.main');
 		}
 
 		function failedAuth(err) {
-			vm.errorMessage = err.message;
-			alert(err.message);
+			this.alerts = [alerts.danger(err.message)];
 		}
 	}
 })();

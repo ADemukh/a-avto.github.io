@@ -18,7 +18,7 @@
 				identity.signUpUser(vm.user)
 					.then(function complete(result) {
 						if (identity.loggedIn()) {
-							$state.go('profile');
+							$state.go('client.profile.settings');
 						} else if (result.alert) {
 							vm.alerts = [alerts.danger(result.alert.message)];
 						}

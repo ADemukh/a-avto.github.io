@@ -1,3 +1,4 @@
+/*eslint no-bitwise:0, quote-props:0  */
 (function IdentityServiceInit() {
     'use strict';
 
@@ -7,7 +8,41 @@
     IdentityService.$inject = ['$http', '$q', 'services.popup'];
 
     function IdentityService($http, $q, popupService) {
-        var currentUser;
+        var accessLevels, currentUser, userRoles;
+
+        userRoles = {
+            // 0001
+            public: 1,
+            // 0010
+            client: 2,
+            // 0100
+            shop: 4,
+            // 1000
+            admin: 8
+        };
+        accessLevels = {
+            // 1111
+            public: userRoles.public |
+                userRoles.client |
+                userRoles.shop |
+                userRoles.admin,
+            // 0001
+            anon: userRoles.public,
+            // 1010
+            client: userRoles.client |
+                userRoles.admin,
+            // 1100
+            shop: userRoles.shop |
+                userRoles.admin,
+            // 1110
+            user: userRoles.client |
+                userRoles.shop |
+                userRoles.admin,
+            // 1000
+            admin: userRoles.admin
+        };
+
+        currentUser = anonUser();
 
         checkLoggedIn();
 
@@ -17,22 +52,35 @@
                     if (resp.data) {
                         currentUser = resp.data;
                     }
-                    return loggedIn();
                 });
+        }
+
+        function changeUser(user) {
+            angular.extend(currentUser, user);
+        }
+
+        function anonUser() {
+            return {
+                username: '',
+                role: 'public'
+            };
         }
 
         return {
             logIn: logIn,
             logOut: logOut,
-            loggedIn: loggedIn,
             checkLoggedIn: checkLoggedIn,
             authVk: authVk,
             authFacebook: authFacebook,
-            currentUser: getCurrentUser,
             signUpUser: signUpUser,
             signUpShop: signUpShop,
             recoverPassword: recoverPassword,
-            changePassword: changePassword
+            changePassword: changePassword,
+            user: currentUser,
+            authorize: authorize,
+            loggedIn: loggedIn,
+            accessLevels: accessLevels,
+            userRoles: userRoles
         };
 
         function logIn(email, password) {
@@ -42,7 +90,7 @@
                 })
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
-                        currentUser = resp.data;
+                        changeUser(resp.data.user);
                     }
                     return resp.data;
                 });
@@ -51,12 +99,8 @@
         function logOut() {
             return $http.post('/auth/logout')
                 .then(function response() {
-                    currentUser = null;
+                    changeUser(anonUser());
                 });
-        }
-
-        function loggedIn() {
-            return !!currentUser;
         }
 
         function authVk() {
@@ -72,9 +116,9 @@
 
             dfd = $q.defer();
             popupService.popup(url, strategy, {}, function callback(err, user) {
-                if (!err && user) {
-                    currentUser = user;
-                    return dfd.resolve(user);
+                if (!err && user && user.user) {
+                    changeUser(user.user);
+                    return dfd.resolve(currentUser);
                 }
                 return dfd.reject(err);
             });
@@ -82,16 +126,13 @@
             return dfd.promise;
         }
 
-        function getCurrentUser() {
-            return currentUser;
-        }
-
         function signUpUser(userInfo) {
             return $http.post('auth/signupuser', userInfo)
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
-                        currentUser = resp.data;
+                        changeUser(resp.data.user);
                     }
+                    // reject here with error
                     return resp.data;
                 });
         }
@@ -104,6 +145,21 @@
                     }
                     return resp.data;
                 });
+        }
+
+        function authorize(accessLevel, role) {
+            if (role === undefined) {
+                role = currentUser.role;
+            }
+
+            return accessLevel & userRoles[role];
+        }
+
+        function loggedIn(user) {
+            if (user === undefined) {
+                user = currentUser;
+            }
+            return authorize(accessLevels.user, user.role);
         }
 
         function recoverPassword(email) {

@@ -1,4 +1,5 @@
 //webui.module.js
+/*eslint no-bitwise:0, quote-props:0, max-depth:0 */
 var WEBUI_MODULE_NAME;
 
 (function WebUIModuleInit() {
@@ -7,12 +8,14 @@ var WEBUI_MODULE_NAME;
     WEBUI_MODULE_NAME = 'aAvto.webui';
     angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
-        .constant('_', window._);
+        .constant('_', window._)
+        .run(WebUIModuleRun);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider'];
 
     function WebUIModuleConfig($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
         setRoutes();
+        setRules();
         setInterceptors();
         setTranslations();
 
@@ -21,88 +24,217 @@ var WEBUI_MODULE_NAME;
             //================================================
             // Define all the routes
             //================================================
-            $urlRouterProvider.otherwise('/');
+            var accessLevels, userRoles;
 
-            $stateProvider.state('root', {
-                abstract: true,
-                templateUrl: 'webui/root/root.tmpl.html',
-                url: ''
-            }).state('main', {
-                templateUrl: 'webui/main/main.tmpl.html',
-                url: '/',
-                parent: 'root'
-            }).state('login', {
-                template: '<q-login-vertical/>',
-                url: '/login',
-                parent: 'root'
-            }).state('password-recovery', {
-                template: '<q-password-recovery-vertical/>',
-                url: '/password-recovery',
-                parent: 'root'
-            }).state('agreement', {
-                templateUrl: 'webui/agreement/agreement.tmpl.html',
-                url: '/agreement',
-                parent: 'root'
-            }).state('registration', {
-                template: '<q-registration/>',
-                url: '/registration',
-                parent: 'root'
-            }).state('contacts', {
-                templateUrl: 'webui/contacts/contacts.tmpl.html',
-                url: '/contacts',
-                parent: 'root'
-            }).state('term', {
-                template: '<h2>Terms & conditions</h2>',
-                url: '/term',
-                parent: 'root'
-            }).state('rules', {
-                templateUrl: 'webui/rules/rules.tmpl.html',
-                url: '/rules',
-                parent: 'root'
-            }).state('order-registration-full', {
-                template: '<q-order-registration-full/>',
-                url: '/order-registration',
-                parent: 'root'
-            }).state('order-registration-search', {
-                template: '<q-order-registration-search class="height-full display-block"/>',
-                url: '/find-shop-by-map',
-                parent: 'root'
-            }).state('profile-client', {
-                templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',
-                url: '/profile/client',
-                abstract: true,
-                parent: 'root'
-            }).state('profile-client-cars', {
-                template: '<q-profile-client-cars/>',
-                url: '/cars',
-                parent: 'profile-client'
-            }).state('profile-client-orders', {
-                template: '<q-profile-client-orders/>',
-                url: '/orders',
-                parent: 'profile-client'
-            }).state('profile-client-settings', {
-                template: '<q-profile-client-settings/>',
-                url: '/settings',
-                parent: 'profile-client'
-            }).state('profile-shop', {
-                templateUrl: 'webui/profile/profile-shop/profile-shop.tmpl.html',
-                url: '/profile/shop',
-                abstract: true,
-                parent: 'root'
-            }).state('profile-shop-orders', {
-                template: '<q-profile-shop-orders/>',
-                url: '/orders',
-                parent: 'profile-shop'
-            }).state('profile-shop-settings', {
-                template: '<q-profile-shop-settings/>',
-                url: '/settings',
-                parent: 'profile-shop'
-            }).state('password-set', {
-                template: '<q-password-set-vertical/>',
-                url: '/password-set',
-                parent: 'root'
-            });
+            userRoles = {
+                // 0001
+                public: 1,
+                // 0010
+                client: 2,
+                // 0100
+                shop: 4,
+                // 1000
+                admin: 8
+            };
+            accessLevels = {
+                // 1111
+                public: userRoles.public |
+                    userRoles.client |
+                    userRoles.shop |
+                    userRoles.admin,
+                // 0001
+                anon: userRoles.public,
+                // 1010
+                client: userRoles.client |
+                    userRoles.admin,
+                // 1100
+                shop: userRoles.shop |
+                    userRoles.admin,
+                // 0110
+                user: userRoles.client |
+                    userRoles.shop |
+                    userRoles.admin,
+                // 1000
+                admin: userRoles.admin
+            };
+
+            // Root route
+            $stateProvider
+                .state('root', {
+                    abstract: true,
+                    templateUrl: 'webui/root/root.tmpl.html',
+                    url: ''
+                });
+
+            // Public routes
+            $stateProvider
+                .state('public', {
+                    template: '<div class="height-full" ui-view/></div>',
+                    data: {
+                        access: accessLevels.public
+                    },
+                    abstract: true,
+                    parent: 'root'
+                }).state('public.main', {
+                    templateUrl: 'webui/main/main.tmpl.html',
+                    url: '/',
+                    parent: 'public'
+                }).state('public.agreement', {
+                    templateUrl: 'webui/agreement/agreement.tmpl.html',
+                    url: '/agreement',
+                    parent: 'public'
+                }).state('public.contacts', {
+                    templateUrl: 'webui/contacts/contacts.tmpl.html',
+                    url: '/contacts',
+                    parent: 'public'
+                }).state('public.term', {
+                    template: '<h2>Terms & conditions</h2>',
+                    url: '/term',
+                    parent: 'public'
+                }).state('public.rules', {
+                    templateUrl: 'webui/rules/rules.tmpl.html',
+                    url: '/rules',
+                    parent: 'public'
+                }).state('public.order-registration-full', {
+                    template: '<q-order-registration-full/>',
+                    url: '/order-registration',
+                    parent: 'public'
+                }).state('public.order-registration-search', {
+                    template: '<q-order-registration-search class="height-full display-block"/>',
+                    url: '/find-shop-by-map',
+                    parent: 'public'
+                });
+
+            // Anonymous routes
+            $stateProvider
+                .state('anon', {
+                    abstract: true,
+                    template: '<div class="height-full" ui-view/></div>',
+                    data: {
+                        access: accessLevels.anon
+                    },
+                    parent: 'root'
+                }).state('anon.login', {
+                    template: '<q-login-vertical/>',
+                    url: '/login',
+                    parent: 'anon'
+                }).state('anon.password-recovery', {
+                    template: '<q-password-recovery-vertical/>',
+                    url: '/password-recovery',
+                    parent: 'anon'
+                }).state('anon.register', {
+                    template: '<q-registration/>',
+                    url: '/registration',
+                    parent: 'anon'
+                }).state('anon.password-set', {
+                    template: '<q-password-set-vertical/>',
+                    url: '/password-set',
+                    parent: 'anon'
+                });
+
+            // Client routes
+            $stateProvider
+                .state('client', {
+                    template: '<div class="height-full" ui-view/></div>',
+                    url: '/client',
+                    abstract: true,
+                    data: {
+                        access: accessLevels.client
+                    },
+                    parent: 'root'
+                }).state('client.profile', {
+                    templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',
+                    url: '/profile',
+                    abstract: true,
+                    parent: 'client'
+                }).state('client.profile.cars', {
+                    template: '<q-profile-client-cars/>',
+                    url: '/cars',
+                    parent: 'client.profile'
+                }).state('client.profile.orders', {
+                    template: '<q-profile-client-orders/>',
+                    url: '/orders',
+                    parent: 'client.profile'
+                }).state('client.profile.settings', {
+                    template: '<q-profile-client-settings/>',
+                    url: '/settings',
+                    parent: 'client.profile'
+                });
+
+            // Client routes
+            $stateProvider
+                .state('shop', {
+                    template: '<div class="height-full" ui-view/></div>',
+                    url: '/shop',
+                    abstract: true,
+                    data: {
+                        access: accessLevels.shop
+                    },
+                    parent: 'root'
+                }).state('shop.profile', {
+                    templateUrl: 'webui/profile/profile-shop/profile-shop.tmpl.html',
+                    url: '/profile',
+                    abstract: true,
+                    parent: 'shop'
+                }).state('shop.profile.orders', {
+                    template: '<q-profile-shop-orders/>',
+                    url: '/orders',
+                    parent: 'shop.profile'
+                }).state('shop.profile.settings', {
+                    template: '<q-profile-shop-settings/>',
+                    url: '/settings',
+                    parent: 'shop.profile'
+                });
+
+            // Admin routes
+            $stateProvider
+                .state('admin', {
+                    abstract: true,
+                    template: '<ui-view/>',
+                    data: {
+                        access: accessLevels.admin
+                    },
+                    parent: 'root'
+                        // })
+                        // .state('admin.admin', {
+                        //     url: '/admin/',
+                        //     templateUrl: 'admin',
+                        //     controller: 'AdminCtrl'
+                });
+
+            $urlRouterProvider.otherwise('/');
             //================================================
+        }
+
+        function setRules() {
+            // FIX for trailing slashes. Gracefully "borrowed" from https://github.com/angular-ui/ui-router/issues/50
+            // $urlRouterProvider.rule(function ($injector, $location) {
+            //     if ($location.protocol() === 'file')
+            //         return;
+
+            //     var path = $location.path()
+            //         // Note: misnomer. This returns a query object, not a search string
+            //         ,
+            //         search = $location.search(),
+            //         params;
+
+            //     // check to see if the path already ends in '/'
+            //     if (path[path.length - 1] === '/') {
+            //         return;
+            //     }
+
+            //     // If there was no search string / query params, return with a `/`
+            //     if (Object.keys(search).length === 0) {
+            //         return path + '/';
+            //     }
+
+            //     // Otherwise build the search string and return a `/?` prefix
+            //     params = [];
+            //     angular.forEach(search, function (v, k) {
+            //         params.push(k + '=' + v);
+            //     });
+            //     return path + '/?' + params.join('&');
+            // });
         }
 
         function setInterceptors() {
@@ -116,8 +248,8 @@ var WEBUI_MODULE_NAME;
                         return response;
                     },
                     responseError: function onResponseError(response) {
-                        if (response.status === 401) {
-                            $location.url('/login');
+                        if (response.status === 401 || response.status === 403) {
+                            $location.path('/login');
                         }
                         return $q.reject(response);
                     }
@@ -255,5 +387,28 @@ var WEBUI_MODULE_NAME;
             });
             $translateProvider.preferredLanguage('ru');
         }
+    }
+
+    WebUIModuleRun.$inject = ['$rootScope', '$state', 'services.identity'];
+
+    function WebUIModuleRun($rootScope, $state, identity) {
+        $rootScope.$on('$stateChangeStart', function onStateChangeStart(event, toState, toParams, fromState, fromParams) {
+            if (!('data' in toState) || !('access' in toState.data)) {
+                // $rootScope.error = "Access undefined for this state";
+                event.preventDefault();
+            } else if (!identity.authorize(toState.data.access)) {
+                // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
+                event.preventDefault();
+
+                if (fromState.url === '^') {
+                    if (identity.loggedIn()) {
+                        $state.go('public.main');
+                    } else {
+                        $rootScope.error = null;
+                        $state.go('anon.login');
+                    }
+                }
+            }
+        });
     }
 })();

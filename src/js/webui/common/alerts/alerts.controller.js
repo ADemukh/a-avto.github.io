@@ -1,8 +1,7 @@
 (function AlertsControllerInit() {
 	'use strict';
 
-	angular.module(WEBUI_MODULE_NAME).
-	controller('controllers.alerts', AlertsController);
+	angular.module(WEBUI_MODULE_NAME).controller('controllers.alerts', AlertsController);
 
 	function AlertsController() {
 		this.$onChanges = function onChanges(changes) {

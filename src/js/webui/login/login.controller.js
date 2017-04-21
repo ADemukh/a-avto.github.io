@@ -15,7 +15,7 @@
 				identity.logIn(vm.user.email, vm.user.password)
 				.then(function complete(result) {
 					if (identity.loggedIn()) {
-						$state.go('main');
+						$state.go('public.main');
 					} else if (result.alert) {
 						vm.alerts = [alerts.danger(result.alert.message)];
 					}

@@ -7,6 +7,7 @@
     NavigationController.$inject = ['services.identity'];
 
 	function NavigationController(identity) {
+		this.accessLevels = identity.accessLevels;
 		this.loggedIn = identity.loggedIn;
 		this.logOut = identity.logOut;
 	}

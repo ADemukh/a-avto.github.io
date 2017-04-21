@@ -22,10 +22,10 @@
 		vm.searchByMapDesciptionAlt = 'Вы можете сразу выбрать работы из прайс-листов, и записаться на ремонт';
 
 		vm.sendToAll = function sendToAll() {
-			$state.go('order-registration-full');
+			$state.go('public.order-registration-full');
 		};
 		vm.searchByMap = function searchByMap() {
-			$state.go('order-registration-search');
+			$state.go('public.order-registration-search');
 		};
 		vm.newOrder = newOrderService.newOrder;
 		common.services.car.getCars().then(function onGetCars(carMarks) {

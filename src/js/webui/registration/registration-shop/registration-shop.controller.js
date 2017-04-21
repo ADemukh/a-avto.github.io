@@ -28,7 +28,7 @@
 							vm.alerts = [alerts.danger(result.alert.message)];
 						} else {
 							vm.alerts = [alerts.success('Ваш магазин успешно зарегистрирован!')];
-							$state.go('main');
+							$state.go('public.main');
 						}
 					});
 			}
