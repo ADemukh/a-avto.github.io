@@ -8,7 +8,7 @@
 
     function IdentityService($http, $q, popupService) {
         var currentUser;
-
+        var auto;
         checkLoggedIn();
 
         function checkLoggedIn() {
@@ -22,6 +22,7 @@
         }
 
         return {
+            myAuto: myAuto,
             logIn: logIn,
             logOut: logOut,
             loggedIn: loggedIn,
@@ -34,6 +35,10 @@
             recoverPassword: recoverPassword
         };
 
+        function myAuto() {
+            return auto.user.cars;
+        }
+
         function logIn(email, password) {
             return $http.post('/auth/login', {
                     email: email,
@@ -42,6 +47,7 @@
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
                         currentUser = resp.data;
+                        auto = resp.data;
                     }
                     return resp.data;
                 });
