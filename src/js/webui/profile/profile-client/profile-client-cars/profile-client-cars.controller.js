@@ -4,12 +4,40 @@
 	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileclientcars', ProfileClientCarsController);
 
-	ProfileClientCarsController.$inject = ['services.cars'];
+	ProfileClientCarsController.$inject = ['services.car'];
 
-	function ProfileClientCarsController(cars) {
+	function ProfileClientCarsController(carService) {
 		this.$onInit = function onInit() {
-			this.cars = cars.getClientCars();
-			console.log('on init!');
+			carService.getClientCars().then(function onGetClientCars(cars) {
+				this.cars = cars;
+				this.addMode = false;
+			}.bind(this));
+
+			this.delete = function deleteCar(event) {
+				var index;
+				if (event.car) {
+					index = this.cars.indexOf(event.car);
+					this.cars.splice(index, 1);
+				}
+			};
+			this.update = function updateCar(event) {
+				if (event.car) {}
+			};
+
+			this.add = function addCar(event) {
+				if (event.car) {
+					this.cars.push(event.car);
+					this.addMode = false;
+				}
+			};
+			this.toAddMode = function toAddMode() {
+				// todo
+				this.addMode = true;
+			};
+			this.cancelAddMode = function cancelAddMode() {
+				// todo
+				this.addMode = false;
+			};
 		};
 	}
 })();

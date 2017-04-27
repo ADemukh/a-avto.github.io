@@ -1,4 +1,4 @@
-(function ProfileClientComponentInit() {
+(function ProfileClientCarsComponentInit() {
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)

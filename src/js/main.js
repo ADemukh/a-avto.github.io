@@ -63,6 +63,16 @@
 
 //= webui/profile/profile-client/profile-client-cars/profile-client-cars.controller.js
 //= webui/profile/profile-client/profile-client-cars/profile-client-cars.component.js
+//= webui/profile/profile-client/profile-client-cars/client-car/client-car.controller.js
+//= webui/profile/profile-client/profile-client-cars/client-car/client-car.component.js
+//= webui/profile/profile-client/profile-client-cars/client-car-read/client-car-read.controller.js
+//= webui/profile/profile-client/profile-client-cars/client-car-read/client-car-read.component.js
+//= webui/profile/profile-client/profile-client-cars/client-car-new/client-car-new.controller.js
+//= webui/profile/profile-client/profile-client-cars/client-car-new/client-car-new.component.js
+//= webui/profile/profile-client/profile-client-cars/client-car-edit/client-car-edit.controller.js
+//= webui/profile/profile-client/profile-client-cars/client-car-edit/client-car-edit.component.js
+
+
 //= webui/profile/profile-client/profile-client-orders/profile-client-orders.controller.js
 //= webui/profile/profile-client/profile-client-orders/profile-client-orders.component.js
 //= webui/profile/profile-client/profile-client-settings/profile-client-settings.controller.js
@@ -73,7 +83,6 @@
 //= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.controller.js
 //= webui/profile/profile-shop/profile-shop-settings/profile-shop-settings.component.js
 
-//= webui/profile/profile-client/profile-client-cars/client-car/client-car.controller.js
-//= webui/profile/profile-client/profile-client-cars/client-car/client-car.component.js
+
 
 //= webui/video/video.component.js

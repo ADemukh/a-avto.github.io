@@ -2,25 +2,11 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    -webkit-flex-flow: row wrap;
+    /*-webkit-flex: row wrap;*/
     justify-content: left;
+    /*display: -webkit-flex;  Safari */
+    /*-webkit-flex-flow: row wrap; /* Safari*/
 }
 
-.car-item {
-    background: #ff6600;
-    padding: 5px;
-    width: 200px;
-    height: 150px;
-    margin: 10px;
-    line-height: 150px;
-    color: white;
-    font-weight: bold;
-    font-size: 2em;
-    text-align: center;
-}
 
-.car-item-add {
-    font-weight: inherit;
-    font-size: 10em;
-    background: #1d8d11;
-}
+

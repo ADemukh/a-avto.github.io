@@ -9,7 +9,23 @@
     function CarService(_, $http, $q) {
         var allCars, clientCars, dfd;
 
-        clientCars = [{ model: 'Volvo', mark: 'XC60', year: '2009' }, { model: 'BMW', mark: '5-series', year: '2002' }, { model: 'Renault', mark: 'Megane', year: '2010' }, { model: 'Ford', mark: 'Galaxy', year: '2011' }];
+        clientCars = [{
+            mark: 'Volvo',
+            model: 'XC60',
+            years: '2009'
+        }, {
+            mark: 'BMW',
+            model: '5-series',
+            years: '2002'
+        }, {
+            mark: 'Renault',
+            model: 'Megane',
+            years: '2010'
+        }, {
+            mark: 'Ford',
+            model: 'Galaxy',
+            years: '2011'
+        }];
 
 
         function getAllCars() {
@@ -23,7 +39,7 @@
         function fetchAllCars(filter) {
             return $http.get('cars/getCars', filter)
                 .then(function response(resp) {
-                   allCars = resp.data;
+                    allCars = resp.data;
                     dfd.resolve(allCars);
                 });
         }
@@ -37,8 +53,8 @@
 
 
         function getClientCars() {
-            return clientCars;
-                }
+            return $q.resolve(clientCars);
+        }
 
 
         function getCars() {
@@ -54,13 +70,13 @@
             return getAllCars()
                 .then(function onRecievingCars(cars) {
                     return _.chain(cars)
-                            .filter(function filter(car) {
-                                return car.mark === carMark;
-                            })
-                            .map(function map(car) {
-                                return car.model;
-                            })
-                            .value();
+                        .filter(function filter(car) {
+                            return car.mark === carMark;
+                        })
+                        .map(function map(car) {
+                            return car.model;
+                        })
+                        .value();
                 });
         }
 
