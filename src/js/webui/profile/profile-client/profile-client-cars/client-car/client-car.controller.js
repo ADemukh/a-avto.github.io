@@ -9,6 +9,7 @@
 	function ClientCarController() {
 		this.$onChanges = function onChanges(changes) {
 			if (changes.car) {
+				this.originalCar = this.car;
 				this.car = angular.copy(this.car);
 				this.editMode = false;
 			}
@@ -27,7 +28,8 @@
 				this.car = event.car;
 				this.onUpdate({
 					$event: {
-						car: event.car
+						newCar: event.car,
+						oldCar: this.originalCar
 					}
 				});
 				this.cancelEditMode();

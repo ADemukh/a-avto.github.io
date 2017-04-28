@@ -17,15 +17,29 @@
 				if (event.car) {
 					index = this.cars.indexOf(event.car);
 					this.cars.splice(index, 1);
+
+					//todo: identity.user.cars = this.cars;
+					//todo: identity.updateUser();
 				}
 			};
 			this.update = function updateCar(event) {
-				if (event.car) {}
+				var index;
+
+				if (event.newCar && event.oldCar) {
+					index = this.cars.indexOf(event.oldCar);
+					this.cars.splice(index, 1, event.newCar);
+
+					//todo: identity.user.cars = this.cars;
+					//todo: identity.updateUser();
+				}
 			};
 			this.add = function addCar(event) {
 				if (event.car) {
 					this.cars.push(event.car);
 					this.addMode = false;
+
+					//todo: identity.user.cars = this.cars;
+					//todo: identity.updateUser();
 				}
 			};
 			this.toAddMode = function toAddMode() {
