@@ -127,7 +127,7 @@
             if (user === undefined) {
                 user = currentUser;
             }
-            return authorize(accessLevels.user, user.role);
+            return authorize(routingConfig.accessLevels.user, user.role);
         }
 
         function recoverPassword(email) {

@@ -9,6 +9,7 @@
     function CarService(_, $http, $q) {
         var allCars, dfd;
 
+
         function getAllCars() {
             if (!dfd) {
                 dfd = $q.defer();
@@ -20,7 +21,7 @@
         function fetchAllCars(filter) {
             return $http.get('cars/getCars', filter)
                 .then(function response(resp) {
-                   allCars = resp.data;
+                    allCars = resp.data;
                     dfd.resolve(allCars);
                 });
         }
@@ -30,6 +31,7 @@
             getCarModels: getCarModels,
             getCarModelYears: getYears
         };
+
 
         function getCars() {
             return getAllCars()
@@ -44,13 +46,13 @@
             return getAllCars()
                 .then(function onRecievingCars(cars) {
                     return _.chain(cars)
-                            .filter(function filter(car) {
-                                return car.mark === carMark;
-                            })
-                            .map(function map(car) {
-                                return car.model;
-                            })
-                            .value();
+                        .filter(function filter(car) {
+                            return car.mark === carMark;
+                        })
+                        .map(function map(car) {
+                            return car.model;
+                        })
+                        .value();
                 });
         }
 
@@ -66,7 +68,7 @@
 
                     years = [];
                     for (i = (new Date()).getFullYear(); i >= car.from; i -= 1) {
-                        years.push(i);
+                        years.push(i.toString());
                     }
                     return years;
                 });

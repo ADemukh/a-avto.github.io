@@ -1,0 +1,22 @@
+<style>
+    .b {
+        top: 10px;
+    }
+</style>
+<div class="wrapper_body">
+    <div class="cbm_wrap ">
+        <oi-select oi-options="c for c in $ctrl.carMarks" ng-model="$ctrl.car.mark" placeholder="Марка" class="b"></oi-select>
+        <br>
+        <oi-select oi-options="c for c in $ctrl.carModels" ng-model="$ctrl.car.model" placeholder="Модель" class="b"></oi-select>
+        <br>
+        <oi-select oi-options="c for c in $ctrl.carModelYears" ng-model="$ctrl.car.years" placeholder="Год" class="b"></oi-select>
+        <br>
+        <br>
+        <button type="submit" class="button " ng-click="$ctrl.save()">
+            <span>Сохранить</span>
+        </button>
+        <button type="submit" class="close-thik" ng-click="$ctrl.cancel()">
+        </button>
+        <br>
+    </div>
+</div>

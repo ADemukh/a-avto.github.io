@@ -1,0 +1,27 @@
+<style>
+    .button {
+        height: 40px;
+        width: 210px;
+        font: 14px/100% arial, sans-serif;
+        bottom: 0;
+        text-shadow: 0 1px 0 #fff;
+        background-color: #777;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+</style>
+<div class="wrapper_body">
+    <div class="cbm_wrap ">
+        <h4>Марка: {{::$ctrl.car.mark}}</h4>
+        <h4>Модель: {{::$ctrl.car.model}}</h4>
+        <h4>Год: {{::$ctrl.car.years}}</h4>
+        <button type="submit" class=" close-thik " ng-click="$ctrl.delete()">          
+        </button>
+        <button type="submit" class="button" ng-click="$ctrl.edit()">
+            <span>Изменить</span>
+        </button>
+    </div>
+</div>

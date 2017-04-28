@@ -1,0 +1,4 @@
+<q-client-car-read ng-if="!$ctrl.editMode" car="$ctrl.car" on-delete="$ctrl.onDelete({ $event: $event });" on-edit="$ctrl.toEditMode();">
+</q-client-car-read>
+<q-client-car-edit ng-if="$ctrl.editMode" car="$ctrl.car" on-save="$ctrl.update($event);" on-cancel="$ctrl.cancelEditMode();">
+</q-client-car-edit>
