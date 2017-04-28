@@ -66,10 +66,10 @@
 
     gulp.task('js:copy', function jsCopyTask() {
         return gulp.src(config.src.js)
-            .pipe(sourcemaps.init())
-            .pipe(ngAnnotate())
-            .pipe(uglify())
-            .pipe(sourcemaps.write())
+            // .pipe(sourcemaps.init())
+            // .pipe(ngAnnotate())
+            // .pipe(uglify())
+            // .pipe(sourcemaps.write())
             .pipe(gulp.dest(config.build.js))
             .pipe(reload({
                 stream: true

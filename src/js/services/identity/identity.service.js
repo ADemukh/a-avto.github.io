@@ -1,46 +1,14 @@
-/*eslint no-bitwise:0, quote-props:0  */
+/*eslint no-bitwise:0, quote-props:0, no-param-reassign:0  */
 (function IdentityServiceInit() {
     'use strict';
 
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q', 'services.popup'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig'];
 
-    function IdentityService($http, $q, popupService) {
-        var accessLevels, currentUser, userRoles;
-
-        userRoles = {
-            // 0001
-            public: 1,
-            // 0010
-            client: 2,
-            // 0100
-            shop: 4,
-            // 1000
-            admin: 8
-        };
-        accessLevels = {
-            // 1111
-            public: userRoles.public |
-                userRoles.client |
-                userRoles.shop |
-                userRoles.admin,
-            // 0001
-            anon: userRoles.public,
-            // 1010
-            client: userRoles.client |
-                userRoles.admin,
-            // 1100
-            shop: userRoles.shop |
-                userRoles.admin,
-            // 1110
-            user: userRoles.client |
-                userRoles.shop |
-                userRoles.admin,
-            // 1000
-            admin: userRoles.admin
-        };
+    function IdentityService($http, $q, popupService, routingConfig) {
+        var currentUser;
 
         currentUser = anonUser();
 
@@ -61,8 +29,8 @@
 
         function anonUser() {
             return {
-                username: '',
-                role: 'public'
+                name: '',
+                role: routingConfig.userRoles.public.title
             };
         }
 
@@ -79,8 +47,8 @@
             user: currentUser,
             authorize: authorize,
             loggedIn: loggedIn,
-            accessLevels: accessLevels,
-            userRoles: userRoles
+            accessLevels: routingConfig.accessLevels,
+            userRoles: routingConfig.userRoles
         };
 
         function logIn(email, password) {
@@ -152,7 +120,7 @@
                 role = currentUser.role;
             }
 
-            return accessLevel & userRoles[role];
+            return accessLevel.bitMask & routingConfig.userRoles[role].bitMask;
         }
 
         function loggedIn(user) {

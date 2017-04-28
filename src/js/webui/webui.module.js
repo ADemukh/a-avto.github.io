@@ -9,6 +9,7 @@ var WEBUI_MODULE_NAME;
     angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
         .config(WebUIModuleConfig)
         .constant('_', window._)
+        .constant('routingConfig', window.routingConfig)
         .run(WebUIModuleRun);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider'];
@@ -24,40 +25,6 @@ var WEBUI_MODULE_NAME;
             //================================================
             // Define all the routes
             //================================================
-            var accessLevels, userRoles;
-
-            userRoles = {
-                // 0001
-                public: 1,
-                // 0010
-                client: 2,
-                // 0100
-                shop: 4,
-                // 1000
-                admin: 8
-            };
-            accessLevels = {
-                // 1111
-                public: userRoles.public |
-                    userRoles.client |
-                    userRoles.shop |
-                    userRoles.admin,
-                // 0001
-                anon: userRoles.public,
-                // 1010
-                client: userRoles.client |
-                    userRoles.admin,
-                // 1100
-                shop: userRoles.shop |
-                    userRoles.admin,
-                // 0110
-                user: userRoles.client |
-                    userRoles.shop |
-                    userRoles.admin,
-                // 1000
-                admin: userRoles.admin
-            };
-
             // Root route
             $stateProvider
                 .state('root', {
@@ -71,7 +38,7 @@ var WEBUI_MODULE_NAME;
                 .state('public', {
                     template: '<div class="height-full" ui-view/></div>',
                     data: {
-                        access: accessLevels.public
+                        access: window.routingConfig.accessLevels.public
                     },
                     abstract: true,
                     parent: 'root'
@@ -111,7 +78,7 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     template: '<div class="height-full" ui-view/></div>',
                     data: {
-                        access: accessLevels.anon
+                        access: window.routingConfig.accessLevels.anon
                     },
                     parent: 'root'
                 }).state('anon.login', {
@@ -139,7 +106,7 @@ var WEBUI_MODULE_NAME;
                     url: '/client',
                     abstract: true,
                     data: {
-                        access: accessLevels.client
+                        access: window.routingConfig.accessLevels.client
                     },
                     parent: 'root'
                 }).state('client.profile', {
@@ -161,14 +128,14 @@ var WEBUI_MODULE_NAME;
                     parent: 'client.profile'
                 });
 
-            // Client routes
+            // Shop routes
             $stateProvider
                 .state('shop', {
                     template: '<div class="height-full" ui-view/></div>',
                     url: '/shop',
                     abstract: true,
                     data: {
-                        access: accessLevels.shop
+                        access: window.routingConfig.accessLevels.shop
                     },
                     parent: 'root'
                 }).state('shop.profile', {
@@ -192,7 +159,7 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     template: '<ui-view/>',
                     data: {
-                        access: accessLevels.admin
+                        access: window.routingConfig.accessLevels.admin
                     },
                     parent: 'root'
                         // })
