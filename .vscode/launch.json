@@ -9,7 +9,8 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}\\bin\\www",
-            "cwd": "${workspaceRoot}"
+            "cwd": "${workspaceRoot}",
+            // "env": { "NODE_ENV": "production" }
         },
         {
             "type": "node",
