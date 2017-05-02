@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, cars, file, index, shops;
+var authRouter, carsRouter, filesRouter, indexRouter, profileRouter, shopsRouter;
 var app, db, passport;
 
 express = require('express');
@@ -12,10 +12,12 @@ cookieParser = require('cookie-parser');
 cookieSession = require('cookie-session');
 bodyParser = require('body-parser');
 
-index = require('./routes/index');
+indexRouter = require('./routes/index');
 authRouter = require('./routes/auth');
-cars = require('./routes/cars');
-shops = require('./routes/shops');
+carsRouter = require('./routes/cars');
+filesRouter = require('./routes/files');
+profileRouter = require('./routes/profile');
+shopsRouter = require('./routes/shops');
 
 db = require('./db');
 passport = require('./auth/passport');
@@ -39,12 +41,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize()); // Add passport initialization
 app.use(passport.session());    // Add passport initialization
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../.build')));
 
-app.use('/', index);
-app.use('/cars', cars);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/shops', shops);
+app.use('/cars', carsRouter);
+app.use('/files', filesRouter);
+app.use('/profile', profileRouter);
+app.use('/shops', shopsRouter);
 
 // catch 404 and forward to error handler
 app.use(function use(req, res, next) {

@@ -19,21 +19,4 @@ router.post('/upload', upload.single('file'), function uploadFn(req, res, next) 
     });
 });
 
-router.post('/uploaduserphoto', upload.single('file'), function uploadFn(req, res, next) {
-    var fileInfo, srcUrl;
-
-    console.log('Upload Successful ', req.file, req.body);
-    fileInfo = fileController.getFileInfo(req.file);
-    srcUrl = fileController.getSrcUrl(fileInfo.fileName);
-    res.json({
-      fileInfo: fileInfo,
-      scrUrl: srcUrl
-    });
-});
-
-
-router.post('/srcurl', function srcUrlFn(req, res, next) {
-    res.send(fileController.getSrcUrl(req.body.fileName));
-});
-
 module.exports = router;

@@ -1,5 +1,5 @@
 /*eslint strict:0  */
-var shopController, express, router;
+var express, router, shopController;
 
 express = require('express');
 router = express.Router();

@@ -27,7 +27,7 @@ passport.deserializeUser(function deserialize(id, done) {
     });
 });
 
-passport.use('login', new AuthLocalStrategy({
+passport.use('signin', new AuthLocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     },
@@ -52,7 +52,7 @@ passport.use('login', new AuthLocalStrategy({
                 }
             }, function userNotFound(error) {
                 done(null, false, {
-                    message: error
+                    message: 'Не удалось ввойти. ' + error
                 });
             })
             .catch(function onError(err) {
@@ -60,7 +60,7 @@ passport.use('login', new AuthLocalStrategy({
             });
     }));
 
-passport.use('signupuser', new AuthLocalStrategy({
+passport.use('signupclient', new AuthLocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: true
@@ -89,7 +89,7 @@ passport.use('signupuser', new AuthLocalStrategy({
                     });
             })
             .catch(function onError(err) {
-                done(err);
+                done('Не удалось зарегистрироваться. ' + err);
             });
     }));
 
@@ -129,7 +129,7 @@ passport.use('signupshop', new AuthLocalStrategy({
                     });
             })
             .catch(function onError(err) {
-                done(err);
+                done('Не удалось зарегистрироваться. ' + err);
             });
     }));
 
@@ -192,7 +192,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                             });
                     })
                 .catch(function onError(err) {
-                    done(err);
+                done('Не удалось авторизоваться через социальную сеть. ' + err);
                 });
         } else {
             return done(null, false, {
@@ -255,7 +255,7 @@ passport.use('vk', new AuthVkStrategy({
                             });
                     })
                 .catch(function onError(err) {
-                    done(err);
+                done('Не удалось авторизоваться через социальную сеть. ' + err);
                 });
         } else {
             return done(null, false, {
