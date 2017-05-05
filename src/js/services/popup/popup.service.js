@@ -174,13 +174,13 @@
                         setTimeout(function delayWindowClosing() {
                             clearInterval(interval);
                             if (!isMessageSent) {
-                                popupCallback(new Error('Popup closed'));
+                                popupCallback(new Error('Окно закрыто. Операция не удалась.'));
                             }
                         }, 500);
                     }
                 }, 100);
             } else {
-                popupCallback(new Error('Popup blocked'));
+                popupCallback(new Error('Окно заблокировано. Операция невозможна.'));
             }
 
             return win;

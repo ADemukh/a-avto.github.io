@@ -22,7 +22,10 @@ options = {
 // 	g: { gogle profile fields }
 
 clientUserSchema = new mongoose.Schema({
-	photo: String,
+	photo: {
+		id: String,
+		src: String
+	},
 	cars: [{ mark: String, model: String, years: Number, VIN: String }],
 	notifications: [String],
 	vk: {

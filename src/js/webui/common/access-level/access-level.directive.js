@@ -13,8 +13,10 @@
 
                 prevDisp = element.css('display');
 
-                $scope.user = identity.user;
-                $scope.$watch('user', function watch(user) {
+                $scope.user = function user() {
+                    return identity.user;
+                };
+                $scope.$watch('user()', function watch(user) {
                     if (user.role) {
                         userRole = user.role;
                     }

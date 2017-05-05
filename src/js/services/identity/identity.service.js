@@ -8,33 +8,9 @@
     IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig'];
 
     function IdentityService($http, $q, popupService, routingConfig) {
-        var currentUser;
+        var api;
 
-        currentUser = anonUser();
-
-        checkLoggedIn();
-
-        function checkLoggedIn() {
-            return $http.post('/auth/loggedin')
-                .then(function response(resp) {
-                    if (resp.data) {
-                        currentUser = resp.data;
-                    }
-                });
-        }
-
-        function changeUser(user) {
-            angular.extend(currentUser, user);
-        }
-
-        function anonUser() {
-            return {
-                name: '',
-                role: routingConfig.userRoles.public.title
-            };
-        }
-
-        return {
+        api = {
             logIn: logIn,
             logOut: logOut,
             checkLoggedIn: checkLoggedIn,
@@ -44,12 +20,36 @@
             signUpShop: signUpShop,
             recoverPassword: recoverPassword,
             changePassword: changePassword,
-            user: currentUser,
+            user: anonUser(),
             authorize: authorize,
             loggedIn: loggedIn,
             accessLevels: routingConfig.accessLevels,
             userRoles: routingConfig.userRoles
         };
+
+        checkLoggedIn();
+
+        return api;
+
+        function checkLoggedIn() {
+            return $http.post('/auth/loggedin')
+                .then(function response(resp) {
+                    if (resp.data) {
+                        changeUser(resp.data);
+                    }
+                });
+        }
+
+        function changeUser(user) {
+            api.user = user;
+        }
+
+        function anonUser() {
+            return {
+                name: '',
+                role: routingConfig.userRoles.public.title
+            };
+        }
 
         function logIn(email, password) {
             return $http.post('/auth/login', {
@@ -86,7 +86,7 @@
             popupService.popup(url, strategy, {}, function callback(err, user) {
                 if (!err && user && user.user) {
                     changeUser(user.user);
-                    return dfd.resolve(currentUser);
+                    return dfd.resolve(api.user);
                 }
                 return dfd.reject(err);
             });
@@ -117,7 +117,7 @@
 
         function authorize(accessLevel, role) {
             if (role === undefined) {
-                role = currentUser.role;
+                role = api.user.role;
             }
 
             return accessLevel.bitMask & routingConfig.userRoles[role].bitMask;
@@ -125,7 +125,7 @@
 
         function loggedIn(user) {
             if (user === undefined) {
-                user = currentUser;
+                user = api.user;
             }
             return authorize(routingConfig.accessLevels.user, user.role);
         }

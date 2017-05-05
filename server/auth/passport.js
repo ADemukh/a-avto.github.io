@@ -42,7 +42,7 @@ passport.use('signin', new AuthLocalStrategy({
 
         userController.findByEmail(email)
             .then(function userFound(user) {
-                if (user.validPassword(password)) {
+                if (!!user.passwordHash && user.validPassword(password)) {
                     user.password = null;
                     done(null, user);
                 } else {
@@ -155,10 +155,10 @@ passport.use('facebook', new AuthFacebookStrategy({
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
                             done(null, user);
-                        // } else if (user.fb && user.fb.id && user.fb.id !== profile.id) {
-                        //     done(null, false, {
-                        //         message: 'Пользователь с таким e-mail уже существует.'
-                        //     });
+                            // } else if (user.fb && user.fb.id && user.fb.id !== profile.id) {
+                            //     done(null, false, {
+                            //         message: 'Пользователь с таким e-mail уже существует.'
+                            //     });
                         } else {
                             user.fb = {
                                 id: profile.id,
@@ -192,7 +192,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                             });
                     })
                 .catch(function onError(err) {
-                done('Не удалось авторизоваться через социальную сеть. ' + err);
+                    done('Не удалось авторизоваться через социальную сеть. ' + err);
                 });
         } else {
             return done(null, false, {
@@ -255,7 +255,7 @@ passport.use('vk', new AuthVkStrategy({
                             });
                     })
                 .catch(function onError(err) {
-                done('Не удалось авторизоваться через социальную сеть. ' + err);
+                    done('Не удалось авторизоваться через социальную сеть. ' + err);
                 });
         } else {
             return done(null, false, {

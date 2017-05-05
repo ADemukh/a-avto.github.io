@@ -1,4 +1,4 @@
-<form name="settingsMainForm" ng-submit="::$ctrl.register(settingsMainForm.$valid)" class="settings-line layout-column" novalidate>
+<form name="settingsMainForm" ng-submit="::$ctrl.changeContactInfo(settingsMainForm.$valid)" class="layout-column" novalidate>
     <!-- Name -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.name.$invalid && !settingsMainForm.name.$pristine }">
         <div class="settings-line-caption" translate>REGISTRATION_CLIENT_CONTACT_NAME</div>
@@ -11,7 +11,7 @@
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.email.$invalid && !settingsMainForm.email.$pristine }">
         <div class="settings-line-caption" translate>REGISTRATION_CLIENT_EMAIL</div>
         <div class="layout-column settings-line-content-input">
-            <input type="email" name="email" ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" class="form-control">
+            <input type="email" name="email" disabled ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" class="form-control">
             <span class="help-block" ng-show="settingsMainForm.email.$error.required && !settingsMainForm.email.$pristine" translate>REGISTRATION_CLIENT_EMAIL_IS_REQUIRED</span>
             <span class="help-block" ng-show="settingsMainForm.email.$error.email && !settingsMainForm.email.$pristine" translate>REGISTRATION_CLIENT_EMAIL_IS_NOT_CORRECT</span>
         </div>
@@ -25,11 +25,11 @@
             <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_CLIENT_PHONE_IS_NOT_CORRECT</span>
         </div>
     </div>
-    <!-- Server error -->
-    <div ng-show="$ctrl.serverErrorMessage" class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+    <!-- Alerts -->
+    <div ng-show="$ctrl.alerts" class="form-group layout-row layout-wrap">
         <div class="settings-line-caption"></div>
-        <div class="layout-column settings-line-content-input">
-            <span class="help-block">{{$ctrl.serverErrorMessage}}</span>
+        <div class="layout-column  settings-line-content-input">
+            <q-alerts alerts="$ctrl.alerts" />
         </div>
     </div>
     <!-- Submit -->
@@ -37,8 +37,8 @@
         <div class="settings-line-caption"></div>
         <div class="layout-row settings-line-content-input">
             <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
-			    <span>Сохранить</span>
-		    </button>
+                <span>Сохранить</span>
+            </button>
         </div>
     </div>
 </form>

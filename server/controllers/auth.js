@@ -32,8 +32,15 @@ function onAuthenticated(req, res, next) {
                 alert: alert
             });
         }
-        res.json({
-            user: user
+
+        req.logIn(user, function onLoginnedIn(loginErr) {
+            if (loginErr) {
+                return next(loginErr);
+            }
+
+            res.json({
+                user: user
+            });
         });
     };
 }
@@ -61,9 +68,17 @@ function onAuthenticatedSocial(req, res, next) {
                 alert: alert
             };
         } else {
-            response = {
-                user: user
-            };
+            req.logIn(user, function onLoginnedIn(loginErr) {
+                if (loginErr) {
+                    response = {
+                        alert: loginErr
+                    };
+                }
+
+                response = {
+                    user: user
+                };
+            });
         }
 
         // return response.alert ? res.redirect('/#!/login') : res.redirect('/#!/');
@@ -83,6 +98,7 @@ function postMessageResponse(response) {
 }
 
 module.exports = {
+    isAuthenticated: isAuthenticated,
     signIn: authenticate('signin'),
     signOut: singOut,
     signUpClient: authenticate('signupclient'),

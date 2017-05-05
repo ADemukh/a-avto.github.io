@@ -31,16 +31,17 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cors());
-app.use(cookieParser());
-app.use(cookieSession({
-  name: 'session',
-  keys: ['aavto', 'demukhfamily.com', 'stkvcjhvsgfytzxnjhs'],
-  maxAge: 48 * 60 * 60 * 1000   // 48 hours
-}));
+app.use(cookieParser('aavtoSecretKey'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['aavtoSecretKey'],
+  cookie: { secure: true },
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours 
+}));
 app.use(passport.initialize()); // Add passport initialization
-app.use(passport.session());    // Add passport initialization
+app.use(passport.session());    // Add passport session
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../.build')));
 

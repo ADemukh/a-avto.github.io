@@ -7,8 +7,5 @@
 	ProfileClientSettingsController.$inject = [];
 
 	function ProfileClientSettingsController() {
-		var vm;
-
-		vm = this;
 	}
 })();

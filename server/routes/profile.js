@@ -1,9 +1,10 @@
 /*eslint strict:0  */
 var express, router;
-var profileClientController, profileShopController, userController;
+var authController, profileClientController, profileShopController, userController;
 
 express = require('express');
 router = express.Router();
+authController = require('../controllers/auth');
 userController = require('../controllers/user');
 profileClientController = require('../controllers/profileClient');
 profileShopController = require('../controllers/profileShop');
@@ -28,24 +29,24 @@ function failureWrapper(res, error) {
   };
 }
 
-router.post('/changepassword', function changePassword(req, res) {
+router.post('/changepassword', authController.isAuthenticated, function changePassword(req, res) {
   userController.changePassword(req.body.email, req.body.newPassword)
     .then(succeedWrapper(res, 'Пароль изменен.'), failureWrapper(res, 'При изменении пароля возникла ошибка.'));
 });
 
-router.post('/changeclientphoto', function changeClientPhoto(req, res) {
+router.post('/changeclientphoto', authController.isAuthenticated, function changeClientPhoto(req, res) {
   profileClientController.changePhoto(req.body.email, req.body.photoId)
     .then(succeedWrapper(res, 'Фото изменено.'), failureWrapper(res, 'Не удалось изменить фото.'));
 });
-router.post('/changeclientcontactinfo', function changeClientContactInfo(req, res) {
+router.post('/changeclientcontactinfo', authController.isAuthenticated, function changeClientContactInfo(req, res) {
   profileClientController.changeContactInfo(req.body.email, req.body.contactInfo)
-    .then(succeedWrapper(res), failureWrapper(res));
+    .then(succeedWrapper(res, 'Контактная информация сохранена.'), failureWrapper(res, 'При сохранении контактной информации возникла ошибка.'));
 });
-router.post('/changeclientnotifications', function changeClientNotifications(req, res) {
+router.post('/changeclientnotifications', authController.isAuthenticated, function changeClientNotifications(req, res) {
   profileClientController.changeNotifications(req.body.email, req.body.notifications)
-    .then(succeedWrapper(res, 'Настройки оповещении сохранены.'), failureWrapper(res, 'При сохранении оповещений возникла ошибка.'));
+    .then(succeedWrapper(res, 'Настройки уведомлений сохранены.'), failureWrapper(res, 'При сохранении уведомлений возникла ошибка.'));
 });
-router.post('/changeclientcars', function changeClientCars(req, res) {
+router.post('/changeclientcars', authController.isAuthenticated, function changeClientCars(req, res) {
   profileClientController.changeCars(req.body.email, req.body.cars)
     .then(succeedWrapper(res, 'Машины сохранены.'), failureWrapper(res, 'При сохранении машин возникла ошибка.'));
 });

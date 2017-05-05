@@ -1,22 +1,19 @@
 <div class="layout-row layout-wrap">
     <div class="settings-line-caption">Уведомления</div>
     <div class="layout-column">
-        <div>
-            <input type="checkbox">
-            <span>Отправлять мне SMS, когда приходят ответы поставщиков по моим заявкам</span>
+        <div class="settings-line-bottom-margin">
+            <div ng-repeat="notification in $ctrl.notifications">
+                <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
+                <span>{{::notification.name}}</span>
+            </div>
         </div>
-        <div>
-            <input type="checkbox">
-            <span>Отправлять мне e-mail при смене статусов</span>
-        </div>
-        <div>
-            <input type="checkbox">
-            <span>Отправлять мне e-mail при закрытии заявки</span>
+        <div ng-show="$ctrl.alerts">
+            <q-alerts alerts="$ctrl.alerts" />
         </div>
         <div class="layout-row settings-line-content-input">
-            <button type="button" class="btn btn-primary settings-line-content-submit">
-			    <span>Сохранить</span>
-		    </button>
+            <button type="button" class="btn btn-primary settings-line-content-submit" ng-click="$ctrl.changeNotifications();">
+                <span>Сохранить</span>
+            </button>
         </div>
     </div>
 </div>
