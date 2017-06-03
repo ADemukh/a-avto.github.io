@@ -1,6 +1,12 @@
+<ya-template-layout ya-key="templateShop">
+    <!--<q-order-registration-search-shop class="display-block" style="height: 100px; width: 100px;"></q-order-registration-search-shop>-->
+    <div style="margin: 10px;">
+        <b>$[properties.name]</b><br />
+    </div>
+</ya-template-layout>
 <ya-map ya-zoom="10" ya-center="{{$ctrl.center}}" ya-controls="zoomControl" class="height-full search-shop-map">
     <ya-cluster ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }">
-        <ya-geo-object ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }" ng-repeat="shop in $ctrl.shops" ya-source="shop">
+        <ya-geo-object ya-options="{balloonContentLayout:'templateShop'}" ng-repeat="shop in $ctrl.builtShops" ya-source="shop">
         </ya-geo-object>
     </ya-cluster>
 </ya-map>

@@ -7,7 +7,7 @@
 	OrderRegistrationSearchResultsController.$inject = [];
 
 	function OrderRegistrationSearchResultsController() {
-		this.$onInit = function onInit() {
+		this.$onChanges = function valueChanged() {
 		};
 	}
 })();

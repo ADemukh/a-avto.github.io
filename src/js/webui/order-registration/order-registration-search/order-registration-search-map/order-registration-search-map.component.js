@@ -6,7 +6,8 @@
             controller: 'controllers.orderregistrationsearchmap',
             templateUrl: 'webui/order-registration/order-registration-search/order-registration-search-map/order-registration-search-map.tmpl.html',
             bindings: {
-                filters: '<'
+                filters: '<',
+                shops: '<'
             }
         });
 })();

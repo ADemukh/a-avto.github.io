@@ -35,12 +35,12 @@
 			});
 		};
 		this.isActive = function isActive(option) {
-			return this.active === option;
+			return this.active.value === option.value;
 		};
 
 		function findActiveInOption(options, activeOption) {
 			return options.find(function containActive(option) {
-				return activeOption.indexOf(option) >= 0;
+				return activeOption.value.indexOf(option.value) >= 0;
 			});
 		}
 	}

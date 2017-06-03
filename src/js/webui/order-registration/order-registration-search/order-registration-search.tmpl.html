@@ -1,12 +1,17 @@
+<style>
+    .search-toolbar {
+        width: 300px;
+    }
+</style>
 <div class="height-full layout-row">
-    <div class="height-full layout-column">
+    <div class="height-full layout-column search-shop-options">
         <q-order-registration-search-filters  ng-show="$ctrl.showFilters()" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" class="display-block flex">
         </q-order-registration-search-filters>
-        <q-order-registration-search-results  ng-show="$ctrl.showResults()" class="display-block flex">
+        <q-order-registration-search-results shops="$ctrl.shops" ng-show="$ctrl.showResults()" class="display-block flex">
         </q-order-registration-search-results>
         <q-order-registration-search-switch options="$ctrl.filtersResults" active="$ctrl.option" on-switch="$ctrl.switchTo($event);" class="display-block">
         </q-order-registration-search-switch>
     </div>
-    <q-order-registration-search-map ng-show="$ctrl.showMap()" filters="$ctrl.filters" class="display-block width-full flex">
+    <q-order-registration-search-map ng-show="$ctrl.showMap()" filters="$ctrl.filters" shops="$ctrl.shops" class="height-full display-block width-full flex">
     </q-order-registration-search-map>
 </div>

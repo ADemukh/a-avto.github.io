@@ -283,7 +283,7 @@ var WEBUI_MODULE_NAME;
                 NAVIGATION_CLIENT_SETTINGS: 'НАСТРОЙКИ',
                 NAVIGATION_SHOP_ORDERS: 'ЗАЯВКИ',
                 NAVIGATION_SHOP_SETTINGS: 'НАСТРОЙКИ',
-                ORDER_REGISTRATION_FILTERS_TITLE: 'Поиск магазинов на карте',
+                ORDER_REGISTRATION_FILTERS_TITLE: 'Параметры поиска',
                 ORDER_REGISTRATION_FILTERS_FOUND_SHOPS: 'Найдено ',
                 ORDER_REGISTRATION_FILTERS_CITIES: 'Город',
                 ORDER_REGISTRATION_FILTERS_CARS: 'Марка',

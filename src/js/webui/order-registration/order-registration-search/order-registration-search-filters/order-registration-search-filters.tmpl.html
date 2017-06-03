@@ -1,28 +1,30 @@
-<div class="height-full search-shop-options">
-    <h3 translate>ORDER_REGISTRATION_FILTERS_TITLE</h3>
-    <h4>{{::'ORDER_REGISTRATION_FILTERS_FOUND_SHOPS' | translate }}{{$ctrl.shopsCount}}</h4>
-    <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
-        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CITIES' | translate }}" class="search-shop-options"></oi-select>
-    <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
-        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CARS' | translate }}" class="search-shop-options"></oi-select>
-    <oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.category"
-        placeholder="{{::'ORDER_REGISTRATION_FILTERS_CATEGORY' | translate }}" class="search-shop-options"></oi-select>
-    <h4>Состояние:</h4>
-    <div>
-        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="true"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_NEW' | translate }}
-        <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="false"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_OLD' | translate }}
-    </div>
-    <div class="">
-        {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_NOW' | translate }}
-        <input type="checkbox" ng-model="$ctrl.filters.worksNow">
-    </div>
-    <div class="">
-        {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_ON_WEEKEND' | translate }}
-        <input type="checkbox" ng-model="$ctrl.filters.worksOnWeekend">
-    </div>
-    <div>
-        <button type="button" class="btn btn-action" ng-click="::$ctrl.applyFilters()">
+<h4 translate>
+    ORDER_REGISTRATION_FILTERS_TITLE</h4>
+<!--<h5>{{::'ORDER_REGISTRATION_FILTERS_FOUND_SHOPS' | translate }}{{$ctrl.shopsCount}}</h5>-->
+<oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
+    placeholder="{{::'ORDER_REGISTRATION_FILTERS_CITIES' | translate }}" class="search-shop-options"></oi-select>
+<oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
+    placeholder="{{::'ORDER_REGISTRATION_FILTERS_CARS' | translate }}" class="search-shop-options"></oi-select>
+<oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.category"
+    placeholder="{{::'ORDER_REGISTRATION_FILTERS_CATEGORY' | translate }}" class="search-shop-options"></oi-select>
+
+<div class="search-shop-options">
+    <span>Состояние:  </span>
+    <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="true"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_NEW' |
+    translate }}
+    <input type="radio" ng-model="$ctrl.filters.newDetail" ng-value="false"> {{::'ORDER_REGISTRATION_FILTERS_DETAIL_OLD'
+    | translate }}
+</div>
+<div class="search-shop-options">
+    {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_NOW' | translate }}
+    <input type="checkbox" ng-model="$ctrl.filters.worksNow">
+</div>
+<div class="search-shop-options">
+    {{::'ORDER_REGISTRATION_FILTERS_SHOP_WORKS_ON_WEEKEND' | translate }}
+    <input type="checkbox" ng-model="$ctrl.filters.worksOnWeekend">
+</div>
+<div>
+    <button type="button" class="btn btn-action" ng-click="::$ctrl.applyFilters()">
             <span translate>ORDER_REGISTRATION_FILTERS_APPLY</span>
         </button>
-    </div>
 </div>
