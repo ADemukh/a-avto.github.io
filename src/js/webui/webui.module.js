@@ -12,13 +12,14 @@ var WEBUI_MODULE_NAME;
         .constant('routingConfig', window.routingConfig)
         .run(WebUIModuleRun);
 
-    WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider'];
+    WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider', '$qProvider'];
 
-    function WebUIModuleConfig($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider) {
+    function WebUIModuleConfig($stateProvider, $urlRouterProvider, $httpProvider, $translateProvider, $qProvider) {
         setRoutes();
         setRules();
         setInterceptors();
         setTranslations();
+        errorOnUnhandledRejectionsFalse();
 
 
         function setRoutes() {
@@ -162,11 +163,11 @@ var WEBUI_MODULE_NAME;
                         access: window.routingConfig.accessLevels.admin
                     },
                     parent: 'root'
-                        // })
-                        // .state('admin.admin', {
-                        //     url: '/admin/',
-                        //     templateUrl: 'admin',
-                        //     controller: 'AdminCtrl'
+                    // })
+                    // .state('admin.admin', {
+                    //     url: '/admin/',
+                    //     templateUrl: 'admin',
+                    //     controller: 'AdminCtrl'
                 });
 
             $urlRouterProvider.otherwise('/');
@@ -354,27 +355,31 @@ var WEBUI_MODULE_NAME;
             });
             $translateProvider.preferredLanguage('ru');
         }
+
+        function errorOnUnhandledRejectionsFalse() {
+            $qProvider.errorOnUnhandledRejections(false);
+        }
     }
 
     WebUIModuleRun.$inject = ['$rootScope', '$state', 'services.identity'];
 
     function WebUIModuleRun($rootScope, $state, identity) {
         $rootScope.$on('$stateChangeStart', function onStateChangeStart(event, toState, toParams, fromState, fromParams) {
-            if (!('data' in toState) || !('access' in toState.data)) {
-                // $rootScope.error = "Access undefined for this state";
-                event.preventDefault();
-            } else if (!identity.authorize(toState.data.access)) {
-                // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
-                event.preventDefault();
-
-                if (fromState.url === '^') {
-                    if (identity.loggedIn()) {
-                        $state.go('public.main');
-                    } else {
-                        $rootScope.error = null;
-                        $state.go('anon.login');
-                    }
+            if (identity.loggedInChecked) {
+                if (!('data' in toState) || !('access' in toState.data)) {
+                    // $rootScope.error = "Access undefined for this state";
+                    event.preventDefault();
+                } else if (!identity.authorize(toState.data.access)) {
+                    // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
+                    event.preventDefault();
+                    $state.go('anon.login');
                 }
+            } else {
+                event.preventDefault();
+                return identity.checkLoggedIn()
+                    .then(function stateGo() {
+                        return $state.go(toState, toParams);
+                    });
             }
         });
     }

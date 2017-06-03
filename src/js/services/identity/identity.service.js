@@ -5,15 +5,16 @@
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state'];
 
-    function IdentityService($http, $q, popupService, routingConfig) {
+    function IdentityService($http, $q, popupService, routingConfig, $state) {
         var api;
 
         api = {
             logIn: logIn,
             logOut: logOut,
             checkLoggedIn: checkLoggedIn,
+            loggedInChecked: false,
             authVk: authVk,
             authFacebook: authFacebook,
             signUpUser: signUpUser,
@@ -27,8 +28,6 @@
             userRoles: routingConfig.userRoles
         };
 
-        checkLoggedIn();
-
         return api;
 
         function checkLoggedIn() {
@@ -37,6 +36,9 @@
                     if (resp.data) {
                         changeUser(resp.data);
                     }
+                })
+                .finally(function checked() {
+                    api.loggedInChecked = true;
                 });
         }
 
@@ -68,6 +70,7 @@
             return $http.post('/auth/logout')
                 .then(function response() {
                     changeUser(anonUser());
+                    $state.go('public.main');
                 });
         }
 
