@@ -1,22 +1,37 @@
 <style>
-    .b {
-        top: 10px;
+    .line{
+        padding-bottom: 10px;
+    }
+    .height{
+        height: 35px;
+        width: 100%;
     }
 </style>
-<div class="wrapper_body">
-    <div class="cbm_wrap ">
-        <oi-select oi-options="c for c in $ctrl.carMarks" ng-model="$ctrl.car.mark" placeholder="Марка" class="b"></oi-select>
-        <br>
-        <oi-select oi-options="c for c in $ctrl.carModels" ng-model="$ctrl.car.model" placeholder="Модель" class="b"></oi-select>
-        <br>
-        <oi-select oi-options="c for c in $ctrl.carModelYears" ng-model="$ctrl.car.years" placeholder="Год" class="b"></oi-select>
-        <br>
-        <br>
-        <button type="submit" class="button " ng-click="$ctrl.save()">
-            <span>Сохранить</span>
-        </button>
-        <button type="submit" class="close-thik" ng-click="$ctrl.cancel()">
-        </button>
-        <br>
+<form name="carForm" ng-submit="$ctrl.save(carForm.$valid)" novalidate>
+    <div class="wrapper_body">
+        <div class="cbm_wrap ">
+            <oi-select oi-options="c for c in $ctrl.carMarks" ng-model="$ctrl.car.mark" oi-select-options="{ cleanModel: true }" placeholder="Марка"
+                ng-disabled="!$ctrl.canChooseCarMark()" class="car-control-bottom-offset">
+            </oi-select>
+            <oi-select oi-options="c for c in $ctrl.carModels" ng-model="$ctrl.car.model" oi-select-options="{ cleanModel: true }" placeholder="Модель"
+                ng-disabled="!$ctrl.canChooseCarModel()" class="car-control-bottom-offset">
+            </oi-select>
+            <oi-select oi-options="c for c in $ctrl.carModelYears" ng-model="$ctrl.car.years" oi-select-options="{ cleanModel: true }"
+                placeholder="Год" ng-disabled="!$ctrl.canChooseCarModelYear()" class="car-control-bottom-offset">
+            </oi-select>
+            <div class="line">
+                <input type="text" style="font-size: 14px" ng-model="$ctrl.car.VIN" required placeholder="VIN" class="height ">
+            </div>
+             <div class="line">
+                <button type="submit" ng-disabled="carForm.$invalid" class="width-full btn btn-primary ">
+                    <span>Сохранить</span>
+                </button>
+            </div>
+            <div class="line">
+                <button type="button" class="width-full btn btn-primary" ng-click="$ctrl.cancel()">
+                    <span>Отменить</span>
+                </button>
+             </div>
+        </div>
     </div>
-</div>
+</form>

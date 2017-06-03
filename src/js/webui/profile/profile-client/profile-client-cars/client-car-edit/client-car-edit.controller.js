@@ -17,13 +17,14 @@
 					angular.copy(this.car) : {};
 			}
 		};
-
-		this.save = function saveCar() {
-			this.onSave({
-				$event: {
-					car: this.car
-				}
-			});
+		this.save = function saveCar(isValid) {
+			if (isValid) {
+				this.onSave({
+					$event: {
+						car: this.car
+					}
+				});
+			}
 		};
 		this.cancel = function cancel() {
 			this.onCancel();
@@ -32,6 +33,16 @@
 		car.getCars().then(function onGetCars(carMarks) {
 			vm.carMarks = carMarks;
 		});
+
+		vm.canChooseCarMark = function canChooseCarMark() {
+			return vm.carMarks && vm.carMarks.length;
+		};
+		vm.canChooseCarModel = function canChooseCarModel() {
+			return vm.carModels;
+		};
+		vm.canChooseCarModelYear = function canChooseCarModelYear() {
+			return vm.carModelYears;
+		};
 
 		$scope.$watch('$ctrl.car.mark', function watchCarMark() {
 			vm.carModels = [];
@@ -42,7 +53,6 @@
 				});
 			}
 		});
-
 
 		$scope.$watch('$ctrl.car.model', function watchCarModel() {
 			vm.carModelYears = [];
