@@ -35,5 +35,15 @@
 				this.cancelEditMode();
 			}
 		};
+		this.delete = function deleteCar(event) {
+			if (event.car) {
+				this.car = event.car;
+				this.onDelete({
+					$event: {
+						car: this.originalCar
+					}
+				});
+			}
+		};
 	}
 })();

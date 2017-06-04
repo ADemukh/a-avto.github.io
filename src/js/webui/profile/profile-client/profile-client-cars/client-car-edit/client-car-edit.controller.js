@@ -38,10 +38,10 @@
 			return vm.carMarks && vm.carMarks.length;
 		};
 		vm.canChooseCarModel = function canChooseCarModel() {
-			return vm.carModels;
+			return vm.carModels && vm.car.mark;
 		};
 		vm.canChooseCarModelYear = function canChooseCarModelYear() {
-			return vm.carModelYears;
+			return vm.carModelYears && vm.car.mark && vm.car.model;
 		};
 
 		$scope.$watch('$ctrl.car.mark', function watchCarMark() {

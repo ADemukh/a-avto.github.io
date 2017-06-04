@@ -48,7 +48,7 @@ router.post('/changeclientnotifications', authController.isAuthenticated, functi
 });
 router.post('/changeclientcars', authController.isAuthenticated, function changeClientCars(req, res) {
   profileClientController.changeCars(req.body.email, req.body.cars)
-    .then(succeedWrapper(res, 'Машины сохранены.'), failureWrapper(res, 'При сохранении машин возникла ошибка.'));
+    .then(succeedWrapper(res, 'Изменения сохранены.'), failureWrapper(res, 'При сохранении изменений возникла ошибка.'));
 });
 
 module.exports = router;

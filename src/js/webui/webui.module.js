@@ -346,7 +346,10 @@ var WEBUI_MODULE_NAME;
                 FOOTER_AGREEMENT: 'СОГЛАШЕНИЕ',
                 FOOTER_RULES: 'ОФЕРТА',
                 FOOTER_CONFIDENTIALITY: 'КОНФИДЕНЦИАЛЬНОСТЬ',
-                FOOTER_PROJECT_MAP: 'КАРТА САЙТА'
+                FOOTER_PROJECT_MAP: 'КАРТА САЙТА',
+                CHANGE_CONFIRMATION: 'Вы уверены?',
+                CONFIRM: 'Да',
+                REJECT: 'Нет'
             });
             $translateProvider.translations('en', {
                 // english translations here
