@@ -4,7 +4,9 @@
 	angular.module(WEBUI_MODULE_NAME).
 	controller('controllers.orderregistrationsearchmap', OrderRegistrationSearchMapController);
 
-	function OrderRegistrationSearchMapController() {
+	OrderRegistrationSearchMapController.$inject = ['$scope', '$compile'];
+
+	function OrderRegistrationSearchMapController($scope, $compile) {
 		this.$onChanges = function valueChanged() {
 			if (this.shops && this.shops.length) {
 				this.center = this.filters.shopCity;
@@ -17,14 +19,28 @@
 						},
 						properties: {
 							name: shop.name,
-							balloonContentHeader: '<h3>"' + shop.name + '"</h3>',
-							balloonContentFooter: '<h4><button type="button" ><a href="#/order-registration" >Запись на ремонт</a></button><br></h4>',
 							hintContent: shop.name,
-							balloonContentBody: '<h4><br>Адрес: ' + shop.address + '<br><br></h4>'
+							balloonContentHeader: '<h3>"' + shop.name + '"</h3>' + shopRating(shop.rating),
+							balloonContentFooter: '<button type="button" ><a href="#/order-registration" >Отправить заявку</a></button>',
+							balloonContentBody: '<h4>' + shop.address + '</h4>'
 						}
 					};
 				});
 			}
 		};
+
+		function shopRating(rating) {
+			var currentRating, html, i, max;
+
+			currentRating = rating > 0 ? rating : 0;
+			max = 5;
+			html = '<ul class="star-rating readonly">';
+			for (i = 0; i < max; i += 1) {
+				html += '<li class="star' + (i < currentRating ? ' filled' : '') + '" ><i class="fa fa-star"></i></li>';
+			}
+			html += '</ul>';
+
+			return html;
+		}
 	}
 })();

@@ -1,2 +1,29 @@
-<h4>{{$ctrl.shop.name}}</h4>
-<!--<h1>{{$ctrl.name}}</h1>-->
+<style>
+    .shop-logo {
+        width: 60px;
+        height: 60px;
+        margin-right: 15px;
+    }
+    .shop-layout{
+        background-color: #f9f6f6;
+        border-color: #aaa;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+</style>
+<div class="shop-layout">
+    <div class="layout-row">
+        <img src="img/user-logo.png" class="shop-logo">
+        <div class="flex layout-column">
+            <span>{{$ctrl.shop.name}}</span>
+            <q-star-rating rating="$ctrl.shop.rating" readonly="::$ctrl.shop.readonly"></q-star-rating>
+        </div>
+    </div>
+    <div>
+        <span>{{$ctrl.shop.address}}</span>
+    </div>
+    <div>
+        <button type="button" ><a href="#/order-registration" >Отправить заявку</a></button>
+    </div>
+</div>
+</div>
