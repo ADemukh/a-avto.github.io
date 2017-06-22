@@ -1,0 +1,19 @@
+<div class="layout-row layout-wrap">
+    <div class="settings-line-caption">Уведомления</div>
+    <div class="layout-column">
+        <div class="settings-line-bottom-margin">
+            <div ng-repeat="notification in $ctrl.notifications">
+                <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
+                <span>{{::notification.name}}</span>
+            </div>
+        </div>
+        <div ng-show="$ctrl.alerts">
+            <q-alerts alerts="$ctrl.alerts" />
+        </div>
+        <div class="layout-row settings-line-content-input">
+            <button type="button" class="btn btn-primary settings-line-content-submit" ng-click="$ctrl.changeNotifications();">
+                <span>Сохранить</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,6 @@
 				close: '&',
 				dismiss: '&'
 			},
-			templateUrl: 'webui/registration/registration-shop/select-shop-address-on-map/select-shop-address-on-map.tmpl.html'
+			templateUrl: 'webui/select-shop-address-on-map/select-shop-address-on-map.tmpl.html'
 		});
 })();

@@ -1,0 +1,64 @@
+<form name="settingsMainForm" ng-submit="::$ctrl.changeContactInfo(settingsMainForm.$valid)" class="layout-column" novalidate>
+    <!-- Name -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.name.$invalid && !settingsMainForm.name.$pristine }">
+        <div class="settings-line-caption" translate>REGISTRATION_SHOP_CONTACT_NAME</div>
+        <div class="layout-column  settings-line-content-input">
+            <input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.name.$error.required && !settingsMainForm.name.$pristine" translate>REGISTRATION_SHOP_CONTACT_NAME_IS_REQUIRED</span>
+        </div>
+    </div>
+    <!-- Email -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.email.$invalid && !settingsMainForm.email.$pristine }">
+        <div class="settings-line-caption" translate>REGISTRATION_CLIENT_EMAIL</div>
+        <div class="layout-column settings-line-content-input">
+            <input type="email" name="email" disabled ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.email.$error.required && !settingsMainForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_REQUIRED</span>
+            <span class="help-block" ng-show="settingsMainForm.email.$error.email && !settingsMainForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+    <!-- Phone -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine }">
+        <div class="settings-line-caption" translate>Контактный телефон</div>
+        <div class="layout-column settings-line-content-input">
+            <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" required ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
+                placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
+                <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+    <!-- WWW -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+        <div class="settings-line-caption" translate>Адрес сайта</div>
+        <div class="layout-column settings-line-content-input">
+            <input type="text" name="www" ng-model="$ctrl.user.www" ng-change="$ctrl.resetServerError()" required placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}"
+                class="form-control">
+                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_WWW_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+    <!--MAPS-->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.adress.$invalid && !settingsMainForm.adress.$pristine }">
+        <div class="settings-line-caption" translate>Адрес магазина на карте</div>
+        <div class="layout-column settings-line-content-input" style="position: relative;">
+            <div ng-click="$ctrl.selectAddressOnMap()">
+                <a class="show-on-map" style="position: absolute; top: 6px; left: 10px; z-index: 1;cursor: pointer;"><img src="/img/map-marker.png"></a>
+                <textarea type="text" name="adress" ng-model="$ctrl.user.address" disabled ng-change="$ctrl.resetServerError()" required
+                    placeholder="{{::'REGISTRATION_SHOP_ADDRESS' | translate }}" class="form-control" style="padding-left: 36px; cursor: pointer; background-color: #fff;"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- Alerts -->
+    <div ng-show="$ctrl.alerts" class="form-group layout-row layout-wrap">
+        <div class="settings-line-caption"></div>
+        <div class="layout-column  settings-line-content-input">
+            <q-alerts alerts="$ctrl.alerts" />
+        </div>
+    </div>
+    <!-- Submit -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+        <div class="settings-line-caption"></div>
+        <div class="layout-row settings-line-content-input">
+            <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
+                <span>Сохранить</span>
+            </button>
+        </div>
+    </div>
+</form>
