@@ -3,10 +3,10 @@ var userController;
 
 userController = require('../controllers/user');
 
-function changePhoto(email, photoId) {
+function changePhoto(email, photo) {
 	return userController.findByEmail(email)
 		.then(function foundUser(user) {
-			user.photo = photoId;
+			user.photo = photo;
 			return userController.saveOrUpdate(user);
 		});
 }

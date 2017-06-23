@@ -1,7 +1,7 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
 var authRouter, carsRouter, filesRouter, indexRouter, profileRouter, shopsRouter;
-var app, db, passport;
+var app, config, db, passport;
 
 express = require('express');
 cors = require('cors');
@@ -12,6 +12,7 @@ cookieParser = require('cookie-parser');
 cookieSession = require('cookie-session');
 bodyParser = require('body-parser');
 
+config = require('./config');
 indexRouter = require('./routes/index');
 authRouter = require('./routes/auth');
 carsRouter = require('./routes/cars');
@@ -31,20 +32,16 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cors());
-app.use(cookieParser('aavtoSecretKey'));
+app.use(cookieParser(config.cookie.parser));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieSession({
-  name: 'session',
-  keys: ['aavtoSecretKey'],
-  cookie: { secure: true },
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours 
-}));
-app.use(passport.initialize()); // Add passport initialization
-app.use(passport.session());    // Add passport session
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(cookieSession(config.cookie.session));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, '../.uploads')));
 app.use(express.static(path.join(__dirname, '../.build')));
 
+// routes
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);

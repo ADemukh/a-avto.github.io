@@ -1,22 +1,37 @@
 /*eslint strict:0  */
-var express, fileController, multer, router, upload;
+var config, express, fileController, multer, router, storage, upload;
 
 express = require('express');
 router = express.Router();
-multer  = require('multer');
-upload = multer({ dest: 'public/uploads' });
 fileController = require('../controllers/file');
+config = require('../config');
+multer = require('multer');
 
-router.post('/upload', upload.single('file'), function uploadFn(req, res, next) {
-    var fileInfo, srcUrl;
+storage = multer.diskStorage({
+    //multers disk storage settings
+    destination: function (req, file, cb) {
+        cb(null, './.uploads/');
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp;
 
-    console.log('Upload Successful ', req.file, req.body);
-    fileInfo = fileController.getFileInfo(req.file);
-    srcUrl = fileController.getSrcUrl(fileInfo.fileName);
-    res.json({
-      fileInfo: fileInfo,
-      scrUrl: srcUrl
+        datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1]);
+    }
+});
+
+upload = multer({
+    storage: storage
+}).single('file');
+
+router.post('/upload', upload, function uploadFn(req, res, next) {
+  fileController.upload(req.file, function onUploaded(err, file) {
+    res.json(err ? {
+      error: 'При загрузке файла произошла ошибка.'
+    } : {
+      file: file
     });
+  });
 });
 
 module.exports = router;

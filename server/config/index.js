@@ -46,7 +46,32 @@ function configuartion() {
         },
         bcrypt: {
             salt: 10
+        },
+        cookie: {
+            session: {
+                name: 'session',
+                keys: ['aavtoSecretKey'],
+                cookie: {
+                    secure: true
+                },
+                // 24 hours
+                maxAge: 24 * 60 * 60 * 1000
+            },
+            parser: 'aavtoSecretKey'
+        },
+        storage: {
+            mode: {
+                inCloudinary: true,
+                inFileSystem: false,
+                inDB: false
+            },
+            cloudinary: {
+                cloud_name: 'djydlkoln',
+                api_key: '323888815778125',
+                api_secret: 'Kvhy7BrbTF8wpAHMk1BhzBOWv-o'
+            }
         }
+
     };
 
     production = {
@@ -94,6 +119,30 @@ function configuartion() {
         },
         bcrypt: {
             salt: 10
+        },
+        cookie: {
+            session: {
+                name: 'session',
+                keys: ['aavtoSecretKey'],
+                cookie: {
+                    secure: true
+                },
+                // 24 hours
+                maxAge: 24 * 60 * 60 * 1000
+            },
+            parser: 'aavtoSecretKey'
+        },
+        storage: {
+            mode: {
+                inCloudinary: true,
+                inFileSystem: false,
+                inDB: false
+            },
+            cloudinary: {
+                cloud_name: 'djydlkoln',
+                api_key: '323888815778125',
+                api_secret: 'Kvhy7BrbTF8wpAHMk1BhzBOWv-o'
+            }
         }
     };
 

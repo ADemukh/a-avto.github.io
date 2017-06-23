@@ -1,4 +1,4 @@
-<div class="layout-row layout-wrap">
+<!--<div class="layout-row layout-wrap">
     <div class="settings-line-caption">Фото профиля</div>
     <div class="layout-column">
         <div class="settings-user-photo">
@@ -10,4 +10,38 @@
 		    </button>
         </div>
     </div>
-</div>
+</div>-->
+<form name="$ctrl.uploadForm" class="layout-row layout-wrap" novalidate>
+    <div class="settings-line-caption">Фото профиля</div>
+    <div class="layout-column">
+        <div class="settings-user-photo">
+            <img ngf-thumbnail="$ctrl.file || $ctrl.photo.srcUrl"/>
+        </div>
+        <!--<i ng-show="$ctrl.uploadForm.file.$error.required">*required</i><br>
+        <i ng-show="$ctrl.uploadForm.file.$error.maxSize">File too large 
+            {{up.file.size / 1000000|number:1}}MB: max 20M</i>-->
+        <div class="layout-row settings-line-content-input">
+            <label for="imageUpload">
+			    <span>Выбрать</span>
+            </label>
+            <!--<input type="file" id="imageUpload" accept="image/*" >-->
+            <input 
+                type="file" 
+                ngf-select 
+                ng-model="$ctrl.file" 
+                name="file" 
+                ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="5MB" 
+                />
+                <!--style="display: none"-->
+            <!--<button type="submit" ng-click="$ctrl.submit()" class="btn btn-primary settings-line-content-submit">submit</button>-->
+            <button
+                type="submit"
+                ng-click="$ctrl.changePhoto()"
+                class="btn btn-primary settings-line-content-submit">
+			    <span>Загрузить</span>
+		    </button>
+        </div>
+    </div>
+</form>
