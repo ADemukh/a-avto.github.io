@@ -9,6 +9,7 @@
                 <span class="help-block" ng-show="settingsMainForm.city.$invalid && !settingsMainForm.city.$pristine" translate>REGISTRATION_SHOP_CITIES_IS_NOT_CORRECT</span>
         </div>
     </div>
+
     <!--Category-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
         <div class="settings-line-caption" translate>Категории запчастей</div>
@@ -19,6 +20,7 @@
                 <span class="help-block" ng-show="settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine" translate>REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT</span>
         </div>
     </div>
+
     <!--Auto-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.auto.$invalid && !settingsMainForm.auto.$pristine }">
         <div class="settings-line-caption" translate>Обслуживаемые автомобили</div>
@@ -29,10 +31,10 @@
                 <span class="help-block" ng-show="settingsMainForm.auto.$invalid && !settingsMainForm.auto.$pristine" translate>REGISTRATION_SHOP_AUTO_IS_NOT_CORRECT</span>
         </div>
     </div>
-    <!--Schedule-->
 
+    <!--Schedule-->
     <div ng-repeat="(key, value) in $ctrl.schedule" class="form-group layout-row layout-wrap" style="margin-top: 5px;">
-        <div class="settings-line-caption" translate>{{::key | translate}}</div>
+        <div class="settings-line-caption" translate>{{::$ctrl.getDayTranslationKey(key) | translate}}</div>
         <div class="layout-column settings-line-content-input layout-row layout-wrap" style="position: relative;">
             <input type="checkbox" ng-model="value.active" style="width: 20px; height: 20px; margin-top: 8px;  margin-right: 10px;">
             <oi-select oi-options="hour disable when (hour > value.to) for hour in $ctrl.hours" ng-model="value.from" ng-disabled="!value.active"
@@ -41,7 +43,7 @@
                 <oi-select oi-options="hour disable when (hour < value.from) for hour in $ctrl.hours" ng-model="value.to" ng-disabled="!value.active"
                     style="width: 80px;"  ></oi-select>
                     <div ng-if="::$first">
-                        <a ng-click="$ctrl.allCheckbox()" href style="width: 20px; height: 20px; margin-top: 15px;  margin-left: 10px;">Применить ко всем</a>
+                        <a ng-click="$ctrl.applyToAll(value)" href style="width: 20px; height: 20px; margin-top: 15px;  margin-left: 10px;">Применить ко всем</a>
                     </div>
         </div>
     </div>

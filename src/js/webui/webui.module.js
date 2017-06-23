@@ -230,13 +230,13 @@ var WEBUI_MODULE_NAME;
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
             $translateProvider.translations('ru', {
-                monday: "Понедельник",
-                tuesday: "Вторник",
-                wednesday: "Среда",
-                thursday: "Четверг",
-                friday: "Пятница",
-                saturday: "Суббота",
-                sunday: "Воскресенье",
+                MONDAY: "Понедельник",
+                TUESDAY: "Вторник",
+                WEDNESDAY: "Среда",
+                THURSDAY: "Четверг",
+                FRIDAY: "Пятница",
+                SATURDAY: "Суббота",
+                SUNDAY: "Воскресенье",
                 AUTH_SOCIAL_TITLE: 'Войдите, используя аккаунт соцсети',
                 HOW_IT_WORKS_TITLE: 'Как работает aAvto.by',
                 HOW_IT_WORKS_OPTIONS: 'Есть несколько вариантов поиска запчастей',
