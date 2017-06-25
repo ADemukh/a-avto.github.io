@@ -27,8 +27,7 @@
     "lodash": "4.17.4",
     "bootstrap-social": "5.1.1",
     "angular-translate": "2.14.0",
-    "oi.select": "0.2.21",
-    "angular-cloudinary": "1.2.4"
+    "oi.select": "0.2.21"
   },
   "resolutions": {
     "angular": "1.6.2"

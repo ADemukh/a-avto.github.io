@@ -21,8 +21,7 @@ module.exports = function exports() {
             indexjs: '.build/'
         },
         clean: {
-            build: './.build',
-            uploads: './.uploads'
+            build: './.build'
         },
         watch: {
             indexhtml: 'src/index.html',

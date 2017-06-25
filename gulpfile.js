@@ -157,10 +157,6 @@
             });
     });
 
-    gulp.task('clean:uploads', function cleanUploadsTask(cb) {
-        rimraf(config.clean.uploads, cb);
-    });
-
     gulp.task('clean:build', function cleanBuildTask(cb) {
         rimraf(config.clean.build, cb);
     });

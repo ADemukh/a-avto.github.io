@@ -12,13 +12,18 @@
 		vm = this;
 		vm.$onInit = function onInit() {
 			vm.photo = identityService.user.photo || {
-				srcUrl: 'img/user-logo.png'
+				url: 'img/user-logo.png'
 			};
 			vm.changePhoto = function changePhoto() {
 				if (vm.uploadForm.file.$valid && vm.file) {
-					fileService.upload(vm.file)
-						.then(clientService.changePhoto)
-						.then(function success(response) {
+					fileService.uploadImage(vm.file)
+						.then(function onUpload(response) {
+							if (response && response.data && response.data.success) {
+								return clientService.changePhoto(response.data.details);
+							}
+							// set alerts here!
+						})
+						.then(function onChange() {
 							vm.photo = identityService.user.photo;
 							vm.file = null;
 						})

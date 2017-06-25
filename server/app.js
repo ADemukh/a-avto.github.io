@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, carsRouter, filesRouter, indexRouter, profileRouter, shopsRouter;
+var authRouter, carsRouter, indexRouter, profileRouter, shopsRouter, uploadRouter;
 var app, config, db, passport;
 
 express = require('express');
@@ -16,9 +16,9 @@ config = require('./config');
 indexRouter = require('./routes/index');
 authRouter = require('./routes/auth');
 carsRouter = require('./routes/cars');
-filesRouter = require('./routes/files');
 profileRouter = require('./routes/profile');
 shopsRouter = require('./routes/shops');
+uploadRouter = require('./routes/upload');
 
 db = require('./db');
 passport = require('./auth/passport');
@@ -45,9 +45,9 @@ app.use(express.static(path.join(__dirname, '../.build')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);
-app.use('/files', filesRouter);
 app.use('/profile', profileRouter);
 app.use('/shops', shopsRouter);
+app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler
 app.use(function use(req, res, next) {
