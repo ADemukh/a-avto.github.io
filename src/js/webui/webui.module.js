@@ -364,7 +364,8 @@ var WEBUI_MODULE_NAME;
                 FOOTER_PROJECT_MAP: 'КАРТА САЙТА',
                 CHANGE_CONFIRMATION: 'Вы уверены?',
                 CONFIRM: 'Да',
-                REJECT: 'Нет'
+                REJECT: 'Нет',
+                ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.'
             });
             $translateProvider.translations('en', {
                 // english translations here

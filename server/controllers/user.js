@@ -59,9 +59,22 @@ function recoverPassword(email) {
 		});
 }
 
+function changePhoto(email, photo) {
+	return findUserByEmail(email)
+		.then(function foundUser(user) {
+			user.photo = {
+				fileName: photo.fileName,
+				url: photo.url,
+				thumbUrl: 'http://res.cloudinary.com/djydlkoln/image/upload/w_200,h_200,c_thumb/v1498573093/' + photo.fileName + '.' + photo.format
+			};
+			return saveOrUpdateUser(user);
+		});
+}
+
 module.exports = {
 	findByEmail: findUserByEmail,
 	saveOrUpdate: saveOrUpdateUser,
 	changePassword: changePassword,
-	recoverPassword: recoverPassword
+	recoverPassword: recoverPassword,
+	changePhoto: changePhoto
 };

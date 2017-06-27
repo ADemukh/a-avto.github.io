@@ -27,7 +27,8 @@ userSchema = new mongoose.Schema({
 	},
 	photo: {
 		fileName: String,
-		url: String
+		url: String,
+		thumbUrl: String
 	}
 }, options);
 

@@ -3,14 +3,6 @@ var userController;
 
 userController = require('../controllers/user');
 
-function changePhoto(email, photo) {
-	return userController.findByEmail(email)
-		.then(function foundUser(user) {
-			user.photo = photo;
-			return userController.saveOrUpdate(user);
-		});
-}
-
 function changeContactInfo(email, userInfo) {
 	return userController.findByEmail(email)
 		.then(function foundUser(user) {
@@ -51,7 +43,6 @@ function changeCars(email, cars) {
 }
 
 module.exports = {
-	changePhoto: changePhoto,
 	changeContactInfo: changeContactInfo,
 	changeNotifications: changeNotifications,
 	changeCars: changeCars

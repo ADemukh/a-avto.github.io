@@ -1,34 +1,42 @@
-<form name="$ctrl.uploadForm" class="layout-row layout-wrap" novalidate>
-    <div class="settings-line-caption">Фото профиля</div>
-    <div class="layout-column">
-        <div class="settings-user-photo">
-            <img ngf-thumbnail="$ctrl.file || $ctrl.photo.url"/>
-        </div>
-        <!--<i ng-show="$ctrl.uploadForm.file.$error.required">*required</i><br>
-        <i ng-show="$ctrl.uploadForm.file.$error.maxSize">File too large 
-            {{up.file.size / 1000000|number:1}}MB: max 20M</i>-->
-        <div class="layout-row settings-line-content-input">
-            <label for="imageUpload">
-			    <span>Выбрать</span>
-            </label>
-            <!--<input type="file" id="imageUpload" accept="image/*" >-->
-            <input 
-                type="file" 
-                ngf-select 
-                ng-model="$ctrl.file" 
-                name="file" 
-                ngf-pattern="'image/*'"
-                accept="image/*" 
-                ngf-max-size="5MB" 
-                />
-                <!--style="display: none"-->
-            <!--<button type="submit" ng-click="$ctrl.submit()" class="btn btn-primary settings-line-content-submit">submit</button>-->
-            <button
-                type="submit"
-                ng-click="$ctrl.changePhoto()"
-                class="btn btn-primary settings-line-content-submit">
-			    <span>Загрузить</span>
-		    </button>
+<style>
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+</style>
+<form name="$ctrl.uploadForm" class="layout-column" novalidate>
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.uploadForm.file.$invalid }">
+        <div class="settings-line-caption" translate>Фото профиля</div>
+        <div class="layout-column settings-line-content-input">
+            <div class="layout-row">
+                <div class="settings-user-photo">
+                    <!--<a href="{{$ctrl.photo.url}}" target="_blank">
+                        <span class="content-img-outer-wrapper">-->
+                            <img ng-src="{{$ctrl.photo.thumbUrl}}">
+                        <!--</span>
+                    </a>-->
+                    <!--<img ngf-thumbnail="$ctrl.photo.thumbUrl" />-->
+                </div>
+                <div ng-if="$ctrl.loading" class="loader">Loading...</div>
+            </div>
+            <span class="help-block" ng-show="$ctrl.uploadForm.file.$error.maxSize">{{'ALERT_FILE_TOO_LARGE' | translate }}</span>
+            <div class="fileUpload btn btn-primary settings-line-content-submit">
+                <span>Загрузить фото</span>
+                <input type="file" class="upload" ngf-select="$ctrl.changePhoto()" ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
+                    accept="image/*" ngf-max-size="5MB"/>
+            </div>
         </div>
     </div>
 </form>
