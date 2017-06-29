@@ -1,14 +1,11 @@
-var cloudinary, cloudinaryStorage, config, storage;
+var cloudinary, cloudinaryStorage, storage;
 
-cloudinary = require('cloudinary');
+cloudinary = require('../cloudinary');
 cloudinaryStorage = require('multer-storage-cloudinary');
-config = require('../../config');
-
-cloudinary.config(config.storage.cloudinary);
 
 storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  allowedFormats: ['jpg', 'png'],
+  allowedFormats: ['jpg', 'png']
 });
 
 module.exports = storage;

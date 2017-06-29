@@ -32,6 +32,19 @@
                 <div ng-if="$ctrl.loading" class="loader">Loading...</div>
             </div>
             <span class="help-block" ng-show="$ctrl.uploadForm.file.$error.maxSize">{{'ALERT_FILE_TOO_LARGE' | translate }}</span>
+        </div>
+    </div>
+    <!-- Alerts -->
+    <div ng-show="$ctrl.alerts" class="form-group layout-row layout-wrap">
+        <div class="settings-line-caption"></div>
+        <div class="layout-column  settings-line-content-input">
+            <q-alerts alerts="$ctrl.alerts" />
+        </div>
+    </div>
+    <!-- Submit -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+        <div class="settings-line-caption"></div>
+        <div class="layout-row settings-line-content-input">
             <div class="fileUpload btn btn-primary settings-line-content-submit">
                 <span>Загрузить фото</span>
                 <input type="file" class="upload" ngf-select="$ctrl.changePhoto()" ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"

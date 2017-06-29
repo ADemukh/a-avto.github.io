@@ -4,9 +4,14 @@
 	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileclientsettingsloadphoto', ProfileClientSettingsLoadPhotoController);
 
-	ProfileClientSettingsLoadPhotoController.$inject = ['services.file', 'services.client', 'services.webui.alerts', 'services.identity'];
+	ProfileClientSettingsLoadPhotoController.$inject = [
+		'services.file',
+		'services.client',
+		'services.webui.alerts',
+		'services.identity',
+		'$q'];
 
-	function ProfileClientSettingsLoadPhotoController(fileService, clientService, alerts, identityService) {
+	function ProfileClientSettingsLoadPhotoController(fileService, clientService, alerts, identityService, $q) {
 		var vm;
 
 		vm = this;
@@ -22,13 +27,16 @@
 							if (response && response.data && response.data.success) {
 								return clientService.changePhoto(response.data.details);
 							}
-							// set alerts here!
+							return $q.reject();
 						})
 						.then(function onChange() {
+							vm.alerts = [alerts.success('Фото изменено.')];
 							vm.photo = identityService.user.photo;
 							vm.file = null;
 						})
-						.catch(function failure(errorMessage) {})
+						.catch(function failure() {
+							vm.alerts = [alerts.danger('Не удалось изменить фото.')];
+						})
 						.finally(function complete() {
 							vm.loading = false;
 						});

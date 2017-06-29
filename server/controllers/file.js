@@ -1,8 +1,9 @@
 /*eslint strict:0  */
-var File, cloudinaryMulter, cloudinaryStorage, multer;
+var File, cloudinary, cloudinaryMulter, cloudinaryStorage, multer;
 
 File = require('../models/file');
 multer = require('multer');
+cloudinary = require('../core/cloudinary');
 cloudinaryStorage = require('../core/storages/cloudinaryStorage');
 cloudinaryMulter = multer({
     storage: cloudinaryStorage
@@ -40,7 +41,25 @@ function onUploadSingleImageToCloudinary(req, res) {
     }
 }
 
+function findFileByFileName(fileName) {
+	return File.findOne({
+			fileName: fileName
+		}).exec();
+}
+
+function deleteFileByFileName(fileName) {
+    return cloudinary.uploader.destroy(fileName)
+        .then(function success(res) {
+            if (res && res.result === 'ok') {
+                return File.find({ fileName: fileName }).remove().exec();
+            }
+            return Promise.reject();
+        });
+}
+
 module.exports = {
     uploadSingleImage: uploadSingleImageToCloudinary,
-    onUploadSingleImage: onUploadSingleImageToCloudinary
+    onUploadSingleImage: onUploadSingleImageToCloudinary,
+    findByFileName: findFileByFileName,
+    deleteByFileName: deleteFileByFileName
 };
