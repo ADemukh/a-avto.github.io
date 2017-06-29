@@ -25,7 +25,7 @@
 		DEFAULT_SCHEDULER = {
 			monday: {},
 			tuesday: {},
-			qednesday: {},
+			wednesday: {},
 			thursday: {},
 			friday: {},
 			saturday: {},
@@ -33,22 +33,20 @@
 		}
 
 		vm.$onInit = function onChanges() {
-			common.services.adress.getCities().then(function onGetCities(citiess) {
-				vm.citiess = citiess;
+			common.services.adress.getCities().then(function onGetCities(cities) {
+				vm.allCities = cities;
 			});
 			common.services.category.getCategories().then(function onGetCategories(categories) {
-				vm.categories = categories;
+				vm.allCategories = categories;
 			});
-			common.services.car.getCars().then(function onGetCars(carMarkss) {
-				vm.carMarkss = carMarkss;
+			common.services.car.getCars().then(function onGetCars(carMarks) {
+				vm.allCarMarks = carMarks;
 			});
 
 			vm.cities = identityService.user.cities;
 			vm.spareCategories = identityService.user.spareCategories;
 			vm.carMarks = identityService.user.carMarks;
-			vm.schedule = identityService.user.schedule ?
-				identityService.user.schedule :
-				DEFAULT_SCHEDULER;
+			vm.schedule = identityService.user.schedule ||	DEFAULT_SCHEDULER;
 			vm.hours = ALL_HOURS;
 
 
@@ -62,7 +60,7 @@
 			}
 			vm.changeOptions = function changeOptions(isValid) {
 				if (isValid) {
-					shopService.changeOptions({
+					common.services.shop.changeOptions({
 							cities: vm.cities,
 							spareCategories: vm.spareCategories,
 							carMarks: vm.carMarks,

@@ -1,36 +1,26 @@
-<style>
-    .line{
-        padding-bottom: 10px;
-    }
-    .height{
-        height: 35px;
-        width: 100%;
-    }
-</style>
-
 <form name="carForm" ng-submit="$ctrl.save(carForm.$valid)" novalidate>
     <div class="wrapper_body">
         <div class="cbm_wrap ">
-            <oi-select oi-options="c for c in $ctrl.carMarks" ng-model="$ctrl.car.mark" oi-select-options="{ cleanModel: true }" required placeholder="Марка"
+            <oi-select oi-options="c for c in $ctrl.carMarks" ng-model="$ctrl.car.mark" oi-select-options="{ cleanModel: true }" required placeholder="{{::'MARK'| translate}}"
                 ng-disabled="!$ctrl.canChooseCarMark()" class="car-control-bottom-offset">
             </oi-select>
-            <oi-select oi-options="c for c in $ctrl.carModels" ng-model="$ctrl.car.model" oi-select-options="{ cleanModel: true }" required placeholder="Модель"
+            <oi-select oi-options="c for c in $ctrl.carModels" ng-model="$ctrl.car.model" oi-select-options="{ cleanModel: true }" required placeholder="{{::'MODEL'| translate}}"
                 ng-disabled="!$ctrl.canChooseCarModel()" class="car-control-bottom-offset">
             </oi-select>
             <oi-select oi-options="c for c in $ctrl.carModelYears" ng-model="$ctrl.car.years" oi-select-options="{ cleanModel: true }"
-                required placeholder="Год" ng-disabled="!$ctrl.canChooseCarModelYear()" class="car-control-bottom-offset">
+                required placeholder="{{::'YEAR'| translate}}" ng-disabled="!$ctrl.canChooseCarModelYear()" class="car-control-bottom-offset">
             </oi-select>
             <div class="line">
-                <input type="text" style="font-size: 14px" ng-model="$ctrl.car.VIN"  placeholder="VIN" class="height ">
+                <input type="text" ng-model="$ctrl.car.VIN"  placeholder="{{::'VIN'| translate}}" class="height VIN-font-size">
             </div>
              <div class="line">
                 <button type="submit" ng-disabled="carForm.$invalid" class="width-full btn btn-primary ">
-                    <span>Сохранить</span>
+                    <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
                 </button>
             </div>
             <div class="line">
                 <button type="button" class="width-full btn btn-primary" ng-click="$ctrl.cancel()">
-                    <span>Отменить</span>
+                    <span>{{::'CANCEL' | translate }}</span>
                 </button>
              </div>
         </div>

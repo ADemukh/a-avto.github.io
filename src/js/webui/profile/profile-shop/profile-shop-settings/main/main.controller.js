@@ -4,13 +4,13 @@
 	angular.module(WEBUI_MODULE_NAME)
 		.controller('controllers.profileshopsettingsmain', ProfileShopSettingsMainController);
 
-	ProfileShopSettingsMainController.$inject = ['services.shop', 'services.webui.alerts', 'services.identity', '$state', '$scope', '$uibModal'];
+	ProfileShopSettingsMainController.$inject = ['services.common', 'services.webui.alerts', 'services.identity', '$state', '$scope', '$uibModal'];
 
-	function ProfileShopSettingsMainController(shopService, alerts, identityService, $state, $scope, $uibModal) {
+	function ProfileShopSettingsMainController(common, alerts, identityService, $state, $scope, $uibModal) {
 		var vm;
 		vm = this;
 
-		vm.shop = {
+		vm.user = {
 			longitude: '',
 			latitude: '',
 			address: ''
@@ -29,8 +29,8 @@
 				resolve: {
 					options: function options() {
 						return {
-							longitude: vm.shop.longitude,
-							latitude: vm.shop.latitude
+							longitude: vm.user.longitude,
+							latitude: vm.user.latitude
 						};
 					}
 				}
@@ -38,17 +38,17 @@
 
 			modalInstance.result.then(
 				function selected(selectedAddress) {
-					vm.shop.longitude = selectedAddress.longitude;
-					vm.shop.latitude = selectedAddress.latitude;
-					vm.shop.address = selectedAddress.address;
+					vm.user.longitude = selectedAddress.longitude;
+					vm.user.latitude = selectedAddress.latitude;
+					vm.user.address = selectedAddress.address;
 				},
 				function closed() {
 				});
 
 		};
 
-		this.$onInit = function onChanges() {
-			this.user = {
+		vm.$onInit = function onChanges() {
+			vm.user = {
 					name: identityService.user.name,
 					email: identityService.user.email,
 					phone: identityService.user.phone,
@@ -64,7 +64,7 @@
 		
 		this.changeContactInfo = function changeContactInfo(isValid) {
 			if (isValid) {
-				shopService.changeContactInfo(vm.user)
+				common.services.shop.changeContactInfo(vm.user)
 					.then(function complete(response) {
 						vm.alerts = response.data.success ? [alerts.success(response.data.message)] : [alerts.danger(response.data.error)];
 					});

@@ -18,7 +18,7 @@
     </div>
     <!-- Phone -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine }">
-        <div class="settings-line-caption" translate>Контактный телефон</div>
+        <div class="settings-line-caption" translate>REGISTRATION_USER_CONTACT_PHINE</div>
         <div class="layout-column settings-line-content-input">
             <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" required ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
                 placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
@@ -27,21 +27,20 @@
     </div>
     <!-- WWW -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
-        <div class="settings-line-caption" translate>Адрес сайта</div>
+        <div class="settings-line-caption" translate>WEBSITE_ADDRESS</div>
         <div class="layout-column settings-line-content-input">
-            <input type="text" name="www" ng-model="$ctrl.user.www" ng-change="$ctrl.resetServerError()" required placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}"
-                class="form-control">
+            <input type="text" name="www" ng-model="$ctrl.user.www" ng-change="$ctrl.resetServerError()" required class="form-control">
                 <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_WWW_IS_NOT_CORRECT</span>
         </div>
     </div>
     <!--MAPS-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.adress.$invalid && !settingsMainForm.adress.$pristine }">
-        <div class="settings-line-caption" translate>Адрес магазина на карте</div>
-        <div class="layout-column settings-line-content-input" style="position: relative;">
+        <div class="settings-line-caption" translate>SHOP_ADDRESS_ON_THE_MAP</div>
+        <div class="layout-column settings-line-content-input position-relative">
             <div ng-click="$ctrl.selectAddressOnMap()">
-                <a class="show-on-map" style="position: absolute; top: 6px; left: 10px; z-index: 1;cursor: pointer;"><img src="/img/map-marker.png"></a>
+                <a class="show-on-map map-picture" ><img src="/img/map-marker.png"></a>
                 <textarea type="text" name="adress" ng-model="$ctrl.user.address" disabled ng-change="$ctrl.resetServerError()" required
-                    placeholder="{{::'REGISTRATION_SHOP_ADDRESS' | translate }}" class="form-control" style="padding-left: 36px; cursor: pointer; background-color: #fff;"></textarea>
+                     class="form-control map-textarea" ></textarea>
             </div>
         </div>
     </div>
@@ -57,7 +56,7 @@
         <div class="settings-line-caption"></div>
         <div class="layout-row settings-line-content-input">
             <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
-                <span>Сохранить</span>
+                <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
             </button>
         </div>
     </div>

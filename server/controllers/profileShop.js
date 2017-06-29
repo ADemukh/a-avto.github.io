@@ -27,13 +27,6 @@ function changeContactInfo(email, userInfo) {
 		});
 }
 
-function changeOptions(email, options) {
-	return userController.findByEmail(email)
-		.then(function foundUser(user) {
-			return updateOptions(user, options);
-		});
-}
-
 function updateContactInfo(user, newUserContactInfo) {
 	user.email = newUserContactInfo.email;
 	user.name = newUserContactInfo.name;
@@ -42,14 +35,15 @@ function updateContactInfo(user, newUserContactInfo) {
 	user.address = newUserContactInfo.address;
 	user.longitude = newUserContactInfo.longitude;
 	user.latitude = newUserContactInfo.latitude;
-	user.cities = newUserContactInfo.cities;
-	user.spareCategories = newUserContactInfo.spareCategories;
-	user.carMarks = newUserContactInfo.carMarks;
-	user.schedule = newUserContactInfo.schedule;
-
 	return userController.saveOrUpdate(user);
 }
 
+function changeOptions(email, options) {
+	return userController.findByEmail(email)
+		.then(function foundUser(user) {
+			return updateOptions(user, options);
+		});
+}
 
 function updateOptions(user, options) {
 	user.cities = options.cities;
@@ -61,11 +55,16 @@ function updateOptions(user, options) {
 }
 
 function changeNotifications(email, notifications) {
-	return userController.findUserByEmail(email)
+	return userController.findByEmail(email)
 		.then(function foundUser(user) {
-			user.notifications = notifications;
-			return userController.saveOrUpdate(user);
+			return updateNotification(user, notifications);
 		});
+}
+
+function updateNotification(user, notifications) {
+	user.notifications = notifications;
+	
+	return userController.saveOrUpdate(user);
 }
 
 module.exports = {

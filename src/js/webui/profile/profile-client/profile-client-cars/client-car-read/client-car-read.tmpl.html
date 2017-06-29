@@ -1,30 +1,18 @@
-<style>
-    .letter{
-        
-        font-weight: bold;
-        font-size: 20px;
-
-    }
-    .letter1{
-        font-size: 20px;
-        
-    }
-</style>
 <div class="wrapper_body">
     <div class="cbm_wrap ">
-        <div style="text-align: left">
+        <div class="text-align-left">
         <br>
         <br>
-        <span class="letter">Марка:</span>  <span class="letter1">{{::$ctrl.car.mark}}</span><br>
-        <span class="letter">Модель:</span> <span class="letter1">{{::$ctrl.car.model}}</span><br>
-        <span class="letter">Год:</span>    <span class="letter1">{{::$ctrl.car.years}}</span><br>
-        <span class="letter">VIN:</span>    <span class="letter1">{{::$ctrl.car.VIN}}</span><br>
+        <span class="letter">{{::'MARK'| translate}}:</span>  <span class="letter1">{{::$ctrl.car.mark}}</span><br>
+        <span class="letter">{{::'MODEL'| translate}}:</span> <span class="letter1">{{::$ctrl.car.model}}</span><br>
+        <span class="letter">{{::'YEAR'| translate}}:</span>    <span class="letter1">{{::$ctrl.car.years}}</span><br>
+        <span class="letter">{{::'VIN'| translate}}:</span>    <span class="letter1">{{::$ctrl.car.VIN}}</span><br>
          <br>
         </div>
         <button type="submit" class=" close-thik "  title="Удалить автомобиль" ng-click="$ctrl.delete()">          
         </button>
         <button type="submit" class=" width-full btn btn-primary" ng-click="$ctrl.edit()">
-            <span>Изменить</span>
+            <span>{{::'CHANGE'| translate}}</span>
         </button>
     </div>
 </div>
