@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+    form(action='/cars/marks/'+ model.mark+"/"+model.model, method='POST')
+        div
+            label Mark
+            input(type='text', name='mark', value=model.mark)
+        div
+            label Model
+            input(type='text', name='model', value=model.model)
+        div
+            label From
+            input(type='text', name='from', value=model.from)
+        div
+            label End
+            input(type='text', name='end', value=model.end)
+        div
+            input(type='submit', value='Save')
+            input(type='submit', value='Delete')
+        

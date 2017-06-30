@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+
+    form(action='/cars/marks/' + mark.mark + '/edit', method='POST')
+        P
+            a(href="/cars/marks") Beck
+        p
+            input(type='text', name='mark', value=mark.mark)
+        p
+                input(type='hidden', value=mark.mark, name='model')
+                button(type='submit').
+                    Save
+        each m in mark.models
+            p
+               a(href="/cars/marks/#{mark.mark}/#{m}") #{ m }
+
+            

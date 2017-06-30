@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    form(action='add')
+        div
+            p
+                input(type='submit', value='Add Car')
+        br    
+        div
+            each mark in marks
+                a(href="/cars/marks/#{mark}") #{ mark }  
+                form(action='/cars/marks/delete', method='POST')
+                    input(type='hidden', value=mark, name='mark')
+                    button(type='submit').
+                        Delete Car
+                br             
