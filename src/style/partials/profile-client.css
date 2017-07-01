@@ -8,5 +8,221 @@
     /*-webkit-flex-flow: row wrap; /* Safari*/
 }
 
+.profile-client-padding {
+    padding: 15px 0px 15px;
+}
 
+.profile-client-background {
+    background-color: white;
+}
 
+.text-align-left {
+    text-align: left;
+}
+
+.VIN-font-size {
+    font-size: 14px;
+}
+
+.two {
+    padding: 50px 20px;
+    text-align: center;
+    }
+
+.plus {
+    height: 100%;
+    width: 100%;
+    font: 40px/100% arial, sans-serif;
+    color:  #000080;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #fff;
+    /* Green */
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    }
+
+.two h1 {
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    color: #777;
+    font-size: 3em;
+    font-weight: normal;
+    line-height: 1;
+    padding: 10px 0;
+    margin: 0;
+    display: inline-block;
+    }
+
+.wrapper_body {
+    margin-left: 20px;
+    float: left;
+    padding: 20px 0;
+    /*min-height:250px;*/
+    width: 250px;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: #4A4A4A;
+    text-align: center;
+    }
+
+.cbm_wrap {
+    margin: 20px auto;
+    display: block;
+    height: 400px;
+    /*min-height:250px;*/
+    width: 250px;
+    padding: 20px;
+    position: relative;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd));
+    background-image: -webkit-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -moz-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -o-linear-gradient(#aaaeaf, #689ecd);
+    background-image: -ms-linear-gradient(#aaaeaf, #689ecd);
+    background-image: linear-gradient(#aaaeaf, #689ecd);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+    }
+
+.cbm_wrap * {
+    position: relative;
+    }
+
+.cbm_wrap::before {
+    background: white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    bottom: 1px;
+    content: '';
+    left: 1px;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    }
+
+[class*='close-'] {
+    height: 20px;
+    width: 25px;
+    color: #fff;
+    font: 14px/100% arial, sans-serif;
+    position: absolute;
+    right: 5px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    top: 5px;
+    background-color: #FF0000;
+    border: none;
+    }
+
+.close-thik:after {
+    content: '✖';
+    }
+
+.car-control-bottom-offset {
+    padding-bottom: 10px;
+    }
+
+.alert {
+    text-align: center;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin: auto;
+   
+    height: 50px;
+    }
+
+.letter{
+    font-weight: bold;
+    font-size: 20px;
+    }
+
+.letter1{
+    font-size: 20px;
+    }
+
+.line{
+    padding-bottom: 10px;
+}
+.height{
+    height: 35px;
+    width: 100%;
+}
+
+.settings-wall {
+    margin: 0 20px;
+}
+
+.settings-line {
+    margin: 0;
+    padding: 14px 0 15px;
+    border-bottom: 1px solid #e7e8ec;
+}
+
+.settings-line-caption {
+    width: 200px;
+    padding: 5px 20px 6px 0;
+}
+
+.settings-line-content {
+    padding: 5px 10px 6px 0;
+}
+
+.settings-right-action {
+    padding: 6px 0 0;
+}
+
+.settings-user-photo {
+    height: 250px;
+    width: 250px;
+    padding: 14px 0 15px;
+}
+
+.settings-filler {
+    flex-grow: 1;
+}
+
+.settings-line-content-input {
+    max-width: 500px;
+    width: 100%;
+}
+
+.settings-line-content-submit {
+    width: 100%;
+    max-width: 150px;
+}
+
+.settings-line-bottom-margin {
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.portrait {
+    height: 80px;
+    width: 30px;
+}
+
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+}

@@ -14,10 +14,10 @@
             changeCars: changeCars
         };
 
-        function changePhoto(photoId) {
+        function changePhoto(photo) {
             return $http.post('profile/changeclientphoto', {
                 email: identityService.user.email,
-                photoId: photoId
+                photo: photo
             }).then(updateCurrentUser);
         }
 

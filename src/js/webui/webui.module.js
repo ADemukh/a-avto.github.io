@@ -6,7 +6,7 @@ var WEBUI_MODULE_NAME;
     'use strict';
 
     WEBUI_MODULE_NAME = 'aAvto.webui';
-    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select', 'ngFileUpload'])
         .config(WebUIModuleConfig)
         .constant('_', window._)
         .constant('routingConfig', window.routingConfig)
@@ -20,7 +20,6 @@ var WEBUI_MODULE_NAME;
         setInterceptors();
         setTranslations();
         errorOnUnhandledRejectionsFalse();
-
 
         function setRoutes() {
             //================================================
@@ -230,6 +229,36 @@ var WEBUI_MODULE_NAME;
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
             $translateProvider.translations('ru', {
+                PROFILE_PHOTO: '',
+                ADD: 'добавить',
+                CANCEL: 'Отменить',
+                MARK: 'Марка',
+                MODEL: 'Модель',
+                YEAR: 'Год',
+                VIN: 'VIN', 
+                CHANGE: 'Изменить',
+                YOUR_CARS: 'Ваши автомобили',
+                CHANGE_PASSWORD: 'Изменить пароль',
+                DOWNLOAD: 'Загрузить',
+                PHOTO_OF_THE_PROFILE: 'Фото профиля',
+                NOTICE: 'Уведомления',
+                SELECT_THE_SERVICED_CITIES: 'Выберите обслуживаемые города',
+                SELECT_THE_SERVICED_SPARE_PART_CATEGORIES: 'Выберите обслуживаемые категории запчастей',
+                SELECT_THE_SERVICED_CARS: 'Выберите обслуживаемые автомобили',
+                APPLY_TO_ALL: 'Применить ко всем',
+                WEBSITE_ADDRESS: 'Адрес сайта',
+                SHOP_ADDRESS_ON_THE_MAP: 'Адрес магазина на карте',
+                REGISTRATION_USER_CONTACT_PHINE: 'Контактный телефон',
+                SERVICED_CARS: 'Обслуживаемые автомобили',
+                CATEGORIES: 'Категории запчастей',
+                CITIES: 'Города',
+                MONDAY: 'Понедельник',
+                TUESDAY: 'Вторник',
+                WEDNESDAY: 'Среда',
+                THURSDAY: 'Четверг',
+                FRIDAY: 'Пятница',
+                SATURDAY: 'Суббота',
+                SUNDAY: 'Воскресенье',
                 AUTH_SOCIAL_TITLE: 'Войдите, используя аккаунт соцсети',
                 HOW_IT_WORKS_TITLE: 'Как работает aAvto.by',
                 HOW_IT_WORKS_OPTIONS: 'Есть несколько вариантов поиска запчастей',
@@ -331,6 +360,15 @@ var WEBUI_MODULE_NAME;
                 REGISTRATION_SHOP_WWW_IS_REQUIRED: 'Введите адрес сайта магазина',
                 REGISTRATION_SHOP_ADDRESS_IS_REQUIRED: 'Отметьте адрес магазина на карте',
                 REGISTRATION_SHOP_REGISTER: 'Зарегистрироваться',
+                REGISTRATION_SHOP_CONTACT_NAME: 'Название магазина',
+                REGISTRATION_SHOP_CONTACT_NAME_IS_REQUIRED: 'Введите название магазина',
+                REGISTRATION_SHOP_EMAIL_IS_REQUIRED: 'Введите E-mail',
+                REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT: 'Неправильный E-mail',
+                REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT: 'Номер не соответветствует шаблону +375 xx xxx xx xx',
+                REGISTRATION_SHOP_WWW_IS_NOT_CORRECT: 'Введите адрес сайта магазина',
+                REGISTRATION_SHOP_CITIES_IS_NOT_CORRECT: 'Выберите обслуживаемые города',
+                REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT: 'Выберите обслуживаемые категории запчатей',
+                REGISTRATION_SHOP_AUTO_IS_NOT_CORRECT: 'Выберите обслуживаемые автомобили',
                 FOOTER_EMAIL: 'info@aavto.by',
                 FOOTER_PHONE: '+375 XX XXX XX XX',
                 FOOTER_AAVTO: 'Aavto',
@@ -349,7 +387,8 @@ var WEBUI_MODULE_NAME;
                 FOOTER_PROJECT_MAP: 'КАРТА САЙТА',
                 CHANGE_CONFIRMATION: 'Вы уверены?',
                 CONFIRM: 'Да',
-                REJECT: 'Нет'
+                REJECT: 'Нет',
+                ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.'
             });
             $translateProvider.translations('en', {
                 // english translations here

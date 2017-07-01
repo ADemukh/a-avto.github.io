@@ -7,8 +7,5 @@
 	ProfileShopSettingsController.$inject = [];
 
 	function ProfileShopSettingsController() {
-		var vm;
-
-		vm = this;
 	}
 })();

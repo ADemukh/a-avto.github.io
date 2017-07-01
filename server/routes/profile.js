@@ -35,7 +35,7 @@ router.post('/changepassword', authController.isAuthenticated, function changePa
 });
 
 router.post('/changeclientphoto', authController.isAuthenticated, function changeClientPhoto(req, res) {
-  profileClientController.changePhoto(req.body.email, req.body.photoId)
+  userController.changePhoto(req.body.email, req.body.photo)
     .then(succeedWrapper(res, 'Фото изменено.'), failureWrapper(res, 'Не удалось изменить фото.'));
 });
 router.post('/changeclientcontactinfo', authController.isAuthenticated, function changeClientContactInfo(req, res) {
