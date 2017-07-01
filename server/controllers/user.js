@@ -1,8 +1,9 @@
 /*eslint strict:0  */
-var User, config, nodemailer;
+var User, config, fileController, nodemailer;
 
 User = require('../models/user');
 config = require('../config');
+fileController = require('./file');
 nodemailer = require('nodemailer');
 
 function findUserByEmail(email) {
@@ -59,9 +60,31 @@ function recoverPassword(email) {
 		});
 }
 
+function changePhoto(email, photo) {
+	return findUserByEmail(email)
+		.then(function foundUser(user) {
+			var oldPhotoName;
+
+			oldPhotoName = user.photo ? user.photo.fileName : null;
+			user.photo = {
+				fileName: photo.fileName,
+				url: photo.url,
+				thumbUrl: 'http://res.cloudinary.com/djydlkoln/image/upload/w_200,h_200,c_thumb/v1498573093/' + photo.fileName + '.' + photo.format
+			};
+			if (oldPhotoName) {
+				return fileController.deleteByFileName(oldPhotoName)
+					.then(function success() {
+						return saveOrUpdateUser(user);
+					});
+			}
+			return saveOrUpdateUser(user);
+		});
+}
+
 module.exports = {
 	findByEmail: findUserByEmail,
 	saveOrUpdate: saveOrUpdateUser,
 	changePassword: changePassword,
-	recoverPassword: recoverPassword
+	recoverPassword: recoverPassword,
+	changePhoto: changePhoto
 };

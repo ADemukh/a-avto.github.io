@@ -4,24 +4,42 @@
     angular.module('services')
         .factory('services.file', FileService);
 
-    FileService.$inject = ['$http'];
+    FileService.$inject = ['$http', 'Upload', '$q'];
 
-    function FileService($http) {
+    function FileService($http, uploadService, $q) {
         return {
-            uploadImage: uploadImage,
-            imageSrcUrl: imageSrcUrl
+            upload: uploadFile,
+            uploadImage: uploadImage
         };
 
-        function uploadImage(file) {
+        function uploadFile(file) {
             var formData;
 
             formData = new FormData();
             formData.append('file', file);
-            return $http.post('/file/uploadImage', formData);
+            return $http.post('/files/upload', formData);
         }
 
-        function imageSrcUrl(id) {
-            return '/uploads/' + id;
+        function uploadImage(image) {
+			return uploadService.upload({
+				url: '/upload/image',
+				data: {
+					image: image
+				}
+			}).then(function success(resp) { //upload function returns a promise
+				if (resp.data.error) {
+					return $q.reject(resp);
+				}
+                return $q.resolve(resp);
+			}, function failure(resp) { //catch error
+				return $q.reject('При выполнении операции произошла ошибка.')
+			}, function progress(evt) {
+				// var progressPercentage;
+
+				// progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+				// console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+				// vm.progress = 'progress: ' + progressPercentage + '% ';
+			});
         }
     }
 })();

@@ -24,6 +24,11 @@ userSchema = new mongoose.Schema({
 	changesFrom: {
 		'type': Date,
 		'default': Date.now
+	},
+	photo: {
+		fileName: String,
+		url: String,
+		thumbUrl: String
 	}
 }, options);
 

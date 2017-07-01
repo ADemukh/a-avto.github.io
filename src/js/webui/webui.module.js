@@ -6,7 +6,7 @@ var WEBUI_MODULE_NAME;
     'use strict';
 
     WEBUI_MODULE_NAME = 'aAvto.webui';
-    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select'])
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select', 'ngFileUpload'])
         .config(WebUIModuleConfig)
         .constant('_', window._)
         .constant('routingConfig', window.routingConfig)
@@ -20,7 +20,6 @@ var WEBUI_MODULE_NAME;
         setInterceptors();
         setTranslations();
         errorOnUnhandledRejectionsFalse();
-
 
         function setRoutes() {
             //================================================
@@ -388,7 +387,8 @@ var WEBUI_MODULE_NAME;
                 FOOTER_PROJECT_MAP: 'КАРТА САЙТА',
                 CHANGE_CONFIRMATION: 'Вы уверены?',
                 CONFIRM: 'Да',
-                REJECT: 'Нет'
+                REJECT: 'Нет',
+                ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.'
             });
             $translateProvider.translations('en', {
                 // english translations here

@@ -1,13 +1,55 @@
-<div class="layout-row layout-wrap">
-    <div class="settings-line-caption" translate="">PHOTO_OF_THE_PROFILE</div>
-    <div class="layout-column">
-        <div class="settings-user-photo">
-            <img src="img/user-logo.png">
-        </div>
-        <div class="layout-row settings-line-content-input">
-            <button type="button" class="btn btn-primary settings-line-content-submit">
-			    <span>{{::'DOWNLOAD' | translate}}</span>
-		    </button>
+<style>
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+</style>
+<form name="$ctrl.uploadForm" class="layout-column" novalidate>
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.uploadForm.file.$invalid }">
+        <div class="settings-line-caption" translate>Фото профиля</div>
+        <div class="layout-column settings-line-content-input">
+            <div class="layout-row">
+                <div class="settings-user-photo">
+                    <!--<a href="{{$ctrl.photo.url}}" target="_blank">
+                        <span class="content-img-outer-wrapper">-->
+                            <img ng-src="{{$ctrl.photo.thumbUrl}}">
+                        <!--</span>
+                    </a>-->
+                    <!--<img ngf-thumbnail="$ctrl.photo.thumbUrl" />-->
+                </div>
+                <div ng-if="$ctrl.loading" class="loader">Loading...</div>
+            </div>
+            <span class="help-block" ng-show="$ctrl.uploadForm.file.$error.maxSize">{{'ALERT_FILE_TOO_LARGE' | translate }}</span>
         </div>
     </div>
-</div>
+    <!-- Alerts -->
+    <div ng-show="$ctrl.alerts" class="form-group layout-row layout-wrap">
+        <div class="settings-line-caption"></div>
+        <div class="layout-column  settings-line-content-input">
+            <q-alerts alerts="$ctrl.alerts" />
+        </div>
+    </div>
+    <!-- Submit -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
+        <div class="settings-line-caption"></div>
+        <div class="layout-row settings-line-content-input">
+            <div class="fileUpload btn btn-primary settings-line-content-submit">
+                <span>Загрузить фото</span>
+                <input type="file" class="upload" ngf-select="$ctrl.changePhoto()" ng-model="$ctrl.file" name="file" ngf-pattern="'image/*'"
+                    accept="image/*" ngf-max-size="5MB"/>
+            </div>
+        </div>
+    </div>
+</form>
