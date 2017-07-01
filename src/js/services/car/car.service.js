@@ -32,7 +32,6 @@
             getCarModelYears: getYears
         };
 
-
         function getCars() {
             return getAllCars()
                 .then(function onRecievingCars(cars) {

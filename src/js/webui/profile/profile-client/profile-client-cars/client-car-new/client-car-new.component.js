@@ -8,5 +8,12 @@
             bindings: {
                 onAdd: '&'
             }
+        })
+        .controller('controllers.clientcarnew', function ClientCarNewController() {
+            this.$onInit = function onInit() {
+                this.add = function addCar() {
+                    this.onAdd();
+                };
+            };
         });
 })();

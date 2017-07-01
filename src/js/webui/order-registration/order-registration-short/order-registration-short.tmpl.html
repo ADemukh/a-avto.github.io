@@ -1,46 +1,29 @@
 <style>
-	/* WebKit, Blink, Edge */
-	/*input::-webkit-input-placeholder {
-		color: #909;
-	}*/
-	/* Mozilla Firefox 4 to 18 */
-	/*input:-moz-placeholder {
-		color: #909;
-		opacity: 1;
-	}*/
-	/* Mozilla Firefox 19+ */
-	/*input::-moz-placeholder {
-		color: #909;
-		opacity: 1;
-	}*/
-	/* Internet Explorer 10-11 */
-	/*input:-ms-input-placeholder {
-		color: #909;
-	}*/
+	.select-car-on-main .select-car-mark,
+	.select-car-on-main .select-car-model,
+	.select-car-on-main .select-car-year{
+		width: 200px;
+	}
+	.select-car-on-main .select-car-mark,
+	.select-car-on-main .select-car-model{
+		margin-right: 10px;
+	}
 </style>
 <div class="panel enter single center">
 	<div class="text-align-center">
 		<div class="container">
 			<div class="">
-				<h1>{{::$ctrl.titleAlt}}</h1>
+				<h1 translate>ORDER_REGISTRATION_SHORT_TITLE</h1>
 			</div>
-			<div class="">
+			<div>
+				<q-select-car on-change="$ctrl.onCarSelect($event);" car="$ctrl.newOrder.car" class="layout-row select-car-on-main display-block" />
+				<textarea class="" placeholder="{{::'ORDER_REGISTRATION_SHORT_DETAIL_QUESTION' | translate}}" ng-model="$ctrl.newOrder.details"></textarea>
 				<div class="">
-					<oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.mark"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MARK' | translate }}" ng-disabled="!$ctrl.canChooseCarMark()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="m for m in $ctrl.carModels" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.model"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL' | translate }}" ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="(y + '') for y in $ctrl.carModelYears" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.year"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL_YEAR' | translate }}" ng-disabled="!$ctrl.canChooseCarModelYear()"
-									class="order-registration-select"></oi-select>
-				</div>
-				<textarea class="" placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.newOrder.details"></textarea>
-				<div class="">
-					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.sendToAll()">
-						<span>{{::$ctrl.toAllShopsAlt}}</span>
+					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.sendToAllShops()">
+						<span>{{::'ORDER_REGISTRATION_SHORT_TO_ALL_SHOPS' | translate}}</span>
 					</button>
-					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.searchByMap()">
-						<span>{{::$ctrl.searchByMapAlt}}</span>
+					<button type="button" class="btn btn-action btn-lg center-block" ng-click="::$ctrl.searchShopsByMap()">
+						<span>{{::'ORDER_REGISTRATION_SHORT_TO_SEARCH_SHOPS' | translate}}</span>
 					</button>
 				</div>
 			</div>

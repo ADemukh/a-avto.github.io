@@ -7,32 +7,21 @@
     function OrderService() {
         var newOrder;
 
-        newOrder = emptyNewOrder();
+        newOrder = newEmptyOrder();
         return {
             newOrder: newOrder,
-            carMarkIsSet: carMarkIsSet,
-            carModelIsSet: carModelIsSet,
-            carYearIsSet: carYearIsSet,
-            clearNewOrder: clearNewOrder
+            clear: clearOrder,
+            submit: submitOrder
         };
 
-        function carMarkIsSet() {
-            return newOrder && newOrder.car && newOrder.car.mark;
+        function clearOrder() {
+            newOrder = newEmptyOrder();
         }
 
-        function carModelIsSet() {
-            return newOrder && newOrder.car && newOrder.car.model;
+        function submitOrder() {
         }
 
-        function carYearIsSet() {
-            return newOrder && newOrder.car && newOrder.car.year;
-        }
-
-        function clearNewOrder() {
-            newOrder = emptyNewOrder();
-        }
-
-        function emptyNewOrder() {
+        function newEmptyOrder() {
             return {
                 car: {}
             };

@@ -25,15 +25,15 @@
 }
 
 .two {
-    padding: 50px 20px;
+    padding: 20px;
     text-align: center;
-    }
+}
 
 .plus {
     height: 100%;
     width: 100%;
     font: 40px/100% arial, sans-serif;
-    color:  #000080;
+    color: #005c9d;
     text-shadow: 0 1px 0 #fff;
     background-color: #fff;
     /* Green */
@@ -41,7 +41,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    }
+}
 
 .two h1 {
     font-family: 'Open Sans', sans-serif;
@@ -53,26 +53,24 @@
     padding: 10px 0;
     margin: 0;
     display: inline-block;
-    }
+}
 
 .wrapper_body {
     margin-left: 20px;
     float: left;
     padding: 20px 0;
-    /*min-height:250px;*/
-    width: 250px;
+    width: 300px;
     font-size: 11px;
     font-family: 'Open Sans', sans-serif;
     color: #4A4A4A;
     text-align: center;
-    }
+}
 
 .cbm_wrap {
     margin: 20px auto;
     display: block;
-    height: 400px;
-    /*min-height:250px;*/
-    width: 250px;
+    height: 250px;
+    width: 300px;
     padding: 20px;
     position: relative;
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #aaaeaf), color-stop(100%, #689ecd));
@@ -89,11 +87,11 @@
     -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
-    }
+}
 
 .cbm_wrap * {
     position: relative;
-    }
+}
 
 .cbm_wrap::before {
     background: white;
@@ -108,7 +106,7 @@
     position: absolute;
     right: 1px;
     top: 1px;
-    }
+}
 
 [class*='close-'] {
     height: 20px;
@@ -122,15 +120,36 @@
     top: 5px;
     background-color: #FF0000;
     border: none;
-    }
+}
 
 .close-thik:after {
     content: '✖';
-    }
+}
 
 .car-control-bottom-offset {
     padding-bottom: 10px;
-    }
+}
+
+.client-car-edit-select-car .select-car-mark,
+.client-car-edit-select-car .select-car-model,
+.client-car-edit-select-car .select-car-year {
+    padding-bottom: 10px;
+}
+
+.client-car-edit-vin {
+    border-radius: 10px;
+    padding: 4px 8px 6px 2px;
+    border-width: 1px;
+    height: 35px;
+}
+
+.client-car-edit-line-offset {
+    padding-bottom: 10px;
+}
+
+.client-car-new-plus {
+    font-size: 3em;
+}
 
 .alert {
     text-align: center;
@@ -139,25 +158,16 @@
     padding-bottom: 0px;
     padding-left: 0px;
     margin: auto;
-   
     height: 50px;
-    }
+}
 
-.letter{
+.letter {
     font-weight: bold;
     font-size: 20px;
-    }
-
-.letter1{
-    font-size: 20px;
-    }
-
-.line{
-    padding-bottom: 10px;
 }
-.height{
-    height: 35px;
-    width: 100%;
+
+.letter1 {
+    font-size: 20px;
 }
 
 .settings-wall {

@@ -10,5 +10,24 @@
                 onDelete: '&',
                 onEdit: '&'
             }
+        })
+        .controller('controllers.clientcarread', function ClientCarReadController() {
+            this.$onInit = function onInit() {
+                this.delete = function deleteCar() {
+                    this.onDelete({
+                        $event: {
+                            car: this.car
+                        }
+                    });
+                };
+                this.edit = function editCar() {
+                    this.onEdit();
+                };
+            };
+            this.$onChanges = function onChanges(changes) {
+                if (changes.car) {
+                    this.car = angular.copy(this.car);
+                }
+            };
         });
 })();

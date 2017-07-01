@@ -15,14 +15,13 @@ options = {
 // 	passwordHash: String
 // 	phone: String
 // 	changesFrom: Date
-// 	photo: { id, src }
 // 	notifications: []
 // 	vk: { id, profileUrl }
 // 	fb: { id, profileUrl }
 // 	g: { gogle profile fields }
 
 clientUserSchema = new mongoose.Schema({
-	cars: [{ mark: String, model: String, years: Number, VIN: String }],
+	cars: [{ mark: String, model: String, year: Number, VIN: String }],
 	notifications: [String],
 	vk: {
 		id: String,

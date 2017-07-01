@@ -4,17 +4,11 @@
 			<h3>{{::$ctrl.stage1Alt}}</h3>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-8">
-			<div class="panel enter single center" style="border: none">
-				<div style="text-align: left">
-					<oi-select oi-options="c for c in ::$ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.mark"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MARK' | translate }}" ng-disabled="!$ctrl.canChooseCarMark()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="m for m in $ctrl.carModels" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.model"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL' | translate }}" ng-disabled="!$ctrl.canChooseCarModel()" class="order-registration-select order-registration-select-right-offset"></oi-select>
-					<oi-select oi-options="(y + '') for y in $ctrl.carModelYears" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.newOrder.car.year"
-									placeholder="{{::'ORDER_REGISTRATION_CHOOSE_CAR_MODEL_YEAR' | translate }}" ng-disabled="!$ctrl.canChooseCarModelYear()"
-									class="order-registration-select"></oi-select>
-					<input type="text" style="width: 130px; height: 40px; padding-left: 5px; border-radius: 0px;" ng-model="$ctrl.vin" placeholder="{{::$ctrl.vinAlt}}"
-					/>
+			<div class="panel enter single center">
+				<q-select-car car="$ctrl.newOrder.car" on-change="$ctrl.onCarSelect($event);" class="display-block layoyt-row order-registration-full-select-car"
+				/>
+				<div class="order-registration-full-car-vin">
+					<input type="text" style="font-size: 14px" ng-model="$ctrl.car.VIN" placeholder="VIN" class="order-registration-full-car-vin">
 				</div>
 			</div>
 		</div>
@@ -26,7 +20,7 @@
 		<div class="col-lg-8 col-md-8 col-sm-8">
 			<div class="panel enter single center" style="border: none">
 				<textarea style="display: block; margin-bottom: 20px; width: 100%; height: 120px; resize: none; padding-left: 5px; border-radius: 0px"
-								placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
+				    placeholder="{{::$ctrl.whatShouldBeRepairedAlt}}" ng-model="$ctrl.details"></textarea>
 			</div>
 		</div>
 	</div>
