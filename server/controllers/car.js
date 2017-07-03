@@ -4709,7 +4709,7 @@ function saveCar(car) {
 		end: car.end
 	});
 
-	carModel.save(function save(err) {
+	return carModel.save(function save(err) {
 		if (err) {
 			console.log(err);
 		} else {
@@ -4725,44 +4725,38 @@ module.exports = {
 		});
 	},
 	add: function addNewCar(carItem) {
-		saveCar(carItem);
+		return saveCar(carItem);
 	},
-	update: function updateModel(car) {
-		Car.findOne({
-				mark: car.mark,
-				model: car.model
+	updateModel: function updateModel(car) {
+		return Car.findById({
+				_id: car.id
 			}).exec()
-			.then(function findCar(ucar) {
-				ucar.mark = car.mark;
-				ucar.model = car.model;
-				ucar.from = car.from;
-				ucar.end = car.end;
+			.then(function foundCar(carModel) {
+				carModel.mark = car.mark;
+				carModel.model = car.model;
+				carModel.from = car.from;
+				carModel.end = car.end;
 
-				ucar.save(function savCar(err) {
-					if (err) {
+				return carModel.save()
+					.then(function success(savedModel) {
+						console.log(savedModel.mark + ' ' + savedModel.model + ' is loaded.');
+					}, function failure(err) {
 						console.log(err);
-					} else {
-						console.log(car.mark + ' ' + car.model + ' is loaded.');
-					}
-				});
+					});
 			});
 	},
 	updateMark: function updateMark(car) {
-		Car.find({
+		return Car.find({
 				mark: car.oldMark
 			}).exec()
-			.then(function findCar(mark) {
-				for (var i = 0; i < mark.length; i++) {
-					mark[i]._doc.mark = car.newMark;
-					
-					mark[i].save(function savCar(err) {
-						if (err) {
-							console.log(err);
-						} else {
-							console.log(car.newMark + ' was update');
-						}
-					});
+			.then(function foundCar(carModels) {
+				var i, promises;
+				promises = [];
+				for (i = 0; i < carModels.length; i += 1) {
+					carModels[i].mark = car.newMark;
+					promises.push(carModels[i].save());
 				}
+				return Promise.all(promises);
 			});
 	},
 	deleteCars: function deleteAllMarks(car) {
@@ -4770,23 +4764,40 @@ module.exports = {
 				mark: car
 			}).exec()
 			.then(function deleteMark(cars) {
-				for (var i = 0; i < cars.length; i++) {
+				var i;
+
+				for (i = 0; i < cars.length; i += 1) {
 					cars[i].remove(function success(err) {
 						if (err) {
 							console.log(err);
 						} else {
-							console.log('DELETE car' + car);
+							console.log('DELETE car ' + car);
 						}
 					});
 				}
 			});
 	},
+	deleteModel: function deleteModel(mark, model) {
+		return Car.findOne({
+				mark: mark,
+				model: model
+			}).exec()
+			.then(function foundCar(car) {
+				return car.remove(function success(err) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('DELETE removing ID: ' + car.id);
+					}
+				});
+			});
+	},
 	deleteCar: function deleteMark(Id) {
-		Car.findById({
+		return Car.findById({
 				_id: Id
 			}).exec()
 			.then(function delCar(dcar) {
-				dcar.remove(function success(err) {
+				return dcar.remove(function success(err) {
 					if (err) {
 						console.log(err);
 					} else {
@@ -4801,7 +4812,6 @@ module.exports = {
 	getAllMarks: function getAllMarks() {
 		return Car.find({}).distinct('mark').exec();
 	},
-
 	getMark: function getMark(mark) {
 		return Car.find({
 				mark: mark
@@ -4813,11 +4823,10 @@ module.exports = {
 				};
 			});
 	},
-
-	getModel: function getModel(mark) {
+	getModel: function getModel(mark, model) {
 		return Car.findOne({
-			mark: mark.mark,
-			model: mark.model
+			mark: mark,
+			model: model
 		}).exec();
 	}
 

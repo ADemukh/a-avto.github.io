@@ -3,10 +3,9 @@ extends ../layout
 block content
     form(action='/cars/marks/' + model.mark + '/' + model.model + '/edit', method='POST')
         P
-            a(href="/cars/marks/"+model.mark) Beck
+            a(href="/cars/marks/"+model.mark) Back 
             a(href="/cars/marks") All marks
-        p Mark
-            input(type='text', name='mark', value=model.mark)
+        p Mark: #{ model.mark }
         p Model:
             input(type='text', name='model', value=model.model)
         p From:
@@ -14,17 +13,11 @@ block content
         p End: 
             input(type='text', name='end', value=model.end)
         p
-            input(type='hidden', value=model, name='id')
+            input(type='hidden', name='id', value=model._id)
+        p
             button(type='submit').
                 Update
     form(action='/cars/marks/' + model.mark + '/' + model.model + '/delete', method='POST')
-        input(type='hidden', value=model._id, name='id')
+        input(type='hidden', name='id', value=model._id)
         button(type='submit').
              Delete
-    form(action='/cars/marks/' + model.mark + '/' + model.model + '/add', method='POST')
-        input(type='hidden', value=model , name='car')
-        button(type='submit').
-             Add
-                
-    
-        

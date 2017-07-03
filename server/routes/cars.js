@@ -32,9 +32,11 @@ router.get('/marks', function getAllCars(req, res) {
       });
     });
 });
+
+// /cars/marks/delete { body: { mark }}
 router.post('/marks/delete', function deleteCarMarks(req, res) {
-  carController.deleteCars(req.body.mark);
-  carController.getAllMarks()
+  carController.deleteCars(req.body.mark)
+    .then(carController.getAllMarks)
     .then(function gotMarks(marks) {
       res.render('cars/marks/allMarks', {
         marks: marks
@@ -42,6 +44,7 @@ router.post('/marks/delete', function deleteCarMarks(req, res) {
     });
 });
 
+// /cars/marks/volvo
 router.get('/marks/:mark', function getAllModels(req, res) {
   carController.getMark(req.params.mark)
     .then(function gotMark(mark) {
@@ -51,21 +54,32 @@ router.get('/marks/:mark', function getAllModels(req, res) {
     });
 });
 
+// /cars/marks/volvo/edit { body: { oldMark newMark }}
 router.post('/marks/:mark/edit', function getAllModels(req, res) {
   carController.updateMark({
-    newMark: req.body.mark,
-    oldMark: req.body.model
-  });
-  carController.getAllMarks()
+      newMark: req.body.newMark,
+      oldMark: req.body.oldMark
+    })
+    .then(carController.getAllMarks)
     .then(function gotMarks(marks) {
       res.render('cars/marks/allMarks', {
         marks: marks
       });
     });
 });
-
+// /cars/marks/volvo/edit { body: { mark model }}
+router.post('/marks/:mark/delete', function getAllModels(req, res) {
+  carController.deleteModel(req.params.mark, req.body.model)
+    .then(carController.getAllMarks)
+    .then(function gotMarks(marks) {
+      res.render('cars/marks/allMarks', {
+        marks: marks
+      });
+    });
+});
+// /cars/marks/volvo/xc60
 router.get('/marks/:mark/:model', function getModel(req, res) {
-  carController.getModel(req.params)
+  carController.getModel(req.params.mark, req.params.model)
     .then(function gotModel(model) {
       res.render('cars/models/editModel', {
         model: model
@@ -73,20 +87,25 @@ router.get('/marks/:mark/:model', function getModel(req, res) {
     });
 });
 
+// /cars/marks/volvo/xc60/edit { body: { id mark model from end }}
 router.post('/marks/:mark/:model/edit', function updateCar(req, res) {
-  carController.update({
-    mark: req.body.mark,
-    model: req.body.model,
-    from: req.body.from,
-    end: req.body.end
-  });
-  carController.getMark(req.params.mark)
-    .then(function gotMark(mark) {
-      res.render('cars/marks/mark', {
-        mark: mark
-      });
+  carController.updateModel({
+      id: req.body.id,
+      mark: req.body.mark,
+      model: req.body.model,
+      from: req.body.from,
+      end: req.body.end
+    })
+    .then(function success() {
+      return carController.getMark(req.params.mark)
+        .then(function gotMark(mark) {
+          res.render('cars/marks/mark', {
+            mark: mark
+          });
+        });
     });
 });
+// /cars/marks/volvo/xc60/delete { body: { id }}
 router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
   carController.deleteCar(req.body.id);
   carController.getAllMarks()
@@ -96,19 +115,14 @@ router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
       });
     });
 });
-
-router.post('/marks/:mark/:model/add', function updateCar(req, res) {
-  carController.updateModel(req.body);
-});
-
 router.post('/add', function addCarPost(req, res) {
   carController.add({
-    mark: req.body.mark,
-    model: req.body.model,
-    from: req.body.from,
-    end: req.body.end
-  });
-  carController.getAllMarks()
+      mark: req.body.mark,
+      model: req.body.model,
+      from: req.body.from,
+      end: req.body.end
+    })
+    .then(carController.getAllMarks)
     .then(function gotMarks(marks) {
       res.render('cars/marks/allMarks', {
         marks: marks
