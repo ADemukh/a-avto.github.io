@@ -66,10 +66,15 @@ var WEBUI_MODULE_NAME;
                     template: '<q-order-registration-full/>',
                     url: '/order-registration',
                     parent: 'public'
-                }).state('public.order-registration-search', {
+                });
+
+             $stateProvider
+                .state('order-registration-search', {
                     template: '<q-order-registration-search class="height-full display-block"/>',
                     url: '/find-shop-by-map',
-                    parent: 'public'
+                    data: {
+                        access: window.routingConfig.accessLevels.public
+                    }
                 });
 
             // Anonymous routes

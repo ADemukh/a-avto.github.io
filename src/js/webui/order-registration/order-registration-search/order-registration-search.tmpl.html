@@ -1,17 +1,53 @@
 <style>
-    .search-toolbar {
-        width: 300px;
+    .main-content-wrapper {
+        width: 66%;
+        position: relative;
+    }
+
+    .main-content-filters {
+        height: 80px;
+        position: fixed;
+        z-index: 1;
+        background-color: #fff;
+        width: 66%;
+    }
+
+    .main-content-results {
+        top: 80px;
+        position: relative;
+    }
+
+    .main-content-footer {
+        top: 80px;
+        position: relative;
+    }
+
+    .map-wrapper {
+        width: 34%;
+        position: fixed;
+        left: 66%;
     }
 </style>
-<div class="height-full layout-row">
-    <div class="height-full layout-column search-shop-options">
-        <q-order-registration-search-filters  ng-show="$ctrl.showFilters()" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" class="display-block flex">
-        </q-order-registration-search-filters>
-        <q-order-registration-search-results shops="$ctrl.shops" ng-show="$ctrl.showResults()" class="display-block flex">
-        </q-order-registration-search-results>
-        <q-order-registration-search-switch options="$ctrl.filtersResults" active="$ctrl.option" on-switch="$ctrl.switchTo($event);" class="display-block">
-        </q-order-registration-search-switch>
+<q-navigation class="display-block" />
+<div class="navbar-top-offset flex height-full visible-sm visible-md visible-lg">
+    <div class="layout-row height-full">
+        <div class="main-content-wrapper layout-column height-full">
+            <div class="main-content-filters">
+                <h1>Filters here!</h1>
+            </div>
+            <!--<q-order-registration-search-filters
+                filters="$ctrl.filters"
+                on-update="$ctrl.updateFilters($event);"
+                class="display-block layout-row main-content-filters">
+            </q-order-registration-search-filters>-->
+            <q-order-registration-search-results shops="$ctrl.shops" class="display-block main-content-results">
+            </q-order-registration-search-results>
+            <q-order-registration-search-footer class="display-block main-content-footer" />
+        </div>
+        <q-order-registration-search-map filters="$ctrl.filters" shops="$ctrl.shops" class="height-full display-block map-wrapper display-none">
+        </q-order-registration-search-map>
     </div>
-    <q-order-registration-search-map ng-show="$ctrl.showMap()" filters="$ctrl.filters" shops="$ctrl.shops" class="height-full display-block width-full flex">
-    </q-order-registration-search-map>
+</div>
+<div class="navbar-top-offset visible-xs height-full">
+    <h1>Mobile version here!</h1>
 </div>

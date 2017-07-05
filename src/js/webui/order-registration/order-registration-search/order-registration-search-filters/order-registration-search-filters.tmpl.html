@@ -1,6 +1,4 @@
-<h4 translate>
-    ORDER_REGISTRATION_FILTERS_TITLE</h4>
-<!--<h5>{{::'ORDER_REGISTRATION_FILTERS_FOUND_SHOPS' | translate }}{{$ctrl.shopsCount}}</h5>-->
+<h4 translate>ORDER_REGISTRATION_FILTERS_TITLE</h4>
 <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
     placeholder="{{::'ORDER_REGISTRATION_FILTERS_CITIES' | translate }}" class="search-shop-options"></oi-select>
 <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"

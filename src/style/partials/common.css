@@ -2,7 +2,7 @@
 
 body {
   overflow-x: hidden;
-  background-color: #e9ebee;
+  background-color: #fff;
   height: 100vh;
 }
 
@@ -12,6 +12,10 @@ body {
 
 .width-full {
   width: 100%;
+}
+
+.width-50 {
+  width: 50%;
 }
 
 .display-block {
