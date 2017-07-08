@@ -1,0 +1,27 @@
+<div class="layout-row layout-wrap">
+    <div class="settings-line-caption">{{::'NOTICE' | translate }}</div>
+    <div class="layout-column">
+        <div class="settings-line-bottom-margin">
+            <div ng-if = "$ctrl.type=='client'" ng-repeat="notification in $ctrl.notifications">
+                <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
+                <span>{{::notification.name}}</span>
+            </div>
+             <div ng-if = "$ctrl.type=='shop'" ng-repeat="notification in $ctrl.notifications">
+                <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
+                <span>{{::notification.name}}</span>
+            </div>
+        </div>
+        <div ng-show="$ctrl.alerts" class="form-group layout-row layout-wrap">
+            <div class="settings-line-caption"></div>
+            <div class="layout-column  settings-line-content-input">
+                <q-alerts alerts="$ctrl.alerts" />
+            </div>
+        </div>
+
+        <div class="layout-row settings-line-content-input">
+            <button type="button" class="btn btn-primary settings-line-content-submit" ng-click="$ctrl.changeNotifications();">
+                <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
+            </button>
+        </div>
+    </div>
+</div>
