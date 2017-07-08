@@ -21,6 +21,7 @@ userSchema = new mongoose.Schema({
 	password: String,
 	passwordHash: String,
 	phone: String,
+	notifications: [String],
 	changesFrom: {
 		'type': Date,
 		'default': Date.now

@@ -4,36 +4,65 @@
     angular.module('services')
         .factory('services.notifications', NotificationsService);
 
-    function NotificationsService() {
-        var notifications;
+    NotificationsService.$inject = ['$http', '$q'];
+
+
+    function NotificationsService($http, $q) {
+        var allNotifications, dfd;
+
+        function getAllNotifications() {
+            if (!dfd) {
+                dfd = $q.defer();
+                fetchAllNotifications({});
+            }
+            return dfd.promise;
+        }
+
+        function fetchAllNotifications(filter) {
+            return $http.get('notifications/getNotifications', filter)
+                .then(function response(resp) {
+                    allNotifications = resp.data;
+                    dfd.resolve(allNotifications);
+                });
+        }
+
 
         return {
-            returnNotifications: returnNotifications
+            getShopNotifications: getShopNotifications,
+            getClientNotifications: getClientNotifications
         };
 
-        function returnNotifications(type) {
-            if (type == 'client') {
-                notifications = [{
-                    name: 'Отправлять мне SMS, когда приходят ответы поставщиков по моим заявкам',
-                    type: 'OrderFollowed'
-                }, {
-                    name: 'Отправлять мне e-mail при смене статусов',
-                    type: 'OrderStatusChanged'
-                }, {
-                    name: 'Отправлять мне e-mail при закрытии заявки',
-                    type: 'OrderClosed'
-                }];
-            }
-            else if (type == 'shop') {
-                notifications = [{
-                    name: 'Отправлять мне SMS, когда приходят заявки от клиентов',
-                    type: 'OrderFollowed'
-                }, {
-                    name: 'Отправлять мне e-mail при смене статусов',
-                    type: 'OrderStatusChanged'
-                }];
-            }
-            return notifications;
+        function getShopNotifications() {
+            return getAllNotifications()
+                .then(function onGetNot(notifications) {
+                    var i;
+                    var clientNotifications = [];
+                    for (i = 0; i < notifications.length; i++) {
+                        if (notifications[i].forShop == true) {
+                            clientNotifications.push(notifications[i]);
+                            continue;
+                        }
+                    }
+                    return clientNotifications;
+                });
+        }
+
+        function getClientNotifications() {
+            return getAllNotifications()
+                .then(function onGetNot(notifications) {
+                    var i;
+                    var shopNotifications;
+                    shopNotifications = [];
+                    for (i = 0; i < notifications.length; i++) {
+                        if (notifications[i].forClient == true) {
+                            shopNotifications.push(notifications[i]);
+                            continue;
+                        }
+                    }
+                    return shopNotifications;
+                });
         }
     }
 })();
+
+                    

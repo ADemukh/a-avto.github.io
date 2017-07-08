@@ -5,7 +5,7 @@
         .component('qProfileSettingsChangePassword', {
             controller: 'controllers.profilesettingschangepassword',
             bindings: {
-                type: '<'
+                changeUserPassword: '<'
             },
             templateUrl: 'webui/common/change-password/change-password.tmpl.html'
         });

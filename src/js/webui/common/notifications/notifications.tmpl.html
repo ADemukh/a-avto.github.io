@@ -2,11 +2,7 @@
     <div class="settings-line-caption">{{::'NOTICE' | translate }}</div>
     <div class="layout-column">
         <div class="settings-line-bottom-margin">
-            <div ng-if = "$ctrl.type=='client'" ng-repeat="notification in $ctrl.notifications">
-                <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
-                <span>{{::notification.name}}</span>
-            </div>
-             <div ng-if = "$ctrl.type=='shop'" ng-repeat="notification in $ctrl.notifications">
+            <div ng-repeat="notification in $ctrl.notifications">
                 <input type="checkbox" value="{{notification.type}}" ng-model="notification.selected">
                 <span>{{::notification.name}}</span>
             </div>
