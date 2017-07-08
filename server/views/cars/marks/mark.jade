@@ -4,18 +4,21 @@ block content
 
     form(action='/cars/marks/' + mark.mark + '/edit', method='POST')
         P
-            a(href="/cars/marks") Back
+            a.links(href="/cars/marks") Back
         p
-            input(type='text', name='newMark', value=mark.mark)
+            input.textBox(type='text', name='newMark', value=mark.mark)
         p
             input(type='hidden', name='oldMark', value=mark.mark)
-            button(type='submit').
+            button.addCarSubmit(type='submit').
                 Save    
         each model in mark.models
-            p
-               a(href="/cars/marks/#{mark.mark}/#{model}") #{ model }
-            p   
-               form(action='/cars/marks/' + mark.mark + '/delete', method='POST')
+            div.button_links
+               form.delete_form(action='/cars/marks/' + mark.mark + '/delete', method='POST')
+                    a.allLinks(href="/cars/marks/#{mark.mark}/#{model}") #{ model }                    
                     input(type='hidden', value=model, name='model')
-                    button(type='submit').
-                        Delete Car                    
+                    button(type='submit')
+                        img(src="/img/delete.png" width="16" height="16")     
+                br
+        a.allLinks(href="/cars/marks/#{mark.mark}/add") Add                 
+        
+                                       

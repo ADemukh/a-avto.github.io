@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+    form(action='/cars/marks/'+ mark+"/add", method='POST')
+        div
+            label.allLinks Mark: #{mark}
+            br
+            input.carInput(type='text', name='model', placeholder='Model')
+            br
+            input.carInput(type='text', name='from', placeholder='From')
+            br
+            input.carInput(type='text', name='end', placeholder='End')
+            br
+            input.carSubmit(type='submit', value='Add')
+        

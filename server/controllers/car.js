@@ -4724,7 +4724,7 @@ module.exports = {
 			saveCar(carItem);
 		});
 	},
-	add: function addNewCar(carItem) {
+	addMark: function addNewCar(carItem) {
 		return saveCar(carItem);
 	},
 	updateModel: function updateModel(car) {
@@ -4732,7 +4732,6 @@ module.exports = {
 				_id: car.id
 			}).exec()
 			.then(function foundCar(carModel) {
-				carModel.mark = car.mark;
 				carModel.model = car.model;
 				carModel.from = car.from;
 				carModel.end = car.end;
@@ -4751,6 +4750,7 @@ module.exports = {
 			}).exec()
 			.then(function foundCar(carModels) {
 				var i, promises;
+
 				promises = [];
 				for (i = 0; i < carModels.length; i += 1) {
 					carModels[i].mark = car.newMark;
@@ -4760,21 +4760,17 @@ module.exports = {
 			});
 	},
 	deleteCars: function deleteAllMarks(car) {
-		Car.find({
+		return Car.find({
 				mark: car
 			}).exec()
 			.then(function deleteMark(cars) {
-				var i;
+				var i, promises;
 
+				promises = [];
 				for (i = 0; i < cars.length; i += 1) {
-					cars[i].remove(function success(err) {
-						if (err) {
-							console.log(err);
-						} else {
-							console.log('DELETE car ' + car);
-						}
-					});
+					promises.push(cars[i].remove());
 				}
+				return Promise.all(promises);
 			});
 	},
 	deleteModel: function deleteModel(mark, model) {

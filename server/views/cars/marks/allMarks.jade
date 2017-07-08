@@ -4,13 +4,15 @@ block content
     form(action='add')
         div
             p
-                input(type='submit', value='Add Car')
+                input.addCarSubmit(type='submit', value='Add Car')
         br    
         div
             each mark in marks
-                a(href="/cars/marks/#{mark}") #{ mark }  
-                form(action='/cars/marks/delete', method='POST')
-                    input(type='hidden', value=mark, name='mark')
-                    button(type='submit').
-                        Delete Car
-                br             
+                div.button_links
+                    form(action='/cars/marks/delete', method='POST')
+                        a.allLinks(href="/cars/marks/#{mark}") #{ mark }                      
+                        input(type='hidden', value=mark, name='mark')
+                        button(type='submit')
+                            img(src="/img/delete.png" width="16" height="16")     
+        
+                    br             
