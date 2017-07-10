@@ -1,63 +1,26 @@
 extends layout
 
 block content
-  style(type='text/css').
-    .addCar{
-      font-size: 25px;
-      text-align: center;
-      margin-top: 230px;
-    }
-    body{
-      overflow-x: hidden;
-      background: url(../img/bg.jpg) repeat 0 0 #eceee9;
-    }
-    .someLabel{
-      font-size: 35px;
-    }
-    .carInput{
-      width: 130px;
-      box-sizing: border-box;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-      background-color: white;
-      background-position: 10px 10px;
-      background-repeat: no-repeat;
-      padding: 12px 20px 12px 40px;
-      transition: width 0.4s ease-in-out;
-      width: 400px;
-      margin-top: 8px;
-    }
-    .carSubmit{
-      border: none;
-      padding: 16px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-      cursor: pointer;
-      background-color: white;
-      color: black;
-      border: 2px solid #555555;
-      font-size: 25px;
-      width: 400px;
-    }
-    .carSubmit:hover{
-      background-color: #555555;
-      color: white;
-    }
   form(method='post', action='add')
-    .addCar
-      label.someLabel Add Car:
-      br
-      input.carInput(type='text', name='mark', placeholder='Mark')
-      br
-      input.carInput(type='text', name='model', placeholder='Model')
-      br
-      input.carInput(type='text', name='from', placeholder='From')
-      br
-      input.carInput(type='text', name='end', placeholder='End')
-      br
-      input.carSubmit(type='submit', value='Submit')
+      div.cbm_wrap_button
+        div.wrapper_body_button
+          a.addCarSubmit(href="/cars/marks") All marks
+      p.center Add Car:
+        .cbm_wrap_center
+            .wrapper_body_center
+                input.carSubmit(type='text', name='mark', value=model, placeholder='Mark')
+        .cbm_wrap_center
+            .wrapper_body_center
+                input.carSubmit(type='text', name='model', value=model, placeholder='Model')
+        .cbm_wrap_center
+            .wrapper_body_center
+                input.carSubmit(type='text', name='from', value=from, placeholder='From')
+        .cbm_wrap_center
+            .wrapper_body_center
+                input.carSubmit(type='text', name='end', value=end, placeholder='End')
+      p
+          input(type='hidden', name='id', value=_id)
+          div.cbm_wrap_button_center
+              div.wrapper_body_button_center
+                  button.addCarSubmit(type='submit').
+                      Add
