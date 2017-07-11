@@ -5,9 +5,9 @@
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state', '$location'];
 
-    function IdentityService($http, $q, popupService, routingConfig, $state) {
+    function IdentityService($location, $http, $q, popupService, routingConfig, $state) {
         var api;
 
         api = {
@@ -25,7 +25,9 @@
             authorize: authorize,
             loggedIn: loggedIn,
             accessLevels: routingConfig.accessLevels,
-            userRoles: routingConfig.userRoles
+            userRoles: routingConfig.userRoles,
+            saveAttemptUrl: saveAttemptUrl,
+            redirectToAttemptedUrl: redirectToAttemptedUrl
         };
 
         return api;
@@ -144,6 +146,18 @@
                 email: email,
                 password: newPassword
             });
+        }
+
+        function saveAttemptUrl() {
+            if ($location.path().toLowerCase() != '/login') {
+               // redirectToUrlAfterLogin.url = $location.path();
+            } else {
+             //   redirectToUrlAfterLogin.url = '/';
+            }
+        }
+
+        function redirectToAttemptedUrl() {
+           // $location.path(redirectToUrlAfterLogin.url);
         }
     }
 })();

@@ -208,7 +208,7 @@ var WEBUI_MODULE_NAME;
             //================================================
             // Add an interceptor for AJAX errors
             //================================================
-            $httpProvider.interceptors.push(function interceptor($q, $location) {
+            $httpProvider.interceptors.push(function interceptor($q, $state, identity) {
                 return {
                     response: function onResponse(response) {
                         // do something on success
@@ -216,7 +216,8 @@ var WEBUI_MODULE_NAME;
                     },
                     responseError: function onResponseError(response) {
                         if (response.status === 401 || response.status === 403) {
-                            $location.path('/login');
+                            identity.saveAttemptUrl();
+                            $state.go('anon.login');
                         }
                         return $q.reject(response);
                     }
@@ -235,7 +236,7 @@ var WEBUI_MODULE_NAME;
                 MARK: 'Марка',
                 MODEL: 'Модель',
                 YEAR: 'Год',
-                VIN: 'VIN', 
+                VIN: 'VIN',
                 CHANGE: 'Изменить',
                 YOUR_CARS: 'Ваши автомобили',
                 CHANGE_PASSWORD: 'Изменить пароль',
@@ -417,7 +418,8 @@ var WEBUI_MODULE_NAME;
                     event.preventDefault();
                 } else if (!identity.authorize(toState.data.access)) {
                     // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
-                    event.preventDefault();
+                    // event.preventDefault();
+                    identity.saveAttemptUrl();
                     $state.go('anon.login');
                 }
             } else {
