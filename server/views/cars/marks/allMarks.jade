@@ -1,22 +1,21 @@
-extends ../../layout
+extends ../layout
 
 block content
-    form(action='add')
-        div.center
-            label Автомобили в базе данных
-        div
-            p
-                div.float
-                    div.cbm_wrap_button
-                        div.wrapper_body_button
-                            input.addCarSubmit(type='submit', value='Add Car')
-        div
-            each mark in marks
-                div.float
-                    div.cbm_wrap
-                        div.wrapper_body
-                            form(action='/cars/marks/delete', method='POST')
-                                a.allLinks(href="/cars/marks/#{mark}") #{ mark }                      
-                                input(type='hidden', value=mark, name='mark')
-                                button.close(type='submit' title='Удалить')
-                            br             
+    div.center
+        label Автомобили в базе данных
+    div
+        p
+            div.float
+                div.cbm_wrap_button
+                    div.wrapper_body_button
+                        a.allLinks(href="/cars/marks/add") #{ 'Add Car' }
+    div
+        each mark in marks
+            div.float
+                div.cbm_wrap
+                    div.wrapper_body
+                        form(action='/cars/marks/delete', method='POST')
+                            a.allLinks(href="/cars/marks/#{mark}") #{ mark }                      
+                            input(type='hidden', value=mark, name='mark')
+                            button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')" )
+                        br             

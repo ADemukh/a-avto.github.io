@@ -30,33 +30,27 @@ router.get('/marks', function getAllCars(req, res) {
 });
 
 // cars/marks/add
-router.get('/add', function addCarGet(req, res) {
-  res.render('addMark', {});
+router.get('/marks/add', function addCarGet(req, res) {
+  res.render('cars/marks/addMark', {});
 });
 
-router.post('/add', function addCarPost(req, res) {
+router.post('/marks/add', function addCarPost(req, res) {
   carController.addMark({
       mark: req.body.mark,
       model: req.body.model,
       from: req.body.from,
       end: req.body.end
     })
-    .then(carController.getAllMarks)
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/');
     });
 });
 
 // /cars/marks/delete { body: { mark }}
 router.post('/marks/delete', function deleteCarMarks(req, res) {
   carController.deleteCars(req.body.mark)
-    .then(carController.getAllMarks)
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/');
     });
 });
 
@@ -69,6 +63,7 @@ router.get('/marks/:mark', function getAllModels(req, res) {
       });
     });
 });
+
 router.get('/marks/:mark/add', function getAllModels(req, res) {
   res.render('cars/marks/addModel', {
     mark: req.params.mark
@@ -96,11 +91,8 @@ router.post('/marks/:mark/edit', function getAllModels(req, res) {
       newMark: req.body.newMark,
       oldMark: req.body.oldMark
     })
-    .then(carController.getAllMarks)
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.body.newMark);
     });
 });
 
