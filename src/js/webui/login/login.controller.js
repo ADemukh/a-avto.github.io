@@ -16,7 +16,6 @@
 				.then(function complete(result) {
 					if (identity.loggedIn()) {
 						identity.redirectToAttemptedUrl();
-					//	$state.go('public.main');
 					} else if (result.alert) {
 						vm.alerts = [alerts.danger(result.alert.message)];
 					}
