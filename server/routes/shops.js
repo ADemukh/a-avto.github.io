@@ -1,5 +1,5 @@
 /*eslint strict:0  */
-var express, router, shopController, authController, profileClientController, profileShopController;
+var authController, express, profileClientController, profileShopController, router, shopController, userController;
 
 userController = require('../controllers/user');
 express = require('express');
@@ -30,14 +30,13 @@ function failureWrapper(res, error) {
   };
 }
 
-
 router.post('/changepassword', authController.isAuthenticated, function changePassword(req, res) {
   userController.changePassword(req.body.email, req.body.newPassword)
     .then(succeedWrapper(res, 'Пароль изменен.'), failureWrapper(res, 'При изменении пароля возникла ошибка.'));
 });
 
 router.post('/changeshopphoto', authController.isAuthenticated, function changeUserPhoto(req, res) {
-  profileShopController.changePhoto(req.body.email, req.body.photoId)
+  userController.changePhoto(req.body.email, req.body.photo)
     .then(succeedWrapper(res, 'Фото изменено.'), failureWrapper(res, 'Не удалось изменить фото.'));
 });
 router.post('/changeshopcontactinfo', authController.isAuthenticated, function changeShopContactInfo(req, res) {

@@ -5,5 +5,14 @@
         .component('qProfileClientOrders', {
             controller: 'controllers.profileclientorders',
             templateUrl: 'webui/profile/profile-client/profile-client-orders/profile-client-orders.tmpl.html'
-        });
+        })
+        .controller('controllers.profileclientorders', ProfileClientOrdersController);
+
+    ProfileClientOrdersController.$inject = [];
+
+    function ProfileClientOrdersController() {
+        var vm;
+
+        vm = this;
+    }
 })();

@@ -35,10 +35,10 @@
             }).then(updateCurrentUser);
         }
 
-        function changeNotifications(notifications) {
+        function changeNotifications(selectedNotifications) {
             return $http.post('profile/changeclientnotifications', {
                 email: identityService.user.email,
-                notifications: notifications
+                notifications: selectedNotifications
             }).then(updateCurrentUser);
         }
 
