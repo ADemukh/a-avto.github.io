@@ -3,18 +3,18 @@
 
     angular.module(WEBUI_MODULE_NAME)
         .component('qOrderRegistrationSearchFilters', {
-            controller: 'controllers.orderregistrationsearchfilters',
-            templateUrl: 'webui/order-registration/order-registration-search/order-registration-search-filters/order-registration-search-filters.tmpl.html',
+            controller: 'controllers.orderregistrationsearchfiltersmobile',
+            templateUrl: 'webui/order-registration/order-registration-search/search-filters/search-filters-mobile/search-filters-mobile.tmpl.html',
             bindings: {
                 filters: '<',
                 onUpdate: '&'
             }
         })
-        .controller('controllers.orderregistrationsearchfilters', OrderRegistrationSearchFiltersController);
+        .controller('controllers.orderregistrationsearchfiltersmobile', OrderRegistrationSearchFiltersMobileController);
 
-	OrderRegistrationSearchFiltersController.$inject = ['services.common'];
+	OrderRegistrationSearchFiltersMobileController.$inject = ['services.common'];
 
-	function OrderRegistrationSearchFiltersController(common) {
+	function OrderRegistrationSearchFiltersMobileController(common) {
 		this.$onInit = function onInit() {
 			common.services.adress.getCities().then(function onGetCities(cities) {
 				this.cities = cities;

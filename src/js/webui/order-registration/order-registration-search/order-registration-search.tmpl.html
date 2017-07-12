@@ -1,53 +1,55 @@
 <style>
-    .main-content-wrapper {
-        width: 66%;
-        position: relative;
-    }
 
-    .main-content-filters {
-        height: 80px;
-        position: fixed;
-        z-index: 1;
-        background-color: #fff;
-        width: 66%;
-    }
-
-    .main-content-results {
-        top: 80px;
-        position: relative;
-    }
-
-    .main-content-footer {
-        top: 80px;
-        position: relative;
-    }
-
-    .map-wrapper {
-        width: 34%;
-        position: fixed;
-        left: 66%;
-    }
 </style>
 <q-navigation class="display-block" />
-<div class="navbar-top-offset flex height-full visible-sm visible-md visible-lg">
+<div class="navbar-top-offset flex height-full order-registration-search-desktop">
     <div class="layout-row height-full">
         <div class="main-content-wrapper layout-column height-full">
-            <div class="main-content-filters">
-                <h1>Filters here!</h1>
-            </div>
-            <!--<q-order-registration-search-filters
-                filters="$ctrl.filters"
-                on-update="$ctrl.updateFilters($event);"
-                class="display-block layout-row main-content-filters">
-            </q-order-registration-search-filters>-->
-            <q-order-registration-search-results shops="$ctrl.shops" class="display-block main-content-results">
-            </q-order-registration-search-results>
-            <q-order-registration-search-footer class="display-block main-content-footer" />
+            <q-order-registration-search-filters-desktop filters="$ctrl.filters" class="display-block filters" />
+            <q-order-registration-search-results shops="$ctrl.shops" class="display-block results" />
         </div>
-        <q-order-registration-search-map filters="$ctrl.filters" shops="$ctrl.shops" class="height-full display-block map-wrapper display-none">
+        <q-order-registration-search-map filters="$ctrl.filters" shops="$ctrl.shops" class="height-full display-block map-wrapper">
         </q-order-registration-search-map>
     </div>
 </div>
-<div class="navbar-top-offset visible-xs height-full">
-    <h1>Mobile version here!</h1>
+<div class="navbar-top-offset height-full order-registration-search-mobile">
+    <q-order-registration-search-filters-mobile ng-show="$ctrl.showFilters" filters="$ctrl.filters" class="display-block filters"
+    />
+    <q-order-registration-search-results ng-show="$ctrl.showResults" shops="$ctrl.shops" class="display-block results" />
+    <!--<q-order-registration-search-map ng-show="$ctrl.showResults" class="display-block map" />-->
+    <div class="switch">
+        <div class="outerContainer">
+            <div class="innerContainer">
+                <div class="tripleButtonBar">
+                    <button type="button" class="button-leftButton">
+                        <span>List</span>
+                        <div class="buttonBorder display-inline-block" style="margin-left: 6px;">
+                            <svg viewBox="0 0 16 16" role="img" aria-label="List" focusable="false" style="display: block; fill: rgb(0, 132, 137); height: 1em; width: 1em;">
+                                <path fill-rule="evenodd" d="M15.25 12.5a.75.75 0 0 1-.75.75h-13a.75.75 0 0 1 0-1.5h13a.75.75 0 0 1 .75.75zm-.75-5.75h-13a.75.75 0 1 0 0 1.5h13a.75.75 0 0 0 0-1.5zm-13-3.5h13a.75.75 0 0 0 0-1.5h-13a.75.75 0 1 0 0 1.5z">
+                                </path>
+                            </svg>
+                        </div>
+                    </button>
+                    <button type="button" class="button_centrButton">
+                        <span>Map</span>
+                        <div class="buttonBorder display-inline-block">
+                            <svg viewBox="0 0 12 12" role="img" aria-label="Map" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;">
+                                <path fill-rule="evenodd" d="M10.377.76l-2.816.469L4.738.288a.753.753 0 0 0-.474 0l-3 1a.75.75 0 0 0-.513.711v9a.75.75 0 0 0 .987.711l2.763-.921 2.763.921c.154.051.32.051.474 0l3-1a.75.75 0 0 0 .513-.711v-8.5a.75.75 0 0 0-.873-.74l-.001.001zM2.25 9.959V2.54l1.5-.5v7.419l-1.5.5zm3-7.919l1.5.5v7.419l-1.5-.5V2.04zm3 .595l1.5-.25v7.074l-1.5.5V2.635z"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <button type="button"    class="button_rightButton">
+                        <span>Filters</span>
+                        <div class="display-inline-block" style="margin-left: 6px;">
+                                <svg viewBox="0 0 12 12" role="img" aria-label="Filters" focusable="false" style="display: block; fill: currentcolor; height: 1em; width: 1em;">
+                                    <path fill-rule="evenodd" d="M2.5.25a.75.75 0 0 0-.75.75v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 2.5.25zm0 4a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm3.5-4a.75.75 0 0 0-.75.75v5.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0v-.378a2.25 2.25 0 0 0 0-4.244V1A.75.75 0 0 0 6 .25zm0 9a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5zm4.25-7.872V1a.75.75 0 0 0-1.5 0v.378a2.25 2.25 0 0 0 0 4.244V11a.75.75 0 0 0 1.5 0V5.622a2.25 2.25 0 0 0 0-4.244zM9.5 4.25a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                    </button>
+                        </div>
+                    </div>
+        </div>
+    </div>
 </div>

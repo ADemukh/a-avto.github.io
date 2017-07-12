@@ -1,0 +1,116 @@
+@media only screen and (min-width: 768px) {
+    .order-registration-search-desktop {
+        display: block;
+    }
+    .order-registration-search-mobile {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .order-registration-search-desktop {
+        display: none;
+    }
+    .order-registration-search-mobile {
+        display: block;
+    }
+}
+
+.order-registration-search-desktop .main-content-wrapper {
+    width: 66%;
+    position: relative;
+}
+
+.order-registration-search-desktop .map-wrapper {
+    width: 34%;
+    position: fixed;
+    left: 66%;
+}
+
+.order-registration-search-desktop .filters {
+    height: 80px;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+    width: 66%;
+}
+
+.order-registration-search-desktop .results {
+    top: 80px;
+    position: relative;
+}
+
+.order-registration-search-desktop .footer {
+    top: 80px;
+    position: relative;
+}
+
+.order-registration-search-mobile .filters {
+    /*height: 100%;*/
+}
+
+.order-registration-search-mobile .results {
+    height: 100%;
+}
+
+.order-registration-search-mobile .map {
+    height: 100%;
+}
+
+.order-registration-search-mobile .switch {}
+
+.order-registration-search-mobile .switch .outerContainer {
+    left: 0px !important;
+    right: 0px !important;
+    position: fixed !important;
+    opacity: 1 !important;
+    text-align: center !important;
+    -webkit-transition-property: opacity !important;
+    -moz-transition-property: opacity !important;
+    transition-property: opacity !important;
+    -webkit-transition-duration: 250ms !important;
+    transition-duration: 250ms !important;
+    -webkit-transition-timing-function: ease-out !important;
+    transition-timing-function: ease-out !important;
+    z-index: 100 !important;
+    bottom: 16px;
+}
+
+.order-registration-search-mobile .switch .innerContainer {
+    display: inline-block !important;
+}
+
+.order-registration-search-mobile .switch .tripleButtonBar {
+    color: #484848 !important;
+    overflow: hidden !important;
+    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.14) !important;
+    border-radius: 80px !important;
+    background-color: #ffffff !important;
+    display: inline-block !important;
+}
+
+.order-registration-search-mobile .switch .button,
+{
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    letter-spacing: 0.4px !important;
+    padding: 8px !important;
+    color: #484848 !important;
+    font-weight: 700 !important;
+    background-color: transparent !important;
+    border: none !important;
+    text-transform: uppercase !important;
+}
+
+.order-registration-search-mobile .switch .button.button-left {
+    padding-left: 16px !important;
+}
+
+.order-registration-search-mobile .switch .button.button-right {
+    padding-right: 16px !important;
+}
+
+.order-registration-search-mobile .switch .button.active {
+    color: #008489 !important;
+}
