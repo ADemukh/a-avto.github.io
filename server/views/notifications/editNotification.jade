@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    form(action='/notifications/notifications/' + notification.type + '/edit', method='POST')
+        P
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addSubmit(href="/notifications/notifications") Нотификации
+        p.center Изменение
+             .cbm_wrap_center
+                .wrapper_body_center
+                    input.Submit(type='text', name='name', value=notification.name, placeholder='Имя')
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.Submit(type='text', name='type', value=notification.type, placeholder='Тип')
+            .cbm_wrap_center
+                .wrapper_body_center
+                    select.Submit(name='forClient')
+                        option(value="" disabled selected) Для клиента
+                        each bool in ['true', 'false']
+                            option(value=bool) #{bool}
+            .cbm_wrap_center
+                .wrapper_body_center
+                    select.Submit(name='forShop')
+                        option(value="" disabled selected) Для магазина
+                        each bool in ['true', 'false']
+                            option(value=bool) #{bool}        
+        p
+            input(type='hidden', name='id', value=notification._id)
+            div.cbm_wrap_button_center
+                div.wrapper_body_button_center
+                    button.addSubmit(type='submit').
+                        Изменить
