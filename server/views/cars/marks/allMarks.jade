@@ -8,7 +8,7 @@ block content
             div.float
                 div.cbm_wrap_button
                     div.wrapper_body_button
-                        a.allLinks(href="/cars/marks/add") #{ 'Add Car' }
+                        a.addCarSubmit(href="/cars/marks/add") #{ 'Добавить' }
     div
         each mark in marks
             div.float
@@ -17,5 +17,6 @@ block content
                         form(action='/cars/marks/delete', method='POST')
                             a.allLinks(href="/cars/marks/#{mark}") #{ mark }                      
                             input(type='hidden', value=mark, name='mark')
-                            button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')" )
+                            button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')" ).
+                                X
                         br             

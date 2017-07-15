@@ -65,7 +65,7 @@ router.get('/marks/:mark', function getAllModels(req, res) {
 });
 
 router.get('/marks/:mark/add', function getAllModels(req, res) {
-  res.render('cars/marks/addModel', {
+  res.render('cars/models/addModel', {
     mark: req.params.mark
   });
 });
@@ -77,11 +77,8 @@ router.post('/marks/:mark/add', function getAllModels(req, res) {
       from: req.body.from,
       end: req.body.end
     })
-    .then(carController.getAllMarks)
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.params.mark);
     });
 });
 
@@ -99,11 +96,8 @@ router.post('/marks/:mark/edit', function getAllModels(req, res) {
 // /cars/marks/volvo/edit { body: { mark model }}
 router.post('/marks/:mark/delete', function getAllModels(req, res) {
   carController.deleteModel(req.params.mark, req.body.model)
-    .then(carController.getAllMarks)
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.params.mark);
     });
 });
 
@@ -126,13 +120,8 @@ router.post('/marks/:mark/:model/edit', function updateCar(req, res) {
       from: req.body.from,
       end: req.body.end
     })
-    .then(function success() {
-      return carController.getMark(req.params.mark)
-        .then(function gotMark(mark) {
-          res.render('cars/marks/mark', {
-            mark: mark
-          });
-        });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.params.mark);
     });
 });
 
@@ -140,10 +129,8 @@ router.post('/marks/:mark/:model/edit', function updateCar(req, res) {
 router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
   carController.deleteCar(req.body.id);
   carController.getAllMarks()
-    .then(function gotMarks(marks) {
-      res.render('cars/marks/allMarks', {
-        marks: marks
-      });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.params.mark);
     });
 });
 
