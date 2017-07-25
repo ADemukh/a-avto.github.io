@@ -127,11 +127,10 @@ router.post('/marks/:mark/:model/edit', function updateCar(req, res) {
 
 // /cars/marks/volvo/xc60/delete { body: { id }}
 router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
-  carController.deleteCar(req.body.id);
-  carController.getAllMarks()
-    .then(function redirect() {
-      res.redirect('/cars/marks/' + req.params.mark);
-    });
+  carController.deleteCar(req.body.id)
+  .then(function redirect() {
+    res.redirect('/cars/marks/' + req.params.mark);
+  });
 });
 
 module.exports = router;

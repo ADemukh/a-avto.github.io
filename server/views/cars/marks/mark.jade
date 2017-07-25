@@ -25,5 +25,5 @@ block content
                         form(action='/cars/marks/' + mark.mark + '/delete', method='POST')
                             a.allLinks(href="/cars/marks/#{mark.mark}/#{model}") #{ model }                    
                             input(type='hidden', value=model, name='model')
-                            button.close(type='submit' title='Удалить' ).
+                            button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')").
                                 X
