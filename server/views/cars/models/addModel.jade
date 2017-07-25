@@ -3,12 +3,12 @@ extends ../layout
 block content
     form(action='/cars/marks/'+ mark+"/add", method='POST')
       P
-            div.cbm_wrap_button
-                div.wrapper_body_button
-                    a.addCarSubmit(href="/cars/marks/"+mark) Назад
-            div.cbm_wrap_button
-                div.wrapper_body_button
-                    a.addCarSubmit(href="/cars/marks") Все марки
+        div.cbm_wrap_button
+            div.wrapper_body_button
+                a.addCarSubmit(href="/cars/marks/"+mark) Назад
+        div.cbm_wrap_button
+            div.wrapper_body_button
+                a.addCarSubmit(href="/cars/marks") Все марки
         div.center
             label #{mark}
             .cbm_wrap_center
