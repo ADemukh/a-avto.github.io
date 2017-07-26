@@ -1,0 +1,225 @@
+.search-shops {
+    position: relative;
+    min-height: 100%;
+}
+
+.search-shops.wrapper,
+.search-shops-footer .wrapper {
+    margin: 0 auto;
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.search-shops .filters .mobile,
+.search-shops .filters .desktop,
+.search-shops .map,
+.search-shops .results {
+    top: 50px;
+}
+
+.search-shops .filters .mobile,
+.search-shops .filters .desktop {
+    background-color: white;
+}
+
+.search-shops .map {
+    position: fixed;
+    height: 100%;
+}
+
+.search-shops .map .loader-wrapper {
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.search-shops .results {
+    position: relative;
+}
+
+.search-shops-footer {
+    position: relative;
+    height: 50px;
+    z-index: 4;
+}
+
+.search-shops-footer .logo {
+    height: 50px;
+    padding: 10px;
+}
+
+.search-shops-footer ul.social-icons,
+.search-shops-footer .social-icons li{
+    display: inline-block;
+}
+
+.search-shops-footer ul.social-icons{
+    margin-bottom: 0px;
+    vertical-align: middle;
+}
+
+.search-shops .switch.outer-wrapper {
+    position: fixed;
+    bottom: 16px;
+    text-align: center;
+    width: 100%;
+    z-index: 4;
+}
+
+.search-shops .switch .inner-wrapper {
+    display: inline-block;
+    height: 35px;
+    border-radius: 23px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    padding: 0 10px;
+}
+
+.search-shops .switch a {
+    padding: 0 15px;
+    line-height: 35px;
+    color: #484848;
+    text-decoration: none;
+    text-decoration-line: none;
+    cursor: pointer;
+}
+
+.search-shops .switch a:hover, 
+.search-shops .switch a:focus {
+    color: #ff6600;
+}
+
+.search-shops .switch a:not(:last-child) {
+    border-right: 1px solid #484848;
+}
+
+.search-shops .switch a i {
+    position: relative;
+    top: 1.5px;
+    left: -5px;
+    color: #b0b0b0;
+}
+
+.search-shops .switch .icon-filters {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-image: url(/img/filters2x.png);
+    background-size: 14px 14px;
+}
+
+
+/*md & lg*/
+
+@media only screen and (min-width: 992px) {
+    .search-shops {
+        margin-bottom: -50px;
+    }
+    .search-shops .map,
+    .search-shops .map .loader-wrapper {
+        width: 585px;
+    }
+    .search-shops .results,
+    .search-shops-footer {
+        top: 130px;
+    }
+    .search-shops .results {
+        padding-right: 15px;
+    }
+    .search-shops .filters .desktop {
+        height: 80px;
+        position: fixed;
+        z-index: 2;
+    }
+    .search-shops .switch {
+        display: none;
+    }
+    .search-shops .filters .mobile {
+        display: none
+    }
+}
+
+
+/* lg */
+
+@media only screen and (min-width: 1200px) {
+    .search-shops.wrapper,
+    .search-shops-footer .wrapper {
+        width: 1170px;
+    }
+    .search-shops .map {
+        left: 50%;
+    }
+    .search-shops .results {
+        width: 50%;
+        min-height: calc(100vh - 180px);
+    }
+    .search-shops .filters .desktop {
+        width: 570px;
+    }
+}
+
+
+/* md */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .search-shops.wrapper,
+    .search-shops-footer .wrapper {
+        width: 970px;
+    }
+    .search-shops .map {
+        left: 40%;
+    }
+    .search-shops .results {
+        min-width: 370px;
+        max-width: 375px;
+        min-height: calc(100vh - 190px);
+    }
+    .search-shops .filters .desktop {
+        width: 370px;
+    }
+}
+
+
+/*sm & xs*/
+
+@media only screen and (max-width: 991px) {
+    .search-shops .filters .mobile {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        padding: 10px;
+        z-index: 5;
+    }
+    .search-shops .map {
+        width: 100%;
+        z-index: 3;
+    }
+    .search-shops .map .loader-wrapper {
+        width: 100%;
+        z-index: 4;
+    }
+    .search-shops .results {
+        z-index: 2;
+        position: relative;
+        top: 50px;
+        padding: 10px 15px 50px;
+    }
+    .search-shops .switch {
+        display: block;
+    }
+    .search-shops .filters .desktop {
+        display: none;
+    }
+    .search-shops-footer {
+        display: none;
+    }
+}

@@ -1,20 +1,21 @@
-(function OrderRegistrationSearchFiltersComponentInit() {
-    'use strict';
+(function SearchShopsFiltersComponentInit() {
+	'use strict';
 
-    angular.module(WEBUI_MODULE_NAME)
-        .component('qOrderRegistrationSearchFilters', {
-            controller: 'controllers.orderregistrationsearchfiltersmobile',
-            templateUrl: 'webui/order-registration/order-registration-search/search-filters/search-filters-mobile/search-filters-mobile.tmpl.html',
-            bindings: {
-                filters: '<',
-                onUpdate: '&'
-            }
-        })
-        .controller('controllers.orderregistrationsearchfiltersmobile', OrderRegistrationSearchFiltersMobileController);
+	angular.module(WEBUI_MODULE_NAME)
+		.component('qSearchShopsFilters', {
+			controller: 'controllers.searchshopsfilters',
+			templateUrl: 'webui/search-shops/filters/filters.tmpl.html',
+			bindings: {
+				filters: '<',
+				onUpdate: '&',
+				show: '<'
+			}
+		})
+		.controller('controllers.searchshopsfilters', SearchShopsFiltersController);
 
-	OrderRegistrationSearchFiltersMobileController.$inject = ['services.common'];
+	SearchShopsFiltersController.$inject = ['services.common'];
 
-	function OrderRegistrationSearchFiltersMobileController(common) {
+	function SearchShopsFiltersController(common) {
 		this.$onInit = function onInit() {
 			common.services.adress.getCities().then(function onGetCities(cities) {
 				this.cities = cities;
@@ -32,6 +33,9 @@
 				this.filters.newDetail = true;
 				this.filters.worksNow = true;
 				this.filters.worksOnWeekend = true;
+			}
+			if (changes.show) {
+				this.show = angular.copy(this.show);
 			}
 		};
 		this.applyFilters = function applyFilters() {
