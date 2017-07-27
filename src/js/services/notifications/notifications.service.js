@@ -6,7 +6,6 @@
 
     NotificationsService.$inject = ['$http', '$q'];
 
-
     function NotificationsService($http, $q) {
         var allNotifications, dfd;
 
@@ -26,7 +25,6 @@
                 });
         }
 
-
         return {
             getShopNotifications: getShopNotifications,
             getClientNotifications: getClientNotifications
@@ -35,12 +33,12 @@
         function getShopNotifications() {
             return getAllNotifications()
                 .then(function onGetNot(notifications) {
-                    var i;
-                    var clientNotifications = [];
-                    for (i = 0; i < notifications.length; i++) {
-                        if (notifications[i].forShop == true) {
+                    var clientNotifications, i;
+
+                    clientNotifications = [];
+                    for (i = 0; i < notifications.length; i += 1) {
+                        if (notifications[i].forShop === true) {
                             clientNotifications.push(notifications[i]);
-                            continue;
                         }
                     }
                     return clientNotifications;
@@ -50,13 +48,12 @@
         function getClientNotifications() {
             return getAllNotifications()
                 .then(function onGetNot(notifications) {
-                    var i;
-                    var shopNotifications;
+                    var i, shopNotifications;
+
                     shopNotifications = [];
-                    for (i = 0; i < notifications.length; i++) {
-                        if (notifications[i].forClient == true) {
+                    for (i = 0; i < notifications.length; i += 1) {
+                        if (notifications[i].forClient === true) {
                             shopNotifications.push(notifications[i]);
-                            continue;
                         }
                     }
                     return shopNotifications;

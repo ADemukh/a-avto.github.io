@@ -47,8 +47,7 @@
                         vm.user.latitude = selectedAddress.latitude;
                         vm.user.address = selectedAddress.address;
                     },
-                    function closed() {
-                    });
+                    function closed() {});
             };
 
             vm.user = {
@@ -61,7 +60,7 @@
                 latitude: identityService.user.latitude,
                 cities: identityService.user.cities,
                 spareCategories: identityService.user.spareCategories,
-                carMarks: identityService.user.carMarks,
+                carMarks: identityService.user.carMarks
             };
 
             this.changeContactInfo = function changeContactInfo(isValid) {

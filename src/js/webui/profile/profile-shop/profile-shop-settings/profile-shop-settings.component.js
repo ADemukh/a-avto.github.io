@@ -11,9 +11,11 @@
     ProfileShopSettingsController.$inject = ['services.shop', 'services.notifications'];
 
     function ProfileShopSettingsController(shopService, notificationsService) {
-        this.changeUserPhoto = shopService.changePhoto;
-        this.changeUserPassword = shopService.changePassword;
-        this.changeUserNotifications = shopService.changeNotifications;
-        this.getUserNotifications = notificationsService.getShopNotifications;
+        this.$onInit = function onInit() {
+            this.changeUserPhoto = shopService.changePhoto;
+            this.changeUserPassword = shopService.changePassword;
+            this.changeUserNotifications = shopService.changeNotifications;
+            this.getUserNotifications = notificationsService.getShopNotifications;
+        };
     }
 })();

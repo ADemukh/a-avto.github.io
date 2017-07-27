@@ -11,9 +11,11 @@
     ProfileClientSettingsController.$inject = ['services.client', 'services.notifications'];
 
     function ProfileClientSettingsController(clientService, notificationsService) {
-        this.changeUserPhoto = clientService.changePhoto;
-        this.changeUserPassword = clientService.changePassword;
-        this.changeUserNotifications = clientService.changeNotifications;
-        this.getClientNotifications = notificationsService.getClientNotifications;
+        this.$onInit = function onInit() {
+            this.changeUserPhoto = clientService.changePhoto;
+            this.changeUserPassword = clientService.changePassword;
+            this.changeUserNotifications = clientService.changeNotifications;
+            this.getClientNotifications = notificationsService.getClientNotifications;
+        };
     }
 })();
