@@ -24,7 +24,7 @@
             };
             this.searchShopsByMap = function searchShopsByMap() {
                 newOrderService.newOrder = this.newOrder;
-                $state.go('public.order-registration-search');
+                $state.go('search-shops');
             };
         };
     }

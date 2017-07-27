@@ -1,0 +1,27 @@
+<q-navigation class="display-block" />
+<div class="navbar-top-offset height-full search-shops wrapper clear">
+    <q-search-shops-filters show="$ctrl.filtersVisible" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" class="display-block filters"
+    />
+    <q-search-shops-results ng-show="$ctrl.resultsVisible" shops="$ctrl.shops" class="display-block results" />
+    <q-search-shops-map ng-show="$ctrl.mapVisible" filters="$ctrl.filters" shops="$ctrl.shops" class="display-block map" />
+    <div class="switch outer-wrapper">
+            <div class="inner-wrapper">
+                <a href class="marker-results" ng-show="!$ctrl.resultsVisible" data-ng-click="$ctrl.showResults();"><i class="icon fa fa-list"></i>Results</a>
+                <a href class="marker-map" ng-show="!$ctrl.mapVisible" data-ng-click="$ctrl.showMap();"><i class="icon fa fa-map-o"></i>Map</a>
+                <a href class="marker-filters" data-ng-click="$ctrl.showFilters();"><i class="icon icon-filters"></i>Filters</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="text-center search-shops-footer">
+    <div class="wrapper">
+        <a ui-sref="public.main"><img src="img/logo-footer.png" class="logo"></a>
+        <a href="mailto:aavto@gmail.com" translate>FOOTER_EMAIL</a>
+        <span>{{::'FOOTER_PHONE' | translate }}</span>
+        <ul class="social-icons">
+            <li><span class="fa fa-facebook-square"></span></li>
+            <li><span class="fa fa-vk"></span></li>
+            <li><span class="fa fa-instagram"></span></li>
+        </ul>
+    </div>
+</footer>

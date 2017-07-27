@@ -2,8 +2,8 @@
 
 body {
   overflow-x: hidden;
-  background-color: #e9ebee;
-  height: 100vh;
+  background-color: #fff;
+  height: 100%;
 }
 
 .height-full {
@@ -14,8 +14,16 @@ body {
   width: 100%;
 }
 
+.width-50 {
+  width: 50%;
+}
+
 .display-block {
   display: block;
+}
+
+.display-inline-block {
+  display: inline-block;
 }
 
 .jumbotron {

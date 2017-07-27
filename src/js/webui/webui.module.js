@@ -6,7 +6,7 @@ var WEBUI_MODULE_NAME;
     'use strict';
 
     WEBUI_MODULE_NAME = 'aAvto.webui';
-    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select', 'ngFileUpload'])
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select', 'ngFileUpload', 'matchMedia'])
         .config(WebUIModuleConfig)
         .constant('_', window._)
         .constant('routingConfig', window.routingConfig)
@@ -66,10 +66,15 @@ var WEBUI_MODULE_NAME;
                     template: '<q-order-registration-full/>',
                     url: '/order-registration',
                     parent: 'public'
-                }).state('public.order-registration-search', {
-                    template: '<q-order-registration-search class="height-full display-block"/>',
-                    url: '/find-shop-by-map',
-                    parent: 'public'
+                });
+
+             $stateProvider
+                .state('search-shops', {
+                    template: '<q-search-shops class="height-full flex display-block"/>',
+                    url: '/search-shops',
+                    data: {
+                        access: window.routingConfig.accessLevels.public
+                    }
                 });
 
             // Anonymous routes
