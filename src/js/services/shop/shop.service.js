@@ -17,10 +17,10 @@
             changeOptions: changeOptions
         };
 
-        function changePhoto(photoId) {
+        function changePhoto(photo) {
             return $http.post('shops/changeshopphoto', {
                 email: identityService.user.email,
-                photoId: photoId
+                photo: photo
             }).then(updateCurrentUser);
         }
 

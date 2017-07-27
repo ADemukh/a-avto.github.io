@@ -22,7 +22,6 @@ options = {
 
 clientUserSchema = new mongoose.Schema({
 	cars: [{ mark: String, model: String, year: Number, VIN: String }],
-	notifications: [String],
 	vk: {
 		id: String,
 		profileUrl: String
