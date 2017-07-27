@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    form(action='/cars/marks/' + model.mark + '/' + model.model + '/edit', method='POST')
+        P
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cars/marks/"+model.mark) Назад 
+                    
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cars/marks") Все марки
+        p.center #{ model.mark }
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='model', value=model.model, placeholder='Model')
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='from', value=model.from, placeholder='From')
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='end', value=model.end, placeholder='End')
+        p
+            input(type='hidden', name='id', value=model._id)
+            div.cbm_wrap_button_center
+                div.wrapper_body_button_center
+                    button.addCarSubmit(type='submit').
+                        Обновить

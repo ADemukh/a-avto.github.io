@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+        P
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cars/marks") Назад
+        P
+            form(action='/cars/marks/' + mark.mark + '/edit', method='POST')
+                div.cbm_wrap_center
+                    div.wrapper_body_center
+                        input.carSubmit(type='text', name='newMark', value=mark.mark)
+                        input(type='hidden', name='oldMark', value=mark.mark)
+                div.cbm_wrap_button_center
+                    div.wrapper_body_button_center 
+                        input.addCarSubmit(type='submit', value='Сохранить')
+        div.float
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cars/marks/#{mark.mark}/add") Добавить
+        each model in mark.models
+            div.float
+                div.cbm_wrap
+                    div.wrapper_body
+                        form(action='/cars/marks/' + mark.mark + '/delete', method='POST')
+                            a.allLinks(href="/cars/marks/#{mark.mark}/#{model}") #{ model }                    
+                            input(type='hidden', value=model, name='model')
+                            button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')").
+                                X
