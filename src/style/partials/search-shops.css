@@ -16,15 +16,17 @@
     visibility: hidden;
 }
 
-.search-shops .filters .mobile,
 .search-shops .filters .desktop,
+.search-shops .filters .tablet,
+.search-shops .filters .mobile,
 .search-shops .map,
 .search-shops .results {
     top: 50px;
 }
 
-.search-shops .filters .mobile,
-.search-shops .filters .desktop {
+.search-shops .filters .desktop,
+.search-shops .filters .tablet,
+.search-shops .filters .mobile {
     background-color: white;
 }
 
@@ -48,7 +50,7 @@
 .search-shops-footer {
     position: relative;
     height: 50px;
-    z-index: 4;
+    z-index: 2;
 }
 
 .search-shops-footer .logo {
@@ -57,11 +59,11 @@
 }
 
 .search-shops-footer ul.social-icons,
-.search-shops-footer .social-icons li{
+.search-shops-footer .social-icons li {
     display: inline-block;
 }
 
-.search-shops-footer ul.social-icons{
+.search-shops-footer ul.social-icons {
     margin-bottom: 0px;
     vertical-align: middle;
 }
@@ -71,7 +73,6 @@
     bottom: 16px;
     text-align: center;
     width: 100%;
-    z-index: 4;
 }
 
 .search-shops .switch .inner-wrapper {
@@ -81,6 +82,7 @@
     background-color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
     padding: 0 10px;
+    z-index: 3;
 }
 
 .search-shops .switch a {
@@ -92,7 +94,7 @@
     cursor: pointer;
 }
 
-.search-shops .switch a:hover, 
+.search-shops .switch a:hover,
 .search-shops .switch a:focus {
     color: #ff6600;
 }
@@ -139,9 +141,8 @@
         position: fixed;
         z-index: 2;
     }
-    .search-shops .switch {
-        display: none;
-    }
+    .search-shops .switch,
+    .search-shops .filters .tablet,
     .search-shops .filters .mobile {
         display: none
     }
@@ -192,23 +193,14 @@
 /*sm & xs*/
 
 @media only screen and (max-width: 991px) {
-    .search-shops .filters .mobile {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        padding: 10px;
-        z-index: 5;
-    }
     .search-shops .map {
         width: 100%;
-        z-index: 3;
     }
     .search-shops .map .loader-wrapper {
         width: 100%;
-        z-index: 4;
+        z-index: 2;
     }
     .search-shops .results {
-        z-index: 2;
         position: relative;
         top: 50px;
         padding: 10px 15px 50px;
@@ -216,10 +208,38 @@
     .search-shops .switch {
         display: block;
     }
-    .search-shops .filters .desktop {
+    .search-shops .filters .desktop,
+    .search-shops-footer {
         display: none;
     }
-    .search-shops-footer {
+}
+
+
+/* sm */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .search-shops .filters .tablet {
+        display: block;
+    }
+    .search-shops .filters .desktop,
+    .search-shops .filters .mobile {
+        display: none;
+    }
+}
+
+
+/* sm */
+
+@media only screen and (max-width: 767px) {
+    .search-shops .filters .mobile {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        padding: 10px;
+        z-index: 5;
+    }
+    .search-shops .filters .desktop,
+    .search-shops .filters .tablet {
         display: none;
     }
 }

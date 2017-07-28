@@ -371,9 +371,6 @@ var WEBUI_MODULE_NAME;
                 REGISTRATION_SHOP_REGISTER: 'Зарегистрироваться',
                 REGISTRATION_SHOP_CONTACT_NAME: 'Название магазина',
                 REGISTRATION_SHOP_CONTACT_NAME_IS_REQUIRED: 'Введите название магазина',
-                REGISTRATION_SHOP_EMAIL_IS_REQUIRED: 'Введите E-mail',
-                REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT: 'Неправильный E-mail',
-                REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT: 'Номер не соответветствует шаблону +375 xx xxx xx xx',
                 REGISTRATION_SHOP_WWW_IS_NOT_CORRECT: 'Введите адрес сайта магазина',
                 REGISTRATION_SHOP_CITIES_IS_NOT_CORRECT: 'Выберите обслуживаемые города',
                 REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT: 'Выберите обслуживаемые категории запчатей',
@@ -397,7 +394,10 @@ var WEBUI_MODULE_NAME;
                 CHANGE_CONFIRMATION: 'Вы уверены?',
                 CONFIRM: 'Да',
                 REJECT: 'Нет',
-                ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.'
+                ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.',
+                SEARCH_SHOPS_FILTERS: 'Фильтры',
+                SEARCH_SHOPS_MAP: 'Карта',
+                SEARCH_SHOPS_RESULTS: 'Результаты'
             });
             $translateProvider.translations('en', {
                 // english translations here

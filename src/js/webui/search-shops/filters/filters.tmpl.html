@@ -1,7 +1,9 @@
 <div class="desktop">
     <h4 translate>ORDER_REGISTRATION_FILTERS_TITLE</h4>
 </div>
-<div class="mobile" ng-show="$ctrl.show">
+<div class="tablet" ng-if="$ctrl.show">
+</div>
+<div class="mobile" ng-if="$ctrl.show">
     <h4 translate>ORDER_REGISTRATION_FILTERS_TITLE</h4>
     <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
         placeholder="{{::'ORDER_REGISTRATION_FILTERS_CITIES' | translate }}" class="search-shop-options"></oi-select>

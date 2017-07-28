@@ -25,42 +25,77 @@
                 category: newOrderService.newOrder.category,
                 isNewDetail: newOrderService.newOrder.isNewDetail
             };
+            this.visibility = {
+                filters: false,
+                map: false,
+                results: false
+            };
             this.updateFilters = function onUpdateFilters(event) {
                 if (event.filters) {
-                    this.filters = event.filters;
-                    newOrderService.newOrder.shopCity = event.filters.shopCity;
-                    newOrderService.newOrder.car.mark = event.filters.carMark;
-                    newOrderService.newOrder.category = event.filters.category;
-                    newOrderService.newOrder.isNewDetail = event.filters.isNewDetail;
+                    this.filters = angular.copy(event.filters);
                     this.getShops();
-                    this.filtersVisible = false;
+                    this.hideFilters();
                 }
             };
+            this.closeFilters = function onCloseFilters() {
+                this.hideFilters();
+            };
             this.showFilters = function showFilters() {
-                this.filtersVisible = true;
+                this.saveVisibilityHistory();
+                this.visibility.filters = true;
+                if (screenSize.is('xs')) {
+                    this.visibility.results = false;
+                    this.visibility.map = false;
+                } else if (screenSize.is('md lg')) {
+                    this.showResultsAndMap();
+                }
+            };
+            this.hideFilters = function hideFilters() {
+                if (this.visibilityHistory) {
+                    this.visibility = angular.copy(this.visibilityHistory);
+                } else {
+                    this.setupVisibility();
+                }
             };
             this.showMap = function showMap() {
-                this.mapVisible = true;
-                this.resultsVisible = false;
+                this.visibility.map = true;
+                this.visibility.results = false;
+                this.visibility.filters = false;
+                this.saveVisibilityHistory();
             };
             this.showResults = function showResults() {
-                this.resultsVisible = true;
-                this.mapVisible = false;
+                this.visibility.results = true;
+                this.visibility.map = false;
+                this.visibility.filters = false;
+                this.saveVisibilityHistory();
             };
             this.showResultsAndMap = function showResults() {
-                this.resultsVisible = true;
-                this.mapVisible = true;
+                this.visibility.results = true;
+                this.visibility.map = true;
+                this.visibility.filters = false;
+                this.saveVisibilityHistory();
+            };
+            this.isDesktopMode = function isDesktopMode() {
+                return this.visibility.results && this.visibility.map;
             };
 
-            if (screenSize.is('xs, sm')) {
-                this.showMap();
-            } else {
-                this.showResultsAndMap();
-            }
+            this.setupVisibility = function setupVisibility() {
+                if (screenSize.is('xs, sm')) {
+                    this.showMap();
+                } else {
+                    this.showResultsAndMap();
+                }
+                this.saveVisibilityHistory();
+            };
+            this.saveVisibilityHistory = function saveVisibilityHistory() {
+                this.visibilityHistory = angular.copy(this.visibility);
+            };
+
+            this.setupVisibility();
 
             screenSize.on('xs, sm', function goToMobileMode(isMatch) {
-                if (isMatch) {
-                    this.showMap();
+                if (isMatch && this.isDesktopMode()) {
+                    this.showResults();
                 }
             }.bind(this));
 

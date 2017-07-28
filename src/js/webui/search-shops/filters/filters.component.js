@@ -8,6 +8,7 @@
 			bindings: {
 				filters: '<',
 				onUpdate: '&',
+				onCancel: '&',
 				show: '<'
 			}
 		})
@@ -44,6 +45,9 @@
 					filters: this.filters
 				}
 			});
+		};
+		this.cancel = function cancel() {
+			this.onCancel();
 		};
 	}
 })();
