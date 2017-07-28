@@ -19,16 +19,43 @@
             }.bind(this);
             this.getShops();
 
+            this.visibility = {
+                filters: false,
+                map: false,
+                results: false
+            };
+
+            // filters
             this.filters = {
                 shopCity: newOrderService.newOrder.shopCity,
                 carMark: newOrderService.newOrder.car.mark,
                 category: newOrderService.newOrder.category,
                 isNewDetail: newOrderService.newOrder.isNewDetail
             };
-            this.visibility = {
-                filters: false,
-                map: false,
-                results: false
+
+            this.openFilters = function toggleFilters() {
+                this.saveVisibilityHistory();
+                this.visibility.filters = true;
+                if (screenSize.is('xs')) {
+                    this.visibility.results = false;
+                    this.visibility.map = false;
+                } else if (screenSize.is('md lg')) {
+                    this.toggleResultsAndMap();
+                }
+            };
+            this.hideFilters = function hideFilters() {
+                if (this.visibilityHistory) {
+                    this.visibility = angular.copy(this.visibilityHistory);
+                } else {
+                    this.setupVisibility();
+                }
+            };
+            this.toggleFilters = function toggleFilters() {
+                if (this.visibility.filters) {
+                    this.hideFilters();
+                } else {
+                    this.openFilters();
+                }
             };
             this.updateFilters = function onUpdateFilters(event) {
                 if (event.filters) {
@@ -40,50 +67,44 @@
             this.closeFilters = function onCloseFilters() {
                 this.hideFilters();
             };
-            this.showFilters = function showFilters() {
-                this.saveVisibilityHistory();
-                this.visibility.filters = true;
-                if (screenSize.is('xs')) {
-                    this.visibility.results = false;
-                    this.visibility.map = false;
-                } else if (screenSize.is('md lg')) {
-                    this.showResultsAndMap();
-                }
-            };
-            this.hideFilters = function hideFilters() {
-                if (this.visibilityHistory) {
-                    this.visibility = angular.copy(this.visibilityHistory);
-                } else {
-                    this.setupVisibility();
-                }
-            };
-            this.showMap = function showMap() {
+
+            this.toggleMap = function toggleMap() {
                 this.visibility.map = true;
                 this.visibility.results = false;
                 this.visibility.filters = false;
                 this.saveVisibilityHistory();
             };
-            this.showResults = function showResults() {
+            this.toggleResults = function toggleResults() {
                 this.visibility.results = true;
                 this.visibility.map = false;
                 this.visibility.filters = false;
                 this.saveVisibilityHistory();
             };
-            this.showResultsAndMap = function showResults() {
+            this.toggleResultsAndMap = function toggleResultsAndMap() {
                 this.visibility.results = true;
                 this.visibility.map = true;
                 this.visibility.filters = false;
                 this.saveVisibilityHistory();
             };
-            this.isDesktopMode = function isDesktopMode() {
-                return this.visibility.results && this.visibility.map;
+
+            this.isDesktop = function isDesktop() {
+                return screenSize.is('md, lg');
+            };
+            this.isTablet = function isTablet() {
+                return screenSize.is('sm');
+            };
+            this.isMobile = function isMobile() {
+                return screenSize.is('xs');
+            };
+            this.showSwitch = function showSwitch() {
+                return !this.isDesktop() && !(this.visibility.filters && screenSize.is('xs'));
             };
 
             this.setupVisibility = function setupVisibility() {
-                if (screenSize.is('xs, sm')) {
-                    this.showMap();
+                if (this.isDesktop()) {
+                    this.toggleResultsAndMap();
                 } else {
-                    this.showResultsAndMap();
+                    this.toggleMap();
                 }
                 this.saveVisibilityHistory();
             };
@@ -94,14 +115,14 @@
             this.setupVisibility();
 
             screenSize.on('xs, sm', function goToMobileMode(isMatch) {
-                if (isMatch && this.isDesktopMode()) {
-                    this.showResults();
+                if (isMatch && this.visibility.map && this.visibility.results) {
+                    this.toggleMap();
                 }
             }.bind(this));
 
             screenSize.on('md, lg', function goToMobileMode(isMatch) {
-                if (isMatch) {
-                    this.showResultsAndMap();
+                if (isMatch && !(this.visibility.map && this.visibility.results)) {
+                    this.toggleResultsAndMap();
                 }
             }.bind(this));
         };

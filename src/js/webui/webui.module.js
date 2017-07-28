@@ -321,16 +321,6 @@ var WEBUI_MODULE_NAME;
                 NAVIGATION_CLIENT_SETTINGS: 'НАСТРОЙКИ',
                 NAVIGATION_SHOP_ORDERS: 'ЗАЯВКИ',
                 NAVIGATION_SHOP_SETTINGS: 'НАСТРОЙКИ',
-                ORDER_REGISTRATION_FILTERS_TITLE: 'Параметры поиска',
-                ORDER_REGISTRATION_FILTERS_FOUND_SHOPS: 'Найдено ',
-                ORDER_REGISTRATION_FILTERS_CITIES: 'Город',
-                ORDER_REGISTRATION_FILTERS_CARS: 'Марка',
-                ORDER_REGISTRATION_FILTERS_CATEGORY: 'Категория',
-                ORDER_REGISTRATION_FILTERS_DETAIL_NEW: 'Новая',
-                ORDER_REGISTRATION_FILTERS_DETAIL_OLD: 'Б/у',
-                ORDER_REGISTRATION_FILTERS_SHOP_WORKS_NOW: 'Работает сейчас',
-                ORDER_REGISTRATION_FILTERS_SHOP_WORKS_ON_WEEKEND: 'Работает в выходные',
-                ORDER_REGISTRATION_FILTERS_APPLY: 'Применить',
                 REGISTRATION_TAB_CLIENT: 'Я клиент',
                 REGISTRATION_TAB_SHOP: 'Я магазин',
                 REGISTRATION_CLIENT_TITLE: 'Регистрация клиента',
@@ -397,7 +387,18 @@ var WEBUI_MODULE_NAME;
                 ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.',
                 SEARCH_SHOPS_FILTERS: 'Фильтры',
                 SEARCH_SHOPS_MAP: 'Карта',
-                SEARCH_SHOPS_RESULTS: 'Результаты'
+                SEARCH_SHOPS_RESULTS: 'Результаты',
+                SEARCH_SHOPS_FILTERS_TITLE: 'Параметры поиска',
+                SEARCH_SHOPS_FILTERS_CITIES: 'Город магазина',
+                SEARCH_SHOPS_FILTERS_CARS: 'Марка автомобиля',
+                SEARCH_SHOPS_FILTERS_CATEGORY: 'Категория запчасти',
+                SEARCH_SHOPS_FILTERS_DETAIL_STATE: 'Запчасть:',
+                SEARCH_SHOPS_FILTERS_DETAIL_NEW: 'Новая',
+                SEARCH_SHOPS_FILTERS_DETAIL_OLD: 'Б/у',
+                SEARCH_SHOPS_FILTERS_SHOP_WORKS_NOW: 'Работает сейчас',
+                SEARCH_SHOPS_FILTERS_SHOP_WORKS_ON_WEEKEND: 'Работает в выходные',
+                SEARCH_SHOPS_FILTERS_APPLY: 'Применить',
+                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить'
             });
             $translateProvider.translations('en', {
                 // english translations here

@@ -82,7 +82,6 @@
     background-color: #fff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
     padding: 0 10px;
-    z-index: 3;
 }
 
 .search-shops .switch a {
@@ -141,7 +140,6 @@
         position: fixed;
         z-index: 2;
     }
-    .search-shops .switch,
     .search-shops .filters .tablet,
     .search-shops .filters .mobile {
         display: none
@@ -205,9 +203,6 @@
         top: 50px;
         padding: 10px 15px 50px;
     }
-    .search-shops .switch {
-        display: block;
-    }
     .search-shops .filters .desktop,
     .search-shops-footer {
         display: none;
@@ -228,15 +223,38 @@
 }
 
 
-/* sm */
+/* xs */
 
 @media only screen and (max-width: 767px) {
     .search-shops .filters .mobile {
         width: 100%;
         height: 100%;
-        position: fixed;
-        padding: 10px;
-        z-index: 5;
+        padding: 25px;
+        margin-top: 50px;
+        text-align: center;
+    }
+    .search-shops .filters .mobile .mobile-wrapper{
+        margin: 0 auto;
+        max-width: 500px;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .title{
+        font-size: 30px;
+        padding-bottom: 20px;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .options {
+        padding-top: 20px;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .state{
+        display: block;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .options-state div {
+        padding-left: 20px;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .options-actions {
+        padding-top: 40px;
+    }
+    .search-shops .filters .mobile .mobile-wrapper .options-actions button:first-child {
+        margin-right: 30px;
     }
     .search-shops .filters .desktop,
     .search-shops .filters .tablet {
