@@ -91,7 +91,7 @@ var WEBUI_MODULE_NAME;
                     url: '/login',
                     parent: 'anon'
                 }).state('anon.password-recovery', {
-                    template: '<q-password-recovery-vertical/>',
+                    template: '<q-password-recovery/>',
                     url: '/password-recovery',
                     parent: 'anon'
                 }).state('anon.register', {
@@ -99,7 +99,7 @@ var WEBUI_MODULE_NAME;
                     url: '/registration',
                     parent: 'anon'
                 }).state('anon.password-set', {
-                    template: '<q-password-set-vertical/>',
+                    template: '<q-password-set/>',
                     url: '/password-set',
                     parent: 'anon'
                 });
