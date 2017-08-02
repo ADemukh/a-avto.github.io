@@ -14,40 +14,69 @@
 		})
 		.controller('controllers.searchshopsfilters', SearchShopsFiltersController);
 
-	SearchShopsFiltersController.$inject = ['services.common'];
+	SearchShopsFiltersController.$inject = ['screenSize', '$uibModal'];
 
-	function SearchShopsFiltersController(common) {
+	function SearchShopsFiltersController(screenSize, $uibModal) {
 		this.$onInit = function onInit() {
-			common.services.adress.getCities().then(function onGetCities(cities) {
-				this.cities = cities;
-			}.bind(this));
-			common.services.car.getCars().then(function onGetCars(carMarks) {
-				this.carMarks = carMarks;
-			}.bind(this));
-			common.services.category.getCategories().then(function onGetCategories(categories) {
-				this.categories = categories;
-			}.bind(this));
+			this.applyDesktopFilters = function applyDesktopFilters(event) {
+				this.onUpdate({
+					$event: event
+				});
+				this.isOpenDesktopFilters = false;
+			};
+			this.cancelDesktopFilters = function cancelMobileFilters() {
+				this.onCancel();
+				this.isOpenDesktopFilters = false;
+			};
+			this.applyTabletFilters = function applyTabletFilters(event) {
+				this.onUpdate({
+					$event: event
+				});
+			};
+			this.cancelTabletFilters = function cancelTabletFilters() {
+				this.onCancel();
+			};
+			this.applyMobileFilters = function applyMobileFilters(event) {
+				this.onUpdate({
+					$event: event
+				});
+			};
+			this.cancelMobileFilters = function cancelMobileFilters() {
+				this.onCancel();
+			};
 		};
 		this.$onChanges = function onChanges(changes) {
 			if (changes.filters) {
 				this.filters = angular.copy(this.filters);
-				this.filters.newDetail = true;
-				this.filters.worksNow = true;
-				this.filters.worksOnWeekend = true;
 			}
-			if (changes.show) {
+			if (changes.show && this.show) {
+				if (screenSize.is('sm')) {
+					showFiltersByModal.call(this);
+				}
 				this.show = angular.copy(this.show);
 			}
-		};
-		this.applyFilters = function applyFilters() {
-			this.onUpdate({
-				$event: {
-					filters: this.filters
-				}
-			});
-		};
-		this.cancel = function cancel() {
-			this.onCancel();
+
+			function showFiltersByModal() {
+				var modalInstance;
+
+				modalInstance = $uibModal.open({
+					animation: false,
+					component: 'qSearchShopsFiltersModal',
+					resolve: {
+						filters: function filters() {
+							return this.filters;
+						}.bind(this)
+					}
+				});
+
+				modalInstance.result.then(
+					function applied(event) {
+						this.applyTabletFilters(event);
+					}.bind(this),
+					function canceled() {
+						this.cancelTabletFilters();
+					}.bind(this));
+			}
 		};
 	}
 })();
