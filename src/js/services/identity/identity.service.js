@@ -45,7 +45,7 @@
         }
 
         function changeUser(user) {
-            api.user = user;
+            api.user = angular.copy(user);
         }
 
         function anonUser() {
@@ -114,8 +114,9 @@
             return $http.post('auth/signupshop', shopInfo)
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
-                        currentUser = resp.data;
+                        changeUser(resp.data.user);
                     }
+                    // reject here with error
                     return resp.data;
                 });
         }
@@ -148,8 +149,10 @@
             });
         }
 
-        function saveAttemptUrl() {
-            if ($location.path().toLowerCase() === '/login') {
+        function saveAttemptUrl(attemptUrl) {
+            if (attemptUrl && attemptUrl !== '/login') {
+                redirectToUrlAfterLogin.url = attemptUrl;
+            } else if (attemptUrl === '/login' || $location.path().toLowerCase() === '/login') {
                 redirectToUrlAfterLogin.url = '/';
             } else {
                 redirectToUrlAfterLogin.url = $location.path();

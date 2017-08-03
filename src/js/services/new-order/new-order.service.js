@@ -23,7 +23,10 @@
 
         function newEmptyOrder() {
             return {
-                car: {}
+                car: {},
+                spares: [],
+                city: '',
+                contact: {}
             };
         }
     }

@@ -65,10 +65,6 @@ var WEBUI_MODULE_NAME;
                     templateUrl: 'webui/rules/rules.tmpl.html',
                     url: '/rules',
                     parent: 'public'
-                }).state('public.order-registration-full', {
-                    template: '<q-order-registration-full/>',
-                    url: '/order-registration',
-                    parent: 'public'
                 });
 
              $stateProvider
@@ -111,28 +107,30 @@ var WEBUI_MODULE_NAME;
             $stateProvider
                 .state('client', {
                     template: '<div class="height-full" ui-view/></div>',
-                    url: '/client',
                     abstract: true,
                     data: {
                         access: window.routingConfig.accessLevels.client
                     },
                     parent: 'root'
+                }).state('client.new-order', {
+                    template: '<q-new-order/>',
+                    url: '/client/new-order',
+                    parent: 'client'
                 }).state('client.profile', {
                     templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',
-                    url: '/profile',
                     abstract: true,
                     parent: 'client'
                 }).state('client.profile.cars', {
                     template: '<q-profile-client-cars/>',
-                    url: '/cars',
+                    url: '/client/profile/cars',
                     parent: 'client.profile'
                 }).state('client.profile.orders', {
                     template: '<q-profile-client-orders/>',
-                    url: '/orders',
+                    url: '/client/profile/orders',
                     parent: 'client.profile'
                 }).state('client.profile.settings', {
                     template: '<q-profile-client-settings/>',
-                    url: '/settings',
+                    url: '/client/profile/settings',
                     parent: 'client.profile'
                 });
 
@@ -140,7 +138,6 @@ var WEBUI_MODULE_NAME;
             $stateProvider
                 .state('shop', {
                     template: '<div class="height-full" ui-view/></div>',
-                    url: '/shop',
                     abstract: true,
                     data: {
                         access: window.routingConfig.accessLevels.shop
@@ -148,16 +145,15 @@ var WEBUI_MODULE_NAME;
                     parent: 'root'
                 }).state('shop.profile', {
                     templateUrl: 'webui/profile/profile-shop/profile-shop.tmpl.html',
-                    url: '/profile',
                     abstract: true,
                     parent: 'shop'
                 }).state('shop.profile.orders', {
                     template: '<q-profile-shop-orders/>',
-                    url: '/orders',
+                    url: '/shop/profile/orders',
                     parent: 'shop.profile'
                 }).state('shop.profile.settings', {
                     template: '<q-profile-shop-settings/>',
-                    url: '/settings',
+                    url: '/shop/profile/settings',
                     parent: 'shop.profile'
                 });
 
@@ -328,6 +324,7 @@ var WEBUI_MODULE_NAME;
                 NAVIGATION_LOG_OUT: 'ВЫЙТИ',
                 NAVIGATION_REGISTER: 'РЕГИСТРАЦИЯ',
                 NAVIGATION_ORDERS: 'ЗАЯВКИ',
+                NAVIGATION_NEW_ORDER: 'ОТПРАВИТЬ ЗАЯВКУ',
                 NAVIGATION_CLIENT_ORDERS: 'ЗАЯВКИ',
                 NAVIGATION_CLIENT_CARS: 'ГАРАЖ',
                 NAVIGATION_CLIENT_SETTINGS: 'НАСТРОЙКИ',
@@ -435,8 +432,12 @@ var WEBUI_MODULE_NAME;
                     event.preventDefault();
                 } else if (!identity.authorize(toState.data.access)) {
                     event.preventDefault();
-                    identity.saveAttemptUrl();
-                    $state.go('anon.login');
+                    if (identity.loggedIn()) {
+                        $state.go('public.main');
+                    } else {
+                        identity.saveAttemptUrl(toState.url);
+                        $state.go('anon.login');
+                    }
                 }
             } else {
                 event.preventDefault();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)
-        .component('qVideo', {
-            templateUrl: 'webui/video/video.tmpl.html'
+        .component('qMainVideo', {
+            templateUrl: 'webui/main/video/video.tmpl.html'
         });
 })();
