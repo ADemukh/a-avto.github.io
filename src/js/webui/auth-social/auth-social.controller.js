@@ -17,7 +17,9 @@
 		};
 
 		function successAuth() {
-			$state.go('public.main');
+			if (identity.loggedIn()) {
+				identity.redirectToAttemptedUrl();
+			}
 		}
 
 		function failedAuth(err) {

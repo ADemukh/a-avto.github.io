@@ -1,13 +1,13 @@
-/*eslint no-bitwise:0, quote-props:0, no-param-reassign:0  */
+/*eslint no-bitwise:0, quote-props:0, no-param-reassign:0 , max-params:0 */
 (function IdentityServiceInit() {
     'use strict';
 
     angular.module('services')
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state', 'redirectToUrlAfterLogin', '$location'];
 
-    function IdentityService($http, $q, popupService, routingConfig, $state) {
+    function IdentityService($http, $q, popupService, routingConfig, $state, redirectToUrlAfterLogin, $location) {
         var api;
 
         api = {
@@ -25,7 +25,9 @@
             authorize: authorize,
             loggedIn: loggedIn,
             accessLevels: routingConfig.accessLevels,
-            userRoles: routingConfig.userRoles
+            userRoles: routingConfig.userRoles,
+            saveAttemptUrl: saveAttemptUrl,
+            redirectToAttemptedUrl: redirectToAttemptedUrl
         };
 
         return api;
@@ -144,6 +146,18 @@
                 email: email,
                 password: newPassword
             });
+        }
+
+        function saveAttemptUrl() {
+            if ($location.path().toLowerCase() === '/login') {
+                redirectToUrlAfterLogin.url = '/';
+            } else {
+                redirectToUrlAfterLogin.url = $location.path();
+            }
+        }
+
+        function redirectToAttemptedUrl() {
+            $location.path(redirectToUrlAfterLogin.url);
         }
     }
 })();

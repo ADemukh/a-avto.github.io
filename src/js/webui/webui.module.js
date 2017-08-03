@@ -10,6 +10,9 @@ var WEBUI_MODULE_NAME;
         .config(WebUIModuleConfig)
         .constant('_', window._)
         .constant('routingConfig', window.routingConfig)
+        .value('redirectToUrlAfterLogin', {
+            url: '/'
+        })
         .run(WebUIModuleRun);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider', '$qProvider'];
@@ -213,20 +216,29 @@ var WEBUI_MODULE_NAME;
             //================================================
             // Add an interceptor for AJAX errors
             //================================================
-            $httpProvider.interceptors.push(function interceptor($q, $location) {
-                return {
-                    response: function onResponse(response) {
-                        // do something on success
-                        return response;
-                    },
-                    responseError: function onResponseError(response) {
-                        if (response.status === 401 || response.status === 403) {
-                            $location.path('/login');
-                        }
-                        return $q.reject(response);
-                    }
+            $httpProvider.interceptors.push(securityInterceptor);
+
+            function securityInterceptor($q, $location, $injector) {
+                return function securityInterceptorPromise(promise) {
+                    var identity;
+
+                    identity = $injector.get('services.identity');
+
+                    return promise.then(
+                        function onResponse(response) {
+                            // do something on success
+                            return response;
+                        },
+                        function onResponseError(response) {
+                            if (response.status === 401 || response.status === 403) {
+                                event.preventDefault();
+                                identity.saveAttemptUrl();
+                                $location.path('/login');
+                            }
+                            return $q.reject(response);
+                        });
                 };
-            });
+            }
             //================================================
         }
 
@@ -240,7 +252,7 @@ var WEBUI_MODULE_NAME;
                 MARK: 'Марка',
                 MODEL: 'Модель',
                 YEAR: 'Год',
-                VIN: 'VIN', 
+                VIN: 'VIN',
                 CHANGE: 'Изменить',
                 YOUR_CARS: 'Ваши автомобили',
                 CHANGE_PASSWORD: 'Изменить пароль',
@@ -413,17 +425,17 @@ var WEBUI_MODULE_NAME;
         }
     }
 
-    WebUIModuleRun.$inject = ['$rootScope', '$state', 'services.identity'];
+    WebUIModuleRun.$inject = ['$rootScope', '$state', '$location', 'services.identity'];
 
-    function WebUIModuleRun($rootScope, $state, identity) {
+    function WebUIModuleRun($rootScope, $state, $location, identity) {
         $rootScope.$on('$stateChangeStart', function onStateChangeStart(event, toState, toParams, fromState, fromParams) {
             if (identity.loggedInChecked) {
                 if (!('data' in toState) || !('access' in toState.data)) {
                     // $rootScope.error = "Access undefined for this state";
                     event.preventDefault();
                 } else if (!identity.authorize(toState.data.access)) {
-                    // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
                     event.preventDefault();
+                    identity.saveAttemptUrl();
                     $state.go('anon.login');
                 }
             } else {
