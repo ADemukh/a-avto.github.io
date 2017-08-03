@@ -5,13 +5,21 @@
         .factory('services.neworder', OrderService);
 
     function OrderService() {
-        var newOrder;
+        var STATUSES, newOrder;
 
+        STATUSES = {
+            START: 1,
+            CAR: 2,
+            DETAILS: 3,
+            CONTACTS: 4,
+            FINISH: 5
+        };
         newOrder = newEmptyOrder();
         return {
             newOrder: newOrder,
             clear: clearOrder,
-            submit: submitOrder
+            submit: submitOrder,
+            statuses: STATUSES
         };
 
         function clearOrder() {
@@ -26,7 +34,8 @@
                 car: {},
                 spares: [],
                 city: '',
-                contact: {}
+                contact: {},
+                status: STATUSES.START
             };
         }
     }

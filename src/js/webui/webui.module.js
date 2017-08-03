@@ -407,7 +407,9 @@ var WEBUI_MODULE_NAME;
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_NOW: 'Работает сейчас',
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_ON_WEEKEND: 'Работает в выходные',
                 SEARCH_SHOPS_FILTERS_APPLY: 'Применить',
-                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить'
+                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить',
+                NEW_ORDER_BACK: 'Назад',
+                NEW_ORDER_NEXT: 'Вперед'
             });
             $translateProvider.translations('en', {
                 // english translations here

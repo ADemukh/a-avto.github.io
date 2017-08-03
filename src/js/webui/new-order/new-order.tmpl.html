@@ -1,10 +1,16 @@
 <div class="container new-order">
     <ul class="progressbar">
-        <li class="info active"> Старт </li>
-        <li class="car active"> Автомобиль </li>
-        <li class="cogs active"> Детали </li>
-        <li class="user"> Контакты </li>
-        <li class="thumbs-up"> Финиш </li>
+        <li class="info" ng-class="{ active: $ctrl.activeStart()}"> Старт </li>
+        <li class="car"  ng-class="{ active: $ctrl.activeCar()}"> Автомобиль </li>
+        <li class="cogs"  ng-class="{ active: $ctrl.activeDetails()}"> Детали </li>
+        <li class="user"  ng-class="{ active: $ctrl.activeContacts()}"> Контакты </li>
+        <li class="thumbs-up"  ng-class="{ active: $ctrl.activeFinish()}"> Финиш </li>
     </ul>
-    <span>blablabla</span>
+    <div class="new-order-step-wrapper">
+        <q-new-order-start next="$ctrl.goToCar()" ng-show="$ctrl.showStart()"/>
+        <q-new-order-car back="$ctrl.goToStart()" next="$ctrl.goToDetails()" ng-show="$ctrl.showCar()"/>
+        <q-new-order-details back="$ctrl.goToCar()" next="$ctrl.goToContacts()" ng-show="$ctrl.showDetails()"/>
+        <q-new-order-contacts back="$ctrl.goToDetails()" next="$ctrl.goToFinish()" ng-show="$ctrl.showContacts()"/>
+        <q-new-order-finish back="$ctrl.goToContacts()" ng-show="$ctrl.showFinish()"/>
+    </div>
 </div>
