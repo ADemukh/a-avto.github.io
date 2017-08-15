@@ -1,0 +1,11 @@
+<div class="modal-header search-shops-filters-tablet-header" id="modal-header">
+    <div class="title" translate>SEARCH_SHOPS_FILTERS_TITLE</div>
+</div>
+<div class="modal-body search-shops-filters-tablet-body" id="modal-body">
+    <q-search-shops-filters-content
+        class="display-block"
+        filters="$ctrl.resolve.filters"
+        on-apply="$ctrl.apply($event);"
+        on-cancel="$ctrl.cancel();">
+    </q-search-shops-filters-content>
+</div>

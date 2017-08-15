@@ -17,7 +17,7 @@
                     identity.logIn(this.user.email, this.user.password)
                         .then(function complete(result) {
                             if (identity.loggedIn()) {
-                                $state.go('public.main');
+                                identity.redirectToAttemptedUrl();
                             } else if (result.alert) {
                                 this.alerts = [alerts.danger(result.alert.message)];
                             }

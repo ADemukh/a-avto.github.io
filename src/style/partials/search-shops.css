@@ -17,7 +17,6 @@
 }
 
 .search-shops .filters .desktop,
-.search-shops .filters .tablet,
 .search-shops .filters .mobile,
 .search-shops .map,
 .search-shops .results {
@@ -25,9 +24,49 @@
 }
 
 .search-shops .filters .desktop,
-.search-shops .filters .tablet,
 .search-shops .filters .mobile {
     background-color: white;
+}
+
+.search-shops .filters .desktop .dropdown-wrapper {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.search-shops .filters .desktop .dropdown .dropdown-toggle {
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.search-shops .filters .desktop .dropdown .dropdown-toggle:hover,
+.search-shops .filters .desktop .dropdown.open .dropdown-toggle {
+    background-color: #f9f6f6;
+}
+
+.search-shops .filters .desktop .dropdown .fa-caret-down,
+.search-shops .filters .desktop .dropdown .fa-caret-up {
+    padding-left: 5px;
+}
+
+.search-shops .filters .desktop .dropdown .fa-caret-down {
+    display: inline-block;
+}
+
+.search-shops .filters .desktop .dropdown.open .fa-caret-down {
+    display: none;
+}
+
+.search-shops .filters .desktop .dropdown .fa-caret-up {
+    display: none;
+}
+
+.search-shops .filters .desktop .dropdown.open .fa-caret-up {
+    display: inline-block;
+}
+
+.search-shops .filters .desktop .dropdown.open .search-shops .filters .desktop .selection oi-select:not(:last-child) {
+    margin-right: 15px;
 }
 
 .search-shops .map {
@@ -130,17 +169,42 @@
     }
     .search-shops .results,
     .search-shops-footer {
-        top: 130px;
+        top: 110px;
     }
     .search-shops .results {
         padding-right: 15px;
     }
     .search-shops .filters .desktop {
-        height: 80px;
+        height: 60px;
         position: fixed;
         z-index: 2;
     }
-    .search-shops .filters .tablet,
+    .search-shops .filters .desktop .dropdown-menu {
+        padding: 0 20px 20px;
+    }
+    .search-shops .filters .desktop .dropdown-menu .content-block,
+    .search-shops .filters .desktop .dropdown-menu .content-block.selection oi-select:not(:first-child),
+    .search-shops .filters .desktop .dropdown-menu .content-block.work div:last-child {
+        padding-top: 20px;
+    }
+    .search-shops .filters .desktop .state,
+    .search-shops .filters .desktop .work {
+        display: block;
+        text-align: left;
+    }
+    .search-shops .filters .desktop .state div {
+        padding-left: 20px;
+        display: inline-block;
+    }
+    .search-shops .filters .desktop .action {
+        padding-top: 40px;
+    }
+    .search-shops .filters .desktop .action .btn-cancel {
+        background: none;
+    }
+    .search-shops .filters .desktop .action .btn-action {
+        float: right;
+    }
     .search-shops .filters .mobile {
         display: none
     }
@@ -164,6 +228,9 @@
     .search-shops .filters .desktop {
         width: 570px;
     }
+    .search-shops .filters .desktop .dropdown-menu {
+        width: 570px;
+    }
 }
 
 
@@ -184,6 +251,12 @@
     }
     .search-shops .filters .desktop {
         width: 370px;
+    }
+    .search-shops .filters .desktop .dropdown-menu {
+        width: 360px;
+    }
+    .search-shops .filters .desktop .dropdown-menu .content-block oi-select:last-child {
+        margin-right: 10px;
     }
 }
 
@@ -213,8 +286,32 @@
 /* sm */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .search-shops .filters .tablet {
+    .search-shops-filters-tablet-header .title {
+        font-size: 30px;
+        text-align: center;
+    }
+    .search-shops-filters-tablet-body .content-block,
+    .search-shops-filters-tablet-body .content-block.selection oi-select:not(:first-child),
+    .search-shops-filters-tablet-body .content-block.work div:last-child {
+        padding-top: 20px;
+    }
+    .search-shops-filters-tablet-body .state,
+    .search-shops-filters-tablet-body .work {
         display: block;
+        text-align: left;
+    }
+    .search-shops-filters-tablet-body .state div {
+        padding-left: 20px;
+        display: inline-block;
+    }
+    .search-shops-filters-tablet-body .action {
+        padding-top: 40px;
+    }
+    .search-shops-filters-tablet-body .action .btn-cancel {
+        background: none;
+    }
+    .search-shops-filters-tablet-body .action .btn-action {
+        float: right;
     }
     .search-shops .filters .desktop,
     .search-shops .filters .mobile {
@@ -229,35 +326,43 @@
     .search-shops .filters .mobile {
         width: 100%;
         height: 100%;
-        padding: 25px;
-        margin-top: 50px;
+        margin-top: 75px;
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
-    }
-    .search-shops .filters .mobile .mobile-wrapper{
-        margin: 0 auto;
         max-width: 500px;
+        padding: 0 25px 25px;
     }
-    .search-shops .filters .mobile .mobile-wrapper .title{
+    .search-shops .filters .mobile .title {
         font-size: 30px;
         padding-bottom: 20px;
     }
-    .search-shops .filters .mobile .mobile-wrapper .options {
+    .search-shops .filters .mobile .content-block,
+    .search-shops .filters .mobile .content-block.selection oi-select:not(:first-child),
+    .search-shops .filters .mobile .content-block.work div:last-child {
         padding-top: 20px;
     }
-    .search-shops .filters .mobile .mobile-wrapper .state{
+    .search-shops .filters .mobile .state,
+    .search-shops .filters .mobile .work {
         display: block;
+        text-align: left;
     }
-    .search-shops .filters .mobile .mobile-wrapper .options-state div {
+    .search-shops .filters .mobile .state div {
         padding-left: 20px;
+        display: inline-block;
     }
-    .search-shops .filters .mobile .mobile-wrapper .options-actions {
+    .search-shops .filters .mobile .action {
         padding-top: 40px;
+        text-align: left;
+        justify-content: flex-end;
     }
-    .search-shops .filters .mobile .mobile-wrapper .options-actions button:first-child {
-        margin-right: 30px;
+    .search-shops .filters .mobile .action .btn-cancel {
+        background: none;
     }
-    .search-shops .filters .desktop,
-    .search-shops .filters .tablet {
+    .search-shops .filters .mobile .action .btn-action {
+        float: right;
+    }
+    .search-shops .filters .desktop {
         display: none;
     }
 }

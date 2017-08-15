@@ -10,6 +10,9 @@ var WEBUI_MODULE_NAME;
         .config(WebUIModuleConfig)
         .constant('_', window._)
         .constant('routingConfig', window.routingConfig)
+        .value('redirectToUrlAfterLogin', {
+            url: '/'
+        })
         .run(WebUIModuleRun);
 
     WebUIModuleConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$translateProvider', '$qProvider'];
@@ -62,10 +65,6 @@ var WEBUI_MODULE_NAME;
                     templateUrl: 'webui/rules/rules.tmpl.html',
                     url: '/rules',
                     parent: 'public'
-                }).state('public.order-registration-full', {
-                    template: '<q-order-registration-full/>',
-                    url: '/order-registration',
-                    parent: 'public'
                 });
 
              $stateProvider
@@ -108,28 +107,30 @@ var WEBUI_MODULE_NAME;
             $stateProvider
                 .state('client', {
                     template: '<div class="height-full" ui-view/></div>',
-                    url: '/client',
                     abstract: true,
                     data: {
                         access: window.routingConfig.accessLevels.client
                     },
                     parent: 'root'
+                }).state('client.new-order', {
+                    template: '<q-new-order/>',
+                    url: '/client/new-order',
+                    parent: 'client'
                 }).state('client.profile', {
                     templateUrl: 'webui/profile/profile-client/profile-client.tmpl.html',
-                    url: '/profile',
                     abstract: true,
                     parent: 'client'
                 }).state('client.profile.cars', {
                     template: '<q-profile-client-cars/>',
-                    url: '/cars',
+                    url: '/client/profile/cars',
                     parent: 'client.profile'
                 }).state('client.profile.orders', {
                     template: '<q-profile-client-orders/>',
-                    url: '/orders',
+                    url: '/client/profile/orders',
                     parent: 'client.profile'
                 }).state('client.profile.settings', {
                     template: '<q-profile-client-settings/>',
-                    url: '/settings',
+                    url: '/client/profile/settings',
                     parent: 'client.profile'
                 });
 
@@ -137,7 +138,6 @@ var WEBUI_MODULE_NAME;
             $stateProvider
                 .state('shop', {
                     template: '<div class="height-full" ui-view/></div>',
-                    url: '/shop',
                     abstract: true,
                     data: {
                         access: window.routingConfig.accessLevels.shop
@@ -145,16 +145,15 @@ var WEBUI_MODULE_NAME;
                     parent: 'root'
                 }).state('shop.profile', {
                     templateUrl: 'webui/profile/profile-shop/profile-shop.tmpl.html',
-                    url: '/profile',
                     abstract: true,
                     parent: 'shop'
                 }).state('shop.profile.orders', {
                     template: '<q-profile-shop-orders/>',
-                    url: '/orders',
+                    url: '/shop/profile/orders',
                     parent: 'shop.profile'
                 }).state('shop.profile.settings', {
                     template: '<q-profile-shop-settings/>',
-                    url: '/settings',
+                    url: '/shop/profile/settings',
                     parent: 'shop.profile'
                 });
 
@@ -213,20 +212,29 @@ var WEBUI_MODULE_NAME;
             //================================================
             // Add an interceptor for AJAX errors
             //================================================
-            $httpProvider.interceptors.push(function interceptor($q, $location) {
-                return {
-                    response: function onResponse(response) {
-                        // do something on success
-                        return response;
-                    },
-                    responseError: function onResponseError(response) {
-                        if (response.status === 401 || response.status === 403) {
-                            $location.path('/login');
-                        }
-                        return $q.reject(response);
-                    }
+            $httpProvider.interceptors.push(securityInterceptor);
+
+            function securityInterceptor($q, $location, $injector) {
+                return function securityInterceptorPromise(promise) {
+                    var identity;
+
+                    identity = $injector.get('services.identity');
+
+                    return promise.then(
+                        function onResponse(response) {
+                            // do something on success
+                            return response;
+                        },
+                        function onResponseError(response) {
+                            if (response.status === 401 || response.status === 403) {
+                                event.preventDefault();
+                                identity.saveAttemptUrl();
+                                $location.path('/login');
+                            }
+                            return $q.reject(response);
+                        });
                 };
-            });
+            }
             //================================================
         }
 
@@ -240,7 +248,7 @@ var WEBUI_MODULE_NAME;
                 MARK: 'Марка',
                 MODEL: 'Модель',
                 YEAR: 'Год',
-                VIN: 'VIN', 
+                VIN: 'VIN',
                 CHANGE: 'Изменить',
                 YOUR_CARS: 'Ваши автомобили',
                 CHANGE_PASSWORD: 'Изменить пароль',
@@ -316,6 +324,7 @@ var WEBUI_MODULE_NAME;
                 NAVIGATION_LOG_OUT: 'ВЫЙТИ',
                 NAVIGATION_REGISTER: 'РЕГИСТРАЦИЯ',
                 NAVIGATION_ORDERS: 'ЗАЯВКИ',
+                NAVIGATION_NEW_ORDER: 'ОТПРАВИТЬ ЗАЯВКУ',
                 NAVIGATION_CLIENT_ORDERS: 'ЗАЯВКИ',
                 NAVIGATION_CLIENT_CARS: 'ГАРАЖ',
                 NAVIGATION_CLIENT_SETTINGS: 'НАСТРОЙКИ',
@@ -398,7 +407,9 @@ var WEBUI_MODULE_NAME;
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_NOW: 'Работает сейчас',
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_ON_WEEKEND: 'Работает в выходные',
                 SEARCH_SHOPS_FILTERS_APPLY: 'Применить',
-                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить'
+                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить',
+                NEW_ORDER_BACK: 'Назад',
+                NEW_ORDER_NEXT: 'Вперед'
             });
             $translateProvider.translations('en', {
                 // english translations here
@@ -413,18 +424,22 @@ var WEBUI_MODULE_NAME;
         }
     }
 
-    WebUIModuleRun.$inject = ['$rootScope', '$state', 'services.identity'];
+    WebUIModuleRun.$inject = ['$rootScope', '$state', '$location', 'services.identity'];
 
-    function WebUIModuleRun($rootScope, $state, identity) {
+    function WebUIModuleRun($rootScope, $state, $location, identity) {
         $rootScope.$on('$stateChangeStart', function onStateChangeStart(event, toState, toParams, fromState, fromParams) {
             if (identity.loggedInChecked) {
                 if (!('data' in toState) || !('access' in toState.data)) {
                     // $rootScope.error = "Access undefined for this state";
                     event.preventDefault();
                 } else if (!identity.authorize(toState.data.access)) {
-                    // $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
                     event.preventDefault();
-                    $state.go('anon.login');
+                    if (identity.loggedIn()) {
+                        $state.go('public.main');
+                    } else {
+                        identity.saveAttemptUrl(toState.url);
+                        $state.go('anon.login');
+                    }
                 }
             } else {
                 event.preventDefault();

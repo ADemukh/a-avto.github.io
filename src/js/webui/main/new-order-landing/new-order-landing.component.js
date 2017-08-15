@@ -1,16 +1,16 @@
-(function OrderRegistrationShortComponentInit() {
+(function MainNewOrderLandingControllerInit() {
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)
-        .component('qOrderRegistrationShort', {
+        .component('qMainNewOrderLanding', {
             controller: 'controllers.orderregistrationshort',
-            templateUrl: 'webui/order-registration/order-registration-short/order-registration-short.tmpl.html'
+            templateUrl: 'webui/main/new-order-landing/new-order-landing.tmpl.html'
         })
-        .controller('controllers.orderregistrationshort', OrderRegistrationShortController);
+        .controller('controllers.orderregistrationshort', MainNewOrderLandingController);
 
-    OrderRegistrationShortController.$inject = ['services.neworder', '$state'];
+    MainNewOrderLandingController.$inject = ['services.neworder', '$state'];
 
-    function OrderRegistrationShortController(newOrderService, $state) {
+    function MainNewOrderLandingController(newOrderService, $state) {
         this.$onInit = function onInit() {
             this.newOrder = angular.copy(newOrderService.newOrder);
             this.onCarSelect = function onCarSelect($event) {
@@ -20,7 +20,7 @@
             };
             this.sendToAllShops = function sendToAllShops() {
                 newOrderService.newOrder = this.newOrder;
-                $state.go('public.order-registration-full');
+                $state.go('client.new-order');
             };
             this.searchShopsByMap = function searchShopsByMap() {
                 newOrderService.newOrder = this.newOrder;
