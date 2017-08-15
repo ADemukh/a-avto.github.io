@@ -1,5 +1,23 @@
-<h2>Старт</h2>
-<div class="content-block action">
+<div class="start layout-row">
+    <div class="about text-align-left">
+        <div>
+            <span translate>NEW_ORDER_START_ABOUT</span>
+            <span uib-popover="{{'NEW_ORDER_START_NOTICE' | translate}}" popover-trigger="focus" popover-placement="bottom" popover-class="notice-popover-container"
+                class="notice-popover">
+                <i class="fa fa-info"></i>
+            </span>
+        </div>
+        <h4 translate>NEW_ORDER_START_STEPS</h4>
+        <ul>
+            <li class="car" translate>NEW_ORDER_START_STEPS_CAR</li>
+            <li translate>NEW_ORDER_START_STEPS_DETAILS</li>
+            <li translate>NEW_ORDER_START_STEPS_CONTACTS</li>
+            <li translate>NEW_ORDER_START_STEPS_SEND</li>
+        </ul>
+    </div>
+    <div class="notice-block text-align-left" translate>NEW_ORDER_START_NOTICE</div>
+</div>
+<div class="action text-align-center">
     <button type="button" class="btn btn-action btn-next" ng-click="::$ctrl.next()">
         <span translate>NEW_ORDER_NEXT</span>
     </button>

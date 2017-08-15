@@ -410,7 +410,14 @@ var WEBUI_MODULE_NAME;
                 SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить',
                 NEW_ORDER_BACK: 'Назад',
                 NEW_ORDER_NEXT: 'Вперед',
-                NEW_ORDER_SEND: 'Отправить'
+                NEW_ORDER_SEND: 'Отправить',
+                NEW_ORDER_START_ABOUT: 'Ваша заявка будет отправлена во все магазины.',
+                NEW_ORDER_START_NOTICE: 'Заявка будет отправлена в магазины, соответствующие вашим критериям. \n По мере заполнения заявки количество магазинов может уточняться.',
+                NEW_ORDER_START_STEPS: 'Этапы заполняния заявки:',
+                NEW_ORDER_START_STEPS_CAR: 'Выбор автомобиля',
+                NEW_ORDER_START_STEPS_DETAILS: 'Оформление перечня деталей',
+                NEW_ORDER_START_STEPS_CONTACTS: 'Сверка контактной информации',
+                NEW_ORDER_START_STEPS_SEND: 'Отправление заявки'
             });
             $translateProvider.translations('en', {
                 // english translations here
