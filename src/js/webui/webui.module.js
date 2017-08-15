@@ -409,7 +409,8 @@ var WEBUI_MODULE_NAME;
                 SEARCH_SHOPS_FILTERS_APPLY: 'Применить',
                 SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить',
                 NEW_ORDER_BACK: 'Назад',
-                NEW_ORDER_NEXT: 'Вперед'
+                NEW_ORDER_NEXT: 'Вперед',
+                NEW_ORDER_SEND: 'Отправить'
             });
             $translateProvider.translations('en', {
                 // english translations here

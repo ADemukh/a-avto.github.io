@@ -12,7 +12,8 @@
             CAR: 2,
             DETAILS: 3,
             CONTACTS: 4,
-            FINISH: 5
+            FINISH: 5,
+            COMPLETED: 6
         };
         newOrder = newEmptyOrder();
         return {

@@ -45,6 +45,9 @@
             this.showFinish = function showFinish() {
                 return this.newOrder.status === newOrderService.statuses.FINISH;
             };
+            this.showCompleted = function showCompleted() {
+                return this.newOrder.status === newOrderService.statuses.COMPLETED;
+            };
 
             this.goToStart = function goToStart() {
                 this.newOrder.status = newOrderService.statuses.START;
@@ -60,6 +63,9 @@
             };
             this.goToFinish = function goToFinish() {
                 this.newOrder.status = newOrderService.statuses.FINISH;
+            };
+            this.sendOrder = function sendOrder() {
+                this.newOrder.status = newOrderService.statuses.COMPLETED;
             };
         };
     }

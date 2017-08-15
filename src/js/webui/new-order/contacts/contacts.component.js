@@ -19,5 +19,5 @@
 		};
 		this.$onChanges = function onChanges(changes) {
 		};
-	};
+	}
 })();
