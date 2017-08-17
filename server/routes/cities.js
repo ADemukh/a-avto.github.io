@@ -52,7 +52,7 @@ router.get('/allCities/:name', function getCity(req, res) {
     });
 });
 
-router.post('/allCities/:name/edit', function updateNotification(req, res) {
+router.post('/allCities/:name/edit', function updateCity(req, res) {
   cityController.updateCity({
       id: req.body.id,
       name: req.body.name

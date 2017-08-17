@@ -77,7 +77,7 @@ module.exports = {
         return City.findOne({
                 name: name
             }).exec()
-            .then(function foundNotification(city) {
+            .then(function foundCity(city) {
                 return city.remove(function success(err) {
                     if (err) {
                         console.log(err);
