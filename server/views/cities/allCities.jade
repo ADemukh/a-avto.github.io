@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    div.center
+        label Города в базе данных
+    p
+        div.float
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cities/allCities/add") Добавить
+    each city in cities
+        div.float
+            div.cbm_wrap
+                div.wrapper_body
+                    form(action='/cities/allCities/delete', method='POST')
+                        a.allLinks(href="/cities/allCities/#{city.name}") #{city.name}               
+                        input(type='hidden', value=city.name, name='name')
+                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;").
+                            X

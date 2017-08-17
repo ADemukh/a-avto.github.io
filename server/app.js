@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, carsRouter, indexRouter, profileRouter, shopsRouter, uploadRouter, notificationsRouter;
+var authRouter, carsRouter, citiesRouter, indexRouter, profileRouter, shopsRouter, uploadRouter, notificationsRouter;
 var app, config, db, passport;
 
 express = require('express');
@@ -16,6 +16,7 @@ config = require('./config');
 indexRouter = require('./routes/index');
 authRouter = require('./routes/auth');
 carsRouter = require('./routes/cars');
+citiesRouter = require('./routes/cities');
 notificationsRouter = require('./routes/notifications');
 profileRouter = require('./routes/profile');
 shopsRouter = require('./routes/shops');
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, '../.build')));
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);
+app.use('/cities', citiesRouter);
 app.use('/notifications', notificationsRouter);
 app.use('/profile', profileRouter);
 app.use('/shops', shopsRouter);

@@ -5,7 +5,7 @@ express = require('express');
 router = express.Router();
 carController = require('../controllers/car');
 
-router.post('/init', function init(req, res) {
+router.get('/init', function init(req, res) {
   console.log('starting...');
   carController.init();
   console.log('finished.');
