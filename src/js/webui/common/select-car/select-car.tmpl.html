@@ -7,3 +7,15 @@
 <oi-select oi-options="y for y in $ctrl.years" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car.year" ng-change="$ctrl.updateYear()"
     placeholder="{{::'SELECT_CAR_CHOOSE_YEAR' | translate }}" ng-disabled="!$ctrl.canChooseYear()" class="select-car-year">
 </oi-select>
+<oi-select oi-options="y for y in $ctrl.engineTypes" ng-model="$ctrl.car.engineType" ng-change="$ctrl.updateEngineType()" oi-select-options="{ cleanModel: true }" 
+    placeholder="{{::'SELECT_CAR_CHOOSE_ENGINE_TYPE' | translate }}" class="select-car-types"> 
+</oi-select>
+<oi-select oi-options="y for y in $ctrl.engineCapacities" ng-model="$ctrl.car.engineCapacity" ng-change="$ctrl.updateEngineCapacity()" oi-select-options="{ cleanModel: true }" 
+    placeholder="{{::'SELECT_CAR_CHOOSE_ENGINE_CAPACITY' | translate }}" class="select-car-capacities">
+</oi-select>
+<oi-select oi-options="y for y in $ctrl.gearboxes" ng-model="$ctrl.car.gearbox" ng-change="$ctrl.updateGearbox()" oi-select-options="{ cleanModel: true }" 
+    placeholder="{{::'SELECT_CAR_CHOOSE_GEARBOX' | translate }}" class="select-car-gearboxes">
+</oi-select>
+<div class="select-car-vin">
+    <input type="text" ng-model="$ctrl.car.VIN" ng-change="$ctrl.updateVIN()" placeholder="VIN" class="select-car-vin-input width-full">
+</div>

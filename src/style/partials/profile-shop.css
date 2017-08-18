@@ -21,6 +21,17 @@
     margin-right: 10px;
 }
 
+.label-spare {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.checkbox-spare {
+    width: 20px; 
+    height: 20px; 
+}
+
 .dash-schedule {
     margin-top: 8px; 
     margin-left: 10px; 

@@ -133,4 +133,112 @@ router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
   });
 });
 
+router.get('/getEngineTypes', function getEngineTypes(req, res) {
+  carController.getEngineTypes({})
+    .then(function onGotEngineTypes(engineTypes) {
+      res.json(engineTypes);
+    });
+});
+
+router.get('/engineTypes', function getAllEngineTypes(req, res) {
+    carController.getEngineTypes({})
+        .then(function gotEngineTypes(engineTypes) {
+            res.render('cars/engineTypes/allEngineTypes', {
+                engineTypes: engineTypes
+            });
+        });
+});
+
+router.get('/engineTypes/add', function addEngineTypesGet(req, res) {
+    res.render('cars/engineTypes/addEngineType', {});
+});
+
+router.post('/engineTypes/add', function addEngineTypesPost(req, res) {
+    carController.addEngineType({
+        name: req.body.name,
+    })
+        .then(function redirect() {
+            res.redirect('/cars/engineTypes');
+        });
+});
+
+router.post('/engineTypes/delete', function deleteEngineTypes(req, res) {
+    carController.deleteEngineType(req.body.id)
+        .then(function redirect() {
+            res.redirect('/cars/engineTypes');
+        });
+});
+
+router.get('/getEngineCapacities', function getEngineCapacities(req, res) {
+  carController.getEngineCapacities({})
+    .then(function onGotEngineCapacities(engineCapacities) {
+      res.json(engineCapacities);
+    });
+});
+
+router.get('/engineCapacities', function getAllEngineCapacities(req, res) {
+    carController.getEngineCapacities({})
+        .then(function gotEngineCapacities(engineCapacities) {
+            res.render('cars/engineCapacities/allEngineCapacities', {
+                engineCapacities: engineCapacities
+            });
+        });
+});
+
+router.get('/engineCapacities/add', function addEngineCapacitiesGet(req, res) {
+    res.render('cars/engineCapacities/addEngineCapacity', {});
+});
+
+router.post('/engineCapacities/add', function addEngineCapacitiesPost(req, res) {
+    carController.addEngineCapacity({
+        name: req.body.name,
+    })
+        .then(function redirect() {
+            res.redirect('/cars/engineCapacities');
+        });
+});
+
+router.post('/engineCapacities/delete', function deleteEngineCapacities(req, res) {
+    carController.deleteEngineCapacity(req.body.id)
+        .then(function redirect() {
+            res.redirect('/cars/engineCapacities');
+        });
+});
+
+router.get('/getGearboxes', function getGearboxes(req, res) {
+  carController.getGearboxes({})
+    .then(function onGotGearboxes(gearboxes) {
+      res.json(gearboxes);
+    });
+});
+
+router.get('/gearboxes', function getAllEngineCapacities(req, res) {
+    carController.getGearboxes({})
+        .then(function gotGearboxes(gearboxes) {
+            res.render('cars/gearboxes/allGearboxes', {
+                gearboxes: gearboxes
+            });
+        });
+});
+
+router.get('/gearboxes/add', function addGearboxesGet(req, res) {
+    res.render('cars/gearboxes/addGearbox', {});
+});
+
+router.post('/gearboxes/add', function addGearboxesPost(req, res) {
+    carController.addGearbox({
+        name: req.body.name,
+    })
+        .then(function redirect() {
+            res.redirect('/cars/gearboxes');
+        });
+});
+
+router.post('/gearboxes/delete', function deleteGearboxes(req, res) {
+    carController.deleteGearbox(req.body.id)
+        .then(function redirect() {
+            res.redirect('/cars/gearboxes');
+        });
+});
+
 module.exports = router;

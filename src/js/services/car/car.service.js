@@ -7,29 +7,79 @@
     CarService.$inject = ['_', '$http', '$q'];
 
     function CarService(_, $http, $q) {
-        var allCars, dfd;
-
+        var allCars, allEngineCapacities, allEngineTypes, allGearboxes, dfd, dfd1, dfd2, dfd3;
 
         function getAllCars() {
-            if (!dfd) {
-                dfd = $q.defer();
+            if (!dfd1) {
+                dfd1 = $q.defer();
                 fetchAllCars({});
             }
-            return dfd.promise;
+            return dfd1.promise;
         }
 
         function fetchAllCars(filter) {
             return $http.get('cars/getCars', filter)
                 .then(function response(resp) {
                     allCars = resp.data;
-                    dfd.resolve(allCars);
+                    dfd1.resolve(allCars);
+                });
+        }
+
+        function getAllEngineTypes() {
+            if (!dfd2) {
+                dfd2 = $q.defer();
+                fetchAllEngineTypes({});
+            }
+            return dfd2.promise;
+        }
+
+        function fetchAllEngineTypes(filter) {
+            return $http.get('cars/getEngineTypes', filter)
+                .then(function response(resp) {
+                    allEngineTypes = resp.data;
+                    dfd2.resolve(allEngineTypes);
+                });
+        }
+
+        function getAllEngineCapacities() {
+            if (!dfd3) {
+                dfd3 = $q.defer();
+                fetchAllEngineCapacities({});
+            }
+            return dfd3.promise;
+        }
+
+        function fetchAllEngineCapacities(filter) {
+            return $http.get('cars/getEngineCapacities', filter)
+                .then(function response(resp) {
+                    allEngineCapacities = resp.data;
+                    dfd3.resolve(allEngineCapacities);
+                });
+        }
+
+        function getAllGearboxes() {
+            if (!dfd) {
+                dfd = $q.defer();
+                fetchAllGearboxes({});
+            }
+            return dfd.promise;
+        }
+
+        function fetchAllGearboxes(filter) {
+            return $http.get('cars/getGearboxes', filter)
+                .then(function response(resp) {
+                    allGearboxes = resp.data;
+                    dfd.resolve(allGearboxes);
                 });
         }
 
         return {
             getCars: getCars,
             getCarModels: getCarModels,
-            getCarModelYears: getYears
+            getCarModelYears: getYears,
+            getEngineCapacities: getEngineCapacities,
+            getEngineTypes: getEngineTypes,
+            getGearboxes: getGearboxes
         };
 
         function getCars() {
@@ -70,6 +120,27 @@
                         years.push(i.toString());
                     }
                     return years;
+                });
+        }
+
+        function getEngineTypes() {
+            return getAllEngineTypes()
+                .then(function onGetNot(types) {
+                    return types;
+                });
+        }
+
+        function getEngineCapacities() {
+            return getAllEngineCapacities()
+                .then(function onGetNot(capacities) {
+                    return capacities;
+                });
+        }
+
+        function getGearboxes() {
+            return getAllGearboxes()
+                .then(function onGetNot(gearboxes) {
+                    return gearboxes;
                 });
         }
     }

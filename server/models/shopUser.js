@@ -28,8 +28,12 @@ shopUserSchema = new mongoose.Schema({
 	cities: [String],
 	spareCategories: [String],
 	carMarks: [String],
+	spare: {
+		isNew: Boolean,
+		isOld: Boolean
+	},
 	schedule: {
-		sunday:{
+		sunday: {
 			active: Boolean, 
 			from: String, 
 			to: String 

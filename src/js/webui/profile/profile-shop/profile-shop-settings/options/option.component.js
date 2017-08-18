@@ -95,6 +95,7 @@
                 vm.allCarMarks = carMarks;
             });
 
+            vm.spare = identityService.user.spare;
             vm.cities = identityService.user.cities;
             vm.spareCategories = identityService.user.spareCategories;
             vm.carMarks = identityService.user.carMarks;
@@ -117,7 +118,8 @@
                             cities: vm.cities,
                             spareCategories: vm.spareCategories,
                             carMarks: vm.carMarks,
-                            schedule: vm.schedule
+                            schedule: vm.schedule,
+                            spare: vm.spare
                         })
                         .then(function complete(response) {
                             vm.alerts = response.data.success ? [alerts.success(response.data.message)] : [alerts.danger(response.data.error)];

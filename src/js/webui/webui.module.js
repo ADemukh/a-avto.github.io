@@ -234,6 +234,12 @@ var WEBUI_MODULE_NAME;
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
             $translateProvider.translations('ru', {
+                ENGINE_TYPE: 'Тип двигателя',
+                ENGINE_CAPACITY: 'Объём',
+                GEARBOX: 'Тип КПП',
+                IS_NEW: 'Новые',
+                IS_OLD: 'Б/у',
+                SPARE: 'Запчасти',
                 PROFILE_PHOTO: '',
                 ADD: 'добавить',
                 CANCEL: 'Отменить',
@@ -280,6 +286,9 @@ var WEBUI_MODULE_NAME;
                 ORDER_REGISTRATION_SHORT_DETAIL_QUESTION: 'Что именно нужно купить?',
                 ORDER_REGISTRATION_SHORT_TO_ALL_SHOPS: 'Заявка в магазины',
                 ORDER_REGISTRATION_SHORT_TO_SEARCH_SHOPS: 'Поиск по магазинам',
+                SELECT_CAR_CHOOSE_ENGINE_TYPE: 'Тип двигателя',
+                SELECT_CAR_CHOOSE_ENGINE_CAPACITY: 'Объём двигателя',
+                SELECT_CAR_CHOOSE_GEARBOX: 'Тип КПП',
                 SELECT_CAR_CHOOSE_MARK: 'Марка',
                 SELECT_CAR_CHOOSE_MODEL: 'Модель',
                 SELECT_CAR_CHOOSE_YEAR: 'Год',

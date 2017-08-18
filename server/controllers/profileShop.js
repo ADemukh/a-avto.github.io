@@ -50,6 +50,7 @@ function updateOptions(user, options) {
 	user.spareCategories = options.spareCategories;
 	user.carMarks = options.carMarks;
 	user.schedule = options.schedule;
+	user.spare = options.spare;
 
 	return userController.saveOrUpdate(user);
 }
