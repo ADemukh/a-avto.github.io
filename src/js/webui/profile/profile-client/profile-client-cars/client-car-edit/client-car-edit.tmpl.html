@@ -1,11 +1,7 @@
 <div class="wrapper_body">
     <div class="cbm_wrap">
         <form name="carForm" ng-submit="$ctrl.save(carForm.$valid)" novalidate>
-            <q-select-car car="$ctrl.car" on-change="$ctrl.onCarChange($event);" class="display-block layoyt-column client-car-edit-select-car"
-            />
-            <div class="client-car-edit-line-offset">
-                <input type="text" style="font-size: 14px" ng-model="$ctrl.car.VIN" placeholder="VIN" class="client-car-edit-vin width-full">
-            </div>
+            <q-select-car car="$ctrl.car" on-change="$ctrl.onCarChange($event);" />
             <div class="client-car-edit-line-offset">
                 <button type="submit" ng-disabled="carForm.$invalid" class="btn btn-primary" style="width:49%">
                     <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>

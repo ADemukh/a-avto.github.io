@@ -19,6 +19,16 @@
 
     vm = this;
     vm.$onInit = function onInit() {
+      carService.getEngineCapacities().then(function onGetCapacities(engineCapacities) {
+          vm.engineCapacities = engineCapacities;
+      });
+      carService.getGearboxes().then(function onGetGearboxes(gearboxes) {
+          vm.gearboxes = gearboxes;
+      });
+      carService.getEngineTypes().then(function onGetEngineTypes(engineTypes) {
+          vm.engineTypes = engineTypes;
+      });
+
       loadMarks();
       vm.canChooseMark = canChooseMark;
       vm.canChooseModel = canChooseModel;
@@ -26,6 +36,10 @@
       vm.updateMark = updateMark;
       vm.updateModel = updateModel;
       vm.updateYear = updateYear;
+      vm.updateEngineType = updateEngineType;
+      vm.updateEngineCapacity = updateEngineCapacity;
+      vm.updateGearbox = updateGearbox;
+      vm.updateVIN = updateVIN;
     };
     vm.$onChanges = function onChanges(changes) {
       if (changes.car) {
@@ -86,6 +100,22 @@
     }
 
     function updateYear() {
+      triggerChanges();
+    }
+
+    function updateEngineType() {
+      triggerChanges();
+    }
+
+    function updateEngineCapacity() {
+      triggerChanges();
+    }
+
+    function updateGearbox() {
+      triggerChanges();
+    }
+
+    function updateVIN() {
       triggerChanges();
     }
 

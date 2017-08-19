@@ -19,6 +19,13 @@
         </div>
     </div>
 
+    <!--isNew/isOld-->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
+        <div class="settings-line-caption" translate>SPARE</div>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isNew"><label class='label-spare' translate>IS_NEW</label>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isOld"><label class='label-spare' translate>IS_OLD</label>
+    </div>
+
     <!--Auto-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.auto.$invalid && !settingsMainForm.auto.$pristine }">
         <div class="settings-line-caption" translate>SERVICED_CARS</div>

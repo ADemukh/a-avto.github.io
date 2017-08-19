@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    div.center
+        label Типы двигателя в базе данных
+    p
+        div.float
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addSubmit(href="/cars/engineTypes/add") Добавить
+    each engineType in engineTypes
+        div.float
+            div.cbm_wrap
+                div.wrapper_body
+                    form(action='/cars/engineTypes/delete', method='POST')
+                        input(type='hidden', name='id', value=engineType._id)
+                        a.allLinks() #{engineType.name}
+                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;")
