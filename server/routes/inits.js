@@ -12,6 +12,7 @@ router.get('/initCities', function getCities(req, res) {
       res.redirect('/cities/allCities');
     });
 });
+
 router.get('/initCars', function getCities(req, res) {
   console.log('starting...');
   initController.initCars()
@@ -19,6 +20,7 @@ router.get('/initCars', function getCities(req, res) {
       res.redirect('/cars/marks');
     });
 });
+
 router.get('/initSpareTypes', function getSparesTypes(req, res) {
   console.log('starting...');
   initController.initSpareTypes()
@@ -26,6 +28,7 @@ router.get('/initSpareTypes', function getSparesTypes(req, res) {
       res.redirect('/cars/allSpares');
     });
 });
+
 router.get('/initNotifications', function getSparesTypes(req, res) {
   console.log('starting...');
   initController.initNotifications()
@@ -33,6 +36,7 @@ router.get('/initNotifications', function getSparesTypes(req, res) {
       res.redirect('/notifications/notifications');
     });
 });
+
 router.get('/initEngineCapacites', function getEngineCapacites(req, res) {
   console.log('starting...');
   initController.initEngineCapacites()
@@ -40,6 +44,7 @@ router.get('/initEngineCapacites', function getEngineCapacites(req, res) {
       res.redirect('/cars/engineCapacities');
     });
 });
+
 router.get('/initEngineTypes', function getEngineTypes(req, res) {
   console.log('starting...');
   initController.initEngineTypes()
@@ -47,6 +52,7 @@ router.get('/initEngineTypes', function getEngineTypes(req, res) {
       res.redirect('/cars/engineTypes');
     });
 });
+
 router.get('/initGearBoxes', function getGearBoxes(req, res) {
   console.log('starting...');
   initController.initGearBoxes()

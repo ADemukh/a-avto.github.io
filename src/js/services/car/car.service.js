@@ -7,7 +7,7 @@
     CarService.$inject = ['_', '$http', '$q'];
 
     function CarService(_, $http, $q) {
-        var allCars,  dfdAllCars, dfdEngineCapacities, dfdEngineTypes,  dfdGearBoxes;
+        var dfdAllCars, dfdEngineCapacities, dfdEngineTypes,  dfdGearBoxes;
 
         function getAllCars() {
             if (!dfdAllCars) {
@@ -20,8 +20,7 @@
         function fetchAllCars() {
             return $http.get('cars/getCars', {})
                 .then(function response(resp) {
-                    allCars = resp.data;
-                    dfdAllCars.resolve(allCars);
+                    dfdAllCars.resolve(resp.data);
                 });
         }
 

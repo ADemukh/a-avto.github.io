@@ -7,7 +7,7 @@
     NotificationsService.$inject = ['$http', '$q'];
 
     function NotificationsService($http, $q) {
-        var allNotifications, dfdClientNotifications, dfdShopNotifications;
+        var dfdClientNotifications, dfdShopNotifications;
 
         function getAllShopNotifications() {
             if (!dfdShopNotifications) {

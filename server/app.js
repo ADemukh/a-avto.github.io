@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, carsRouter, citiesRouter, indexRouter, initRouter, notificationsRouter, profileRouter, shopsRouter, sparesRouter, uploadRouter;
+var authRouter, carsRouter, citiesRouter, indexRouter, initRouter, notificationsRouter, profileRouter, shopsRouter, uploadRouter;
 var app, config, db, passport;
 
 express = require('express');

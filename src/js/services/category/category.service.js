@@ -7,14 +7,14 @@
     CategoryService.$inject = ['$q', '$http'];
 
     function CategoryService($q, $http) {
-        var categories, dfd;
+        var dfdSpareTypes;
 
         function getAllCategories() {
-            if (!dfd) {
-                dfd = $q.defer();
+            if (!dfdSpareTypes) {
+                dfdSpareTypes = $q.defer();
                 fetchAllCategories();
             }
-            return dfd.promise;
+            return dfdSpareTypes.promise;
         }
 
         function fetchAllCategories() {
@@ -22,11 +22,13 @@
 
             return $http.get('cars/getSpareTypes', {})
                 .then(function response(resp) {
+                    var categories;
+
                     categories = [];
                     for (i = 0; i < resp.data.length; i += 1) {
                         categories.push(resp.data[i].name);
                     }
-                    dfd.resolve(categories);
+                    dfdSpareTypes.resolve(categories);
                 });
         }
         return {

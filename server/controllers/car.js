@@ -126,7 +126,7 @@ module.exports = {
 				return Promise.all(promises);
 			});
 	},
-	deleteMarks: function deleteAllMarks(mark) {
+	deleteMark: function deleteMark(mark) {
 		return Car.find({
 				mark: mark
 			}).exec()
@@ -140,9 +140,9 @@ module.exports = {
 				return Promise.all(promises);
 			});
 	},
-	deleteCar: function deleteMark(Id) {
+	deleteModel: function deleteModel(id) {
 		return Car.findById({
-				_id: Id
+				_id: id
 			}).exec()
 			.then(function delCar(dcar) {
 				return dcar.remove(function success(err) {
@@ -177,6 +177,7 @@ module.exports = {
 			model: model
 		}).exec();
 	},
+
 	addEngineType: function addNewEngineType(engineType) {
         return saveEngineType(engineType);
     },
@@ -254,16 +255,14 @@ module.exports = {
             name: name
         }).exec();
 	},
+
 	getSpareTypes: function getSpareTypes(filter) {
         return SpareType.find(filter).exec();
 	},
-	getSpareTypeNames: function getSpares(filter) {
-        return SpareType.find(filter).distinct('name').exec();
-    },
     addSpareType: function addSpareType(spareType) {
         return saveSpareType(spareType);
     },
-    deleteSpareType: function deleteSpare(id) {
+    deleteSpareType: function deleteSpareType(id) {
         return SpareType.findOne({
                 _id: id
             }).exec()
@@ -297,5 +296,4 @@ module.exports = {
 					});
 			});
 	}
-
 };
