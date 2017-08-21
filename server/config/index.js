@@ -1,3 +1,4 @@
+/*eslint strict:0  */
 function configuartion() {
     var development, env, production;
 

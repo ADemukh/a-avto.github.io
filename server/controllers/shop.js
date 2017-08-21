@@ -5,6 +5,6 @@ Shop = require('../models/shopUser');
 
 module.exports = {
     getShops: function getShops(filter) {
-		return Shop.find(filter, 'name latitude longitude address').exec();
+		return Shop.find(filter).exec();
 	}
 };

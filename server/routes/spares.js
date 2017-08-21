@@ -5,13 +5,6 @@ express = require('express');
 router = express.Router();
 spareController = require('../controllers/spare');
 
-router.get('/sendSpares', function getSpares(req, res) {
-  console.log('starting...');
-  spareController.init();
-  console.log('finished.');
-  res.send('initialization started in background thread.');
-});
-
 router.get('/getSpares', function getSpares(req, res) {
   spareController.getSpares({})
     .then(function gotSpares(spares) {

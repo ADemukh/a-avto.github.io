@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    div.center
+        label Запчасти в базе данных
+    p
+        div.float
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/cars/spareTypes/add") Добавить
+    br
+    br
+    br
+    br                
+    each spareType in spareTypes
+        div.float
+            div.cbm_wrap
+                div.wrapper_body
+                    form(action='/cars/spareTypes/delete', method='POST')
+                        a.allLinks(href="/cars/spareTypes/#{spareType.name}") #{spareType.name}               
+                        input(type='hidden', value=spareType._id, name='id')
+                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')").
+                            X

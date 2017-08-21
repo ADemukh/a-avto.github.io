@@ -12,15 +12,20 @@
         function getAllCategories() {
             if (!dfd) {
                 dfd = $q.defer();
-                fetchAllCategories({});
+                fetchAllCategories();
             }
             return dfd.promise;
         }
 
-        function fetchAllCategories(filter) {
-            return $http.get('spares/getSpares', filter)
+        function fetchAllCategories() {
+            var i;
+
+            return $http.get('cars/getSpareTypes', {})
                 .then(function response(resp) {
-                    categories = resp.data;
+                    categories = [];
+                    for (i = 0; i < resp.data.length; i += 1) {
+                        categories.push(resp.data[i].name);
+                    }
                     dfd.resolve(categories);
                 });
         }
@@ -31,13 +36,7 @@
         function getCategories() {
             return getAllCategories()
                 .then(function gotCategories(foo) {
-                    var allCategories, i;
-
-                    allCategories = [];
-                    for (i = 0; i < foo.length; i += 1) {
-                        allCategories.push(foo[i].name);
-                    }
-                    return allCategories;
+                    return foo;
                 });
         }
     }

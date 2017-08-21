@@ -5,13 +5,6 @@ express = require('express');
 router = express.Router();
 carController = require('../controllers/car');
 
-router.get('/init', function init(req, res) {
-  console.log('starting...');
-  carController.init();
-  console.log('finished.');
-  res.send('initialization started in background thread.');
-});
-
 router.get('/getCars', function getCars(req, res) {
   carController.getCars({})
     .then(function onGotCars(cars) {
@@ -42,15 +35,15 @@ router.post('/marks/add', function addCarPost(req, res) {
       end: req.body.end
     })
     .then(function redirect() {
-      res.redirect('/cars/marks/');
+      res.redirect('/cars/marks');
     });
 });
 
 // /cars/marks/delete { body: { mark }}
 router.post('/marks/delete', function deleteCarMarks(req, res) {
-  carController.deleteCars(req.body.mark)
+  carController.deleteMarks(req.body.mark)
     .then(function redirect() {
-      res.redirect('/cars/marks/');
+      res.redirect('/cars/marks');
     });
 });
 
@@ -89,13 +82,13 @@ router.post('/marks/:mark/edit', function getAllModels(req, res) {
       oldMark: req.body.oldMark
     })
     .then(function redirect() {
-      res.redirect('/cars/marks/' + req.body.newMark);
+      res.redirect('/cars/marks');
     });
 });
 
 // /cars/marks/volvo/edit { body: { mark model }}
 router.post('/marks/:mark/delete', function getAllModels(req, res) {
-  carController.deleteModel(req.params.mark, req.body.model)
+  carController.deleteCar(req.body.id)
     .then(function redirect() {
       res.redirect('/cars/marks/' + req.params.mark);
     });
@@ -128,9 +121,9 @@ router.post('/marks/:mark/:model/edit', function updateCar(req, res) {
 // /cars/marks/volvo/xc60/delete { body: { id }}
 router.post('/marks/:mark/:model/delete', function deleteCar(req, res) {
   carController.deleteCar(req.body.id)
-  .then(function redirect() {
-    res.redirect('/cars/marks/' + req.params.mark);
-  });
+    .then(function redirect() {
+      res.redirect('/cars/marks/' + req.params.mark);
+    });
 });
 
 router.get('/getEngineTypes', function getEngineTypes(req, res) {
@@ -141,32 +134,32 @@ router.get('/getEngineTypes', function getEngineTypes(req, res) {
 });
 
 router.get('/engineTypes', function getAllEngineTypes(req, res) {
-    carController.getEngineTypes({})
-        .then(function gotEngineTypes(engineTypes) {
-            res.render('cars/engineTypes/allEngineTypes', {
-                engineTypes: engineTypes
-            });
-        });
+  carController.getEngineTypes({})
+    .then(function gotEngineTypes(engineTypes) {
+      res.render('cars/engineTypes/allEngineTypes', {
+        engineTypes: engineTypes
+      });
+    });
 });
 
 router.get('/engineTypes/add', function addEngineTypesGet(req, res) {
-    res.render('cars/engineTypes/addEngineType', {});
+  res.render('cars/engineTypes/addEngineType', {});
 });
 
 router.post('/engineTypes/add', function addEngineTypesPost(req, res) {
-    carController.addEngineType({
-        name: req.body.name,
+  carController.addEngineType({
+      name: req.body.name
     })
-        .then(function redirect() {
-            res.redirect('/cars/engineTypes');
-        });
+    .then(function redirect() {
+      res.redirect('/cars/engineTypes');
+    });
 });
 
 router.post('/engineTypes/delete', function deleteEngineTypes(req, res) {
-    carController.deleteEngineType(req.body.id)
-        .then(function redirect() {
-            res.redirect('/cars/engineTypes');
-        });
+  carController.deleteEngineType(req.body.id)
+    .then(function redirect() {
+      res.redirect('/cars/engineTypes');
+    });
 });
 
 router.get('/getEngineCapacities', function getEngineCapacities(req, res) {
@@ -177,32 +170,32 @@ router.get('/getEngineCapacities', function getEngineCapacities(req, res) {
 });
 
 router.get('/engineCapacities', function getAllEngineCapacities(req, res) {
-    carController.getEngineCapacities({})
-        .then(function gotEngineCapacities(engineCapacities) {
-            res.render('cars/engineCapacities/allEngineCapacities', {
-                engineCapacities: engineCapacities
-            });
-        });
+  carController.getEngineCapacities({})
+    .then(function gotEngineCapacities(engineCapacities) {
+      res.render('cars/engineCapacities/allEngineCapacities', {
+        engineCapacities: engineCapacities
+      });
+    });
 });
 
 router.get('/engineCapacities/add', function addEngineCapacitiesGet(req, res) {
-    res.render('cars/engineCapacities/addEngineCapacity', {});
+  res.render('cars/engineCapacities/addEngineCapacity', {});
 });
 
 router.post('/engineCapacities/add', function addEngineCapacitiesPost(req, res) {
-    carController.addEngineCapacity({
-        name: req.body.name,
+  carController.addEngineCapacity({
+      name: req.body.name,
     })
-        .then(function redirect() {
-            res.redirect('/cars/engineCapacities');
-        });
+    .then(function redirect() {
+      res.redirect('/cars/engineCapacities');
+    });
 });
 
 router.post('/engineCapacities/delete', function deleteEngineCapacities(req, res) {
-    carController.deleteEngineCapacity(req.body.id)
-        .then(function redirect() {
-            res.redirect('/cars/engineCapacities');
-        });
+  carController.deleteEngineCapacity(req.body.id)
+    .then(function redirect() {
+      res.redirect('/cars/engineCapacities');
+    });
 });
 
 router.get('/getGearboxes', function getGearboxes(req, res) {
@@ -213,32 +206,80 @@ router.get('/getGearboxes', function getGearboxes(req, res) {
 });
 
 router.get('/gearboxes', function getAllEngineCapacities(req, res) {
-    carController.getGearboxes({})
-        .then(function gotGearboxes(gearboxes) {
-            res.render('cars/gearboxes/allGearboxes', {
-                gearboxes: gearboxes
-            });
-        });
+  carController.getGearboxes({})
+    .then(function gotGearboxes(gearboxes) {
+      res.render('cars/gearboxes/allGearboxes', {
+        gearboxes: gearboxes
+      });
+    });
 });
 
 router.get('/gearboxes/add', function addGearboxesGet(req, res) {
-    res.render('cars/gearboxes/addGearbox', {});
+  res.render('cars/gearboxes/addGearbox', {});
 });
 
 router.post('/gearboxes/add', function addGearboxesPost(req, res) {
-    carController.addGearbox({
-        name: req.body.name,
+  carController.addGearbox({
+      name: req.body.name,
     })
-        .then(function redirect() {
-            res.redirect('/cars/gearboxes');
-        });
+    .then(function redirect() {
+      res.redirect('/cars/gearboxes');
+    });
 });
 
 router.post('/gearboxes/delete', function deleteGearboxes(req, res) {
-    carController.deleteGearbox(req.body.id)
-        .then(function redirect() {
-            res.redirect('/cars/gearboxes');
-        });
+  carController.deleteGearbox(req.body.id)
+    .then(function redirect() {
+      res.redirect('/cars/gearboxes');
+    });
+});
+router.get('/getSpareTypes', function getSpareTypes(req, res) {
+  carController.getSpareTypes({})
+    .then(function gotSpareTypes(spareTypes) {
+      res.json(spareTypes);
+    });
+});
+router.get('/spareTypes', function getSpareTypes(req, res) {
+  carController.getSpareTypes({})
+    .then(function gotSpareTypes(spareTypes) {
+      res.render('cars/spareTypes/allSpareTypes', {
+        spareTypes: spareTypes
+      });
+    });
+});
+router.get('/spareTypes/add', function addSpareType(req, res) {
+  res.render('cars/spareTypes/addSpareType', {});
+});
+router.post('/spareTypes/add', function addSpareType(req, res) {
+  carController.addSpareType({
+      name: req.body.name
+    })
+    .then(function redirect() {
+      res.redirect('/cars/spareTypes');
+    });
+});
+router.post('/spareTypes/delete', function deleteSpareType(req, res) {
+  carController.deleteSpareType(req.body.id)
+    .then(function redirect() {
+      res.redirect('/cars/spareTypes');
+    });
+});
+router.get('/spareTypes/:name', function getSpareType(req, res) {
+  carController.getSpareType(req.params.name)
+    .then(function gotSpareType(spareType) {
+      res.render('cars/spareTypes/editSpareType', {
+        spareType: spareType
+      });
+    });
+});
+router.post('/spareTypes/:name/edit', function updateSpareType(req, res) {
+  carController.updateSpareType({
+      id: req.body.id,
+      name: req.body.name
+    })
+    .then(function redirect() {
+      res.redirect('/cars/spareTypes');
+    });
 });
 
 module.exports = router;

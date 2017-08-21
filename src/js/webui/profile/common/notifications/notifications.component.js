@@ -12,9 +12,9 @@
         })
         .controller('controllers.profilesettingsnotifications', ProfileSettingsNotificationsController);
 
-    ProfileSettingsNotificationsController.$inject = ['services.common', 'services.client', 'services.webui.alerts', 'services.identity', 'services.notifications'];
+    ProfileSettingsNotificationsController.$inject = ['services.webui.alerts', 'services.identity'];
 
-    function ProfileSettingsNotificationsController(common, clientService, alerts, identityService, notificationsService) {
+    function ProfileSettingsNotificationsController(alerts, identityService) {
         var vm;
 
         vm = this;

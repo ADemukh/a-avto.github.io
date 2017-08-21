@@ -5,13 +5,6 @@ express = require('express');
 router = express.Router();
 cityController = require('../controllers/city');
 
-router.get('/send', function getCars(req, res) {
-  console.log('starting...');
-  cityController.init();
-  console.log('finished.');
-  res.send('initialization started in background thread.');
-});
-
 router.get('/getCities', function getCities(req, res) {
   cityController.getCities({})
     .then(function gotMarks(cities) {
