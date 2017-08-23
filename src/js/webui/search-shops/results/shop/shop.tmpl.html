@@ -4,138 +4,93 @@
         height: 60px;
         margin-right: 15px;
     }
-    
-    .shop-layout {
-        background-color: #f9f6f6;
-        border-color: #aaa;
-        margin-bottom: 10px;
-        padding: 5px;
-    }
-    
+
     .shop-address {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
-    .send-request {
-        padding: 10px; 
-    }
-    
-    a.send-request-button {
-        width: 130px;
-        height: 30px;
-        display: inline-block;
-        font-family: arial, sans-serif;
-        font-size: 11px;
-        font-weight: bold;
-        color: rgb(68, 68, 68);
-        text-decoration: none;
-        user-select: none;
-        padding: .2em 1.2em;
-        outline: none;
-        border: 1px solid rgba(0, 0, 0, .1);
-        border-radius: 2px;
-        background: rgb(245, 245, 245) linear-gradient(#f4f4f4, #f1f1f1);
-        transition: all .218s ease 0s;
-    }
-    
-    a.send-request-button:hover {
-        color: rgb(24, 24, 24);
-        border: 1px solid rgb(198, 198, 198);
-        background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
-    }
-    
-    a.send-request-button:active {
-        color: rgb(51, 51, 51);
-        border: 1px solid rgb(204, 204, 204);
-        background: rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
-        box-shadow: 0 1px 2px rgba(0, 0, 0, .1) inset;
-    }
-    
+
     .category-list {
         height: 180px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap
     }
-    
+
     .category-list li {
         page-break-inside: avoid;
         break-inside: avoid;
     }
-
 </style>
-<div class="shop-layout">
-    <uib-tabset active="activeJustified" justified="true">
-        <uib-tab index="0">
-            <uib-tab-heading><i class="fa fa-home" aria-hidden="true"></i></uib-tab-heading>
-            <div class="layout-row send-request">
-                <img src="img/user-logo.png" class="shop-logo">
-                <div class="flex layout-column">
-                    <span>{{$ctrl.shop.name}}</span>
-                    <q-star-rating rating="$ctrl.shop.rating" readonly="::$ctrl.shop.readonly"></q-star-rating>
-                </div>
+<div class="shop-result-layout">
+    <div class="layout-row">
+        <div class="tabset-headings">
+            <div class="tab-heading">
+                <input type="radio" name="home" id="{{::$ctrl.tabIds.home}}" ng-model="$ctrl.visibleTab" value="home">
+                <label for="{{::$ctrl.tabIds.home}}" class="fa fa-home" aria-hidden="true"></label>
             </div>
-            <div class="shop-address send-request">
-                <span>{{$ctrl.shop.address}}</span>
+            <div class="tab-heading">
+                <input type="radio" name="home" id="{{::$ctrl.tabIds.cities}}" ng-model="$ctrl.visibleTab" value="cities">
+                <label for="{{::$ctrl.tabIds.cities}}"><i class="fa fa-map-marker" aria-hidden="true"></i></label>
             </div>
-        </uib-tab>
-
-        <uib-tab index="1">
-            <uib-tab-heading><i class="fa fa-map-marker" aria-hidden="true"></i></uib-tab-heading>
-            <div class="text-align-center">Обслуживаемые города:</div>
-            <ul class="category-list clearfix">
-                <li ng-repeat="cities in $ctrl.shop.cities">{{cities}}</li>
-            </ul>
-        </uib-tab>
-
-        <uib-tab index="2">
-            <uib-tab-heading><i class="fa fa-gear" aria-hidden="true"></i></uib-tab-heading>
-            <div class="text-align-center">Обслуживаемые категории запчастей:</div>
-            <ul class="category-list clearfix">
-                <li ng-repeat="spareCategories in $ctrl.shop.spareCategories">{{spareCategories}}</li>
-            </ul>
-        </uib-tab>
-
-        <uib-tab index="3">
-            <uib-tab-heading><i class="fa fa-car" aria-hidden="true"></i></uib-tab-heading>
-            <div class="text-align-center">Обслуживаемые автомобили:</div>
-            <ul class="category-list clearfix">
-                <li ng-repeat="carMarks in $ctrl.shop.carMarks">{{carMarks}}</li>
-            </ul>
-        </uib-tab>
-
-        <uib-tab index="4">
-            <uib-tab-heading><i class="fa fa-calendar-o" aria-hidden="true"></i></uib-tab-heading>
-            <div class="text-align-center">Расписание:</div>
-            <ul class="category-list clearfix">
-                <div ng-repeat="(key, value) in $ctrl.shop.schedule">
-                    <div ng-if="value.active">
-                        <li>
-                            <div class="settings-line-caption" translate>{{::$ctrl.getDayTranslationKey(key) | translate}}:</div>
-                            <div class="layout-column settings-line-content-input layout-row layout-wrap position-relative">
-                                <span>{{value.from}}</span>
-                                <div>-</div>
-                                <span>{{value.to}}</span>
-                                <hr style="margin: 0px">
-                            </div>
-                        </li>
-                    </div>
-                    <div ng-if="!value.active">
-                        <li>
-                            <div class="settings-line-caption" translate>{{::$ctrl.getDayTranslationKey(key) | translate}}:</div>
-                            <span>выходной</span>
-                        </li>
+            <div class="tab-heading">
+                <input type="radio" name="home" id="{{::$ctrl.tabIds.spareTypes}}" ng-model="$ctrl.visibleTab" value="spareTypes">
+                <label for="{{::$ctrl.tabIds.spareTypes}}"><i class="fa fa-gear" aria-hidden="true"></i></label>
+            </div>
+            <div class="tab-heading">
+                <input type="radio" name="home" id="{{::$ctrl.tabIds.cars}}" ng-model="$ctrl.visibleTab" value="cars">
+                <label for="{{::$ctrl.tabIds.cars}}"><i class="fa fa-car" aria-hidden="true"></i></label>
+            </div>
+            <div class="tab-heading">
+                <input type="radio" name="home" id="{{::$ctrl.tabIds.workingHours}}" ng-model="$ctrl.visibleTab" value="workingHours">
+                <label for="{{::$ctrl.tabIds.workingHours}}"><i class="fa fa-clock-o" aria-hidden="true"></i></label>
+            </div>
+        </div>
+        <div class="tabset-contents flex">
+            <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'home'">
+                <div class="layout-row send-request">
+                    <img src="img/user-logo.png" class="shop-logo">
+                    <div class="flex layout-column">
+                        <span>{{$ctrl.shop.name}}</span>
+                        <q-star-rating rating="$ctrl.shop.rating" readonly="::$ctrl.shop.readonly"></q-star-rating>
                     </div>
                 </div>
-            </ul>
-        </uib-tab>
-    </uib-tabset>
-
-    <hr style="margin: 0px">
-    <div class="send-request">
-        <a class="send-request-button" href="#/order-registration">Отправить заявку</a>
+                <div class="shop-address send-request">
+                    <span>{{$ctrl.shop.address}}</span>
+                </div>
+            </div>
+            <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'cities'">
+                <div class="text-align-center">Обслуживаемые города:</div>
+                <ul class="category-list clearfix">
+                    <li ng-repeat="cities in $ctrl.shop.cities">{{cities}}</li>
+                </ul>
+            </div>
+            <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'spareTypes'">
+                <div class="text-align-center">Обслуживаемые категории запчастей:</div>
+                <ul class="category-list clearfix">
+                    <li ng-repeat="spareCategories in ::$ctrl.shop.spareCategories">{{spareCategories}}</li>
+                </ul>
+            </div>
+            <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'cars'">
+                <div class="text-align-center">Обслуживаемые автомобили:</div>
+                <ul class="category-list">
+                    <li ng-repeat="carMarks in $ctrl.shop.carMarks">{{carMarks}}</li>
+                </ul>
+            </div>
+            <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'workingHours'">
+                <div class="text-align-center">Расписание:</div>
+                <ul class="category-list">
+                    <li ng-repeat="(key, value) in $ctrl.shop.schedule">
+                        <div translate>{{::$ctrl.getDayTranslationKey(key) | translate}}:</div>
+                        <div ng-if="::value.active">{{::value.from}}-{{::value.to}}</div>
+                        <div ng-if="::!value.active">выходной</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="result-action">
+        <a class="result-action-button" href="#/order-registration">Отправить заявку</a>
     </div>
 </div>
