@@ -22,15 +22,16 @@
                 saturday: 'SATURDAY',
                 sunday: 'SUNDAY'
             };
-
             vm = this;
+
             this.$onInit = function onInit() {
-                vm.tabIds = {
-                    home: 'HomeTab' + vm.index,
-                    cities: 'CitiesTab' + vm.index,
-                    spareTypes: 'SpareTypesTab' + vm.index,
-                    cars: 'CarsTab' + vm.index,
-                    workingHours: 'WorkingHoursTab' + vm.index
+                vm.tabs = {
+                    groupId: 'tabs' + vm.index,
+                    homeId: 'HomeTab' + vm.index,
+                    citiesId: 'CitiesTab' + vm.index,
+                    spareTypesId: 'SpareTypesTab' + vm.index,
+                    carsId: 'CarsTab' + vm.index,
+                    workingHoursId: 'WorkingHoursTab' + vm.index
                 };
                 vm.visibleTab = 'home';
                 vm.getDayTranslationKey = function getDayTranslationKey(day) {
