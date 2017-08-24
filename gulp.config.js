@@ -8,6 +8,7 @@ module.exports = function exports() {
             html: 'src/*.html',
             js: 'src/js/**/*.js',
             style: 'src/style/main.css',
+            less: 'src/less/site.less',
             img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*'
         },
@@ -15,6 +16,7 @@ module.exports = function exports() {
             html: '.build/',
             js: '.build/js/',
             css: '.build/css/',
+            less: '.build/css/',
             img: '.build/img/',
             fonts: '.build/fonts/',
             templates: '.build/js/templates/',
@@ -27,6 +29,7 @@ module.exports = function exports() {
             indexhtml: 'src/index.html',
             js: 'src/js/**/!(*.min)+(.js)',
             style: 'src/style/**/*.css',
+            less: 'src/less/**/*.less',
             img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*',
             templates: 'src/js/**/*.tmpl.html'
@@ -69,5 +72,3 @@ module.exports = function exports() {
 
     return config;
 };
-
-

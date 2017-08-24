@@ -56,28 +56,3 @@ a {
 .right {
   float: right;
 }
-
-.btn-action {
-  border-radius: 20px;
-  font-size: 18px;
-  color: #fff;
-  background-color: #ff6600;
-  border-color: #e25d05;
-}
-
-.btn-action:focus,
-.btn-action:hover {
-  background-color: #e25d05;
-  color: #fff;
-  background-position: 0 -15px;
-}
-
-.btn-cancel {
-  border-radius: 20px;
-  font-size: 18px;
-}
-
-.btn-cancel:focus,
-.btn-cancel:hover {
-  background-position: 0 -15px;
-}

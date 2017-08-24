@@ -8,16 +8,20 @@
         })
         .controller('controllers.orderregistrationshort', MainNewOrderLandingController);
 
-    MainNewOrderLandingController.$inject = ['services.neworder', '$state'];
+    MainNewOrderLandingController.$inject = ['services.neworder', '$state', 'services.common'];
 
-    function MainNewOrderLandingController(newOrderService, $state) {
+    function MainNewOrderLandingController(newOrderService, $state, common) {
         this.$onInit = function onInit() {
             this.newOrder = angular.copy(newOrderService.newOrder);
-            this.onCarSelect = function onCarSelect($event) {
-                if ($event && $event.car) {
-                    this.newOrder.car = $event.car;
-                }
-            };
+            common.services.car.getCars().then(function onGetCars(marks) {
+                this.marks = marks;
+            }.bind(this));
+            common.services.category.getCategories().then(function onGetSpareTypes(spareTypes) {
+                this.spareTypes = spareTypes;
+            }.bind(this));
+            common.services.adress.getCities().then(function onGetCities(cities) {
+                this.cities = cities;
+            }.bind(this));
             this.sendToAllShops = function sendToAllShops() {
                 newOrderService.newOrder = this.newOrder;
                 $state.go('client.new-order');
