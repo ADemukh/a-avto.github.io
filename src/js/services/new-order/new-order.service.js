@@ -9,8 +9,8 @@
 
         STATUSES = {
             START: 1,
-            CAR: 2,
-            DETAILS: 3,
+            DETAILS: 2,
+            CAR: 3,
             CONTACTS: 4,
             FINISH: 5,
             COMPLETED: 6
