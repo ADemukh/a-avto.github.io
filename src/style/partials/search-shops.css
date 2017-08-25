@@ -424,8 +424,22 @@
 
 .shop-result-layout .shop-address {
     height: 40px;
-    overflow-y: hidden;
 }
+
+.shop-result-layout .shop-about {
+    height: 70px;
+}
+
+.shop-result-layout .shop-number {
+    height: 20px;
+}
+
+.shop-result-layout .shop-about,
+.shop-result-layout .shop-address,
+.shop-result-layout .shop-number {
+    overflow: hidden;
+}
+
 
 .shop-result-layout .result-action {
     height: 40px;

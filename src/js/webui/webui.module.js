@@ -234,6 +234,8 @@ var WEBUI_MODULE_NAME;
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
             $translateProvider.translations('ru', {
+                ABOUT_MYSELF: 'О себе',
+                REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT: 'Неправильно введены данные',
                 ENGINE_TYPE: 'Тип двигателя',
                 ENGINE_CAPACITY: 'Объём',
                 GEARBOX: 'Тип КПП',

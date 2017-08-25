@@ -23,6 +23,7 @@ options = {
 shopUserSchema = new mongoose.Schema({
 	www: String,
 	address: String,
+	about: String,
 	longitude: String,
 	latitude: String,
 	cities: [String],

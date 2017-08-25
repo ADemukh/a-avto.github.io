@@ -31,7 +31,9 @@
                         <q-star-rating rating="$ctrl.shop.rating" readonly="::$ctrl.shop.readonly"></q-star-rating>
                     </div>
                 </div>
-                <div class="shop-address"><span>{{::$ctrl.shop.address}}</span></div>
+                <div class="shop-address"><span>Адрес: {{::$ctrl.shop.address}}</span></div>
+                <div class="shop-number"><span>Телефон: {{::$ctrl.shop.phone}}</span></div>
+                <div class="shop-about"><span>О себе: {{::$ctrl.shop.about}}</span></div>
             </div>
             <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'cities'">
                 <div class="list-heading">Обслуживаемые города:</div>

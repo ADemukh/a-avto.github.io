@@ -33,6 +33,14 @@
                 <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_WWW_IS_NOT_CORRECT</span>
         </div>
     </div>
+    <!-- About -->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+        <div class="settings-line-caption" translate>ABOUT_MYSELF</div>
+        <div class="layout-column settings-line-content-input">
+            <textarea type="text" name="about" ng-model="$ctrl.user.about" ng-change="$ctrl.resetServerError()" required class="form-control"></textarea>
+                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT</span>
+        </div>
+    </div>
     <!--MAPS-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.adress.$invalid && !settingsMainForm.adress.$pristine }">
         <div class="settings-line-caption" translate>SHOP_ADDRESS_ON_THE_MAP</div>
