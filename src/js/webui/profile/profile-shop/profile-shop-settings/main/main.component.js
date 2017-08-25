@@ -55,6 +55,7 @@
                 email: identityService.user.email,
                 phone: identityService.user.phone,
                 www: identityService.user.www,
+                about: identityService.user.about,
                 address: identityService.user.address,
                 longitude: identityService.user.longitude,
                 latitude: identityService.user.latitude,

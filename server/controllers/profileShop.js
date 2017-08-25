@@ -32,6 +32,7 @@ function updateContactInfo(user, newUserContactInfo) {
 	user.name = newUserContactInfo.name;
 	user.phone = newUserContactInfo.phone;
 	user.www = newUserContactInfo.www;
+	user.about = newUserContactInfo.about;
 	user.address = newUserContactInfo.address;
 	user.longitude = newUserContactInfo.longitude;
 	user.latitude = newUserContactInfo.latitude;
