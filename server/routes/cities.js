@@ -35,7 +35,7 @@ router.post('/allCities/add', function addCityPost(req, res) {
 });
 
 router.post('/allCities/delete', function deleteCity(req, res) {
-  cityController.deleteCity(req.body.name)
+  cityController.deleteCity(req.body.id)
     .then(function redirect() {
       res.redirect('/cities/allCities');
     });

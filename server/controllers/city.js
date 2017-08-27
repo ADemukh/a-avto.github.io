@@ -26,9 +26,9 @@ module.exports = {
     addCity: function addCity(city) {
         return saveCity(city);
     },
-    deleteCity: function deleteCity(name) {
+    deleteCity: function deleteCity(id) {
         return City.findOne({
-                name: name
+                _id: id
             }).exec()
             .then(function foundCity(city) {
                 return city.remove(function success(err) {

@@ -7,7 +7,7 @@
     CarService.$inject = ['_', '$http', '$q'];
 
     function CarService(_, $http, $q) {
-        var dfdAllCars, dfdEngineCapacities, dfdEngineTypes,  dfdGearBoxes;
+        var dfdAllCars, dfdEngineCapacities, dfdEngineTypes,  dfdGearBoxes, dfdSpareTypes;
 
         function getAllCars() {
             if (!dfdAllCars) {
@@ -87,11 +87,34 @@
                     dfdGearBoxes.resolve(gearBoxes);
                 });
         }
+        function getAllCategories() {
+            if (!dfdSpareTypes) {
+                dfdSpareTypes = $q.defer();
+                fetchAllCategories();
+            }
+            return dfdSpareTypes.promise;
+        }
+
+        function fetchAllCategories() {
+            var i;
+
+            return $http.get('cars/getSpareTypes', {})
+                .then(function response(resp) {
+                    var categories;
+
+                    categories = [];
+                    for (i = 0; i < resp.data.length; i += 1) {
+                        categories.push(resp.data[i].name);
+                    }
+                    dfdSpareTypes.resolve(categories);
+                });
+        }
 
         return {
             getCars: getCars,
             getCarModels: getCarModels,
             getCarModelYears: getYears,
+            getCategories: getCategories,
             getEngineCapacities: getEngineCapacities,
             getEngineTypes: getEngineTypes,
             getGearboxes: getGearboxes
@@ -117,6 +140,13 @@
                             return car.model;
                         })
                         .value();
+                });
+        }
+
+        function getCategories() {
+            return getAllCategories()
+                .then(function gotCategories(foo) {
+                    return foo;
                 });
         }
 

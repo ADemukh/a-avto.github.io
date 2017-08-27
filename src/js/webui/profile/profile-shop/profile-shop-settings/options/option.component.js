@@ -88,7 +88,7 @@
             common.services.adress.getCities().then(function onGetCities(cities) {
                 vm.allCities = cities;
             });
-            common.services.category.getCategories().then(function onGetCategories(categories) {
+            common.services.car.getCategories().then(function onGetCategories(categories) {
                 vm.allCategories = categories;
             });
             common.services.car.getCars().then(function onGetCars(carMarks) {

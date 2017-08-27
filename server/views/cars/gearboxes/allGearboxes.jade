@@ -7,7 +7,7 @@ block content
         div.float
             div.cbm_wrap_button
                 div.wrapper_body_button
-                    a.addSubmit(href="/cars/gearboxes/add") Добавить
+                    a.addCarSubmit(href="/cars/gearboxes/add") Добавить
     each gearbox in gearboxes
         div.float
             div.cbm_wrap
@@ -15,4 +15,5 @@ block content
                     form(action='/cars/gearboxes/delete', method='POST')
                         input(type='hidden', name='id', value=gearbox._id)
                         a.allLinks() #{gearbox.name}
-                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;")
+                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;").
+                            X

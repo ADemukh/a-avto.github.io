@@ -7,7 +7,7 @@ block content
         div.float
             div.cbm_wrap_button
                 div.wrapper_body_button
-                    a.addSubmit(href="/cars/engineTypes/add") Добавить
+                    a.addCarSubmit(href="/cars/engineTypes/add") Добавить
     each engineType in engineTypes
         div.float
             div.cbm_wrap
@@ -15,4 +15,5 @@ block content
                     form(action='/cars/engineTypes/delete', method='POST')
                         input(type='hidden', name='id', value=engineType._id)
                         a.allLinks() #{engineType.name}
-                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;")
+                        button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;").
+                            X

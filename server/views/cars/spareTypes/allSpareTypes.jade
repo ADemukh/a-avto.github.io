@@ -14,10 +14,10 @@ block content
     br                
     each spareType in spareTypes
         div.float
-            div.cbm_wrap
+            div.bbm_wrap
                 div.wrapper_body
                     form(action='/cars/spareTypes/delete', method='POST')
-                        a.allLinks(href="/cars/spareTypes/#{spareType.name}") #{spareType.name}               
+                        a.allBigLinks(href="/cars/spareTypes/#{spareType.name}") #{spareType.name}               
                         input(type='hidden', value=spareType._id, name='id')
                         button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены? Данные будут потеряны.')").
                             X
