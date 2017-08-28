@@ -50,5 +50,13 @@ router.post('/changeclientcars', authController.isAuthenticated, function change
   profileClientController.changeCars(req.body.email, req.body.cars)
     .then(succeedWrapper(res, 'Изменения сохранены.'), failureWrapper(res, 'При сохранении изменений возникла ошибка.'));
 });
+router.post('/getclientorders', authController.isAuthenticated, function changeClientCars(req, res) {
+  profileClientController.getOrders(req.body.email)
+    .then(function gotOrders(orders) {
+      res.json({
+        orders: orders
+      });
+    });
+});
 
 module.exports = router;
