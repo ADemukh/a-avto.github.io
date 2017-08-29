@@ -12,7 +12,7 @@ router.get('/getCities', function getCities(req, res) {
     });
 });
 
-router.get('/allCities', function getCities(req, res) {
+router.get('/', function getCities(req, res) {
   cityController.getCities({})
     .then(function gotMarks(cities) {
       res.render('cities/allCities', {
@@ -20,11 +20,9 @@ router.get('/allCities', function getCities(req, res) {
       });
     });
 });
-
 router.get('/allCities/add', function addCity(req, res) {
   res.render('cities/addCity', {});
 });
-
 router.post('/allCities/add', function addCityPost(req, res) {
   cityController.addCity({
       name: req.body.name
@@ -33,14 +31,12 @@ router.post('/allCities/add', function addCityPost(req, res) {
       res.redirect('/cities/allCities');
     });
 });
-
 router.post('/allCities/delete', function deleteCity(req, res) {
   cityController.deleteCity(req.body.id)
     .then(function redirect() {
       res.redirect('/cities/allCities');
     });
 });
-
 router.get('/allCities/:name', function getCity(req, res) {
   cityController.getCity(req.params.name)
     .then(function gotCity(city) {
@@ -49,7 +45,6 @@ router.get('/allCities/:name', function getCity(req, res) {
       });
     });
 });
-
 router.post('/allCities/:name/edit', function updateCity(req, res) {
   cityController.updateCity({
       id: req.body.id,

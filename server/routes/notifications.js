@@ -12,7 +12,7 @@ router.get('/getNotifications', function getNotifications(req, res) {
     });
 });
 
-router.get('/notifications', function getAllCars(req, res) {
+router.get('/', function getAllCars(req, res) {
   notificationsController.getNotifications({})
     .then(function gotNotifications(notifications) {
       res.render('notifications/allNotifications', {
@@ -20,7 +20,6 @@ router.get('/notifications', function getAllCars(req, res) {
       });
     });
 });
-
 router.get('/notifications/add', function addNotificationGet(req, res) {
   res.render('notifications/addNotification', {});
 });
