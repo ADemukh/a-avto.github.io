@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, carsRouter, citiesRouter, indexRouter, notificationsRouter, profileRouter, shopsRouter, sparesRouter, uploadRouter;
+var authRouter, carsRouter, citiesRouter, indexRouter, initRouter, notificationsRouter, profileRouter, shopsRouter, uploadRouter;
 var app, config, db, passport;
 
 express = require('express');
@@ -14,12 +14,12 @@ bodyParser = require('body-parser');
 
 config = require('./config');
 indexRouter = require('./routes/index');
+initRouter = require('./routes/inits');
 authRouter = require('./routes/auth');
 carsRouter = require('./routes/cars');
 citiesRouter = require('./routes/cities');
 notificationsRouter = require('./routes/notifications');
 profileRouter = require('./routes/profile');
-sparesRouter = require('./routes/spares');
 shopsRouter = require('./routes/shops');
 uploadRouter = require('./routes/upload');
 
@@ -46,13 +46,13 @@ app.use(express.static(path.join(__dirname, '../.build')));
 
 // routes
 app.use('/', indexRouter);
+app.use('/init', initRouter);
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);
 app.use('/cities', citiesRouter);
 app.use('/notifications', notificationsRouter);
 app.use('/profile', profileRouter);
 app.use('/shops', shopsRouter);
-app.use('/spares', sparesRouter);
 app.use('/upload', uploadRouter);
 
 // catch 404 and forward to error handler

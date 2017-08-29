@@ -14,6 +14,6 @@ block content
                 div.wrapper_body
                     form(action='/cities/allCities/delete', method='POST')
                         a.allLinks(href="/cities/allCities/#{city.name}") #{city.name}               
-                        input(type='hidden', value=city.name, name='name')
+                        input(type='hidden', value=city.id, name='id')
                         button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;").
                             X

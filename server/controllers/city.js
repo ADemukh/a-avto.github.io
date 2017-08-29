@@ -1,49 +1,7 @@
 /*eslint strict:0  */
-var City, cityInitialCollection;
+var City;
 
 City = require('../models/city');
-
-cityInitialCollection = [{
-    name: 'Минск'
-}, {
-    name: 'Гомель'
-}, {
-    name: 'Могилёв'
-}, {
-    name: 'Витебск'
-}, {
-    name: 'Гродно'
-}, {
-    name: 'Брест'
-}, {
-    name: 'Бобруйск'
-}, {
-    name: 'Барановичи'
-}, {
-    name: 'Борисов'
-}, {
-    name: 'Пинск'
-}, {
-    name: 'Орша'
-}, {
-    name: 'Мозырь'
-}, {
-    name: 'Солигорск'
-}, {
-    name: 'Новополоцк'
-}, {
-    name: 'Лида'
-}, {
-    name: 'Молодечно'
-}, {
-    name: 'Полоцк'
-}, {
-    name: 'Жлобин'
-}, {
-    name: 'Светлогорск'
-}, {
-    name: 'Речица'
-}];
 
 function saveCity(city) {
     var cityModel;
@@ -62,20 +20,15 @@ function saveCity(city) {
 }
 
 module.exports = {
-    init: function init() {
-        cityInitialCollection.forEach(function each(cityItem) {
-            saveCity(cityItem);
-        });
-    },
     getCities: function getCities(filter) {
         return City.find(filter).exec();
     },
     addCity: function addCity(city) {
         return saveCity(city);
     },
-    deleteCity: function deleteCity(name) {
+    deleteCity: function deleteCity(id) {
         return City.findOne({
-                name: name
+                _id: id
             }).exec()
             .then(function foundCity(city) {
                 return city.remove(function success(err) {
@@ -87,9 +40,9 @@ module.exports = {
                 });
             });
     },
-    getCity: function getCity(city) {
+    getCity: function getCity(name) {
         return City.findOne({
-            name: city
+            name: name
         }).exec();
     },
     updateCity: function updateCity(city) {

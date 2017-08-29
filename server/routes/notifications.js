@@ -1,17 +1,18 @@
-var notificationsController, express, router;
+/*eslint strict:0  */
+var express, notificationsController, router;
 
 express = require('express');
 router = express.Router();
 notificationsController = require('../controllers/notifications');
 
 router.get('/getNotifications', function getNotifications(req, res) {
-  notificationsController.getNotifications({})
+  notificationsController.getNotifications(req.query.filter ? JSON.parse(req.query.filter) : {})
     .then(function onGotNotifications(notifications) {
       res.json(notifications);
     });
 });
 
-router.get('/notifications', function getAllCars(req, res) {
+router.get('/', function getAllCars(req, res) {
   notificationsController.getNotifications({})
     .then(function gotNotifications(notifications) {
       res.render('notifications/allNotifications', {
@@ -19,7 +20,6 @@ router.get('/notifications', function getAllCars(req, res) {
       });
     });
 });
-
 router.get('/notifications/add', function addNotificationGet(req, res) {
   res.render('notifications/addNotification', {});
 });
@@ -37,7 +37,7 @@ router.post('/notifications/add', function addNotificationPost(req, res) {
 });
 
 router.post('/notifications/delete', function deleteNotification(req, res) {
-  notificationsController.deleteNotification(req.body.type)
+  notificationsController.deleteNotification(req.body.id)
     .then(function redirect() {
       res.redirect('/notifications/notifications');
     });

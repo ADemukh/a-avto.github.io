@@ -23,7 +23,7 @@
 			common.services.car.getCars().then(function onGetCars(carMarks) {
 				this.carMarks = carMarks;
 			}.bind(this));
-			common.services.category.getCategories().then(function onGetCategories(categories) {
+			common.services.car.getCategories().then(function onGetCategories(categories) {
 				this.categories = categories;
 			}.bind(this));
 

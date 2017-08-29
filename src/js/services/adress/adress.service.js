@@ -7,21 +7,29 @@
     AdressService.$inject = ['$q', '$http'];
 
     function AdressService($q, $http) {
-        var cities, dfd;
-        
+        var allCities, dfd;
+
         function getAllCities() {
             if (!dfd) {
                 dfd = $q.defer();
-                fetchAllCities({});
+                fetchAllCities();
             }
             return dfd.promise;
         }
 
-        function fetchAllCities(filter) {
-            return $http.get('cities/getCities', filter)
+        function fetchAllCities() {
+            return $http.get('cities/getCities', {})
                 .then(function response(resp) {
-                    cities = resp.data;
-                    dfd.resolve(cities);
+                    return resp.data;
+                }).then(function gotCities(cities) {
+                    var i;
+
+                    allCities = [];
+                    for (i = 0; i < cities.length; i += 1) {
+                        allCities.push(cities[i].name);
+                    }
+
+                    dfd.resolve(allCities);
                 });
         }
 
@@ -31,14 +39,8 @@
 
         function getCities() {
             return getAllCities()
-                .then(function gotCities(Cities) {
-                    var allCities, i;
-
-                    allCities = [];
-                    for (i = 0; i < Cities.length; i += 1) {
-                        allCities.push(Cities[i].name);
-                    }
-                    return allCities;
+                .then(function gotCities(cities) {
+                    return cities;
                 });
         }
     }
