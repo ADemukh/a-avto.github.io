@@ -16,7 +16,7 @@
             common.services.car.getCars().then(function onGetCars(marks) {
                 this.marks = marks;
             }.bind(this));
-            common.services.category.getCategories().then(function onGetSpareTypes(spareTypes) {
+            common.services.car.getSpareTypes().then(function onGetSpareTypes(spareTypes) {
                 this.spareTypes = spareTypes;
             }.bind(this));
             common.services.adress.getCities().then(function onGetCities(cities) {

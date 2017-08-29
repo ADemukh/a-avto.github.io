@@ -9,21 +9,21 @@
         </div>
     </div>
 
-    <!--Category-->
-    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
+    <!--SpareType-->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.spareType.$invalid && !settingsMainForm.spareType.$pristine }">
         <div class="settings-line-caption" translate>CATEGORIES</div>
         <div class="layout-column settings-line-content-input position-relative">
-            <oi-select oi-options="c for c in $ctrl.allCategories" name="category" ng-model="$ctrl.spareCategories" multiple placeholder="{{::'SELECT_THE_SERVICED_SPARE_PART_CATEGORIES' | translate }}"
+            <oi-select oi-options="st for st in $ctrl.allSpareTypes" name="spareType" ng-model="$ctrl.spareTypes" multiple placeholder="{{::'SELECT_THE_SERVICED_SPARE_PART_CATEGORIES' | translate }}"
                 oi-select-options="{closeList: false}" ng-change="$ctrl.resetServerError()" required multiple-placeholder="{{::'ADD' | translate }}"></oi-select>
-                <span class="help-block" ng-show="settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine" translate>REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT</span>
+                <span class="help-block" ng-show="settingsMainForm.spareType.$invalid && !settingsMainForm.spareType.$pristine" translate>REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT</span>
         </div>
     </div>
 
     <!--isNew/isOld-->
-    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
+    <div class="form-group layout-row layout-wrap">
         <div class="settings-line-caption" translate>SPARE</div>
-            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isNew"><label class='label-spare' translate>IS_NEW</label>
-            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isOld"><label class='label-spare' translate>IS_OLD</label>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isNew"><label class="label-spare" translate>IS_NEW</label>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isOld"><label class="label-spare" translate>IS_OLD</label>
     </div>
 
     <!--Auto-->

@@ -44,7 +44,7 @@
             <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'spareTypes'">
                 <div class="list-heading">Обслуживаемые категории запчастей:</div>
                 <ul class="spare-types-list">
-                    <li class="item" ng-repeat="spareCategories in ::$ctrl.shop.spareCategories">{{::spareCategories}}</li>
+                    <li class="item" ng-repeat="spareTypes in ::$ctrl.shop.spareTypes">{{::spareTypes}}</li>
                 </ul>
             </div>
             <div class="tab-content-item" ng-if="$ctrl.visibleTab == 'cars'">

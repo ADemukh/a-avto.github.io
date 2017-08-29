@@ -23,8 +23,8 @@
 			common.services.car.getCars().then(function onGetCars(carMarks) {
 				this.carMarks = carMarks;
 			}.bind(this));
-			common.services.car.getCategories().then(function onGetCategories(categories) {
-				this.categories = categories;
+			common.services.car.getSpareTypes().then(function onGetSpareTypes(spareTypes) {
+				this.spareTypes = spareTypes;
 			}.bind(this));
 
 			this.apply = function applyFilters() {

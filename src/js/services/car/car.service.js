@@ -87,26 +87,26 @@
                     dfdGearBoxes.resolve(gearBoxes);
                 });
         }
-        function getAllCategories() {
+        function getAllSpareTypes() {
             if (!dfdSpareTypes) {
                 dfdSpareTypes = $q.defer();
-                fetchAllCategories();
+                fetchAllSpareTypes();
             }
             return dfdSpareTypes.promise;
         }
 
-        function fetchAllCategories() {
+        function fetchAllSpareTypes() {
             var i;
 
             return $http.get('cars/getSpareTypes', {})
                 .then(function response(resp) {
-                    var categories;
+                    var spareTypes;
 
-                    categories = [];
+                    spareTypes = [];
                     for (i = 0; i < resp.data.length; i += 1) {
-                        categories.push(resp.data[i].name);
+                        spareTypes.push(resp.data[i].name);
                     }
-                    dfdSpareTypes.resolve(categories);
+                    dfdSpareTypes.resolve(spareTypes);
                 });
         }
 
@@ -114,7 +114,7 @@
             getCars: getCars,
             getCarModels: getCarModels,
             getCarModelYears: getYears,
-            getCategories: getCategories,
+            getSpareTypes: getSpareTypes,
             getEngineCapacities: getEngineCapacities,
             getEngineTypes: getEngineTypes,
             getGearboxes: getGearboxes
@@ -143,9 +143,9 @@
                 });
         }
 
-        function getCategories() {
-            return getAllCategories()
-                .then(function gotCategories(foo) {
+        function getSpareTypes() {
+            return getAllSpareTypes()
+                .then(function gotSpareTypes(foo) {
                     return foo;
                 });
         }
