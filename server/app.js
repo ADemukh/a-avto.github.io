@@ -1,6 +1,6 @@
 /*eslint strict:0  */
 var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var authRouter, carsRouter, citiesRouter, indexRouter, initRouter, notificationsRouter, profileRouter, shopsRouter, uploadRouter;
+var adminRouter, authRouter, carsRouter, citiesRouter, indexRouter, initRouter, notificationsRouter, profileRouter, shopsRouter, uploadRouter;
 var app, config, db, passport;
 
 express = require('express');
@@ -15,6 +15,7 @@ bodyParser = require('body-parser');
 config = require('./config');
 indexRouter = require('./routes/index');
 initRouter = require('./routes/inits');
+adminRouter = require('./routes/admin');
 authRouter = require('./routes/auth');
 carsRouter = require('./routes/cars');
 citiesRouter = require('./routes/cities');
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, '../.build')));
 // routes
 app.use('/', indexRouter);
 app.use('/init', initRouter);
+app.use('/admin', adminRouter);
 app.use('/auth', authRouter);
 app.use('/cars', carsRouter);
 app.use('/cities', citiesRouter);
