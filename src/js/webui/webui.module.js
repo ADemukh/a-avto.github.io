@@ -121,15 +121,15 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     parent: 'client'
                 }).state('client.profile.cars', {
-                    template: '<q-profile-client-cars/>',
+                    template: '<q-profile-client-cars class="display-block"/>',
                     url: '/client/profile/cars',
                     parent: 'client.profile'
                 }).state('client.profile.orders', {
-                    template: '<q-profile-client-orders/>',
+                    template: '<q-profile-client-orders class="display-block"/>',
                     url: '/client/profile/orders',
                     parent: 'client.profile'
                 }).state('client.profile.settings', {
-                    template: '<q-profile-client-settings/>',
+                    template: '<q-profile-client-settings class="display-block"/>',
                     url: '/client/profile/settings',
                     parent: 'client.profile'
                 });
@@ -148,11 +148,11 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     parent: 'shop'
                 }).state('shop.profile.orders', {
-                    template: '<q-profile-shop-orders/>',
+                    template: '<q-profile-shop-orders class="display-block"/>',
                     url: '/shop/profile/orders',
                     parent: 'shop.profile'
                 }).state('shop.profile.settings', {
-                    template: '<q-profile-shop-settings/>',
+                    template: '<q-profile-shop-settings class="display-block"/>',
                     url: '/shop/profile/settings',
                     parent: 'shop.profile'
                 });

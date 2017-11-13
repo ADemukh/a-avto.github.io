@@ -1,10 +1,8 @@
-<div class="height-full layout-column container profile-client-padding">
+<div class="height-full layout-column container profile-client">
     <ul class="nav nav-tabs">
         <li ui-sref-active="active"><a ui-sref="client.profile.orders" translate>PROFILE_CLIENT_ORDERS</a></li>
         <li ui-sref-active="active"><a ui-sref="client.profile.cars" translate>PROFILE_CLIENT_CARS</a></li>
         <li ui-sref-active="active"><a ui-sref="client.profile.settings" translate>PROFILE_CLIENT_SETTINGS</a></li>
     </ul>
-    <div class="profile-client-background">
-        <div class="" ui-view />
-    </div>
+    <div class="active-tab" ui-view></div>
 </div>
