@@ -23,6 +23,7 @@
 					<span class="glyphicon glyphicon-user">
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu text-center">
+						<li data-access-level="$ctrl.accessLevels.admin" ui-sref-active="active"><a href="/admin">{{::'ADMIN' | translate }}</a></li>
 						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.orders">{{::'NAVIGATION_CLIENT_ORDERS' | translate }}</a></li>
 						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.cars">{{::'NAVIGATION_CLIENT_CARS' | translate }}</a></li>
 						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.settings">{{::'NAVIGATION_CLIENT_SETTINGS' | translate }}</a></li>

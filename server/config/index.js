@@ -71,7 +71,8 @@ function configuartion() {
                 api_key: '323888815778125',
                 api_secret: 'Kvhy7BrbTF8wpAHMk1BhzBOWv-o'
             }
-        }
+        },
+        timezone: 'Europe/Minsk'
 
     };
 
@@ -144,7 +145,8 @@ function configuartion() {
                 api_key: '323888815778125',
                 api_secret: 'Kvhy7BrbTF8wpAHMk1BhzBOWv-o'
             }
-        }
+        },
+        timezone: 'Europe/Minsk'
     };
 
     env = process.env.NODE_ENV ?
