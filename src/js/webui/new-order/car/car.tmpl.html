@@ -1,4 +1,61 @@
+<style>
+    .button-group {
+        padding: 30px;
+    }
+    
+    .margin {
+        margin: auto;
+    }
+</style>
+
 <h2>Выбор машины</h2>
+
+<div class="btn-group button-group">
+    <label class="btn btn-primary" ng-model="$ctrl.radioModel" uib-btn-radio="1" uncheckable>Выбрать из гаража</label>
+    <label class="btn btn-primary" ng-model="$ctrl.radioModel" uib-btn-radio="2" uncheckable>Создать новую</label>
+</div>
+
+<div ng-if="$ctrl.radioModel==1">
+    <uib-tabset type="pills">
+        <uib-tab index="key" ng-repeat="(key, car) in $ctrl.cars">
+            <uib-tab-heading>
+                <div class="letter2">
+                    <span class="letter">{{::'MARK'| translate}}:</span> <span class="letter1">{{car.mark}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'MODEL'| translate}}:</span> <span class="letter1">{{car.model}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'YEAR'| translate}}:</span> <span class="letter1">{{car.year}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'ENGINE_TYPE'| translate}}:</span> <span class="letter1">{{car.engineType}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'ENGINE_CAPACITY'| translate}}:</span> <span class="letter1">{{car.engineCapacity}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'GEARBOX'| translate}}:</span> <span class="letter1">{{car.gearbox}}</span><br>
+                </div>
+                <div class="letter2">
+                    <span class="letter">{{::'VIN'| translate}}:</span> <span class="letter1">{{car.VIN}}</span><br>
+                </div>
+            </uib-tab-heading>
+        </uib-tab>
+    </uib-tabset>
+</div>
+
+<div ng-if="$ctrl.radioModel==2">
+    <div class="layout-column  settings-line-content-input margin">
+        <q-select-car/>
+        <div class="form-group layout-row layout-wrap">
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.saveInGarage"><label class='label-spare' translate>Сохранить в гараже</label>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="content-block action">
     <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
         <span translate>NEW_ORDER_BACK</span>

@@ -1,4 +1,51 @@
+<style>     
+    .margin {
+        margin: auto;
+    }
+</style>
 <h2>Детали заказа</h2>
+
+<div class="margin">
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+        <div class="settings-line-caption" translate>Заголовок</div>
+        <div class="layout-column settings-line-content-input">
+            <textarea type="text" name="about" ng-model="$ctrl.user.about" ng-change="$ctrl.resetServerError()" required class="form-control"></textarea>
+                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+        <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+        <div class="settings-line-caption" translate>Описание</div>
+        <div class="layout-column settings-line-content-input">
+            <textarea type="text" name="about" ng-model="$ctrl.user.about" ng-change="$ctrl.resetServerError()" required class="form-control"></textarea>
+                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.city.$invalid && !settingsMainForm.city.$pristine }">
+        <div class="settings-line-caption" translate>CITIES</div>
+        <div class="layout-column settings-line-content-input position-relative">
+            <oi-select oi-options="c for c in $ctrl.allCities" name="city" ng-model="$ctrl.cities" multiple placeholder="{{::'SELECT_THE_SERVICED_CITIES' | translate }}"
+                oi-select-options="{closeList: false}" ng-change="$ctrl.resetServerError()" required multiple-placeholder="{{::'ADD' | translate }}"></oi-select>
+                <span class="help-block" ng-show="settingsMainForm.city.$invalid && !settingsMainForm.city.$pristine" translate>REGISTRATION_SHOP_CITIES_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
+        <div class="settings-line-caption" translate>CATEGORIES</div>
+        <div class="layout-column settings-line-content-input position-relative">
+            <oi-select oi-options="c for c in $ctrl.allCategories" name="category" ng-model="$ctrl.spareCategories" multiple placeholder="{{::'SELECT_THE_SERVICED_SPARE_PART_CATEGORIES' | translate }}"
+                oi-select-options="{closeList: false}" ng-change="$ctrl.resetServerError()" required multiple-placeholder="{{::'ADD' | translate }}"></oi-select>
+                <span class="help-block" ng-show="settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine" translate>REGISTRATION_SHOP_CATEGORIES_IS_NOT_CORRECT</span>
+        </div>
+    </div>
+
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.category.$invalid && !settingsMainForm.category.$pristine }">
+        <div class="settings-line-caption" translate>SPARE</div>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isNew"><label class='label-spare' translate>IS_NEW</label>
+            <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.spare.isOld"><label class='label-spare' translate>IS_OLD</label>
+    </div>
+</div>
+
 <div class="content-block action">
     <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
         <span translate>NEW_ORDER_BACK</span>
