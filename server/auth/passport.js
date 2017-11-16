@@ -107,20 +107,20 @@ passport.use('signupshop', new AuthLocalStrategy({
             }, function userNotFound() {
                 var shopUser;
 
-                shopUser = new ShopUser({
-                    email: email,
-                    name: req.param('name'),
-                    www: req.param('www'),
-                    address: req.param('address'),
-                    longitude: req.param('longitude'),
-                    latitude: req.param('latitude'),
-                    phone: req.param('phone'),
-                    about: req.param('about'),
-                    isDealer: req.param('isDealer'),
-                    password: req.param('password'),
-                    passwordHash: req.param('password'),
-                    role: config.user.roles.SHOP
-                });
+                shopUser = new ShopUser();
+
+                shopUser.email = email;
+                shopUser.name = req.param('name');
+                shopUser.www = req.param('www');
+                shopUser.address = req.param('address');
+                shopUser.longitude = req.param('longitude');
+                shopUser.latitude = req.param('latitude');
+                shopUser.phone = req.param('phone');
+                shopUser.about = req.param('about');
+                shopUser.isDealer = req.param('isDealer');
+                shopUser.password = req.param('password');
+                shopUser.passwordHash = shopUser.generateHash(req.param('password'));
+                shopUser.role = config.user.roles.SHOP;
 
                 return userController.saveOrUpdate(shopUser)
                     .then(function successful(savedUser) {

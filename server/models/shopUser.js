@@ -27,7 +27,7 @@ shopUserSchema = new mongoose.Schema({
 	longitude: String,
 	latitude: String,
 	cities: [String],
-	spareCategories: [String],
+	spareTypes: [String],
 	carMarks: [String],
 	spare: {
 		isNew: Boolean,
@@ -35,39 +35,39 @@ shopUserSchema = new mongoose.Schema({
 	},
 	schedule: {
 		sunday: {
-			active: Boolean, 
-			from: String, 
-			to: String 
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		saturday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		saturday: {
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		friday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		friday: {
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		thursday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		thursday: {
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		wednesday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		wednesday: {
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		tuesday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		tuesday: {
+			active: Boolean,
+			from: String,
+			to: String
 		},
-		monday:{
-			active: Boolean, 
-			from: String, 
-			to: String 
+		monday: {
+			active: Boolean,
+			from: String,
+			to: String
 		}
 	}
 }, options);

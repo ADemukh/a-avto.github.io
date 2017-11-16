@@ -1,17 +1,17 @@
-extends layout
+extends ../layout
 
 block content
-    form(action='/spares/allSpares/' + spare.name + '/edit', method='POST')
+    form(action='/cars/spareTypes/' + spareType.name + '/edit', method='POST')
         P
             div.cbm_wrap_button
                 div.wrapper_body_button
-                    a.addCarSubmit(href="/spares/allSpares") Все запчясти
+                    a.addCarSubmit(href="/cars/spareTypes") Все запчасти
         p.center Изменение
              .cbm_wrap_center
                 .wrapper_body_center
-                    input.carSubmit(type='text', name='name', value=spare.name, placeholder=spare.name)     
+                    input.carSubmit(type='text', name='name', value=spareType.name, placeholder=spareType.name)     
         p
-            input(type='hidden', name='id', value=spare._id)
+            input(type='hidden', name='id', value=spareType._id)
             div.cbm_wrap_button_center
                 div.wrapper_body_button_center
                     button.addCarSubmit(type='submit').

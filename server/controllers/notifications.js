@@ -1,4 +1,5 @@
-var Notifications, notificationsInitialCollection;
+/*eslint strict:0  */
+var Notifications;
 
 Notifications = require('../models/notifications');
 
@@ -28,9 +29,9 @@ module.exports = {
 	getNotifications: function getNotifications(filter) {
 		return Notifications.find(filter).exec();
 	},
-	deleteNotification: function deleteNotification(type) {
+	deleteNotification: function deleteNotification(id) {
 		return Notifications.findOne({
-			type: type
+			_id: id
 		}).exec()
 			.then(function foundNotification(notif) {
 				return notif.remove(function success(err) {
@@ -60,9 +61,9 @@ module.exports = {
 					});
 			});
 	},
-	getNotification: function getNotification(type) {
+	getNotification: function getNotification(name) {
 		return Notifications.findOne({
-			type: type
+			name: name
 		}).exec();
 	}
 };

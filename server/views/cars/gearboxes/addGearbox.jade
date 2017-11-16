@@ -1,17 +1,17 @@
-extends layout
+extends ../layout
 
 block content
   form(method='post', action='add')
       div.cbm_wrap_button
         div.wrapper_body_button
-          a.addSubmit(href="/cars/gearboxes") Типы КПП
+          a.addCarSubmit(href="/cars/gearboxes") Типы КПП
       p.center Добавление типа КПП:
         .cbm_wrap_center
             .wrapper_body_center
-                input.Submit(type='text', name='name', value=name, placeholder='Имя')
+                input.carSubmit(type='text', name='name', value=name, placeholder='Имя')
       p
           input(type='hidden', name='id', value=_id)
           div.cbm_wrap_button_center
               div.wrapper_body_button_center
-                  button.addSubmit(type='submit').
+                  button.addCarSubmit(type='submit').
                       Добавить

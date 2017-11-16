@@ -8,11 +8,63 @@
         })
         .controller('controllers.profileclientorders', ProfileClientOrdersController);
 
-    ProfileClientOrdersController.$inject = [];
+    ProfileClientOrdersController.$inject = ['services.client'];
 
-    function ProfileClientOrdersController() {
-        var vm;
+    function ProfileClientOrdersController(clientService) {
+        this.$onInit = function onInit() {
+            this.updateOrder = function updateOrder(event) {
+                if (event.order) {
+                    event.order.loading = true;
+                    clientService.closeOrder()
+                        .then(function succeded() {
+                            event.order.status = 'closed';
+                        }.bind(this))
+                        .catch(function failed() {}.bind(this))
+                        .finally(function finished() {
+                            event.order.loading = false;
+                        }.bind(this));
+                }
+            }.bind(this);
+            this.removeOrder = function removeOrder(event) {
+                if (event.order) {
+                    event.order.loading = true;
+                    clientService.deleteOrder()
+                        .then(function succeded() {
+                            var orderIndex;
 
-        vm = this;
+                            orderIndex = this.orders.indexOf(event.order);
+                            if (orderIndex > -1) {
+                                this.orders.splice(orderIndex, 1);
+                            }
+                            event.order.status = 'deleted';
+                        }.bind(this))
+                        .catch(function failed() {}.bind(this))
+                        .finally(function finished() {
+                            event.order.loading = false;
+                        }.bind(this));
+                }
+            }.bind(this);
+            this.changeFilter = function changeFilter(event) {
+                if (event.filter && event.filter !== this.filter) {
+                    this.filter = event.filter;
+                    this.getOrders();
+                }
+            }.bind(this);
+            this.getOrders = function getOrders() {
+                var filters;
+
+                filters = {
+                    filter: this.filter
+                };
+                clientService.getOrders(filters)
+                    .then(function gotOrders(orders) {
+                        this.orders = orders;
+                    }.bind(this));
+            }.bind(this);
+
+            this.filters = ['Новые', 'Отвеченные', 'Архив', 'Все'];
+            this.filter = this.filters[0];
+            this.getOrders();
+        };
     }
 })();

@@ -53,7 +53,7 @@ router.post('/changeshopnotifications', authController.isAuthenticated, function
 });
 
 router.get('/getShops', function getShops(req, res) {
-  shopController.getShops({})
+  shopController.getShops(req.query.filter ? JSON.parse(req.query.filter) : {})
     .then(function onGotShops(shops) {
       res.json(shops);
     });

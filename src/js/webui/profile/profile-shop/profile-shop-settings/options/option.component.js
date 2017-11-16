@@ -88,8 +88,8 @@
             common.services.adress.getCities().then(function onGetCities(cities) {
                 vm.allCities = cities;
             });
-            common.services.category.getCategories().then(function onGetCategories(categories) {
-                vm.allCategories = categories;
+            common.services.car.getSpareTypes().then(function onGetSpareTypes(spareTypes) {
+                vm.allSpareTypes = spareTypes;
             });
             common.services.car.getCars().then(function onGetCars(carMarks) {
                 vm.allCarMarks = carMarks;
@@ -97,7 +97,7 @@
 
             vm.spare = identityService.user.spare;
             vm.cities = identityService.user.cities;
-            vm.spareCategories = identityService.user.spareCategories;
+            vm.spareTypes = identityService.user.spareTypes;
             vm.carMarks = identityService.user.carMarks;
             vm.schedule = identityService.user.schedule || DEFAULT_SCHEDULER;
             vm.hours = ALL_HOURS;
@@ -116,7 +116,7 @@
                 if (isValid) {
                     common.services.shop.changeOptions({
                             cities: vm.cities,
-                            spareCategories: vm.spareCategories,
+                            spareTypes: vm.spareTypes,
                             carMarks: vm.carMarks,
                             schedule: vm.schedule,
                             spare: vm.spare

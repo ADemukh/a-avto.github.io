@@ -60,7 +60,7 @@
                 longitude: identityService.user.longitude,
                 latitude: identityService.user.latitude,
                 cities: identityService.user.cities,
-                spareCategories: identityService.user.spareCategories,
+                spareTypes: identityService.user.spareTypes,
                 carMarks: identityService.user.carMarks
             };
 

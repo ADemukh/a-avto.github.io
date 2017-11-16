@@ -11,7 +11,10 @@
             changeContactInfo: changeContactInfo,
             changePassword: changePassword,
             changeNotifications: changeNotifications,
-            changeCars: changeCars
+            changeCars: changeCars,
+            getOrders: getOrders,
+            closeOrder: closeOrder,
+            deleteOrder: deleteOrder
         };
 
         function changePhoto(photo) {
@@ -54,6 +57,22 @@
                 identityService.user = response.data.details;
             }
             return response;
+        }
+
+        function getOrders() {
+            return $http.post('profile/getclientorders', {
+                email: identityService.user.email
+            }).then(function gotOrders(response) {
+                return response.data.orders;
+            });
+        }
+
+        function closeOrder(order) {
+            return Promise.resolve();
+        }
+
+        function deleteOrder(order) {
+            return Promise.resolve();
         }
     }
 })();

@@ -3,7 +3,7 @@
         placeholder="{{::'SEARCH_SHOPS_FILTERS_CITIES' | translate }}"></oi-select>
     <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
         placeholder="{{::'SEARCH_SHOPS_FILTERS_CARS' | translate }}"></oi-select>
-    <oi-select oi-options="c for c in $ctrl.categories" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.category"
+    <oi-select oi-options="st for st in $ctrl.spareTypes" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.spareType"
         placeholder="{{::'SEARCH_SHOPS_FILTERS_CATEGORY' | translate }}"></oi-select>
 </div>
 <div class="content-block state">

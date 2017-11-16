@@ -48,7 +48,7 @@ function changeOptions(email, options) {
 
 function updateOptions(user, options) {
 	user.cities = options.cities;
-	user.spareCategories = options.spareCategories;
+	user.spareTypes = options.spareTypes;
 	user.carMarks = options.carMarks;
 	user.schedule = options.schedule;
 	user.spare = options.spare;
@@ -65,7 +65,7 @@ function changeNotifications(email, notifications) {
 
 function updateNotification(user, notifications) {
 	user.notifications = notifications;
-	
+
 	return userController.saveOrUpdate(user);
 }
 

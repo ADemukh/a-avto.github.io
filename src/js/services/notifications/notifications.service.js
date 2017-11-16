@@ -7,21 +7,50 @@
     NotificationsService.$inject = ['$http', '$q'];
 
     function NotificationsService($http, $q) {
-        var allNotifications, dfd;
+        var dfdClientNotifications, dfdShopNotifications;
 
-        function getAllNotifications() {
-            if (!dfd) {
-                dfd = $q.defer();
-                fetchAllNotifications({});
+        function getAllShopNotifications() {
+            if (!dfdShopNotifications) {
+                dfdShopNotifications = $q.defer();
+                fetchAllShopNotifications();
             }
-            return dfd.promise;
+            return dfdShopNotifications.promise;
         }
 
-        function fetchAllNotifications(filter) {
-            return $http.get('notifications/getNotifications', filter)
+        function getAllClientNotifications() {
+            if (!dfdClientNotifications) {
+                dfdClientNotifications = $q.defer();
+                fetchAllClientNotifications();
+            }
+            return dfdClientNotifications.promise;
+        }
+
+        function fetchNotifications(filter) {
+            return $http.get('notifications/getNotifications', {
+                    params: {
+                        filter: filter
+                    }
+                })
                 .then(function response(resp) {
-                    allNotifications = resp.data;
-                    dfd.resolve(allNotifications);
+                    return resp.data;
+                });
+        }
+
+        function fetchAllShopNotifications() {
+            return fetchNotifications({
+                    forShop: true
+                })
+                .then(function gotShopNotifications(notifications) {
+                    dfdShopNotifications.resolve(notifications);
+                });
+        }
+
+        function fetchAllClientNotifications() {
+            return fetchNotifications({
+                    forClient: true
+                })
+                .then(function gotClientNotifications(notifications) {
+                    dfdClientNotifications.resolve(notifications);
                 });
         }
 
@@ -31,34 +60,17 @@
         };
 
         function getShopNotifications() {
-            return getAllNotifications()
-                .then(function onGetNot(notifications) {
-                    var clientNotifications, i;
-
-                    clientNotifications = [];
-                    for (i = 0; i < notifications.length; i += 1) {
-                        if (notifications[i].forShop === true) {
-                            clientNotifications.push(notifications[i]);
-                        }
-                    }
-                    return clientNotifications;
+            return getAllShopNotifications()
+                .then(function gotNotifications(shopsNotifications) {
+                    return shopsNotifications;
                 });
         }
 
         function getClientNotifications() {
-            return getAllNotifications()
-                .then(function onGetNot(notifications) {
-                    var i, shopNotifications;
-
-                    shopNotifications = [];
-                    for (i = 0; i < notifications.length; i += 1) {
-                        if (notifications[i].forClient === true) {
-                            shopNotifications.push(notifications[i]);
-                        }
-                    }
-                    return shopNotifications;
+            return getAllClientNotifications()
+                .then(function gotNotifications(clientNotifications) {
+                    return clientNotifications;
                 });
         }
     }
 })();
-
