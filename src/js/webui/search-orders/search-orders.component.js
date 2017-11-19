@@ -34,17 +34,11 @@
                 }
             };
 
-            this.closeFilters = function onCloseFilters() {
-                this.hideFilters();
-            };
-
             this.openFilters = function toggleFilters() {
                 this.saveVisibilityHistory();
                 this.visibility.filters = true;
-                if (screenSize.is('xs')) {
+                if (screenSize.is('xs, sm')) {
                     this.visibility.results = false;
-                } else if (screenSize.is('md lg')) {
-                    this.toggleResults();
                 }
             };
 
@@ -66,11 +60,10 @@
             this.toggleResults = function toggleResults() {
                 this.visibility.results = true;
                 this.visibility.filters = false;
-                this.saveVisibilityHistory();
             };
 
             this.showSwitch = function showSwitch() {
-                return !this.isDesktop() && !(this.visibility.filters && screenSize.is('xs'));
+                return !this.isDesktop() && !(this.visibility.filters && screenSize.is('xs, sm'));
             };
 
             this.setupVisibility = function setupVisibility() {
@@ -86,6 +79,8 @@
             this.isDesktop = function isDesktop() {
                 return screenSize.is('md, lg');
             };
+            // showSwitch recalculating
+            screenSize.on('sm, md', this.showSwitch.bind(this));
         };
     }
 })();

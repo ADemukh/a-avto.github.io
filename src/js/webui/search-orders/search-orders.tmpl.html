@@ -1,6 +1,6 @@
 <q-navigation class="display-block" />
 <div class="navbar-top-offset height-full search-orders wrapper clear">
-    <q-search-orders-filters show="$ctrl.visibility.filters" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" on-cancel="$ctrl.closeFilters();" class="display-block filters"
+    <q-search-orders-filters show="$ctrl.visibility.filters" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" on-cancel="$ctrl.hideFilters();" class="display-block filters"
     />
     <q-search-orders-results ng-show="$ctrl.visibility.results" orders="$ctrl.orders" class="display-block results" />    
     <div ng-show="$ctrl.showSwitch()" class="switch outer-wrapper">
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<footer class="text-center search-shops-footer">
+<footer class="text-center search-orders-footer">
     <div class="wrapper">
         <a ui-sref="public.main"><img src="img/logo-footer.png" class="logo"></a>
         <a href="mailto:aavto@gmail.com" translate>FOOTER_EMAIL</a>
