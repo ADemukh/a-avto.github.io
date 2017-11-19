@@ -362,7 +362,8 @@
     .search-shops .filters .mobile .action .btn-action {
         float: right;
     }
-    .search-shops .filters .desktop {
+    .search-shops .filters .desktop,
+    .search-orders .filters .desktop {
         display: none;
     }
 }

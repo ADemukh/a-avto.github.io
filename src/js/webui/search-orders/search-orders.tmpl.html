@@ -1,0 +1,25 @@
+<q-navigation class="display-block" />
+<div class="navbar-top-offset height-full search-orders wrapper clear">
+    <q-search-orders-filters show="$ctrl.visibility.filters" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" on-cancel="$ctrl.closeFilters();" class="display-block filters"
+    />
+    <q-search-orders-results ng-show="$ctrl.visibility.results" orders="$ctrl.orders" class="display-block results" />    
+    <div ng-show="$ctrl.showSwitch()" class="switch outer-wrapper">
+        <div class="inner-wrapper">
+            <a href class="marker-results" ng-show="!$ctrl.visibilityHistory.results" data-ng-click="$ctrl.toggleResults();"><i class="icon fa fa-list"></i>{{::'SEARCH_SHOPS_RESULTS' | translate }}</a>
+            <a href class="marker-filters" data-ng-click="$ctrl.toggleFilters();"><i class="icon icon-filters"></i>{{::'SEARCH_SHOPS_FILTERS' | translate }}</a>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center search-shops-footer">
+    <div class="wrapper">
+        <a ui-sref="public.main"><img src="img/logo-footer.png" class="logo"></a>
+        <a href="mailto:aavto@gmail.com" translate>FOOTER_EMAIL</a>
+        <span>{{::'FOOTER_PHONE' | translate }}</span>
+        <ul class="social-icons">
+            <li><span class="fa fa-facebook-square"></span></li>
+            <li><span class="fa fa-vk"></span></li>
+            <li><span class="fa fa-instagram"></span></li>
+        </ul>
+    </div>
+</footer>

@@ -1,0 +1,22 @@
+<div class="desktop">
+    <div class="dropdown-wrapper" uib-dropdown is-open="$ctrl.isOpenDesktopFilters" auto-close="disabled">
+        <div class="dropdown-toggle" uib-dropdown-toggle>{{'SEARCH_ORDERS_FILTERS_TITLE' | translate}}<span class="fa fa-caret-down"></span><span class="fa fa-caret-up"></span></div>
+        <div class="dropdown-menu" uib-dropdown-menu role="menu">
+            <q-search-orders-filters-content
+                class="display-block"
+                filters="$ctrl.filters"
+                on-apply="$ctrl.applyDesktopFilters($event);"
+                on-cancel="$ctrl.cancelDesktopFilters();">
+            </q-search-orders-filters-content>
+        </div>
+    </div>
+</div>
+<div class="mobile" ng-if="$ctrl.show">
+    <div class="title" translate>SEARCH_ORDERS_FILTERS_TITLE</div>
+    <q-search-orders-filters-content
+        class="display-block"
+        filters="$ctrl.filters"
+        on-apply="$ctrl.applyMobileFilters($event);"
+        on-cancel="$ctrl.cancelMobileFilters();">
+    </q-search-orders-filters-content>
+</div>

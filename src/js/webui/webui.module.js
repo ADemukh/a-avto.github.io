@@ -67,10 +67,19 @@ var WEBUI_MODULE_NAME;
                     parent: 'public'
                 });
 
-             $stateProvider
+            $stateProvider
                 .state('search-shops', {
                     template: '<q-search-shops class="height-full flex display-block"/>',
                     url: '/search-shops',
+                    data: {
+                        access: window.routingConfig.accessLevels.public
+                    }
+                });
+
+            $stateProvider
+                .state('search-orders', {
+                    template: '<q-search-orders class="height-full flex display-block"/>',
+                    url: '/search-orders',
                     data: {
                         access: window.routingConfig.accessLevels.public
                     }
@@ -406,6 +415,12 @@ var WEBUI_MODULE_NAME;
                 CONFIRM: 'Да',
                 REJECT: 'Нет',
                 ALERT_FILE_TOO_LARGE: 'Файл превышает дупустимый размер 5MB.',
+                SEARCH_ORDERS_FILTERS: 'Фильтры',
+                SEARCH_ORDERS_RESULTS: 'Результаты',
+                SEARCH_ORDERS_FILTERS_TITLE: 'Параметры поиска',
+                SEARCH_ORDERS_FILTERS_STATUSES: 'Статус заказа',
+                SEARCH_ORDERS_FILTERS_APPLY: 'Применить',
+                SEARCH_ORDERS_FILTERS_CANCEL: 'Отменить',
                 SEARCH_SHOPS_FILTERS: 'Фильтры',
                 SEARCH_SHOPS_MAP: 'Карта',
                 SEARCH_SHOPS_RESULTS: 'Результаты',

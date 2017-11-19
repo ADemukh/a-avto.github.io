@@ -4,14 +4,15 @@
     angular.module('services')
         .factory('services.common', CommonService);
 
-    CommonService.$inject = ['services.adress', 'services.car', 'services.shop'];
+    CommonService.$inject = ['services.adress', 'services.car', 'services.shop', 'services.order'];
 
-    function CommonService(adress, car, shop) {
+    function CommonService(adress, car, shop, order) {
         return {
             services: {
                 adress: adress,
                 car: car,
-                shop: shop
+                shop: shop,
+                order: order
             }
         };
     }
