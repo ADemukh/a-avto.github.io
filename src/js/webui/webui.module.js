@@ -8,7 +8,8 @@ var WEBUI_MODULE_NAME;
     WEBUI_MODULE_NAME = 'aAvto.webui';
     angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'ui.bootstrap', 'yaMap', 'pascalprecht.translate', 'oi.select', 'ngFileUpload', 'matchMedia'])
         .config(WebUIModuleConfig)
-        .constant('_', window._)
+        .value('_', window._)
+        .value('moment', window.moment)
         .constant('routingConfig', window.routingConfig)
         .value('redirectToUrlAfterLogin', {
             url: '/'
@@ -242,7 +243,41 @@ var WEBUI_MODULE_NAME;
             $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
             $translateProvider.translations('ru', {
-                ADMIN: 'АДМИН',
+                ADD: 'Добавить',
+                ADD_ONE_MORE: 'Добавить еще один',
+                ADDRESS: 'Адрес',
+                ADMIN: 'Администратор',
+                APPLY: 'Применить',
+                BACK: 'Назад',
+                CANCEL: 'Отменить',
+                CHANGE: 'Изменить',
+                CAR: 'Автомобиль',
+                CATEGORY: 'Раздел',
+                CLEAR: 'Очистить',
+                CITIES: 'Города',
+                CITY: 'Город',
+                CONTACTS: 'Контакты',
+                DETAILS: 'Детали',
+                DESCRIPTION: 'Описание',
+                FINISH: 'Финиш',
+                MARK: 'Марка',
+                MODEL: 'Модель',
+                NAME: 'Имя',
+                NEXT: 'Вперед',
+                PHONE: 'Телефон',
+                RESOLUTION_DATE: 'Актуально до',
+                SEND: 'Отправить',
+                SPARIES: 'Запчасти',
+                START: 'Старт',
+                TITLE: 'Заголовок',
+                VIN: 'VIN',
+                YEAR: 'Год',
+
+                // errors
+                FIELD_IS_REQUIRED: 'Поле обязательно для заполнения',
+                PHONE_IS_NOT_CORRECT: 'Номер не соответветствует шаблону +375 xx xxx xx xx',
+                // select
+
                 ABOUT_MYSELF: 'О себе',
                 REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT: 'Неправильно введены данные',
                 ENGINE_TYPE: 'Тип двигателя',
@@ -252,14 +287,6 @@ var WEBUI_MODULE_NAME;
                 IS_OLD: 'Б/у',
                 SPARE: 'Запчасти',
                 PROFILE_PHOTO: '',
-                ADD: 'добавить',
-                CANCEL: 'Отменить',
-                MARK: 'Марка',
-                MODEL: 'Модель',
-                YEAR: 'Год',
-                VIN: 'VIN',
-                CHANGE: 'Изменить',
-                YOUR_CARS: 'Ваши автомобили',
                 CHANGE_PASSWORD: 'Изменить пароль',
                 DOWNLOAD: 'Загрузить',
                 PHOTO_OF_THE_PROFILE: 'Фото профиля',
@@ -304,6 +331,7 @@ var WEBUI_MODULE_NAME;
                 SELECT_CAR_CHOOSE_MODEL: 'Модель',
                 SELECT_CAR_CHOOSE_YEAR: 'Год',
                 PROFILE_CLIENT_CARS: 'Гараж',
+                PROFILE_CLIENT_YOUR_CARS: 'Ваши автомобили',
                 PROFILE_CLIENT_ORDERS: 'Заявки',
                 PROFILE_CLIENT_SETTINGS: 'Настройки',
                 PROFILE_SHOP_ORDERS: 'Заявки',
@@ -331,17 +359,17 @@ var WEBUI_MODULE_NAME;
                 PASSWORD_SET_PASSWORD_IS_REQUIRED: 'Введите пароль',
                 PASSWORD_SET_PASSWORDS_ARE_DIFFERENT: 'Пароли не совпадают',
                 PASSWORD_SET_SAVE: 'Сохранить',
-                NAVIGATION_MAPS: 'ПОИСК МАГАЗИНА',
-                NAVIGATION_LOG_IN: 'ВОЙТИ',
-                NAVIGATION_LOG_OUT: 'ВЫЙТИ',
+                NAVIGATION_MAPS: 'Магазины',
+                NAVIGATION_LOG_IN: 'Войти',
+                NAVIGATION_LOG_OUT: 'Выйти',
                 NAVIGATION_REGISTER: 'РЕГИСТРАЦИЯ',
-                NAVIGATION_ORDERS: 'ЗАЯВКИ',
-                NAVIGATION_NEW_ORDER: 'ОТПРАВИТЬ ЗАЯВКУ',
-                NAVIGATION_CLIENT_ORDERS: 'ЗАЯВКИ',
-                NAVIGATION_CLIENT_CARS: 'ГАРАЖ',
-                NAVIGATION_CLIENT_SETTINGS: 'НАСТРОЙКИ',
-                NAVIGATION_SHOP_ORDERS: 'ЗАЯВКИ',
-                NAVIGATION_SHOP_SETTINGS: 'НАСТРОЙКИ',
+                NAVIGATION_ORDERS: 'Заявки',
+                NAVIGATION_NEW_ORDER: 'Сделать заказ',
+                NAVIGATION_CLIENT_ORDERS: 'Заявки',
+                NAVIGATION_CLIENT_CARS: 'Гараж',
+                NAVIGATION_CLIENT_SETTINGS: 'Настройки',
+                NAVIGATION_SHOP_ORDERS: 'Заявки',
+                NAVIGATION_SHOP_SETTINGS: 'Настройки',
                 REGISTRATION_TAB_CLIENT: 'Я клиент',
                 REGISTRATION_TAB_SHOP: 'Я магазин',
                 REGISTRATION_CLIENT_TITLE: 'Регистрация клиента',
@@ -418,18 +446,14 @@ var WEBUI_MODULE_NAME;
                 SEARCH_SHOPS_FILTERS_DETAIL_OLD: 'Б/у',
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_NOW: 'Работает сейчас',
                 SEARCH_SHOPS_FILTERS_SHOP_WORKS_ON_WEEKEND: 'Работает в выходные',
-                SEARCH_SHOPS_FILTERS_APPLY: 'Применить',
-                SEARCH_SHOPS_FILTERS_CANCEL: 'Отменить',
-                NEW_ORDER_BACK: 'Назад',
-                NEW_ORDER_NEXT: 'Вперед',
-                NEW_ORDER_SEND: 'Отправить',
                 NEW_ORDER_START_ABOUT: 'Ваша заявка будет отправлена во все магазины.',
                 NEW_ORDER_START_NOTICE: 'Заявка будет отправлена в магазины, соответствующие вашим критериям. \n По мере заполнения заявки количество магазинов может уточняться.',
                 NEW_ORDER_START_STEPS: 'Этапы заполняния заявки:',
+                NEW_ORDER_START_STEPS_DETAILS: 'Основные сведения о заказе',
                 NEW_ORDER_START_STEPS_CAR: 'Выбор автомобиля',
-                NEW_ORDER_START_STEPS_DETAILS: 'Оформление перечня деталей',
                 NEW_ORDER_START_STEPS_CONTACTS: 'Сверка контактной информации',
-                NEW_ORDER_START_STEPS_SEND: 'Отправление заявки'
+                NEW_ORDER_START_STEPS_SEND: 'Отправление заявки',
+                NEW_ORDER_DETAILS_PUT_THE_DESCRIPTION: 'В свободной форме опишите детали вашего заказа'
             });
             $translateProvider.translations('en', {
                 // english translations here

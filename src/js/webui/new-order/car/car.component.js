@@ -12,32 +12,28 @@
 		})
 		.controller('controllers.newordercar', NewOrderCarController);
 
-	NewOrderCarController.$inject = ['services.identity', 'services.neworder', 'services.client', 'services.webui.alerts'];
+	NewOrderCarController.$inject = ['services.identity', 'services.neworder'];
 
-	function NewOrderCarController(identity, newOrderService, clientService, alerts) {
-		var vm;
-
-		vm = this;
+	function NewOrderCarController(identity, newOrderService) {
 		this.$onInit = function onInit() {
-			this.radioModel = 1;
-			this.cars = identity.user.cars;
-
-			this.add = function addCar(car) {
-				if (car && vm.saveInGarage) {
-					this.cars.push(car);
-					this.addMode = false;
-					changeCars(this.cars);
-				}
+			this.myCars = identity.user.cars;
+			this.orderCar = newOrderService.newOrder.car;
+			this.selectCar = function selectCar(car) {
+				this.selectedCarId = car._id;
+				this.orderCar.selected = car;
 			};
-			function changeCars(cars) {
-				clientService.changeCars(cars)
-					.then(function complete(response) {
-						vm.alerts = response.data.success ? [alerts.success(response.data.message || 'Информация сохранена.')] : [alerts.danger(response.data.error || 'При сохранении возникла ошибка.')];
-						vm.user = {};
-					});
-			}
+			this.selectedCarIsValid = function selectedCarIsValid() {
+				if (this.orderCar.selected._id === this.orderCar.newCar._id) {
+					return !!this.orderCar.newCar.mark;
+				}
+				return !!this.orderCar.selected._id;
+			};
+
+			this.selectCar(this.orderCar.selected._id ?
+				this.orderCar.selected :
+				this.myCars && this.myCars.length ?
+					this.myCars[0] :
+					this.orderCar.newCar);
 		};
-		this.$onChanges = function onChanges(changes) {
-		};
-	};
+	}
 })();

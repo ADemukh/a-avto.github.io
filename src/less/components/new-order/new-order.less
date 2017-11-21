@@ -1,0 +1,71 @@
+@import "start.less";
+@import "details.less";
+@import "car.less";
+@import "contacts.less";
+@import "finish.less";
+
+.new-order {
+    .progressbar {
+        margin-top: 50px;
+    }
+    .new-order-step-wrapper {
+        margin-top: 120px;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 50px;
+
+        .align-progressbar {
+            padding-left: 8%;
+            padding-right: 8%;
+        }
+        .btn-back {
+            margin-right: 20px;
+        }
+        .btn-back, .btn-next {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+            font-size: @font-size-md;
+            line-height: @font-size-md;
+
+            
+            .caption {
+                font-size: 1.2em;
+                line-height: 1.5em;
+            }
+            .field {
+                &.short {
+                    max-width: 400px;
+                }
+                &.bottom-offset {
+                    margin-bottom: 10px;
+                }
+
+                textarea {
+                    height: 140px;
+                }
+
+                label {
+                    input, span {
+                        float: left;
+                    }
+                    input {
+                        margin: 0 6px 0 0;
+                    }
+                    span {
+                        line-height: 1.4em;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    margin-right: 10px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

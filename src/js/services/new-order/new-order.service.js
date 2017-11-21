@@ -4,7 +4,9 @@
     angular.module('services')
         .factory('services.neworder', OrderService);
 
-    function OrderService() {
+    OrderService.$inject = ['services.identity'];
+
+    function OrderService(identityService) {
         var STATUSES, newOrder;
 
         STATUSES = {
@@ -27,16 +29,26 @@
             newOrder = newEmptyOrder();
         }
 
-        function submitOrder() {
-        }
+        function submitOrder() {}
 
         function newEmptyOrder() {
             return {
-                car: {},
-                spares: [],
-                city: '',
-                contact: {},
-                status: STATUSES.START
+                details: {},
+                car: {
+                    selected: {},
+                    newCar: {
+                        _id: 'newCarId'
+                    }
+                },
+                contacts: {
+                    name: identityService.user.name,
+                    email: identityService.user.email,
+                    phoneNumbers: [angular.copy(identityService.user.phone)],
+                    address: identityService.user.address,
+                    city: identityService.user.city
+                },
+                status: STATUSES.START,
+                shops: []
             };
         }
     }

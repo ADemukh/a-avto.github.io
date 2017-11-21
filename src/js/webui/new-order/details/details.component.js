@@ -12,21 +12,15 @@
 		})
 		.controller('controllers.neworderdetails', NewOrderDetailsController);
 
-	NewOrderDetailsController.$inject = ['services.neworder', 'services.common', 'services.identity', 'services.webui.alerts'];
+	NewOrderDetailsController.$inject = ['services.neworder', 'services.common'];
 
-	function NewOrderDetailsController(newOrderService, common, identityService, alerts) {
-		var vm;
-
-		vm = this;
+	function NewOrderDetailsController(newOrderService, common) {
 		this.$onInit = function onInit() {
-			common.services.adress.getCities().then(function onGetCities(cities) {
-				vm.allCities = cities;
-			});
-			common.services.category.getCategories().then(function onGetCategories(categories) {
-				vm.allCategories = categories;
-			});
+			this.orderDetails = newOrderService.newOrder.details;
+
+			common.services.car.getSpareTypes().then(function onGetCategories(spareTypes) {
+				this.spareTypes = spareTypes;
+			}.bind(this));
 		};
-		this.$onChanges = function onChanges(changes) {
-		};
-	};
+	}
 })();

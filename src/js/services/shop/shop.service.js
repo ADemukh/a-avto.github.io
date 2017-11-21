@@ -3,9 +3,9 @@
 
     angular.module('services')
         .factory('services.shop', ShopsService);
-    ShopsService.$inject = ['_', '$http', '$q', 'services.identity'];
+    ShopsService.$inject = ['$http', '$q', 'services.identity'];
 
-    function ShopsService(_, $http, $q, identityService) {
+    function ShopsService($http, $q, identityService) {
         var allShops, dfd;
 
         return {

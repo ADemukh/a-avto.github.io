@@ -1,14 +1,18 @@
 
+.btn {
+  border-radius: 0;
+}
+
 .btn-action {
   font-size: 18px;
-  color: #fff;
-  background-color: #ff6600;
-  border-color: #e25d05;
+  color: @color-white;
+  background-color: @color-orange-10;
+  border-color: @color-orange;
 
   &:focus,
   &:hover {
-    background-color: #e25d05;
-    color: #fff;
+    background-color: @color-orange-10;
+    color: @color-white;
     background-position: 0 -15px;
   }
 }
@@ -20,4 +24,9 @@
   &:hover {
     background-position: 0 -15px;
   }
+}
+
+.form-control {
+  border-radius: 0;
+  font-size: @font-size-md;
 }
