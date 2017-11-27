@@ -1,12 +1,6 @@
-var File, mongoose;
+var FileSchema, mongoose;
 
 mongoose = require('mongoose');
+FileSchema = require('./schemas/file');
 
-File = mongoose.model('File', {
-    url: String,
-    fileName: String,
-    format: String,
-    resourceType: String
-});
-
-module.exports = File;
+module.exports = mongoose.model('File', FileSchema);

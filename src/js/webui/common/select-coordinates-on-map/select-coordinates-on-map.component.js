@@ -2,20 +2,20 @@
 	'use strict';
 
 	angular.module(WEBUI_MODULE_NAME)
-		.component('qSelectShopAddressOnMap', {
-			controller: 'controllers.selectshopaddressonmap',
+		.component('qSelectCoordinatesOnMap', {
+			controller: 'controllers.selectcoordinatesonmap',
 			bindings: {
 				resolve: '<',
 				close: '&',
 				dismiss: '&'
 			},
-			templateUrl: 'webui/common/select-shop-address-on-map/select-shop-address-on-map.tmpl.html'
+			templateUrl: 'webui/common/select-coordinates-on-map/select-coordinates-on-map.tmpl.html'
 		})
-		.controller('controllers.selectshopaddressonmap', SelectShopAddressOnMapController);
+		.controller('controllers.selectcoordinatesonmap', SelectCoordinatesOnMapController);
 
-	SelectShopAddressOnMapController.$inject = ['$scope'];
+	SelectCoordinatesOnMapController.$inject = ['$scope'];
 
-	function SelectShopAddressOnMapController($scope) {
+	function SelectCoordinatesOnMapController($scope) {
 		var vm;
 
 		vm = this;
@@ -79,8 +79,7 @@
 			function selectGeoObj(geoObj) {
 				vm.selected = {
 					longitude: geoObj.geometry.coordinates[0].toPrecision(12),
-					latitude: geoObj.geometry.coordinates[1].toPrecision(12),
-					address: geoObj.properties.balloonContent
+					latitude: geoObj.geometry.coordinates[1].toPrecision(12)
 				};
 			}
 		};

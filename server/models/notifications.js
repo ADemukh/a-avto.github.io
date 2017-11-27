@@ -1,12 +1,6 @@
-var Notifications, mongoose;
+var NotificationsSchema, mongoose;
 
 mongoose = require('mongoose');
+NotificationsSchema = require('./schemas/notifications');
 
-Notifications = mongoose.model('Notifications', {
-		name: String,
-        type: String,
-		forClient: Boolean,
-        forShop: Boolean
-});
-
-module.exports = Notifications;
+module.exports = mongoose.model('Notifications', NotificationsSchema);

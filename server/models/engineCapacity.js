@@ -1,9 +1,6 @@
-var EngineCapacity, mongoose;
+var EngineCapacitySchema, mongoose;
 
 mongoose = require('mongoose');
+EngineCapacitySchema = require('./schemas/engineCapacity');
 
-EngineCapacity = mongoose.model('EngineCapacity', {
-		name: String
-});
-
-module.exports = EngineCapacity;
+module.exports = mongoose.model('EngineCapacity', EngineCapacitySchema);

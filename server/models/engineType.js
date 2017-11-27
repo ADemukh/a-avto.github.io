@@ -1,9 +1,6 @@
-var EngineType, mongoose;
+var EngineTypeSchema, mongoose;
 
 mongoose = require('mongoose');
+EngineTypeSchema = require('./schemas/engineType');
 
-EngineType = mongoose.model('EngineType', {
-		name: String
-});
-
-module.exports = EngineType;
+module.exports = mongoose.model('EngineType', EngineTypeSchema);

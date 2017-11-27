@@ -1,12 +1,6 @@
-var City, mongoose;
+var CitySchema, mongoose;
 
 mongoose = require('mongoose');
+CitySchema = require('./schemas/city');
 
-City = mongoose.model('City', {
-    name: {
-		type: String,
-		required: true
-	}
-});
-
-module.exports = City;
+module.exports = mongoose.model('City', CitySchema);

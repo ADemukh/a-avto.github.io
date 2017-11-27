@@ -1,12 +1,6 @@
-var SpareType, mongoose;
+var SpareTypeSchema, mongoose;
 
 mongoose = require('mongoose');
+SpareTypeSchema = require('./schemas/spareType');
 
-SpareType = mongoose.model('SpareType', {
-    name: {
-		type: String,
-		required: true
-	}
-});
-
-module.exports = SpareType;
+module.exports = mongoose.model('SpareType', SpareTypeSchema);

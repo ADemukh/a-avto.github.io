@@ -4,9 +4,9 @@
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.neworder', OrderService);
 
-    OrderService.$inject = ['services.identity'];
+    OrderService.$inject = ['services.identity', '$http'];
 
-    function OrderService(identityService) {
+    function OrderService(identityService, $http) {
         var STATUSES, newOrder;
 
         STATUSES = {
@@ -29,7 +29,15 @@
             newOrder = newEmptyOrder();
         }
 
-        function submitOrder() {}
+        function submitOrder() {
+            return $http.post('order/submitneworder', {
+                order: newOrder
+            }).then(function onSubmit(resp) {
+                clearOrder();
+
+                return resp.data;
+            });
+        }
 
         function newEmptyOrder() {
             return {
@@ -47,7 +55,6 @@
                     address: identityService.user.address,
                     city: identityService.user.city
                 },
-                status: STATUSES.START,
                 shops: []
             };
         }

@@ -1,9 +1,6 @@
-var Gearbox, mongoose;
+var GearboxSchema, mongoose;
 
 mongoose = require('mongoose');
+GearboxSchema = require('./schemas/gearbox');
 
-Gearbox = mongoose.model('Gearbox', {
-		name: String
-});
-
-module.exports = Gearbox;
+module.exports = mongoose.model('Gearbox', GearboxSchema);

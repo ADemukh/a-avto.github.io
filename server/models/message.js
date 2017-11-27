@@ -1,16 +1,6 @@
-var Message, mongoose;
+var MessageSchema, mongoose;
 
 mongoose = require('mongoose');
+MessageSchema = require('./schemas/message');
 
-Message = mongoose.model('Message', {
-    author: {
-		type: String,
-		required: true
-	},
-    created: {
-		type: String,
-		required: true
-	}
-});
-
-module.exports = Message;
+module.exports = mongoose.model('Message', MessageSchema);

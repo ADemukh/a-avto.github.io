@@ -1,7 +1,7 @@
 /*eslint strict:0  */
 var Shop, moment;
 
-Shop = require('../models/shopUser');
+Shop = require('../models/userShop');
 moment = require('../moment');
 
 module.exports = {

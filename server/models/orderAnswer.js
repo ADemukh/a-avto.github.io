@@ -1,16 +1,6 @@
-var Message, OrderAnswer, mongoose;
+var OrderAnswerSchema, mongoose;
 
 mongoose = require('mongoose');
+OrderAnswerSchema = require('./schemas/orderAnswer');
 
-Message = require('./message');
-
-OrderAnswer = mongoose.model('OrderAnswer', {
-    shop: {
-		type: String,
-		required: true
-	},
-    messages: [Message],
-    created: Date
-});
-
-module.exports = OrderAnswer;
+module.exports = mongoose.model('OrderAnswer', OrderAnswerSchema);

@@ -12,60 +12,65 @@
 
     function NewOrderController(newOrderService) {
         this.$onInit = function onInit() {
+            this.newOrderStatus = newOrderService.statuses.START;
             this.newOrder = angular.copy(newOrderService.newOrder);
 
             this.activeStart = function activeStart() {
-                return this.newOrder.status > newOrderService.statuses.START;
+                return this.newOrderStatus > newOrderService.statuses.START;
             };
             this.activeCar = function activeCar() {
-                return this.newOrder.status > newOrderService.statuses.CAR;
+                return this.newOrderStatus > newOrderService.statuses.CAR;
             };
             this.activeDetails = function activeDetails() {
-                return this.newOrder.status > newOrderService.statuses.DETAILS;
+                return this.newOrderStatus > newOrderService.statuses.DETAILS;
             };
             this.activeContacts = function activeContacts() {
-                return this.newOrder.status > newOrderService.statuses.CONTACTS;
+                return this.newOrderStatus > newOrderService.statuses.CONTACTS;
             };
             this.activeFinish = function activeFinish() {
-                return this.newOrder.status > newOrderService.statuses.FINISH;
+                return this.newOrderStatus > newOrderService.statuses.FINISH;
             };
 
             this.showStart = function showStart() {
-                return this.newOrder.status === newOrderService.statuses.START;
+                return this.newOrderStatus === newOrderService.statuses.START;
             };
             this.showCar = function showCar() {
-                return this.newOrder.status === newOrderService.statuses.CAR;
+                return this.newOrderStatus === newOrderService.statuses.CAR;
             };
             this.showDetails = function showDetails() {
-                return this.newOrder.status === newOrderService.statuses.DETAILS;
+                return this.newOrderStatus === newOrderService.statuses.DETAILS;
             };
             this.showContacts = function showContacts() {
-                return this.newOrder.status === newOrderService.statuses.CONTACTS;
+                return this.newOrderStatus === newOrderService.statuses.CONTACTS;
             };
             this.showFinish = function showFinish() {
-                return this.newOrder.status === newOrderService.statuses.FINISH;
+                return this.newOrderStatus === newOrderService.statuses.FINISH;
             };
             this.showCompleted = function showCompleted() {
-                return this.newOrder.status === newOrderService.statuses.COMPLETED;
+                return this.newOrderStatus === newOrderService.statuses.COMPLETED;
             };
 
             this.goToStart = function goToStart() {
-                this.newOrder.status = newOrderService.statuses.START;
+                this.newOrderStatus = newOrderService.statuses.START;
             };
             this.goToCar = function goToCar() {
-                this.newOrder.status = newOrderService.statuses.CAR;
+                this.newOrderStatus = newOrderService.statuses.CAR;
             };
             this.goToDetails = function goToDetails() {
-                this.newOrder.status = newOrderService.statuses.DETAILS;
+                this.newOrderStatus = newOrderService.statuses.DETAILS;
             };
             this.goToContacts = function goToContacts() {
-                this.newOrder.status = newOrderService.statuses.CONTACTS;
+                this.newOrderStatus = newOrderService.statuses.CONTACTS;
             };
             this.goToFinish = function goToFinish() {
-                this.newOrder.status = newOrderService.statuses.FINISH;
+                this.newOrderStatus = newOrderService.statuses.FINISH;
             };
             this.sendOrder = function sendOrder() {
-                this.newOrder.status = newOrderService.statuses.COMPLETED;
+                newOrderService.submit()
+                    .then(function setCompleted() {
+                        this.newOrderStatus = newOrderService.statuses.COMPLETED;
+                        newOrderService.clear();
+                    }.bind(this));
             };
         };
     }
