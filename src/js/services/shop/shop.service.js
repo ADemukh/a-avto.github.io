@@ -1,7 +1,7 @@
 (function ShopsServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.shop', ShopsService);
     ShopsService.$inject = ['$http', '$q', 'services.identity'];
 

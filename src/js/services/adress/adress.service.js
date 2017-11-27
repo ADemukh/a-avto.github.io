@@ -1,7 +1,7 @@
 (function AdressServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.adress', AdressService);
 
     AdressService.$inject = ['$q', '$http'];

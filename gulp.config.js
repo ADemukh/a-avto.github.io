@@ -10,7 +10,8 @@ module.exports = function exports() {
             style: 'src/style/main.css',
             less: 'src/less/site.less',
             img: 'src/img/**/*.*',
-            fonts: 'src/fonts/**/*.*'
+            fonts: 'src/fonts/**/*.*',
+            i18n: 'src/i18n/*.json'
         },
         build: {
             html: '.build/',
@@ -20,7 +21,8 @@ module.exports = function exports() {
             img: '.build/img/',
             fonts: '.build/fonts/',
             templates: '.build/js/templates/',
-            indexjs: '.build/'
+            indexjs: '.build/',
+            i18n: '.build/i18n/'
         },
         clean: {
             build: './.build'
@@ -32,7 +34,8 @@ module.exports = function exports() {
             less: 'src/less/**/*.less',
             img: 'src/img/**/*.*',
             fonts: 'src/fonts/**/*.*',
-            templates: 'src/js/**/*.tmpl.html'
+            templates: 'src/js/**/*.tmpl.html',
+            i18n: 'src/i18n/*.*'
         },
         browserSync: {
             proxy: 'http://localhost:3000',

@@ -1,7 +1,7 @@
 (function NotificationsServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.notifications', NotificationsService);
 
     NotificationsService.$inject = ['$http', '$q'];

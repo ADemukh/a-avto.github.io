@@ -1,7 +1,7 @@
 (function FileServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.file', FileService);
 
     FileService.$inject = ['$http', 'Upload', '$q'];

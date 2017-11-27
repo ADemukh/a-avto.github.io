@@ -2,7 +2,7 @@
 (function IdentityServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.identity', IdentityService);
 
     IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state', 'redirectToUrlAfterLogin', '$location'];

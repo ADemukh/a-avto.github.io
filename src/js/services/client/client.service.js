@@ -1,7 +1,7 @@
 (function ClientServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.client', ClientService);
     ClientService.$inject = ['$http', 'services.identity'];
 

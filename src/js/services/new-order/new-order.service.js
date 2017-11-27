@@ -1,7 +1,7 @@
 (function OrderServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.neworder', OrderService);
 
     OrderService.$inject = ['services.identity'];

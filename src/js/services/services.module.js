@@ -1,5 +1,8 @@
 // .module.js
+var SERVICES_MODULE_NAME;
+
 (function ServicesModuleInit() {
     'use strict';
-    angular.module('services', []);
+    SERVICES_MODULE_NAME = 'services';
+    angular.module(SERVICES_MODULE_NAME, []);
 })();
