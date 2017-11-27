@@ -21,7 +21,7 @@
         <div class="settings-line-caption" translate>REGISTRATION_USER_CONTACT_PHINE</div>
         <div class="layout-column settings-line-content-input">
             <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
-                placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
+                placeholder="{{'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
             <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_CLIENT_PHONE_IS_NOT_CORRECT</span>
         </div>
     </div>
@@ -36,8 +36,8 @@
     <div class="form-group layout-row layout-wrap">
         <div class="settings-line-caption" translate>CITY</div>
         <div class="layout-column settings-line-content-input">
-            <oi-select oi-options="c for c in $ctrl.allCities" name="city" ng-model="$ctrl.user.city" placeholder="{{::'SELECT' | translate }}"
-                oi-select-options="{closeList: false}" ng-change="$ctrl.resetServerError()"></oi-select>
+            <oi-select oi-options="c for c in $ctrl.allCities" name="city" ng-model="$ctrl.user.city" placeholder="{{'SELECT' | translate }}"
+                oi-sel{{'ptions="{closeList: false}" ng-change="$ctrl.resetServerError()"></oi-select>
         </div>
     </div>
     <!-- Alerts -->
@@ -52,7 +52,7 @@
         <div class="settings-line-caption"></div>
         <div class="layout-row settings-line-content-input">
             <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
-                <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
+                <span>{{'PASSWORD_SET_SAVE' | translate }}</span>
             </button>
         </div>
     </div>

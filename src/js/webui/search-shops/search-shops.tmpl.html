@@ -6,9 +6,9 @@
     <q-search-shops-map ng-show="$ctrl.visibility.map" filters="$ctrl.filters" shops="$ctrl.shops" class="display-block map" />
     <div ng-show="$ctrl.showSwitch()" class="switch outer-wrapper">
             <div class="inner-wrapper">
-                <a href class="marker-results" ng-show="!$ctrl.visibilityHistory.results" data-ng-click="$ctrl.toggleResults();"><i class="icon fa fa-list"></i>{{::'RESULTS' | translate }}</a>
-                <a href class="marker-map" ng-show="!$ctrl.visibilityHistory.map" data-ng-click="$ctrl.toggleMap();"><i class="icon fa fa-map-o"></i>{{::'MAP' | translate }}</a>
-                <a href class="marker-filters" data-ng-click="$ctrl.toggleFilters();"><i class="icon icon-filters"></i>{{::'FILTERS' | translate }}</a>
+                <a href class="marker-results" ng-show="!$ctrl.visibilityHistory.results" data-ng-click="$ctrl.toggleResults();"><i class="icon fa fa-list"></i>{{'RESULTS' | translate }}</a>
+                <a href class="marker-map" ng-show="!$ctrl.visibilityHistory.map" data-ng-click="$ctrl.toggleMap();"><i class="icon fa fa-map-o"></i>{{'MAP' | translate }}</a>
+                <a href class="marker-filters" data-ng-click="$ctrl.toggleFilters();"><i class="icon icon-filters"></i>{{'FILTERS' | translate }}</a>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <div class="wrapper">
         <a ui-sref="public.main"><img src="img/logo-footer.png" class="logo"></a>
         <a href="mailto:aavto@gmail.com" translate>FOOTER_EMAIL</a>
-        <span>{{::'FOOTER_PHONE' | translate }}</span>
+        <span>{{'FOOTER_PHONE' | translate }}</span>
         <ul class="social-icons">
             <li><span class="fa fa-facebook-square"></span></li>
             <li><span class="fa fa-vk"></span></li>

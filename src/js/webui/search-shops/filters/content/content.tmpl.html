@@ -1,10 +1,10 @@
 <div class="content-block selection">
     <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
-        placeholder="{{::'Город' | translate }}"></oi-select>
+        placeholder="{{'Город' | translate }}"></oi-select>
     <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
-        placeholder="{{::'Марка' | translate }}"></oi-select>
+        placeholder="{{'Марка' | translate }}"></oi-select>
     <oi-select oi-options="st for st in $ctrl.spareTypes" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.spareType"
-        placeholder="{{::'Раздел' | translate }}"></oi-select>
+        placeholder="{{'Раздел' | translate }}"></oi-select>
 </div>
 <div class="content-block state">
     <span translate>SPARE</span>

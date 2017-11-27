@@ -21,7 +21,7 @@
         <div class="settings-line-caption" translate>REGISTRATION_USER_CONTACT_PHINE</div>
         <div class="layout-column settings-line-content-input">
             <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" required ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
-                placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
+                placeholder="{{'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
             <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT</span>
         </div>
     </div>
@@ -64,14 +64,14 @@
         <div class="settings-line-caption"></div>
         <div class="layout-column  settings-line-content-input">
             <q-alerts alerts="$ctrl.alerts" />
-        </div>
+        </div>{{'
     </div>
     <!-- Submit -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
         <div class="settings-line-caption"></div>
         <div class="layout-row settings-line-content-input">
             <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
-                <span>{{::'SAVE' | translate }}</span>
+                <span>{{'SAVE' | translate }}</span>
             </button>
         </div>
     </div>

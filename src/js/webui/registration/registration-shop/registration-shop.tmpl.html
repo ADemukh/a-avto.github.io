@@ -3,33 +3,33 @@
 	<form name="shopForm" ng-submit="::$ctrl.register(shopForm.$valid)" class="form-input" novalidate>
 		<!-- Name -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.name.$invalid && !shopForm.name.$pristine }">
-			<input type="text" name="name" ng-model="$ctrl.shop.name" required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_NAME' | translate }}"
+			<input type="text" name="name" ng-model="$ctrl.shop.name" required ng-change="$ctrl.resetServerError()" placeholder="{{'REGISTRATION_SHOP_NAME' | translate }}"
 							class="form-control">
 			<span class="help-block" ng-show="shopForm.name.$error.required && !shopForm.name.$pristine" translate>REGISTRATION_SHOP_NAME_IS_REQUIRED</span>
 		</div>
 		<!-- Email -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.email.$invalid && !shopForm.email.$pristine }">
-			<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_EMAIL' | translate }}"
+			<input type="email" name="email" ng-model="$ctrl.shop.email" required ng-change="$ctrl.resetServerError()" placeholder="{{'REGISTRATION_SHOP_EMAIL' | translate }}"
 							class="form-control user-form-input">
 			<span class="help-block" ng-show="shopForm.email.$error.required && !shopForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_REQUIRED</span>
 			<span class="help-block" ng-show="shopForm.email.$error.email && !shopForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT</span>
 		</div>
 		<!-- Password -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.password.$invalid && !shopForm.password.$pristine }">
-			<input type="password" name="password" ng-model="$ctrl.shop.password" ng-change="$ctrl.resetServerError()" required placeholder="{{::'REGISTRATION_SHOP_PASSWORD' | translate }}"
-							class="form-control">
+			<input type="password" name="password" ng-model="$ctrl.shop.password" ng-change="$ctrl.resetServerError()" required placeholder="{{'REGISTRATION_SHOP_PASSWORD' | translate }}"
+							class="form-c{{'l">
 			<span class="help-block" ng-show="shopForm.password.$invalid && !shopForm.password.$pristine" translate>REGISTRATION_SHOP_PASSWORD_IS_REQUIRED</span>
 		</div>
 		<!-- Confirm password -->
 		<div class="form-group" ng-class="{ 'has-error' : shopForm.confirmPassword.$invalid && !shopForm.confirmPassword.$pristine }">
-			<input type="password" name="confirmPassword" ng-model="$ctrl.shop.confirmPassword" required match="$ctrl.shop.password"
-							ng-change="$ctrl.resetServerError()" placeholder="{{::'REGISTRATION_SHOP_PASSWORD_CONFIRM' | translate }}" class="form-control">
+			<input type="password" name="confirmPassword" ng-model="$ctrl.shop.confirmPassword" required match="$ctrl.shop.password"{{'
+							ng-change="$ctrl.resetServerError()" placeholder="{{'REGISTRATION_SHOP_PASSWORD_CONFIRM' | translate }}" class="form-control">
 			<span class="help-block" ng-show="shopForm.confirmPassword.$error.required && !shopForm.confirmPassword.$pristine" translate>REGISTRATION_SHOP_PASSWORD_IS_REQUIRED</span>
 			<span class="help-block" ng-show="shopForm.confirmPassword.$error.match && !shopForm.confirmPassword.$pristine" translate>REGISTRATION_SHOP_PASSWORDS_ARE_DIFFERENT</span>
 		</div>
 		<q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts"/>
 		<button type="submit" class="btn btn-primary shop-form-submit" ng-disabled="shopForm.$invalid" style="width: 100%; padding: 10px 35px;">
-		<span translate>REGISTER</span>
+		<span translate>REGISTER</span>{{'
 	</button>
 	</form>
-</div>`
+</div>

@@ -4,10 +4,10 @@
             <q-select-car car="$ctrl.car" on-change="$ctrl.onCarChange($event);" />
             <div class="client-car-edit-line-offset">
                 <button type="submit" ng-disabled="carForm.$invalid" class="btn btn-primary" style="width:49%">
-                    <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
+                    <span>{{'PASSWORD_SET_SAVE' | translate }}</span>
                 </button>
                 <button type="button" class="btn btn-primary" ng-click="$ctrl.cancel()" style="width:49%">
-                    <span>{{::'CANCEL' | translate }}</span>
+                    <span>{{'CANCEL' | translate }}</span>
                 </button>
             </div>
         </form>
