@@ -1,0 +1,36 @@
+.layout-column>.flex {
+    min-height: 0;
+}
+
+.layout,
+.layout-column,
+.layout-row {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.layout-column {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.layout-column,
+.layout-row {
+    -webkit-box-direction: normal;
+}
+
+.layout-row {
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.flex {
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-box-flex: 1;
+    box-sizing: border-box;
+}

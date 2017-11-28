@@ -1,0 +1,76 @@
+.progressbar {
+    width: 100%;
+    -webkit-padding-start: 0px;
+    li {
+        list-style-type: none;
+        float: left;
+        width: 20%;
+        position: relative;
+        text-align: center;
+        color: #797979;
+        &:before {
+            content: '';
+            font-family: FontAwesome;
+            color: #797979;
+            width: 30px;
+            height: 30px;
+            border: 2px solid #797979;
+            border-radius: 50%;
+            display: block;
+            text-align: center;
+            padding-top: 3px;
+            margin: 0 auto 10px auto;
+            background-color: white;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #797979;
+            top: 14px;
+            left: -50%;
+            z-index: -1;
+        }
+        @media only screen and (max-width: 767px) {
+            &,
+            &.active {
+                color: transparent !important;
+            }
+        }
+        &.info:before {
+            content: '\f129';
+        }
+        &.car:before {
+            content: '\f1b9';
+        }
+        &.car:before {
+            content: '\f1b9';
+        }
+        &.cogs:before {
+            content: '\f085';
+        }
+        &.user:before {
+            content: '\f007';
+        }
+        &.thumbs-up:before {
+            content: '\f164';
+        }
+        &.active:before {
+            // content: '\f00c';
+            color: #2db36f;
+        }
+        &:first-child:after {
+            content: none;
+        }
+        &.active {
+            color: #2db36f;
+        }
+        &.active:before {
+            border-color: #2db36f;
+        }
+        &.active+li:after {
+            background-color: #2db36f;
+        }
+    }
+}

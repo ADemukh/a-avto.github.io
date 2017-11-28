@@ -6,17 +6,13 @@
 /*
 * Custom styles
 */
-@import url('partials/ng-cloak.css');
 @import url('partials/common.css');
-@import url('partials/flex.css');
 @import url('partials/nav.css');
-@import url('partials/header.css');
 @import url('partials/social.css');
 @import url('partials/pills.css');
-@import url('partials/order.css');
 @import url('partials/profile-client.css');
 @import url('partials/profile-shop.css');
 @import url('partials/star.css');
-@import url('partials/progressbar.css');
 @import url('partials/loader.css');
 @import url('partials/search-shops.css');
+/* @import url('partials/flex.css'); */

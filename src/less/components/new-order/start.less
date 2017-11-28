@@ -1,5 +1,5 @@
 .new-order {
-    .new-order-step-wrapper{
+    .new-order-step-wrapper {
         .start {
             .notice-popover {
                 cursor: pointer;
@@ -9,7 +9,6 @@
             .notice-block {
                 display: none;
             }
-
             /* SM && md && lg */
             @media only screen and (min-width: 768px) {
                 justify-content: space-between;
@@ -20,19 +19,18 @@
                     display: block;
                     max-width: 280px;
                 }
-                [uib-popover-popup].popover, [uib-popover-html-popup].popover, [uib-popover-template-popup].popover {
+                [uib-popover-popup].popover,
+                [uib-popover-html-popup].popover,
+                [uib-popover-template-popup].popover {
                     display: none !important;
                 }
             }
-
             /* xs */
-
             @media only screen and (max-width: 767px) {
                 .notice-popover {
                     display: inline;
                 }
             }
-
             @media only screen and (max-width: 767px) and (orientation: portrait) {
                 .notice-popover-container {
                     max-width: 200px;
