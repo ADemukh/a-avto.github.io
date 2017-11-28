@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)
-        .component('qPasswordRecoveryVertical', {
+        .component('qPasswordRecovery', {
             controller: 'controllers.passwordrecovery',
             templateUrl: 'webui/identity/password-recovery/password-recovery.tmpl.html'
         })
@@ -14,10 +14,12 @@
         this.$onInit = function init() {
             this.recover = function onRecover() {
                 return identity.recoverPassword(this.email)
-                    .then(function response(resp) {
-                        this.alerts = resp.data && resp.data.success ?
-                            [alerts.success('Пароль оправлен на вашу почту')] : 
-                            [alerts.danger('Пароль не был оправлен на вашу почту')];
+                    .then(function success(user) {
+                        if (user.role !== 'anon') {
+                            identity.redirectToAttemptedUrl();
+                        }
+                    }.bind(this), function failure(resp) {
+                        this.alerts = [alerts.danger(resp.alert.message)];
                     }.bind(this));
             };
         };

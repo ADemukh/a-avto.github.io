@@ -27,6 +27,7 @@
             'anon': ['public'],
             'client': ['client', 'admin'],
             'shop': ['shop', 'admin'],
+            'notShop': ['client', 'public', 'admin'],
             'user': ['client', 'shop', 'admin'],
             'admin': ['admin']
         }

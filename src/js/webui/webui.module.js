@@ -67,15 +67,6 @@ var WEBUI_MODULE_NAME;
                     parent: 'public'
                 });
 
-            $stateProvider
-                .state('search-shops', {
-                    template: '<q-search-shops class="height-full flex display-block"/>',
-                    url: '/search-shops',
-                    data: {
-                        access: window.routingConfig.accessLevels.public
-                    }
-                });
-
             // Anonymous routes
             $stateProvider
                 .state('anon', {
@@ -86,7 +77,7 @@ var WEBUI_MODULE_NAME;
                     },
                     parent: 'root'
                 }).state('anon.login', {
-                    template: '<q-login-vertical/>',
+                    template: '<q-login/>',
                     url: '/login',
                     parent: 'anon'
                 }).state('anon.password-recovery', {
@@ -99,7 +90,7 @@ var WEBUI_MODULE_NAME;
                     parent: 'anon'
                 }).state('anon.password-set', {
                     template: '<q-password-set/>',
-                    url: '/password-set',
+                    url: '/password-set/:token',
                     parent: 'anon'
                 });
 
@@ -166,11 +157,24 @@ var WEBUI_MODULE_NAME;
                         access: window.routingConfig.accessLevels.admin
                     },
                     parent: 'root'
-                    // })
-                    // .state('admin.admin', {
-                    //     url: '/admin/',
-                    //     templateUrl: 'admin',
-                    //     controller: 'AdminCtrl'
+                });
+
+            // Custom routes
+            $stateProvider
+                .state('new-order', {
+                    template: '<q-new-order/>',
+                    url: '/new-order',
+                    data: {
+                        access: window.routingConfig.accessLevels.notShop
+                    },
+                    parent: 'root'
+                })
+                .state('search-shops', {
+                    template: '<q-search-shops class="height-full flex display-block"/>',
+                    url: '/search-shops',
+                    data: {
+                        access: window.routingConfig.accessLevels.public
+                    }
                 });
 
             $urlRouterProvider.otherwise('/');

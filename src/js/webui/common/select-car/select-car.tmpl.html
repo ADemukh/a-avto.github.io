@@ -1,20 +1,20 @@
 <oi-select oi-options="m for m in $ctrl.marks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car.mark" ng-change="$ctrl.updateMark()"
-    placeholder="{{::'SELECT_CAR_CHOOSE_MARK' | translate }}" ng-disabled="!$ctrl.canChooseMark()" class="select-car-mark">
+    placeholder="{{::'MARK' | translate }}" ng-disabled="!$ctrl.canChooseMark()" class="select-car-mark">
 </oi-select>
 <oi-select oi-options="m for m in $ctrl.models" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car.model" ng-change="$ctrl.updateModel()"
-    placeholder="{{::'SELECT_CAR_CHOOSE_MODEL' | translate }}" ng-disabled="!$ctrl.canChooseModel()" class="select-car-model">
+    placeholder="{{::'MODEL' | translate }}" ng-disabled="!$ctrl.canChooseModel()" class="select-car-model">
 </oi-select>
 <oi-select oi-options="y for y in $ctrl.years" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.car.year" ng-change="$ctrl.updateYear()"
-    placeholder="{{::'SELECT_CAR_CHOOSE_YEAR' | translate }}" ng-disabled="!$ctrl.canChooseYear()" class="select-car-year">
+    placeholder="{{::'YEAR' | translate }}" ng-disabled="!$ctrl.canChooseYear()" class="select-car-year">
 </oi-select>
 <oi-select oi-options="y for y in $ctrl.engineTypes" ng-model="$ctrl.car.engineType" ng-change="$ctrl.updateEngineType()" oi-select-options="{ cleanModel: true }" 
-    placeholder="{{::'SELECT_CAR_CHOOSE_ENGINE_TYPE' | translate }}" class="select-car-types"> 
+    placeholder="{{::'ENGINE_TYPE' | translate }}" class="select-car-types"> 
 </oi-select>
 <oi-select oi-options="y for y in $ctrl.engineCapacities" ng-model="$ctrl.car.engineCapacity" ng-change="$ctrl.updateEngineCapacity()" oi-select-options="{ cleanModel: true }" 
-    placeholder="{{::'SELECT_CAR_CHOOSE_ENGINE_CAPACITY' | translate }}" class="select-car-capacities">
+    placeholder="{{::'ENGINE_CAPACITY' | translate }}" class="select-car-capacities">
 </oi-select>
 <oi-select oi-options="y for y in $ctrl.gearboxes" ng-model="$ctrl.car.gearbox" ng-change="$ctrl.updateGearbox()" oi-select-options="{ cleanModel: true }" 
-    placeholder="{{::'SELECT_CAR_CHOOSE_GEARBOX' | translate }}" class="select-car-gearboxes">
+    placeholder="{{::'GEARBOX' | translate }}" class="select-car-gearboxes">
 </oi-select>
 <div class="select-car-vin">
     <input type="text" ng-model="$ctrl.car.VIN" ng-change="$ctrl.updateVIN()" placeholder="VIN" class="width-full">

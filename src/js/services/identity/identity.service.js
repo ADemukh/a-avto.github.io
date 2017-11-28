@@ -17,10 +17,10 @@
             loggedInChecked: false,
             authVk: authVk,
             authFacebook: authFacebook,
-            signUpUser: signUpUser,
-            signUpShop: signUpShop,
+            signUp: signUp,
             recoverPassword: recoverPassword,
             changePassword: changePassword,
+            setPassword: setPassword,
             user: anonUser(),
             authorize: authorize,
             loggedIn: loggedIn,
@@ -63,8 +63,9 @@
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
                         changeUser(resp.data.user);
+                        return api.user;
                     }
-                    return resp.data;
+                    return $q.reject(resp.data);
                 });
         }
 
@@ -99,25 +100,14 @@
             return dfd.promise;
         }
 
-        function signUpUser(userInfo) {
-            return $http.post('auth/signupuser', userInfo)
+        function signUp(userInfo, role) {
+            return $http.post(role === 'shop' ? 'auth/signupshop' : 'auth/signupuser', userInfo)
                 .then(function response(resp) {
                     if (resp.data && resp.data.user) {
                         changeUser(resp.data.user);
+                        return api.user;
                     }
-                    // reject here with error
-                    return resp.data;
-                });
-        }
-
-        function signUpShop(shopInfo) {
-            return $http.post('auth/signupshop', shopInfo)
-                .then(function response(resp) {
-                    if (resp.data && resp.data.user) {
-                        changeUser(resp.data.user);
-                    }
-                    // reject here with error
-                    return resp.data;
+                    return $q.reject(resp.data);
                 });
         }
 
@@ -146,6 +136,27 @@
             return $http.post('auth/changepassword', {
                 email: email,
                 password: newPassword
+            })
+            .then(function response(resp) {
+                if (resp.data && resp.data.user) {
+                    changeUser(resp.data.user);
+                    return api.user;
+                }
+                return $q.reject(resp.data);
+            });
+        }
+
+        function setPassword(emailToken, newPassword) {
+            return $http.post('auth/setpassword', {
+                emailToken: emailToken,
+                password: newPassword
+            })
+            .then(function response(resp) {
+                if (resp.data && resp.data.user) {
+                    changeUser(resp.data.user);
+                    return api.user;
+                }
+                return $q.reject(resp.data);
             });
         }
 

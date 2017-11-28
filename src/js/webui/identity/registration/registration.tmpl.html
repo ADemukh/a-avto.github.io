@@ -1,0 +1,20 @@
+<div class="container identity ">
+	<!-- <h1 translate>REGISTRATION_TITLE</h1> -->
+	<div class="registration">
+		<div class="tabset-headings layout-row">
+			<div class="tab-heading" ng-class="{'active': $ctrl.role === 'client'}" ng-if="$ctrl.canSingUpAsClient">
+				<input type="radio" name="client" id="client" ng-model="$ctrl.role" value="client">
+				<label for="client" translate>CLIENT</label>
+			</div>
+			<div class="tab-heading" ng-class="{'active': $ctrl.role === 'shop'}" ng-if="$ctrl.canSingUpAsShop">
+				<input type="radio" name="shop" id="shop" ng-model="$ctrl.role" value="shop">
+				<label for="shop" translate>SHOP</label>
+			</div>
+		</div>
+		<div class="tabset-contents">
+			<div class="tab-content-item">
+				<q-registration-form role="$ctrl.role" on-signed-up="$ctrl.onSignedUp(user);" />
+			</div>
+		</div>
+	</div>
+</div>

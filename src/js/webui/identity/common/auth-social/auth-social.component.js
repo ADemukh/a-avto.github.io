@@ -4,7 +4,10 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qAuthSocial', {
             controller: 'controllers.authsocial',
-            templateUrl: 'webui/identity/auth-social/auth-social.tmpl.html'
+            bindings: {
+                onSignedUp: '&'
+            },
+            templateUrl: 'webui/identity/common/auth-social/auth-social.tmpl.html'
         })
         .controller('controllers.authsocial', AuthSocialController);
 
@@ -21,14 +24,12 @@
                     .then(successAuth.bind(this), failedAuth.bind(this));
             };
 
-            function successAuth() {
-                if (identity.loggedIn()) {
-                    identity.redirectToAttemptedUrl();
-                }
+            function successAuth(user) {
+                this.onSignedUp({ user: user });
             }
 
-            function failedAuth(err) {
-                this.alerts = [alerts.danger(err.message)];
+            function failedAuth(resp) {
+                this.alerts = [alerts.danger(resp.message)];
             }
         };
     }
