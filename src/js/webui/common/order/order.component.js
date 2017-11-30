@@ -2,20 +2,20 @@
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)
-        .component('qProfileClientOrderItem', {
-            controller: 'controllers.profileclientordersitem',
-            templateUrl: 'webui/profile/profile-client/profile-client-orders/order/order.tmpl.html',
+        .component('qClientOrderItem', {
+            controller: 'controllers.clientordersitem',
+            templateUrl: 'webui/common/order/order.tmpl.html',
             bindings: {
                 order: '<',
 				onChange: '&',
 				onRemove: '&'
             }
         })
-        .controller('controllers.profileclientordersitem', ProfileClientOrdersItemController);
+        .controller('controllers.clientordersitem', ClientOrdersItemController);
 
-    ProfileClientOrdersItemController.$inject = [];
+    ClientOrdersItemController.$inject = [];
 
-    function ProfileClientOrdersItemController() {
+    function ClientOrdersItemController() {
         this.$onInit = function onInit() {
 			this.closeOrder = function closeOrder() {
 				this.onClose({

@@ -1,5 +1,5 @@
 <div class="profile-client-orders">
     <q-profile-order-filters filter="$ctrl.filter" filters="$ctrl.filters" on-change="$ctrl.changeFilter($event);" class="display-block profile-order-filters layout-row"></q-profile-order-filters>
-    <q-profile-client-order-item order="order" on-change="$ctrl.updateOrder($event);" on-remove="$ctrl.removeOrder($event);" ng-repeat="order in ::$ctrl.orders"
-        class="display-block order-item"></q-profile-client-order-item>
+    <q-client-order-item order="order" on-change="$ctrl.updateOrder($event);" on-remove="$ctrl.removeOrder($event);" ng-repeat="order in ::$ctrl.orders"
+        class="display-block order-item"></q-client-order-item>
 </div>
