@@ -103,11 +103,20 @@
             }));
     });
 
+    gulp.task('i18n:build', function i18nBuildTask() {
+        return gulp.src(config.src.i18n)
+            .pipe(gulp.dest(config.build.i18n))
+            .pipe(reload({
+                stream: true
+            }));
+    });
+
     gulp.task('build', $.sequence(['js:build',
         'style:build',
         'less:build',
         'fonts:build',
-        'image:build'
+        'image:build',
+        'i18n:build'
     ], 'index'));
 
     gulp.task('watch', function watchTask() {
@@ -118,6 +127,7 @@
         gulp.watch(config.watch.less, ['less:build']);
         gulp.watch(config.watch.img, ['image:build']);
         gulp.watch(config.watch.fonts, ['fonts:build']);
+        gulp.watch(config.watch.i18n, ['i18n:build']);
     });
 
     gulp.task('webserver', ['nodemon'], function webserverTask() {

@@ -1,0 +1,37 @@
+<form name="registrationForm" ng-submit="::$ctrl.signUp();" class="input-wall form-input" novalidate>
+	<!-- Name -->
+	<div class="form-group" ng-class="{ 'has-error' : registrationForm.name.$invalid && !registrationForm.name.$pristine }">
+		<input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" placeholder="{{'NAME' | translate }}"
+		    class="form-control">
+		<span class="help-block" ng-show="registrationForm.name.$error.required && !registrationForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
+	</div>
+	<!-- Email -->
+	<div class="form-group" ng-class="{ 'has-error' : registrationForm.email.$invalid && !registrationForm.email.$pristine }">
+		<input type="email" name="email" ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" placeholder="{{'EMAIL' | translate }}"
+		    class="form-control user-form-input">
+		<span class="help-block" ng-show="registrationForm.email.$error.required && !registrationForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
+		<span class="help-block" ng-show="registrationForm.email.$error.email && !registrationForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
+	</div>
+	<!-- Password -->
+	<div class="form-group" ng-class="{ 'has-error' : registrationForm.password.$invalid && !registrationForm.password.$pristine }">
+		<input type="password" name="password" ng-model="$ctrl.user.password" ng-change="$ctrl.resetServerError()" required placeholder="{{'PASSWORD' | translate }}"
+		    class="form-control">
+		<span class="help-block" ng-show="registrationForm.password.$invalid && !registrationForm.password.$pristine" translate>FIELD_IS_REQUIRED</span>
+	</div>
+	<!-- Confirm password -->
+	<div class="form-group" ng-class="{ 'has-error' : registrationForm.confirmPassword.$invalid && !registrationForm.confirmPassword.$pristine }">
+		<input type="password" name="confirmPassword" ng-model="$ctrl.user.confirmPassword" required match="$ctrl.user.password"
+		    ng-change="$ctrl.resetServerError()" placeholder="{{'PASSWORD_REPEAT' | translate }}" class="form-control">
+		<span class="help-block" ng-show="registrationForm.confirmPassword.$error.required && !registrationForm.confirmPassword.$pristine"
+		    translate>FIELD_IS_REQUIRED</span>
+		<span class="help-block" ng-show="registrationForm.confirmPassword.$error.match && !registrationForm.confirmPassword.$pristine"
+		    translate>PASSWORDS_ARE_NOT_EQUAL</span>
+	</div>
+	<q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts" />
+	<button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="registrationForm.$invalid">
+		<span translate>SIGN_UP</span>
+	</button>
+</form>
+<div ng-if="$ctrl.role === 'client'">
+	<q-auth-social on-signed-up="$ctrl.onSocialSignedUp(user);"></q-auth-social>
+</div>

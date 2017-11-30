@@ -163,7 +163,7 @@
         "no-undef-init": 2,
         "no-underscore-dangle": [
             2, {
-                "allow": ["__type", "_init", "_q"]
+                "allow": ["_init", "_id"]
             }
         ],
         "no-unexpected-multiline": 2,

@@ -10,8 +10,8 @@ AuthLocalStrategy = require('passport-local').Strategy;
 AuthFacebookStrategy = require('passport-facebook').Strategy;
 AuthVkStrategy = require('passport-vkontakte').Strategy;
 
-ClientUser = require('../models/clientUser');
-ShopUser = require('../models/shopUser');
+ClientUser = require('../models/userClient');
+ShopUser = require('../models/userShop');
 User = require('../models/user');
 
 passport.serializeUser(function serialize(user, done) {

@@ -10,26 +10,24 @@
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li ui-sref-active="active"><a ui-sref="search-shops"><i class="fa fa-search" aria-hidden="true"></i> {{::'NAVIGATION_MAPS' | translate }}</a></li>
-				<li data-access-level="$ctrl.accessLevels.anon" ui-sref-active="active"><a ui-sref="anon.login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{::'NAVIGATION_LOG_IN' | translate }}</a></li>
-				<li data-access-level="$ctrl.accessLevels.anon" ui-sref-active="active"><a ui-sref="anon.register"><i class="fa fa-wrench" aria-hidden="true"></i> {{::'NAVIGATION_REGISTER' | translate }}</a></li>
+				<li data-access-level="$ctrl.accessLevels.public" ui-sref-active="active"><a ui-sref="search-shops"><i class="fa fa-search" aria-hidden="true"></i>{{'SEARCH_SHOPS' | translate }}</a></li>
+				<li data-access-level="$ctrl.accessLevels.notShop" ui-sref-active="active"><a ui-sref="new-order">{{'NEW_ORDER' | translate }}</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li data-access-level="$ctrl.accessLevels.client" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="client.new-order">{{::'NAVIGATION_NEW_ORDER' | translate }}</a></li>
-				<li data-access-level="$ctrl.accessLevels.anon" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="client.new-order">{{::'NAVIGATION_NEW_ORDER' | translate }}</a></li>
-				<li data-access-level="$ctrl.accessLevels.shop" class="order-action" ui-sref-active="active"><a class="order-action-link" ui-sref="shop.profile.orders">{{::'NAVIGATION_SHOP_ORDERS' | translate }}</a></li>
+				<li data-access-level="$ctrl.accessLevels.anon" ui-sref-active="active"><a ui-sref="anon.login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{'SIGN_IN' | translate }}</a></li>
+				<li data-access-level="$ctrl.accessLevels.anon" ui-sref-active="active"><a ui-sref="anon.register"><i class="fa fa-wrench" aria-hidden="true"></i> {{'SIGN_UP' | translate }}</a></li>
 				<li data-access-level="$ctrl.accessLevels.user" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href>
 					<span class="glyphicon glyphicon-user">
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu text-center">
-						<li data-access-level="$ctrl.accessLevels.admin" ui-sref-active="active"><a href="/admin">{{::'ADMIN' | translate }}</a></li>
-						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.orders">{{::'NAVIGATION_CLIENT_ORDERS' | translate }}</a></li>
-						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.cars">{{::'NAVIGATION_CLIENT_CARS' | translate }}</a></li>
-						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.settings">{{::'NAVIGATION_CLIENT_SETTINGS' | translate }}</a></li>
-						<li data-access-level="$ctrl.accessLevels.shop" ui-sref-active="active"><a ui-sref="shop.profile.orders">{{::'NAVIGATION_SHOP_ORDERS' | translate }}</a></li>
-						<li data-access-level="$ctrl.accessLevels.shop" ui-sref-active="active"><a ui-sref="shop.profile.settings">{{::'NAVIGATION_SHOP_SETTINGS' | translate }}</a></li>
-						<li><a ng-click="::$ctrl.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> {{::'NAVIGATION_LOG_OUT' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.admin" ui-sref-active="active"><a href="/admin">{{'ADMIN' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.orders">{{'ORDERS' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.cars">{{'CLIENT_CARS' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.client" ui-sref-active="active"><a ui-sref="client.profile.settings">{{'SETTINGS' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.shop" ui-sref-active="active"><a ui-sref="shop.profile.orders">{{'ORDERS' | translate }}</a></li>
+						<li data-access-level="$ctrl.accessLevels.shop" ui-sref-active="active"><a ui-sref="shop.profile.settings">{{'SETTINGS' | translate }}</a></li>
+						<li><a ng-click="::$ctrl.logOut()" href><i class="fa fa-sign-out" aria-hidden="true"></i> {{'SIGN_OUT' | translate }}</a></li>
 					</ul>
 				</li>
 			</ul>

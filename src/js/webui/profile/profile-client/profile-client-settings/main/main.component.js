@@ -8,9 +8,9 @@
         })
         .controller('controllers.profileclientsettingsmain', ProfileClientSettingsMainController);
 
-    ProfileClientSettingsMainController.$inject = ['services.client', 'services.webui.alerts', 'services.identity'];
+    ProfileClientSettingsMainController.$inject = ['services.common', 'services.client', 'services.webui.alerts', 'services.identity'];
 
-    function ProfileClientSettingsMainController(clientService, alerts, identityService) {
+    function ProfileClientSettingsMainController(common, clientService, alerts, identityService) {
         var vm;
 
         vm = this;
@@ -19,7 +19,9 @@
             this.user = {
                 name: identityService.user.name,
                 email: identityService.user.email,
-                phone: identityService.user.phone
+                phone: identityService.user.phone,
+                address: identityService.user.address,
+                city: identityService.user.city
             };
             this.changeContactInfo = function changeContactInfo(isValid) {
                 if (isValid) {
@@ -29,6 +31,9 @@
                         });
                 }
             };
+            common.services.adress.getCities().then(function onGetCities(cities) {
+                vm.allCities = cities;
+            });
         };
     }
 })();

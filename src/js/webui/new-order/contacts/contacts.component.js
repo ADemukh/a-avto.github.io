@@ -12,12 +12,29 @@
         })
 		.controller('controllers.newordercontacts', NewOrderContactsController);
 
-	NewOrderContactsController.$inject = ['services.neworder'];
+	NewOrderContactsController.$inject = ['services.neworder', 'services.common'];
 
-	function NewOrderContactsController(newOrderService) {
+	function NewOrderContactsController(newOrderService, common) {
 		this.$onInit = function onInit() {
-		};
-		this.$onChanges = function onChanges(changes) {
+			this.changePhoneNumber = function changePhoneNumber(index) {
+				this.orderContacts.phoneNumbers[index] = this.phones[index].number;
+			}
+			this.addPhoneNumber = function addPhoneNumber() {
+				this.phones.push({});
+			};
+			this.clearPhoneNumber = function clearPhoneNumber(index) {
+				this.orderContacts.phoneNumbers.splice(index, 1);
+				this.phones.splice(index, 1);
+			};
+
+			this.orderContacts = newOrderService.newOrder.contacts;
+			this.phones = newOrderService.newOrder.contacts.phoneNumbers.map(function mapNumber(number) {
+				return { number: angular.copy(number) };
+			});
+
+			common.services.adress.getCities().then(function onGetCities(cities) {
+				this.cities = cities;
+			}.bind(this));
 		};
 	}
 })();

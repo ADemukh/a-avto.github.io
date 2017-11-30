@@ -16,8 +16,7 @@
 
 	function NewOrderFinishController(newOrderService) {
 		this.$onInit = function onInit() {
-		};
-		this.$onChanges = function onChanges(changes) {
+			this.order = newOrderService.newOrder;
 		};
 	}
 })();

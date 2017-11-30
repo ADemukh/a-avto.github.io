@@ -1,37 +1,37 @@
 <div class="content-block selection">
     <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
-        placeholder="{{::'SEARCH_SHOPS_FILTERS_CITIES' | translate }}"></oi-select>
+        placeholder="{{'Город' | translate }}"></oi-select>
     <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
-        placeholder="{{::'SEARCH_SHOPS_FILTERS_CARS' | translate }}"></oi-select>
+        placeholder="{{'Марка' | translate }}"></oi-select>
     <oi-select oi-options="st for st in $ctrl.spareTypes" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.spareType"
-        placeholder="{{::'SEARCH_SHOPS_FILTERS_CATEGORY' | translate }}"></oi-select>
+        placeholder="{{'Раздел' | translate }}"></oi-select>
 </div>
 <div class="content-block state">
-    <span translate>SEARCH_SHOPS_FILTERS_DETAIL_STATE</span>
+    <span translate>SPARE</span>
     <div>
         <input type="radio" name="details" id="newDetail" ng-model="$ctrl.filters.newDetail" ng-value="true">
-        <span for="newDetail" translate>SEARCH_SHOPS_FILTERS_DETAIL_NEW</span>
+        <span for="newDetail" translate>NEW</span>
     </div>
     <div>
         <input type="radio" name="details" id="oldDetail" ng-model="$ctrl.filters.newDetail" ng-value="false">
-        <span for="oldDetail" translate>SEARCH_SHOPS_FILTERS_DETAIL_OLD</span>
+        <span for="oldDetail" translate>IN_USE</span>
     </div>
 </div>
 <div class="content-block work">
     <div>
         <input id="worksNow" type="checkbox" ng-model="$ctrl.filters.worksNow">
-        <span for="worksNow" translate>SEARCH_SHOPS_FILTERS_SHOP_WORKS_NOW</span>
+        <span for="worksNow" translate>WORKS_NOW</span>
     </div>
     <div>
         <input id="worksOnWeekend" type="checkbox" ng-model="$ctrl.filters.worksOnWeekend">
-        <span for="worksOnWeekend" translate>SEARCH_SHOPS_FILTERS_SHOP_WORKS_ON_WEEKEND</span>
+        <span for="worksOnWeekend" translate>WORKS_ON_WEEKEND</span>
     </div>
 </div>
 <div class="content-block action">
     <button type="button" class="btn btn-cancel" ng-click="::$ctrl.cancel()">
-        <span translate>SEARCH_SHOPS_FILTERS_CANCEL</span>
+        <span translate>CANCEL</span>
     </button>
     <button type="button" class="btn btn-action" ng-click="::$ctrl.apply()">
-        <span translate>SEARCH_SHOPS_FILTERS_APPLY</span>
+        <span translate>APPLY</span>
     </button>
 </div>

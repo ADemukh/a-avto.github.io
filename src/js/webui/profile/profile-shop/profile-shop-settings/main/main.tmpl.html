@@ -1,54 +1,61 @@
 <form name="settingsMainForm" ng-submit="::$ctrl.changeContactInfo(settingsMainForm.$valid)" class="layout-column" novalidate>
     <!-- Name -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.name.$invalid && !settingsMainForm.name.$pristine }">
-        <div class="settings-line-caption" translate>REGISTRATION_SHOP_CONTACT_NAME</div>
+        <div class="settings-line-caption" translate>NAME</div>
         <div class="layout-column  settings-line-content-input">
             <input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" class="form-control">
-            <span class="help-block" ng-show="settingsMainForm.name.$error.required && !settingsMainForm.name.$pristine" translate>REGISTRATION_SHOP_CONTACT_NAME_IS_REQUIRED</span>
+            <span class="help-block" ng-show="settingsMainForm.name.$error.required && !settingsMainForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
         </div>
     </div>
     <!-- Email -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.email.$invalid && !settingsMainForm.email.$pristine }">
-        <div class="settings-line-caption" translate>REGISTRATION_CLIENT_EMAIL</div>
+        <div class="settings-line-caption" translate>EMAIL</div>
         <div class="layout-column settings-line-content-input">
             <input type="email" name="email" disabled ng-model="$ctrl.user.email" required ng-change="$ctrl.resetServerError()" class="form-control">
-            <span class="help-block" ng-show="settingsMainForm.email.$error.required && !settingsMainForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_REQUIRED</span>
-            <span class="help-block" ng-show="settingsMainForm.email.$error.email && !settingsMainForm.email.$pristine" translate>REGISTRATION_SHOP_EMAIL_IS_NOT_CORRECT</span>
+            <span class="help-block" ng-show="settingsMainForm.email.$error.required && !settingsMainForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
+            <span class="help-block" ng-show="settingsMainForm.email.$error.email && !settingsMainForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
         </div>
     </div>
     <!-- Phone -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine }">
-        <div class="settings-line-caption" translate>REGISTRATION_USER_CONTACT_PHINE</div>
+        <div class="settings-line-caption" translate>PHONE</div>
         <div class="layout-column settings-line-content-input">
             <input type="text" name="phone" ng-model="$ctrl.user.phone" ng-change="$ctrl.resetServerError()" required ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/"
-                placeholder="{{::'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
-                <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>REGISTRATION_SHOP_PHONE_IS_NOT_CORRECT</span>
+                placeholder="{{'REGISTRATION_CLIENT_PHONE' | translate }}" class="form-control">
+            <span class="help-block" ng-show="settingsMainForm.phone.$invalid && !settingsMainForm.phone.$pristine" translate>PHONE_IS_NOT_CORRECT</span>
         </div>
     </div>
     <!-- WWW -->
-    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+    <div class="form-group layout-row layout-wrap">
         <div class="settings-line-caption" translate>WEBSITE_ADDRESS</div>
         <div class="layout-column settings-line-content-input">
-            <input type="text" name="www" ng-model="$ctrl.user.www" ng-change="$ctrl.resetServerError()" required class="form-control">
-                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_WWW_IS_NOT_CORRECT</span>
+            <input type="text" name="www" ng-model="$ctrl.user.www" ng-change="$ctrl.resetServerError()" class="form-control">
         </div>
     </div>
     <!-- About -->
-    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine }">
+    <div class="form-group layout-row layout-wrap">
         <div class="settings-line-caption" translate>ABOUT_MYSELF</div>
         <div class="layout-column settings-line-content-input">
-            <textarea type="text" name="about" ng-model="$ctrl.user.about" ng-change="$ctrl.resetServerError()" required class="form-control"></textarea>
-                <span class="help-block" ng-show="settingsMainForm.www.$invalid && !settingsMainForm.www.$pristine" translate>REGISTRATION_SHOP_ABOUT_MYSELF_IS_NOT_CORRECT</span>
+            <textarea type="text" name="about" ng-model="$ctrl.user.about" ng-change="$ctrl.resetServerError()" class="form-control"></textarea>
         </div>
     </div>
-    <!--MAPS-->
+    <!--Address-->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.adress.$invalid && !settingsMainForm.adress.$pristine }">
-        <div class="settings-line-caption" translate>SHOP_ADDRESS_ON_THE_MAP</div>
+        <div class="settings-line-caption" translate>ADDRESS</div>
+        <div class="layout-column settings-line-content-input">
+            <textarea type="text" name="adress" ng-model="$ctrl.user.address" ng-change="$ctrl.resetServerError()" required class="form-control"></textarea>
+            <span class="help-block" ng-show="settingsMainForm.adress.$error.required && !settingsMainForm.adress.$pristine" translate>FIELD_IS_REQUIRED</span>
+        </div>
+    </div>
+    <!--Coordinates-->
+    <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : settingsMainForm.coordinates.$invalid && !settingsMainForm.coordinates.$pristine }">
+        <div class="settings-line-caption" translate>COORDINATES</div>
         <div class="layout-column settings-line-content-input position-relative">
-            <div ng-click="$ctrl.selectAddressOnMap()">
-                <a class="show-on-map map-picture" ><img src="/img/map-marker.png"></a>
-                <textarea type="text" name="adress" ng-model="$ctrl.user.address" disabled ng-change="$ctrl.resetServerError()" required
-                     class="form-control map-textarea" ></textarea>
+            <div ng-click="$ctrl.selectCoordinatesOnMap()">
+                <a class="show-on-map map-picture">
+                    <img src="/img/map-marker.png">
+                </a>
+                <textarea type="text" name="adress" ng-model="$ctrl.user.coordinates" ng-change="$ctrl.resetServerError()" required class="form-control map-textarea"></textarea>
             </div>
         </div>
     </div>
@@ -57,14 +64,14 @@
         <div class="settings-line-caption"></div>
         <div class="layout-column  settings-line-content-input">
             <q-alerts alerts="$ctrl.alerts" />
-        </div>
+        </div>{{'
     </div>
     <!-- Submit -->
     <div class="form-group layout-row layout-wrap" ng-class="{ 'has-error' : $ctrl.serverErrorMessage }">
         <div class="settings-line-caption"></div>
         <div class="layout-row settings-line-content-input">
             <button type="submit" class="btn btn-primary settings-line-content-submit" ng-disabled="settingsMainForm.$invalid">
-                <span>{{::'PASSWORD_SET_SAVE' | translate }}</span>
+                <span>{{'SAVE' | translate }}</span>
             </button>
         </div>
     </div>

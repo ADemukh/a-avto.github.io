@@ -1,10 +1,12 @@
 (function OrderServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.neworder', OrderService);
 
-    function OrderService() {
+    OrderService.$inject = ['services.identity', '$http'];
+
+    function OrderService(identityService, $http) {
         var STATUSES, newOrder;
 
         STATUSES = {
@@ -28,15 +30,32 @@
         }
 
         function submitOrder() {
+            return $http.post('order/submitneworder', {
+                order: newOrder
+            }).then(function onSubmit(resp) {
+                clearOrder();
+
+                return resp.data;
+            });
         }
 
         function newEmptyOrder() {
             return {
-                car: {},
-                spares: [],
-                city: '',
-                contact: {},
-                status: STATUSES.START
+                details: {},
+                car: {
+                    selected: {},
+                    newCar: {
+                        _id: 'newCarId'
+                    }
+                },
+                contacts: {
+                    name: identityService.user.name,
+                    email: identityService.user.email,
+                    phoneNumbers: [angular.copy(identityService.user.phone)],
+                    address: identityService.user.address,
+                    city: identityService.user.city
+                },
+                shops: []
             };
         }
     }

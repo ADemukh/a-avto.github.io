@@ -1,9 +1,80 @@
-<h2>Финиш</h2>
-<div class="content-block action">
-    <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
-        <span translate>NEW_ORDER_BACK</span>
-    </button>
-    <button type="button" class="btn btn-action btn-next" ng-click="::$ctrl.send()">
-        <span translate>NEW_ORDER_SEND</span>
-    </button>
+<div class="finish">
+
+    <div class="line-group">
+        <div class="line">
+            <span class="caption">{{'TITLE'| translate}}:</span>
+            <span class="value">{{$ctrl.order.details.title}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'DESCRIPTION'| translate}}:</span>
+            <span class="value">{{$ctrl.order.details.description}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'CATEGORY'| translate}}:</span>
+            <span class="value">{{$ctrl.order.details.spareType}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.details.resolutionDate">
+            <span class="caption">{{'RESOLUTION_DATE'| translate}}:</span>
+            <span class="value">{{$ctrl.order.details.resolutionDate}}</span>
+        </div>
+    </div>
+
+    <div class="line-group">
+        <div class="line">
+            <span class="caption">{{'MARK'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.mark}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.model">
+            <span class="caption">{{'MODEL'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.model}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.year">
+            <span class="caption">{{'YEAR'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.year}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.engineType">
+            <span class="caption">{{'ENGINE_TYPE'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.engineType}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.engineCapacity">
+            <span class="caption">{{'ENGINE_CAPACITY'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.engineCapacity}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.gearbox">
+            <span class="caption">{{'GEARBOX'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.gearbox}}</span>
+        </div>
+        <div class="line" ng-if="$ctrl.order.car.selected.VIN">
+            <span class="caption">{{'VIN'| translate}}:</span>
+            <span class="value">{{$ctrl.order.car.selected.VIN}}</span>
+        </div>
+    </div>
+
+    <div class="line-group">
+        <div class="line">
+            <span class="caption">{{'NAME'| translate}}:</span>
+            <span class="value">{{$ctrl.order.contacts.name}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'CITY'| translate}}:</span>
+            <span class="value">{{$ctrl.order.contacts.city}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'ADDRESS'| translate}}:</span>
+            <span class="value">{{$ctrl.order.contacts.address}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'PHONE'| translate}}:</span>
+            <div ng-repeat="phone in $ctrl.order.contacts.phoneNumbers" class="value">{{phone}}</div>
+        </div>
+    </div>
+
+    <div class="action">
+        <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
+            <span translate>BACK</span>
+        </button>
+        <button type="button" class="btn btn-action btn-next" ng-click="::$ctrl.send()">
+            <span translate>SEND</span>
+        </button>
+    </div>
 </div>

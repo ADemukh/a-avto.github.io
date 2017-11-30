@@ -15,22 +15,19 @@
 
         vm = this;
         vm.$onInit = function onChanges() {
-            vm.user = {
-                longitude: '',
-                latitude: '',
-                address: ''
-            };
+            vm.user = identityService.user;
+            changeCoordinatesText();
 
-            vm.resetServerError = function onChange() {
+            this.resetServerError = function onChange() {
                 // vm.alerts = null;
             };
 
-            vm.selectAddressOnMap = function selectAddressOnMap() {
+            this.selectCoordinatesOnMap = function selectCoordinatesOnMap() {
                 var modalInstance;
 
                 modalInstance = $uibModal.open({
                     animation: false,
-                    component: 'qSelectShopAddressOnMap',
+                    component: 'qSelectCoordinatesOnMap',
                     resolve: {
                         options: function options() {
                             return {
@@ -45,23 +42,9 @@
                     function selected(selectedAddress) {
                         vm.user.longitude = selectedAddress.longitude;
                         vm.user.latitude = selectedAddress.latitude;
-                        vm.user.address = selectedAddress.address;
+                        changeCoordinatesText();
                     },
                     function closed() {});
-            };
-
-            vm.user = {
-                name: identityService.user.name,
-                email: identityService.user.email,
-                phone: identityService.user.phone,
-                www: identityService.user.www,
-                about: identityService.user.about,
-                address: identityService.user.address,
-                longitude: identityService.user.longitude,
-                latitude: identityService.user.latitude,
-                cities: identityService.user.cities,
-                spareTypes: identityService.user.spareTypes,
-                carMarks: identityService.user.carMarks
             };
 
             this.changeContactInfo = function changeContactInfo(isValid) {
@@ -72,6 +55,12 @@
                         });
                 }
             };
+
+            function changeCoordinatesText() {
+                vm.user.coordinates = vm.user && vm.user.longitude && vm.user.latitude ?
+                    vm.user.longitude + '\n' + vm.user.latitude :
+                    null;
+            }
         };
     }
 })();

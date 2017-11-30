@@ -1,7 +1,7 @@
 (function CommonServiceInit() {
     'use strict';
 
-    angular.module('services')
+    angular.module(SERVICES_MODULE_NAME)
         .factory('services.common', CommonService);
 
     CommonService.$inject = ['services.adress', 'services.car', 'services.shop', 'services.order'];
