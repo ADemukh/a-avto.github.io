@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qClientOrderItem', {
             controller: 'controllers.clientordersitem',
-            templateUrl: 'webui/common/order/order.tmpl.html',
+            templateUrl: 'webui/common/orders/order.tmpl.html',
             bindings: {
                 order: '<',
 				onChange: '&',
