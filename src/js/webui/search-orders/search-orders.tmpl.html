@@ -1,4 +1,3 @@
-<q-navigation class="display-block" />
 <div class="navbar-top-offset height-full search-orders wrapper clear">
     <q-search-orders-filters show="$ctrl.visibility.filters" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" on-cancel="$ctrl.hideFilters();" class="display-block filters"
     />
@@ -10,16 +9,3 @@
         </div>
     </div>
 </div>
-
-<footer class="text-center search-orders-footer">
-    <div class="wrapper">
-        <a ui-sref="public.main"><img src="img/logo-footer.png" class="logo"></a>
-        <a href="mailto:aavto@gmail.com" translate>FOOTER_EMAIL</a>
-        <span>{{::'FOOTER_PHONE' | translate }}</span>
-        <ul class="social-icons">
-            <li><span class="fa fa-facebook-square"></span></li>
-            <li><span class="fa fa-vk"></span></li>
-            <li><span class="fa fa-instagram"></span></li>
-        </ul>
-    </div>
-</footer>

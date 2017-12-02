@@ -168,20 +168,29 @@ var WEBUI_MODULE_NAME;
                         access: window.routingConfig.accessLevels.notShop
                     },
                     parent: 'root'
+                });
+
+            // Search
+            $stateProvider
+                .state('search', {
+                    abstract: true,
+                    templateUrl: 'webui/search/search.tmpl.html'
                 })
                 .state('search-shops', {
                     template: '<q-search-shops class="height-full flex display-block"/>',
                     url: '/search-shops',
                     data: {
                         access: window.routingConfig.accessLevels.public
-                    }
+                    },
+                    parent: 'search'
                 })
                 .state('search-orders', {
                     template: '<q-search-orders class="height-full flex display-block"/>',
                     url: '/search-orders',
                     data: {
                         access: window.routingConfig.accessLevels.public
-                    }
+                    },
+                    parent: 'search'
                 });
 
             $urlRouterProvider.otherwise('/');
