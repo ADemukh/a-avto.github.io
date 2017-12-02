@@ -59,8 +59,9 @@
             return response;
         }
 
-        function getOrders() {
+        function getOrders(filter) {
             return $http.post('profile/getclientorders', {
+                filter: filter,
                 email: identityService.user.email
             }).then(function gotOrders(response) {
                 return response.data.orders;

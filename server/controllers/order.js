@@ -32,6 +32,43 @@ function submitOrder(orderInfo) {
 		});
 }
 
+function getOrders(filter) {
+	var currentDay, currentTime, data, orderFilter;
+
+	// TODO: Set up orderFilter object for the request.
+	orderFilter = {};
+	// if (filter.shopCity) {
+	// 	orderFilter.cities = { $in: [filter.shopCity] };
+	// }
+	// if (filter.carMark) {
+	// 	orderFilter.carMarks = { $in: [filter.carMark] };
+	// }
+	// if (filter.category) {
+	// 	orderFilter.spareCategories = { $in: [filter.category] };
+	// }
+	// if (filter.newDetail === true) {
+	// 	orderFilter['spare.isNew'] = true;
+	// }
+	// if (filter.newDetail === false) {
+	// 	orderFilter['spare.isOld'] = true;
+	// }
+	// if (filter.worksNow) {
+	// 	currentDay = moment().format('dddd').toLowerCase();
+	// 	currentTime = moment().format('HH:mm');
+	// 	orderFilter['schedule.' + currentDay + '.active'] = true;
+	// 	orderFilter['schedule.' + currentDay + '.from'] = { $lte: currentTime };
+	// 	orderFilter['schedule.' + currentDay + '.to'] = { $gte: currentTime };
+	// }
+	// if (filter.worksOnWeekend) {
+	// 	orderFilter.$or = [
+	// 		{ 'schedule.saturday.active': true },
+	// 		{ 'schedule.sunday.active': true }
+	// 	];
+	// }
+	return Order.find(orderFilter).exec();
+}
+
 module.exports = {
-	submitOrder: submitOrder
+	submitOrder: submitOrder,
+	getOrders: getOrders
 };

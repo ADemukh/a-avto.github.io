@@ -32,4 +32,11 @@ router.post('/submitneworder', authController.isAuthenticated, function submitor
     .then(succeedWrapper(res, 'Success.'), failureWrapper(res, 'Error.'));
 });
 
+router.get('/getOrders', function getOrders(req, res) {
+  orderController.getOrders(req.query.filter ? JSON.parse(req.query.filter) : {})
+    .then(function onGotOrders(orders) {
+      res.json(orders);
+    });
+});
+
 module.exports = router;

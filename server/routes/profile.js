@@ -51,7 +51,7 @@ router.post('/changeclientcars', authController.isAuthenticated, function change
     .then(succeedWrapper(res, 'Изменения сохранены.'), failureWrapper(res, 'При сохранении изменений возникла ошибка.'));
 });
 router.post('/getclientorders', authController.isAuthenticated, function changeClientCars(req, res) {
-  profileClientController.getOrders(req.body.email)
+  profileClientController.getOrders(req.body.filter, req.body.email)
     .then(function gotOrders(orders) {
       res.json({
         orders: orders

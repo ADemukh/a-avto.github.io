@@ -20,37 +20,37 @@
         }
 
         function fetchAllOrders(filter) {
-            // return $http.get('shops/getOrders', {
-            //         params: {
-            //             filter: filter
-            //         }
-            //     })
-            //     .then(function response(resp) {
-            //         allOrders = resp.data;
-            //         dfd.resolve(allOrders);
-            //     });
-
-            var dummyOrders;
-
-            dummyOrders = [
-                {
-                    id: 1,
-                    status: 'opened'
-                },
-                {
-                    id: 2,
-                    status: 'pending'
-                },
-                {
-                    id: 3,
-                    status: 'closed'
-                }
-            ];
-            return $q.resolve(dummyOrders)
-                .then(function response(orders) {
-                    allOrders = orders;
+            return $http.get('order/getOrders', {
+                    params: {
+                        filter: filter
+                    }
+                })
+                .then(function response(resp) {
+                    allOrders = resp.data;
                     dfd.resolve(allOrders);
                 });
+
+            // var dummyOrders;
+
+            // dummyOrders = [
+            //     {
+            //         id: 1,
+            //         status: 'opened'
+            //     },
+            //     {
+            //         id: 2,
+            //         status: 'pending'
+            //     },
+            //     {
+            //         id: 3,
+            //         status: 'closed'
+            //     }
+            // ];
+            // return $q.resolve(dummyOrders)
+            //     .then(function response(orders) {
+            //         allOrders = orders;
+            //         dfd.resolve(allOrders);
+            //     });
         }
 
         function getOrders(filters) {

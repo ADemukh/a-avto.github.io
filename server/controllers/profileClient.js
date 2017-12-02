@@ -1,7 +1,8 @@
 /*eslint strict:0  */
-var userController;
+var Order, userController;
 
-userController = require('../controllers/user');
+Order = require('../models/order');
+userController = require('./user');
 
 function changeContactInfo(email, userInfo) {
 	return userController.findByEmail(email)
@@ -53,37 +54,17 @@ function addNewCar(email, newCar) {
 		});
 }
 
-function getOrders(email) {
-	return Promise.resolve([{
-		title: 'Проект дома',
-		description: 'Нужен проект дома по реконструкции, за умеренную цену',
-		cities: ['Минск']
-	}, {
-		title: 'Квартирный переезд (1 комната) с Есенина на Белинского',
-		description: `Грузоперевозки
-Доброго времени суток.
-В воскресенье 27 августа в 14:00 необходимо вынести и погрузить вещи, 1 комната (Есенина д 23 корп 1, этаж 6, лифт маленький пассажирский):
-- двуспальная кровать (будет разобрана)
-- двуспальный матрас
-- трехстворчатый шкаф (будет разобран)
-- письменный стол
-- полка
-- туалетный стол
-- 2 тумбочки
-- 2 комода
-- сундук
-- стул, табурет, зеркало
-- несколько чемоданов с одеждой
-- коробки с вещами (посуда и всякое) - 15-20
-- мешки с вещами
-- 2 велосипеда
-- СВЧ
-- книги, коробки с обувью и прочее небольшое
-Привезти на Белинского 23 и поднять в квартиру (11 этаж, есть лифт большой грузовой).
+function getOrders(filter, email) {
+	var orderFilter;
 
-Предложите, пожалуйста, вашу цену за все "под ключ".`,
-		cities: ['Минск']
-	}]);
+	orderFilter = {};
+
+	if (email) {
+		// orderFilter.client.email = { $in: [filter.shopCity] };
+	}
+	orderFilter['client.email'] = email;
+
+	return Order.find(orderFilter).exec();
 }
 
 module.exports = {
