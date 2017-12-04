@@ -58,10 +58,6 @@ function getOrders(filter, email) {
 	var orderFilter;
 
 	orderFilter = {};
-
-	if (email) {
-		// orderFilter.client.email = { $in: [filter.shopCity] };
-	}
 	orderFilter['client.email'] = email;
 
 	return Order.find(orderFilter).exec();

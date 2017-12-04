@@ -33,19 +33,18 @@ function submitOrder(orderInfo) {
 }
 
 function getOrders(filter) {
-	var currentDay, currentTime, data, orderFilter;
+	var orderFilter;
 
-	// TODO: Set up orderFilter object for the request.
 	orderFilter = {};
-	// if (filter.shopCity) {
-	// 	orderFilter.cities = { $in: [filter.shopCity] };
-	// }
-	// if (filter.carMark) {
-	// 	orderFilter.carMarks = { $in: [filter.carMark] };
-	// }
-	// if (filter.category) {
-	// 	orderFilter.spareCategories = { $in: [filter.category] };
-	// }
+	if (filter.orderCity) {
+		orderFilter['client.city'] = { $in: [filter.orderCity] };
+	}
+	if (filter.carMark) {
+		orderFilter['car.mark'] = { $in: [filter.carMark] };
+	}
+	if (filter.spareType) {
+		orderFilter.spareType = { $in: [filter.spareType] };
+	}
 	// if (filter.newDetail === true) {
 	// 	orderFilter['spare.isNew'] = true;
 	// }

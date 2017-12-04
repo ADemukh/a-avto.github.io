@@ -24,8 +24,6 @@
                 results: false
             };
 
-            this.filters = {};
-
             this.updateFilters = function onUpdateFilters(event) {
                 if (event.filters) {
                     this.filters = angular.copy(event.filters);
