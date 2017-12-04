@@ -4,35 +4,22 @@
     angular.module('services')
         .factory('services.order', OrdersService);
 
-    OrdersService.$inject = ['_', '$http', '$q'];
+    OrdersService.$inject = ['$http'];
 
-    function OrdersService(_, $http, $q) {
-        var allOrders, dfd;
-
+    function OrdersService($http) {
         return {
             getOrders: getOrders
         };
 
-        function getAllOrders(filter) {
-            dfd = $q.defer();
-            fetchAllOrders(filter);
-            return dfd.promise;
-        }
-
-        function fetchAllOrders(filter) {
+        function getOrders(filter) {
             return $http.get('order/getOrders', {
-                    params: {
-                        filter: filter
-                    }
-                })
-                .then(function response(resp) {
-                    allOrders = resp.data;
-                    dfd.resolve(allOrders);
-                });
-        }
-
-        function getOrders(filters) {
-            return getAllOrders(filters);
+                params: {
+                    filter: filter
+                }
+            })
+            .then(function response(resp) {
+                return resp.data;
+            });
         }
     }
 })();

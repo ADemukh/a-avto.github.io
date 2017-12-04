@@ -34,7 +34,11 @@ router.post('/changeclientcars', authController.isAuthenticated, function change
 });
 router.post('/getclientorders', authController.isAuthenticated, function changeClientCars(req, res) {
   profileClientController.getOrders(req.body.filter, req.body.email)
-    .then(responseHelper(res).success, responseHelper(res).error);
+    .then(function gotOrders(orders) {
+      res.json({
+        orders: orders
+      });
+    });
 });
 
 // shop profile

@@ -1,5 +1,24 @@
-.pagination-center {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+.pagination {
+    &.pagination-center {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    li {
+        &.pagination-prev,
+        &.pagination-next {
+            font-family: FontAwesome;
+        }
+        &.pagination-prev {
+            a:before {
+                content: '\f060';
+            }
+        }
+        &.pagination-next {
+            a:before {
+                content: '\f061';
+            }
+        }
+    }
 }

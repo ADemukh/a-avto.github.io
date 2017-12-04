@@ -3,11 +3,9 @@
 
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.shop', ShopsService);
-    ShopsService.$inject = ['$http', '$q', 'services.identity'];
+    ShopsService.$inject = ['$http', 'services.identity'];
 
-    function ShopsService($http, $q, identityService) {
-        var allShops, dfd;
-
+    function ShopsService($http, identityService) {
         return {
             getShops: getShops,
             changePhoto: changePhoto,
@@ -59,26 +57,15 @@
             return response;
         }
 
-        function getAllShops(filter) {
-            dfd = $q.defer();
-            fetchAllShops(filter);
-            return dfd.promise;
-        }
-
-        function fetchAllShops(filter) {
+        function getShops(filter) {
             return $http.get('shops/getShops', {
-                    params: {
-                        filter: filter
-                    }
-                })
-                .then(function response(resp) {
-                    allShops = resp.data;
-                    dfd.resolve(allShops);
-                });
-        }
-
-        function getShops(filters) {
-            return getAllShops(filters);
+                params: {
+                    filter: filter
+                }
+            })
+            .then(function response(resp) {
+                return resp.data;
+            });
         }
     }
 })();
