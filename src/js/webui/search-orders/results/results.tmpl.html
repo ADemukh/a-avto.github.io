@@ -1,2 +1,2 @@
 <q-client-order-item order="order" ng-repeat="order in $ctrl.currPageOrders" class="display-block order-item"></q-client-order-item>
-<q-pagination items="$ctrl.orders" selected-items="$ctrl.currPageOrders" class="display-inline-block pagination pagination-center" />
+<q-pagination ng-show="$ctrl.currPageOrders.length" items="$ctrl.orders" selected-items="$ctrl.currPageOrders" class="display-inline-block pagination pagination-center" />

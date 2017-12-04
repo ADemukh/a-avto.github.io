@@ -14,7 +14,9 @@
 		})
 		.controller('controllers.searchordersfilters', SearchOrdersFiltersController);
 
-	function SearchOrdersFiltersController() {
+	SearchOrdersFiltersController.$inject = ['moment'];
+
+	function SearchOrdersFiltersController(moment) {
 		this.$onInit = function onInit() {
 			this.applyDesktopFilters = function applyDesktopFilters(event) {
 				this.onUpdate({
@@ -33,6 +35,10 @@
 			};
 			this.cancelMobileFilters = function cancelMobileFilters() {
 				this.onCancel();
+			};
+
+			this.resolutionDateOptions = {
+				minDate: moment.utc().format()
 			};
 		};
 		this.$onChanges = function onChanges(changes) {

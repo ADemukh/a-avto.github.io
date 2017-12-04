@@ -6,6 +6,14 @@
     <oi-select oi-options="st for st in $ctrl.spareTypes" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.spareType"
         placeholder="{{'Раздел' | translate }}"></oi-select>
 </div>
+
+<div class="content-block">
+    <span class="caption" translate>RESOLUTION_DATE</span>
+    <div class="field short layout-column">
+        <q-date-time-picker name="resolutionDate" ng-model="$ctrl.filters.maxResolutionDate" options="$ctrl.resolutionDateOptions"></q-date-time-picker>
+    </div>
+</div>
+
 <div class="content-block action">
     <button type="button" class="btn btn-cancel" ng-click="::$ctrl.cancel()">
         <span translate>CANCEL</span>
