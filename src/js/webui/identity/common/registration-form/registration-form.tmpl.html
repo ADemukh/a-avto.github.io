@@ -1,4 +1,4 @@
-<form name="registrationForm" ng-submit="::$ctrl.signUp();" class="input-wall form-input" novalidate>
+<form name="registrationForm" ng-submit="::$ctrl.signUp();" novalidate>
 	<!-- Name -->
 	<div class="form-group" ng-class="{ 'has-error' : registrationForm.name.$invalid && !registrationForm.name.$pristine }">
 		<input type="text" name="name" ng-model="$ctrl.user.name" required ng-change="$ctrl.resetServerError()" placeholder="{{'NAME' | translate }}"
@@ -27,10 +27,10 @@
 		<span class="help-block" ng-show="registrationForm.confirmPassword.$error.match && !registrationForm.confirmPassword.$pristine"
 		    translate>PASSWORDS_ARE_NOT_EQUAL</span>
 	</div>
-	<q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts" />
 	<button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="registrationForm.$invalid">
 		<span translate>SIGN_UP</span>
 	</button>
+	<q-alerts class="display-block" ng-if="$ctrl.alerts && $ctrl.alerts.length" alerts="$ctrl.alerts" />
 </form>
 <div ng-if="$ctrl.role === 'client'">
 	<q-auth-social on-signed-up="$ctrl.onSocialSignedUp(user);"></q-auth-social>

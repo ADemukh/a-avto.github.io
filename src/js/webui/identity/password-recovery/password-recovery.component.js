@@ -14,12 +14,10 @@
         this.$onInit = function init() {
             this.recover = function onRecover() {
                 return identity.recoverPassword(this.email)
-                    .then(function success(user) {
-                        if (user.role !== 'anon') {
-                            identity.redirectToAttemptedUrl();
-                        }
-                    }.bind(this), function failure(resp) {
-                        this.alerts = [alerts.danger(resp.alert.message)];
+                    .then(function success(response) {
+                        this.alerts = [alerts.success(response.data.item.message)];
+                    }.bind(this), function failure(response) {
+                        this.alerts = [alerts.danger(response.data.error.message)];
                     }.bind(this));
             };
         };

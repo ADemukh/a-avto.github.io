@@ -18,43 +18,43 @@
         };
 
         function changePhoto(photo) {
-            return $http.post('shops/changeshopphoto', {
+            return $http.post('profile/changeshopphoto', {
                 email: identityService.user.email,
                 photo: photo
             }).then(updateCurrentUser);
         }
 
         function changeContactInfo(contactInfo) {
-            return $http.post('shops/changeshopcontactinfo', {
+            return $http.post('profile/changeshopcontactinfo', {
                 email: identityService.user.email,
                 contactInfo: contactInfo
             }).then(updateCurrentUser);
         }
 
         function changeOptions(options) {
-            return $http.post('shops/changeshopoptions', {
+            return $http.post('profile/changeshopoptions', {
                 email: identityService.user.email,
                 options: options
             }).then(updateCurrentUser);
         }
 
         function changePassword(newPassword) {
-            return $http.post('shops/changepassword', {
+            return $http.post('profile/changepassword', {
                 email: identityService.user.email,
                 newPassword: newPassword
             }).then(updateCurrentUser);
         }
 
         function changeNotifications(notifications) {
-            return $http.post('shops/changeshopnotifications', {
+            return $http.post('profile/changeshopnotifications', {
                 email: identityService.user.email,
                 notifications: notifications
             }).then(updateCurrentUser);
         }
 
         function updateCurrentUser(response) {
-            if (response.data.success) {
-                identityService.user = response.data.details;
+            if (response.data.item) {
+                identityService.user = response.data.item;
             }
             return response;
         }

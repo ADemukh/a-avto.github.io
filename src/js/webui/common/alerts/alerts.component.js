@@ -6,7 +6,7 @@
             controller: 'controllers.alerts',
             templateUrl: 'webui/common/alerts/alerts.tmpl.html',
             bindings: {
-                alerts: '<',
+                alerts: '=',
                 dismissOnTimeout: '<'
             }
         })

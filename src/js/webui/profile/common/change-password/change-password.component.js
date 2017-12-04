@@ -11,9 +11,9 @@
         })
         .controller('controllers.profilesettingschangepassword', ProfileSettingsChangePasswordController);
 
-    ProfileSettingsChangePasswordController.$inject = ['services.webui.alerts'];
+    ProfileSettingsChangePasswordController.$inject = ['services.webui.alerts', '$translate'];
 
-    function ProfileSettingsChangePasswordController(alerts) {
+    function ProfileSettingsChangePasswordController(alerts, $translate) {
         var vm;
 
         vm = this;
@@ -21,12 +21,12 @@
         vm.changePassword = function changePassword(passwordForm) {
             if (passwordForm.$valid) {
                 this.changeUserPassword(vm.user.password)
-                    .then(function complete(response) {
-                        vm.alerts = response.data.success ?
-                            [alerts.success(response.data.message ? response.data.message : 'Пароль успешно изменен.')] :
-                            [alerts.danger(response.data.error ? response.data.error : 'При изменении пароля возникла ошибка.')];
+                    .then(function complete() {
+                        vm.alerts = [alerts.success($translate.instant('PROFILE_PASSWORD_CHANGED'))];
                         vm.user = {};
                         passwordForm.$setPristine();
+                    }, function failure() {
+                        vm.alerts = [alerts.success($translate.instant('OPERATION_FAILED'))]
                     });
             }
         };

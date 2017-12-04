@@ -8,9 +8,9 @@
         })
         .controller('controllers.profileclientsettingsmain', ProfileClientSettingsMainController);
 
-    ProfileClientSettingsMainController.$inject = ['services.common', 'services.client', 'services.webui.alerts', 'services.identity'];
+    ProfileClientSettingsMainController.$inject = ['services.common', 'services.client', 'services.webui.alerts', 'services.identity', '$translate'];
 
-    function ProfileClientSettingsMainController(common, clientService, alerts, identityService) {
+    function ProfileClientSettingsMainController(common, clientService, alerts, identityService, $translate) {
         var vm;
 
         vm = this;
@@ -26,8 +26,10 @@
             this.changeContactInfo = function changeContactInfo(isValid) {
                 if (isValid) {
                     clientService.changeContactInfo(vm.user)
-                        .then(function complete(response) {
-                            vm.alerts = response.data.success ? [alerts.success(response.data.message)] : [alerts.danger(response.data.error)];
+                        .then(function complete() {
+                            vm.alerts = [alerts.success($translate.instant('PROFILE_CONTACTS_CHANGED'))];
+                        }, function failure() {
+                            vm.alerts = [alerts.success($translate.instant('OPERATION_FAILED'))]
                         });
                 }
             };

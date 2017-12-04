@@ -7,11 +7,11 @@
         <li class="thumbs-up"  ng-class="{ active: $ctrl.activeFinish()}"translate>FINISH</li>
     </ul>
     <div class="new-order-step-wrapper">
-        <q-new-order-start class="display-block align-progressbar" next="$ctrl.goToDetails()" ng-show="$ctrl.showStart()"/>
-        <q-new-order-details class="display-block align-progressbar" back="$ctrl.goToStart()" next="$ctrl.goToCar()" ng-show="$ctrl.showDetails()"/>
-        <q-new-order-car class="display-block" back="$ctrl.goToDetails()" next="$ctrl.goToContacts()" ng-show="$ctrl.showCar()"/>
-        <q-new-order-contacts class="display-block" back="$ctrl.goToCar()" next="$ctrl.goToFinish()" ng-show="$ctrl.showContacts()"/>
-        <q-new-order-finish class="display-block" back="$ctrl.goToContacts()" send="$ctrl.sendOrder()" ng-show="$ctrl.showFinish()"/>
-        <q-new-order-completed class="display-block" ng-show="$ctrl.showCompleted()"/>
+        <q-new-order-start class="display-block align-progressbar" next="$ctrl.goToDetails()" ng-if="$ctrl.showStart()"/>
+        <q-new-order-details class="display-block align-progressbar" back="$ctrl.goToStart()" next="$ctrl.goToCar()" ng-if="$ctrl.showDetails()"/>
+        <q-new-order-car class="display-block" back="$ctrl.goToDetails()" next="$ctrl.goToContacts()" ng-if="$ctrl.showCar()"/>
+        <q-new-order-contacts class="display-block" back="$ctrl.goToCar()" next="$ctrl.goToFinish()" ng-if="$ctrl.showContacts()"/>
+        <q-new-order-finish class="display-block" back="$ctrl.goToContacts()" send="$ctrl.sendOrder()" ng-if="$ctrl.showFinish()"/>
+        <q-new-order-completed class="display-block" ng-if="$ctrl.showCompleted()"/>
     </div>
 </div>

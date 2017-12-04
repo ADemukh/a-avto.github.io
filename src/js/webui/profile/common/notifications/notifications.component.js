@@ -12,9 +12,9 @@
         })
         .controller('controllers.profilesettingsnotifications', ProfileSettingsNotificationsController);
 
-    ProfileSettingsNotificationsController.$inject = ['services.webui.alerts', 'services.identity'];
+    ProfileSettingsNotificationsController.$inject = ['services.webui.alerts', 'services.identity', '$translate'];
 
-    function ProfileSettingsNotificationsController(alerts, identityService) {
+    function ProfileSettingsNotificationsController(alerts, identityService, $translate) {
         var vm;
 
         vm = this;
@@ -35,9 +35,12 @@
                         selectedNotifications.push(notification.type);
                     }
                 });
-                vm.changeUserNotifications(selectedNotifications).then(function complete(response) {
-                    vm.alerts = response.data.success ? [alerts.success(response.data.message)] : [alerts.danger(response.data.error)];
-                });
+                vm.changeUserNotifications(selectedNotifications)
+                    .then(function complete() {
+                        vm.alerts = [alerts.success($translate.instant('PROFILE_NOTIFICATIONS_CHANGED'))];
+                    }, function failure() {
+                        vm.alerts = [alerts.success($translate.instant('OPERATION_FAILED'))]
+                    });
             };
         };
     }

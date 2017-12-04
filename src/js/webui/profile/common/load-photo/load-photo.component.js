@@ -16,9 +16,11 @@
         'services.client',
         'services.webui.alerts',
         'services.identity',
-        '$q'];
+        '$q',
+        '$translate'
+    ];
 
-    function ProfileSettingsLoadPhotoController(fileService, clientService, alerts, identityService, $q) {
+    function ProfileSettingsLoadPhotoController(fileService, clientService, alerts, identityService, $q, $translate) {
         var vm;
 
         vm = this;
@@ -36,13 +38,12 @@
                             }
                             return $q.reject();
                         })
-                        .then(function onChange() {
-                            vm.alerts = [alerts.success('Фото изменено.')];
+                        .then(function complete() {
+                            vm.alerts = [alerts.success($translate.instant('PROFILE_PHOTO_CHANGED'))];
                             vm.photo = identityService.user.photo;
                             vm.file = null;
-                        })
-                        .catch(function failure() {
-                            vm.alerts = [alerts.danger('Не удалось изменить фото.')];
+                        }, function failure() {
+                            vm.alerts = [alerts.success($translate.instant('OPERATION_FAILED'))]
                         })
                         .finally(function complete() {
                             vm.loading = false;

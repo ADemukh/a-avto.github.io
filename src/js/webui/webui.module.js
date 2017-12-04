@@ -6,7 +6,7 @@ var WEBUI_MODULE_NAME;
     'use strict';
 
     WEBUI_MODULE_NAME = 'aAvto.webui';
-    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'services', 'templates', 'aavto.translate', 'ui.bootstrap', 'yaMap', 'oi.select', 'ngFileUpload', 'matchMedia'])
+    angular.module(WEBUI_MODULE_NAME, ['ui.router', 'aavto.core', 'services', 'templates', 'aavto.translate', 'ui.bootstrap', 'yaMap', 'oi.select', 'ngFileUpload', 'matchMedia'])
         .config(WebUIModuleConfig)
         .value('_', window._)
         .value('moment', window.moment)
@@ -165,7 +165,10 @@ var WEBUI_MODULE_NAME;
                     template: '<q-new-order/>',
                     url: '/new-order',
                     data: {
-                        access: window.routingConfig.accessLevels.notShop
+                        access: window.routingConfig.accessLevels.anonAndClient
+                    },
+                    params: {
+                        status: null
                     },
                     parent: 'root'
                 })
@@ -217,6 +220,7 @@ var WEBUI_MODULE_NAME;
             // Add an interceptor for AJAX errors
             //================================================
             $httpProvider.interceptors.push(securityInterceptor);
+            // $httpProvider.interceptors.push(responseInterceptor);
 
             function securityInterceptor($q, $location, $injector) {
                 return function securityInterceptorPromise(promise) {
@@ -226,7 +230,6 @@ var WEBUI_MODULE_NAME;
 
                     return promise.then(
                         function onResponse(response) {
-                            // do something on success
                             return response;
                         },
                         function onResponseError(response) {
@@ -236,6 +239,18 @@ var WEBUI_MODULE_NAME;
                                 $location.path('/login');
                             }
                             return $q.reject(response);
+                        });
+                };
+            }
+
+            function responseInterceptor($q) {
+                return function securityInterceptorPromise(promise) {
+                    return promise.then(
+                        function onResponse(response) {
+                            if (!response.data.item && response.data.error) {
+                                return $q.reject(response);
+                            }
+                            return $q.resolve(response);
                         });
                 };
             }

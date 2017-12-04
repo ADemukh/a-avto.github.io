@@ -8,9 +8,9 @@
         })
         .controller('controllers.profileclientcars', ProfileClientCarsController);
 
-    ProfileClientCarsController.$inject = ['services.client', 'services.webui.alerts', 'services.identity', 'services.webui.confirmdialogs'];
+    ProfileClientCarsController.$inject = ['services.client', 'services.webui.alerts', 'services.identity', 'services.webui.confirmdialogs', '$translate'];
 
-    function ProfileClientCarsController(clientService, alerts, identity, confirm) {
+    function ProfileClientCarsController(clientService, alerts, identity, confirm, $translate) {
         this.$onInit = function onInit() {
             var vm;
 
@@ -55,9 +55,11 @@
 
             function changeCars(cars) {
                 clientService.changeCars(cars)
-                    .then(function complete(response) {
-                        vm.alerts = response.data.success ? [alerts.success(response.data.message || 'Информация сохранена.')] : [alerts.danger(response.data.error || 'При сохранении возникла ошибка.')];
+                    .then(function complete() {
+                        vm.alerts = [alerts.success($translate.instant('PROFILE_CARS_CHANGED'))];
                         vm.user = {};
+                    }, function failure() {
+                        vm.alerts = [alerts.success($translate.instant('OPERATION_FAILED'))]
                     });
             }
         };

@@ -53,8 +53,8 @@
         }
 
         function updateCurrentUser(response) {
-            if (response.data.success) {
-                identityService.user = response.data.details;
+            if (response.data.item) {
+                identityService.user = response.data.item;
             }
             return response;
         }

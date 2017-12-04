@@ -43,7 +43,7 @@ function configuartion() {
                     pass: 'aleksey10051990'
                 }
             },
-            maailFrom: '"Aavto.by" <aleksey.demukh@gmail.com>'
+            maailFrom: 'a-Aavto.by'
         },
         bcrypt: {
             salt: 10

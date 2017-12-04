@@ -41,7 +41,7 @@
         }
 
         function failureSignUp(resp) {
-            this.alerts = [alerts.danger(resp.alert.message)];
+            this.alerts = [alerts.danger(resp.data.error.message)];
         }
     }
 })();

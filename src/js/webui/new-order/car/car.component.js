@@ -17,7 +17,7 @@
 	function NewOrderCarController(identity, newOrderService) {
 		this.$onInit = function onInit() {
 			this.myCars = identity.user.cars;
-			this.orderCar = newOrderService.newOrder.car;
+			this.orderCar = newOrderService.newOrder().car;
 			this.selectCar = function selectCar(car) {
 				this.selectedCarId = car._id;
 				this.orderCar.selected = car;
@@ -29,6 +29,7 @@
 				return !!this.orderCar.selected._id;
 			};
 
+			// if ()
 			this.selectCar(this.orderCar.selected._id ?
 				this.orderCar.selected :
 				this.myCars && this.myCars.length ?

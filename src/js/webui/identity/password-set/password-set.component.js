@@ -14,12 +14,12 @@
         this.$onInit = function onInit() {
             this.setPassword = function setPassword() {
                 return identity.setPassword($stateParams.token, this.password)
-                    .then(function success(user) {
-                        if (user.role !== 'anon') {
+                    .then(function success() {
+                        if (identity.loggedIn()) {
                             identity.redirectToAttemptedUrl();
                         }
-                    }.bind(this), function failure(resp) {
-                        this.alerts = [alerts.danger(resp.alert.message)];
+                    }.bind(this), function failure(response) {
+                        this.alerts = [alerts.danger(response.data.error.message)];
                     }.bind(this));
             };
         };

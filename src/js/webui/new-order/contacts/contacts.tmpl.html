@@ -1,10 +1,20 @@
-<form name="contactsForm" class="contacts layout-column" novalidate>
-    <div class="form-group" ng-class="{ 'has-error' : contactsForm.name.$invalid && !contactsForm.name.$pristine }">
+<form name="$ctrl.contactsForm" class="contacts layout-column" novalidate>
+    <div class="form-group" ng-class="{ 'has-error' : $ctrl.contactsForm.name.$invalid && !$ctrl.contactsForm.name.$pristine }">
         <span class="caption" translate>NAME</span>
         <div class="field short layout-column">
             <input type="text" name="name" ng-model="$ctrl.orderContacts.name" required class="form-control"></input>
-            <span class="help-block" ng-show="contactsForm.name.$invalid && !contactsForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
+            <span class="help-block" ng-show="$ctrl.contactsForm.name.$error.required && !$ctrl.contactsForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
         </div>
+    </div>
+    <div class="form-group" ng-if="$ctrl.isAnonUser()" ng-class="{ 'has-error' : $ctrl.contactsForm.email.$invalid && !$ctrl.contactsForm.email.$pristine}">
+        <span class="caption" translate>EMAIL</span>
+        <div class="field short layout-column">
+            <input type="email" name="email" ng-model="$ctrl.orderContacts.email" required class="form-control" ng-change="$ctrl.resetEmailBusyError();"></input>
+            <span class="help-block" ng-show="$ctrl.contactsForm.email.$error.required && !$ctrl.contactsForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
+            <span class="help-block" ng-show="$ctrl.contactsForm.email.$error.email && !$ctrl.contactsForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
+            <span uib-popover-template="'webui/new-order/contacts/try-sign-in.tmpl.html'" popover-placement="bottom" popover-is-open="$ctrl.contactsForm.email.$error.emailbusy"></span>
+        </div>
+
     </div>
     <div class="form-group">
         <span class="caption" translate>CITY</span>
@@ -20,12 +30,14 @@
     </div>
     <div class="form-group">
         <span class="caption" translate>PHONE</span>
-        <div class="field short bottom-offset has-feedback" ng-repeat="(key, value) in $ctrl.phones" ng-class="{ 'has-error' : contactsForm['phone' + key].$invalid && !contactsForm['phone' + key].$pristine }">
-            <input type="text" name="{{'phone' + key}}" ng-model="$ctrl.phones[key].number" ng-change="$ctrl.changePhoneNumber(key, $ctrl.phones[key].number);" class="form-control" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/">
+        <div class="field short bottom-offset has-feedback" ng-repeat="(key, value) in $ctrl.phones" ng-class="{ 'has-error' : $ctrl.contactsForm['phone' + key].$invalid && !$ctrl.contactsForm['phone' + key].$pristine }">
+            <input type="text" name="{{'phone' + key}}" ng-model="$ctrl.phones[key].number" ng-change="$ctrl.changePhoneNumber(key, $ctrl.phones[key].number);"
+                class="form-control" ng-pattern="/^\+375( |-){0,1}\d{2}( |-){0,1}\d{3}( |-){0,1}\d{2}( |-){0,1}\d{2}$/">
             <span ng-if="$ctrl.orderContacts.phoneNumbers.length > 1" ng-click="$ctrl.clearPhoneNumber(key)" uib-tooltip="{{'CLEAR' | translate }}"
                 class="glyphicon glyphicon-remove form-control-feedback clear-phone-number">
             </span>
-            <span class="help-block" ng-show="contactsForm['phone' + key].$invalid && !contactsForm['phone' + key].$pristine" translate>PHONE_IS_NOT_CORRECT</span>
+            <span class="help-block" ng-show="$ctrl.contactsForm['phone' + key].$invalid && !$ctrl.contactsForm['phone' + key].$pristine"
+                translate>PHONE_IS_NOT_CORRECT</span>
         </div>
         <span ng-click="$ctrl.addPhoneNumber()" ng-if="$ctrl.orderContacts.phoneNumbers.length < 3" class="add-phone-number" translate>ADD_ONE_MORE</span>
     </div>
@@ -33,7 +45,7 @@
         <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
             <span translate>BACK</span>
         </button>
-        <button type="submit" class="btn btn-action btn-next" ng-disabled="contactsForm.$invalid" ng-click="::$ctrl.next()">
+        <button type="submit" class="btn btn-action btn-next" ng-disabled="$ctrl.contactsForm.$invalid" ng-click="::$ctrl.checkAndNext()">
             <span translate>NEXT</span>
         </button>
     </div>

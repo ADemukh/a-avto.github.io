@@ -12,11 +12,14 @@
 		})
 		.controller('controllers.neworderdetails', NewOrderDetailsController);
 
-	NewOrderDetailsController.$inject = ['services.neworder', 'services.common'];
+	NewOrderDetailsController.$inject = ['services.neworder', 'services.common', 'moment'];
 
-	function NewOrderDetailsController(newOrderService, common) {
+	function NewOrderDetailsController(newOrderService, common, moment) {
 		this.$onInit = function onInit() {
-			this.orderDetails = newOrderService.newOrder.details;
+			this.orderDetails = newOrderService.newOrder().details;
+			this.resolutionDateOptions = {
+				minDate: moment.utc().format()
+			};
 
 			common.services.car.getSpareTypes().then(function onGetCategories(spareTypes) {
 				this.spareTypes = spareTypes;
