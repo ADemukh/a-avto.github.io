@@ -9,8 +9,8 @@
             ngModelCtrl: 'ngModel'
           },
           bindings: {
-            ngModel: '<',
-            options: '<'
+            options: '<',
+            ngModel: '<'
           }
         })
         .controller('controllers.datetimepicker', DateTimePickerController);
@@ -18,15 +18,16 @@
         DateTimePickerController.$inject = ['moment'];
 
     function DateTimePickerController(moment) {
-        var clientFormat, serverFormat;
+        var clientFormat, defaultOptions, serverFormat;
 
         clientFormat = 'LL';
         serverFormat = 'DD-MM-YYYY';
+        defaultOptions = {
+            format: clientFormat
+        };
 
         this.$onInit = function onInit() {
-            this.dpOptions = this.options || {
-                format: clientFormat
-            };
+            this.dpOptions = angular.merge({}, defaultOptions, this.options);
             this.dpChange = function selected(newValueMoment) {
                 this.ngModelCtrl.$setViewValue(newValueMoment ? newValueMoment.format(serverFormat) : '');
             };

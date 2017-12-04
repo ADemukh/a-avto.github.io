@@ -1,17 +1,36 @@
 /*eslint strict:0  */
-var User, config, fileController, nodemailer;
+var User, bcrypt, config, fileController, mailer, moment, resetEmailHtml;
 
 User = require('../models/user');
 config = require('../config');
 fileController = require('./file');
-nodemailer = require('nodemailer');
+mailer = require('./mailer');
+moment = require('../moment');
+bcrypt = require('bcryptjs');
 
 function findUserByEmail(email) {
 	return User.findOne({
 			email: email
 		}).exec()
 		.then(function userFound(user) {
-			return user || Promise.reject('Пользователь не найден.');
+			return user || Promise.reject({
+				message: 'Пользователь не найден.'
+			});
+		});
+}
+
+function findUserByToken(token) {
+	return User.findOne({
+			'tokens.token': token,
+			'tokens.validTill': {
+				$gte: moment().format('YYYY-MM-DD HH:mm')
+			},
+			'tokens.active': true
+		}).exec()
+		.then(function userFound(user) {
+			return user || Promise.reject({
+				message: 'Пользователь не найден.'
+			});
 		});
 }
 
@@ -22,41 +41,77 @@ function saveOrUpdateUser(user) {
 function changePassword(email, newPassword) {
 	return findUserByEmail(email)
 		.then(function foundUser(user) {
-			user.password = newPassword;
 			user.passwordHash = user.generateHash(newPassword);
 			return saveOrUpdateUser(user);
 		});
 }
 
-function recoverPassword(email) {
-	return findUserByEmail(email)
-		.then(function foundUser(user) {
-			var mailOptions, transporter;
+function recoverPassword(req) {
+	return findUserByEmail(req.body.email)
+		.then(function addToken(user) {
+			var token, validTill;
 
-			if (user) {
-				transporter = nodemailer.createTransport(config.nodemailer.options);
-				mailOptions = {
-					from: config.nodemailer.maailFrom,
-					to: user.email,
-					subject: 'aAvto.by. Востоновление пороля',
-					html: 'Ваш пороль ' + user.password + '.'
-				};
-				return transporter.sendMail(mailOptions);
-			}
+			validTill = moment().add(24, 'h').format('YYYY-MM-DD HH:mm');
+			token = bcrypt.hashSync(validTill, bcrypt.genSaltSync(config.bcrypt.salt));
+			user.tokens.push({
+				token: token,
+				validTill: validTill,
+				active: true
+			});
+
+			return saveOrUpdateUser(user)
+				.then(function onUserSaved(updatedUser) {
+					return Promise.resolve(updatedUser, token);
+				});
 		})
-		.then(function emailSent(result) {
-			if (result && result.accepted && result.accepted.length) {
-				console.log('Письмо успешно отправлено.');
-				return true;
-			}
-			console.log('Письмо не было оправлено');
-			return false;
+		.then(function sendEmail(user, token) {
+			var params, template;
+
+			params = {
+				title: 'Востановление пароля для Aavto',
+				aavtoUrl: 'aavto.com',
+				userName: user.name,
+				restorePasswordUrl: 'aavto.com/' + token
+			};
+			template = require('../templates/recoverEmail')(params);
+
+			return mailer.sendEmail(user.email, 'Aavto.by. Востановление пороля', template);
 		})
-		.catch(function failed(error) {
-			if (error) {
-				console.log('Ошибка отправки: ' + error);
-				return false;
+		.then(function success() {
+			return {
+				message: 'Письмо оправлено на вашу почту.'
+			};
+		})
+		.catch(function failure() {
+			return {
+				message: 'Во время выполнения процесса произошла ошибка.'
+			};
+		});
+}
+
+function setPassword(token, password) {
+	return findUserByToken(token)
+		.then(function foundUser(user) {
+			var userToken;
+
+			user.passwordHash = user.generateHash(password);
+			userToken = user.tokens.find(function byToken(eachToken) {
+				return eachToken.token === token;
+			});
+			if (userToken) {
+				userToken.active = false;
 			}
+			return saveOrUpdateUser(user);
+		});
+}
+
+function checkEmailIsFree(email) {
+	return findUserByEmail(email)
+		.then(function foundUser() {
+			return Promise.reject('Пользователь не с таким имейлом существует.');
+		})
+		.catch(function nofoundUser() {
+			return Promise.resolve('Имейл свободен.');
 		});
 }
 
@@ -83,8 +138,11 @@ function changePhoto(email, photo) {
 
 module.exports = {
 	findByEmail: findUserByEmail,
+	findByToken: findUserByToken,
 	saveOrUpdate: saveOrUpdateUser,
 	changePassword: changePassword,
 	recoverPassword: recoverPassword,
+	setPassword: setPassword,
+	checkEmailIsFree: checkEmailIsFree,
 	changePhoto: changePhoto
 };

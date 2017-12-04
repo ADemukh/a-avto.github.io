@@ -27,10 +27,10 @@
 
             // filters
             this.filters = {
-                shopCity: newOrderService.newOrder.shopCity,
-                carMark: newOrderService.newOrder.car.mark,
-                category: newOrderService.newOrder.category,
-                isNewDetail: newOrderService.newOrder.isNewDetail
+                shopCity: newOrderService.newOrder().filters.shopCity,
+                carMark: newOrderService.newOrder().filters.carMark,
+                spareType: newOrderService.newOrder().filters.spareType,
+                newDetail: newOrderService.newOrder().filters.newDetail
             };
 
             this.openFilters = function toggleFilters() {

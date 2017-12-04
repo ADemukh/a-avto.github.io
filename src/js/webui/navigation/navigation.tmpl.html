@@ -12,7 +12,7 @@
 			<ul class="nav navbar-nav">
 				<li data-access-level="$ctrl.accessLevels.public" ui-sref-active="active"><a ui-sref="search-shops"><i class="fa fa-search" aria-hidden="true"></i>{{'SEARCH_SHOPS' | translate }}</a></li>
 				<li data-access-level="$ctrl.accessLevels.public" ui-sref-active="active"><a ui-sref="search-orders"><i class="fa fa-search" aria-hidden="true"></i>{{'SEARCH_ORDERS' | translate }}</a></li>
-				<li data-access-level="$ctrl.accessLevels.notShop" ui-sref-active="active"><a ui-sref="new-order">{{'NEW_ORDER' | translate }}</a></li>
+				<li data-access-level="$ctrl.accessLevels.anonAndClient" ui-sref-active="active"><a ui-sref="new-order">{{'NEW_ORDER' | translate }}</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li data-access-level="$ctrl.accessLevels.anon" ui-sref-active="active"><a ui-sref="anon.login"><i class="fa fa-sign-in" aria-hidden="true"></i> {{'SIGN_IN' | translate }}</a></li>

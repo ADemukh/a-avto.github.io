@@ -15,8 +15,8 @@ module.exports = {
 		if (filter.carMark) {
 			shopFilter.carMarks = { $in: [filter.carMark] };
 		}
-		if (filter.category) {
-			shopFilter.spareCategories = { $in: [filter.category] };
+		if (filter.spareType) {
+			shopFilter.spareCategories = { $in: [filter.spareType] };
 		}
 		if (filter.newDetail === true) {
 			shopFilter['spare.isNew'] = true;

@@ -1,25 +1,25 @@
 <div class="container identity">
     <h1 translate>LOGIN_TITLE</h1>
     <div class="form">
-        <form name="loginForm"  ng-submit="::$ctrl.login()" novalidate>
+        <form name="loginForm" ng-submit="::$ctrl.login()" novalidate>
             <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine }">
                 <input type="email" name="email" ng-model="$ctrl.user.email" placeholder="{{'EMAIL' | translate }}" class="form-control"
-                    ng-change="$ctrl.resetServerError()" required>
+                    required>
                 <span class="help-block" ng-show="loginForm.email.$error.required && !loginForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
                 <span class="help-block" ng-show="loginForm.email.$error.email && !loginForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
             </div>
             <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
                 <input type="password" name="password" ng-model="$ctrl.user.password" placeholder="{{'PASSWORD' | translate }}" class="form-control"
-                    ng-change="$ctrl.resetServerError()" required>
+                    required>
                 <span class="help-block" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" translate>FIELD_IS_REQUIRED</span>
             </div>
-            <q-alerts ng-show="$ctrl.alerts" alerts="$ctrl.alerts" />
             <div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid">
                     <span translate>SIGN_IN</span>
                 </button>
                 <a class="pull-right need-help" ui-sref="anon.password-recovery" translate>FORGOT_PASSWORD</a>
             </div>
+            <q-alerts class="display-block" ng-if="$ctrl.alerts && $ctrl.alerts.length" alerts="$ctrl.alerts" />
         </form>
         <q-auth-social on-signed-up="$ctrl.onSocialSignedIn(user);"></q-auth-social>
     </div>

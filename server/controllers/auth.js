@@ -1,7 +1,8 @@
 /*eslint strict:0  */
-var passport;
+var passport, responseHelper;
 
 passport = require('passport');
+responseHelper = require('../helpers/response');
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -28,19 +29,14 @@ function onAuthenticated(req, res, next) {
             return next(err);
         }
         if (!user) {
-            return res.json({
-                alert: alert
-            });
+            return responseHelper(res).error(alert);
         }
 
         req.logIn(user, function onLoginnedIn(loginErr) {
             if (loginErr) {
                 return next(loginErr);
             }
-
-            res.json({
-                user: user
-            });
+            return responseHelper(res).success(user);
         });
     };
 }
@@ -55,34 +51,30 @@ function authenticateSocialCallback(passportStrategy) {
     };
 }
 
-function onAuthenticatedSocial(req, res, next) {
+function onAuthenticatedSocial(req, res) {
     return function onAuthCompleted(err, user, alert) {
-        var response;
+        var responseData;
 
         if (err) {
-            response = {
-                alert: err
+            responseData = {
+                message: err
             };
         } else if (!user) {
-            response = {
-                alert: alert
-            };
+            responseData = responseHelper(res)
         } else {
             req.logIn(user, function onLoginnedIn(loginErr) {
                 if (loginErr) {
-                    response = {
-                        alert: loginErr
+                    responseData = {
+                        message: loginErr
                     };
                 }
 
-                response = {
-                    user: user
-                };
+                responseData = { item: user };
             });
         }
 
         // return response.alert ? res.redirect('/#!/login') : res.redirect('/#!/');
-        res.send(postMessageResponse(response));
+        res.send(postMessageResponse(responseData));
     };
 }
 

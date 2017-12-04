@@ -5,25 +5,25 @@
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.identity', IdentityService);
 
-    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state', 'redirectToUrlAfterLogin', '$location'];
+    IdentityService.$inject = ['$http', '$q', 'services.popup', 'routingConfig', '$state', 'redirectToUrlAfterLogin', '$location', 'services.events'];
 
-    function IdentityService($http, $q, popupService, routingConfig, $state, redirectToUrlAfterLogin, $location) {
+    function IdentityService($http, $q, popupService, routingConfig, $state, redirectToUrlAfterLogin, $location, events) {
         var api;
 
         api = {
+            user: anonUser(),
             logIn: logIn,
             logOut: logOut,
             checkLoggedIn: checkLoggedIn,
             loggedInChecked: false,
+            loggedIn: loggedIn,
             authVk: authVk,
             authFacebook: authFacebook,
             signUp: signUp,
+            checkEmailIsFree: checkEmailIsFree,
             recoverPassword: recoverPassword,
-            changePassword: changePassword,
             setPassword: setPassword,
-            user: anonUser(),
             authorize: authorize,
-            loggedIn: loggedIn,
             accessLevels: routingConfig.accessLevels,
             userRoles: routingConfig.userRoles,
             saveAttemptUrl: saveAttemptUrl,
@@ -34,24 +34,23 @@
 
         function checkLoggedIn() {
             return $http.post('/auth/loggedin')
-                .then(function response(resp) {
-                    if (resp.data) {
-                        changeUser(resp.data);
-                    }
-                })
+                .then(changeUser)
                 .finally(function checked() {
                     api.loggedInChecked = true;
                 });
         }
 
-        function changeUser(user) {
-            api.user = angular.copy(user);
+        function changeUser(resp) {
+            if (resp.data.item) {
+                api.user = angular.copy(resp.data.item);
+            }
+            return api.user;
         }
 
         function anonUser() {
             return {
                 name: '',
-                role: routingConfig.userRoles.public.title
+                role: routingConfig.userRoles.anon.title
             };
         }
 
@@ -60,19 +59,18 @@
                     email: email,
                     password: password
                 })
-                .then(function response(resp) {
-                    if (resp.data && resp.data.user) {
-                        changeUser(resp.data.user);
-                        return api.user;
-                    }
-                    return $q.reject(resp.data);
-                });
+                .then(changeUser);
         }
 
         function logOut() {
             return $http.post('/auth/logout')
                 .then(function response() {
-                    changeUser(anonUser());
+                    changeUser({
+                        data: {
+                            item: anonUser()
+                        }
+                    });
+                    events.emit('logout');
                     $state.go('public.main');
                 });
         }
@@ -89,10 +87,11 @@
             var dfd;
 
             dfd = $q.defer();
-            popupService.popup(url, strategy, {}, function callback(err, user) {
-                if (!err && user && user.user) {
-                    changeUser(user.user);
-                    return dfd.resolve(api.user);
+            popupService.popup(url, strategy, {}, function callback(err, userItem) {
+                if (!err && userItem) {
+                    return dfd.resolve(changeUser({
+                        data: userItem
+                    }));
                 }
                 return dfd.reject(err);
             });
@@ -101,14 +100,14 @@
         }
 
         function signUp(userInfo, role) {
-            return $http.post(role === 'shop' ? 'auth/signupshop' : 'auth/signupuser', userInfo)
-                .then(function response(resp) {
-                    if (resp.data && resp.data.user) {
-                        changeUser(resp.data.user);
-                        return api.user;
-                    }
-                    return $q.reject(resp.data);
-                });
+            return $http.post(role === 'shop' ? 'auth/signupshop' : 'auth/signupclient', userInfo)
+                .then(changeUser);
+        }
+
+        function checkEmailIsFree(email) {
+            return $http.post('auth/emailisfree', {
+                email: email
+            });
         }
 
         function authorize(accessLevel, role) {
@@ -119,11 +118,8 @@
             return accessLevel.bitMask & routingConfig.userRoles[role].bitMask;
         }
 
-        function loggedIn(user) {
-            if (user === undefined) {
-                user = api.user;
-            }
-            return authorize(routingConfig.accessLevels.user, user.role);
+        function loggedIn() {
+            return authorize(routingConfig.accessLevels.user, api.user.role);
         }
 
         function recoverPassword(email) {
@@ -132,32 +128,12 @@
             });
         }
 
-        function changePassword(email, newPassword) {
-            return $http.post('auth/changepassword', {
-                email: email,
-                password: newPassword
-            })
-            .then(function response(resp) {
-                if (resp.data && resp.data.user) {
-                    changeUser(resp.data.user);
-                    return api.user;
-                }
-                return $q.reject(resp.data);
-            });
-        }
-
-        function setPassword(emailToken, newPassword) {
+        function setPassword(token, password) {
             return $http.post('auth/setpassword', {
-                emailToken: emailToken,
-                password: newPassword
-            })
-            .then(function response(resp) {
-                if (resp.data && resp.data.user) {
-                    changeUser(resp.data.user);
-                    return api.user;
-                }
-                return $q.reject(resp.data);
-            });
+                    token: token,
+                    password: password
+                })
+                .then(changeUser);
         }
 
         function saveAttemptUrl(attemptUrl) {

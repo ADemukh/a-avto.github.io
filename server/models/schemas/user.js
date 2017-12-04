@@ -1,9 +1,10 @@
 /*eslint strict:0  */
-var UserSchema, bcrypt, config, mongoose;
+var TokenSchema, UserSchema, bcrypt, config, mongoose;
 
 mongoose = require('mongoose');
 bcrypt = require('bcryptjs');
 config = require('../../config');
+TokenSchema = require('./token');
 
 UserSchema = new mongoose.Schema({
 	name: {
@@ -14,7 +15,6 @@ UserSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
-	password: String,
 	passwordHash: String,
 	phone: String,
 	notifications: [String],
@@ -26,7 +26,8 @@ UserSchema = new mongoose.Schema({
 		fileName: String,
 		url: String,
 		thumbUrl: String
-	}
+	},
+	tokens: [TokenSchema]
 }, {
 	discriminatorKey: 'role'
 });

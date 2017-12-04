@@ -4,9 +4,9 @@
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.neworder', OrderService);
 
-    OrderService.$inject = ['services.identity', '$http'];
+    OrderService.$inject = ['services.identity', '$http', 'services.events'];
 
-    function OrderService(identityService, $http) {
+    function OrderService(identityService, $http, events) {
         var STATUSES, newOrder;
 
         STATUSES = {
@@ -18,12 +18,17 @@
             COMPLETED: 6
         };
         newOrder = newEmptyOrder();
+        events.on('logout', clearOrder);
         return {
-            newOrder: newOrder,
+            newOrder: getNewOrder,
             clear: clearOrder,
             submit: submitOrder,
             statuses: STATUSES
         };
+
+        function getNewOrder() {
+            return newOrder;
+        }
 
         function clearOrder() {
             newOrder = newEmptyOrder();
@@ -48,14 +53,10 @@
                         _id: 'newCarId'
                     }
                 },
-                contacts: {
-                    name: identityService.user.name,
-                    email: identityService.user.email,
-                    phoneNumbers: [angular.copy(identityService.user.phone)],
-                    address: identityService.user.address,
-                    city: identityService.user.city
-                },
-                shops: []
+                contacts: {},
+                shops: [],
+                status: STATUSES.START,
+                filters: {}
             };
         }
     }
