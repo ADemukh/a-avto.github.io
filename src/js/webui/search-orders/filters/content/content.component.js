@@ -18,13 +18,15 @@
     // TO IMPLEMENT!
 	function SearchOrdersFiltersContentController(common) {
 		this.$onInit = function onInit() {
-			// order service to be implemented
-
-			// common.services.order.getStatuses().then(function onGetStatuses(statuses) {
-			// 	this.statuses = statuses;
-			// }.bind(this));
-
-			this.statuses = ['pending', 'opened', 'resolved', 'reopened'];
+			common.services.adress.getCities().then(function onGetCities(cities) {
+				this.cities = cities;
+			}.bind(this));
+			common.services.car.getCars().then(function onGetCars(carMarks) {
+				this.carMarks = carMarks;
+			}.bind(this));
+			common.services.car.getSpareTypes().then(function onGetSpareTypes(spareTypes) {
+				this.spareTypes = spareTypes;
+			}.bind(this));
 
 			this.apply = function applyFilters() {
 				this.onApply({

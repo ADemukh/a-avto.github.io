@@ -1,12 +1,16 @@
 <div class="content-block selection">
-    <oi-select oi-options="s for s in $ctrl.statuses" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.orderStatus"
-        placeholder="{{::'SEARCH_ORDERS_FILTERS_STATUSES' | translate }}"></oi-select>
+    <oi-select oi-options="c for c in $ctrl.cities" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.shopCity"
+        placeholder="{{'Город' | translate }}"></oi-select>
+    <oi-select oi-options="c for c in $ctrl.carMarks" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.carMark"
+        placeholder="{{'Марка' | translate }}"></oi-select>
+    <oi-select oi-options="st for st in $ctrl.spareTypes" oi-select-options="{ cleanModel: true }" ng-model="$ctrl.filters.spareType"
+        placeholder="{{'Раздел' | translate }}"></oi-select>
 </div>
 <div class="content-block action">
     <button type="button" class="btn btn-cancel" ng-click="::$ctrl.cancel()">
-        <span translate>SEARCH_ORDERS_FILTERS_CANCEL</span>
+        <span translate>CANCEL</span>
     </button>
     <button type="button" class="btn btn-action" ng-click="::$ctrl.apply()">
-        <span translate>SEARCH_ORDERS_FILTERS_APPLY</span>
+        <span translate>APPLY</span>
     </button>
 </div>

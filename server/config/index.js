@@ -27,6 +27,14 @@ function configuartion() {
                 ADMIN: 'admin'
             }
         },
+        order: {
+            statuses: {
+                new: 'new',
+                replied: 'replied',
+                removed: 'removed',
+                closed: 'closed'
+            }
+        },
         db: {
             options: {
                 server: {
@@ -99,6 +107,14 @@ function configuartion() {
                 CLIENT: 'client',
                 SHOP: 'shop',
                 ADMIN: 'admin'
+            }
+        },
+        order: {
+            statuses: {
+                new: 'new',
+                replied: 'replied',
+                removed: 'removed',
+                closed: 'closed'
             }
         },
         db: {

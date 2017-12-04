@@ -1,5 +1,6 @@
-var FileSchema, OrderAnswerSchema, OrderSchema, UserClientCarSchema, mongoose;
+var FileSchema, OrderAnswerSchema, OrderSchema, UserClientCarSchema, config, mongoose;
 
+config = require('../../config');
 mongoose = require('mongoose');
 FileSchema = require('./file');
 OrderAnswerSchema = require('./orderAnswer');
@@ -29,7 +30,10 @@ OrderSchema = new mongoose.Schema({
 		address: String,
 		city: String
 	},
-	status: String,
+	status: {
+		type: String,
+		default: config.order.statuses.new
+	},
 	shops: [String],
 	answers: [OrderAnswerSchema],
 	wantedList: {

@@ -1,0 +1,8 @@
+<ul uib-pagination total-items="$ctrl.items.length"
+    ng-model="$ctrl.currPageNumber"
+    max-size="3"
+    items-per-page="$ctrl.itemsPerPage"
+    class="pagination-sm"
+    boundary-link-numbers="true"
+    ng-change="$ctrl.pageChanged()">
+</ul>
