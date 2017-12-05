@@ -18,10 +18,10 @@ module.exports = {
 		if (filter.spareType) {
 			shopFilter.spareCategories = { $in: [filter.spareType] };
 		}
-		if (filter.newDetail === true) {
+		if (filter.newDetail && !filter.usedDetail) {
 			shopFilter['spare.isNew'] = true;
 		}
-		if (filter.newDetail === false) {
+		if (filter.usedDetail && !filter.newDetail) {
 			shopFilter['spare.isOld'] = true;
 		}
 		if (filter.worksNow) {

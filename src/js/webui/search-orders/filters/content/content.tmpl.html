@@ -14,6 +14,18 @@
     </div>
 </div>
 
+<div class="content-block state">
+    <span translate>SPARE</span>
+    <div>
+        <input type="checkbox" name="details" id="newDetail" ng-model="$ctrl.filters.newDetail" ng-init="$ctrl.filters.newDetail=true">
+        <span for="newDetail" translate>NEW</span>
+    </div>
+    <div>
+        <input type="checkbox" name="details" id="oldDetail" ng-model="$ctrl.filters.usedDetail" ng-init="$ctrl.filters.usedDetail=true">
+        <span for="oldDetail" translate>IN_USE</span>
+    </div>
+</div>
+
 <div class="content-block action">
     <button type="button" class="btn btn-cancel" ng-click="::$ctrl.cancel()">
         <span translate>CANCEL</span>

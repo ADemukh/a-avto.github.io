@@ -35,6 +35,9 @@
         }
 
         function submitOrder() {
+            // identity.signUpAnon -> register with name, email + temp password + token ->
+            // save order
+            // save car
             return $http.post('order/submitneworder', {
                 order: newOrder
             }).then(function onSubmit(resp) {

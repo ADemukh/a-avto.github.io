@@ -9,11 +9,11 @@
 <div class="content-block state">
     <span translate>SPARE</span>
     <div>
-        <input type="radio" name="details" id="newDetail" ng-model="$ctrl.filters.newDetail" ng-value="true">
+        <input type="checkbox" name="details" id="newDetail" ng-model="$ctrl.filters.newDetail">
         <span for="newDetail" translate>NEW</span>
     </div>
     <div>
-        <input type="radio" name="details" id="oldDetail" ng-model="$ctrl.filters.newDetail" ng-value="false">
+        <input type="checkbox" name="details" id="oldDetail" ng-model="$ctrl.filters.usedDetail">
         <span for="oldDetail" translate>IN_USE</span>
     </div>
 </div>

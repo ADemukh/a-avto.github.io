@@ -15,7 +15,6 @@
 
 	SearchOrdersFiltersContentController.$inject = ['services.common'];
 
-    // TO IMPLEMENT!
 	function SearchOrdersFiltersContentController(common) {
 		this.$onInit = function onInit() {
 			common.services.adress.getCities().then(function onGetCities(cities) {

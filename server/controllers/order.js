@@ -1,6 +1,7 @@
 /*eslint strict:0  */
-var Order, profileClientController;
+var Order, moment, profileClientController;
 
+moment = require('../moment');
 Order = require('../models/order');
 profileClientController = require('./profileClient');
 
@@ -15,7 +16,12 @@ function submitOrder(orderInfo) {
 	orderModel = new Order({
 		title: orderInfo.details.title,
 		description: orderInfo.details.description,
+		spare: {
+			isNewDetail: orderInfo.details.spare.isNewDetail,
+			isUsedDetail: orderInfo.details.spare.isUsedDetail
+		},
 		spareType: orderInfo.details.spareType,
+		resolutionDate: orderInfo.details.resolutionDate,
 		car: car,
 		client: orderInfo.contacts,
 		wantedList: orderInfo.wantedList
@@ -45,12 +51,18 @@ function getOrders(filter) {
 	if (filter.spareType) {
 		orderFilter.spareType = { $in: [filter.spareType] };
 	}
-	// if (filter.newDetail === true) {
-	// 	orderFilter['spare.isNew'] = true;
-	// }
-	// if (filter.newDetail === false) {
-	// 	orderFilter['spare.isOld'] = true;
-	// }
+
+	if (filter.maxResolutionDate) {
+		orderFilter.resolutionDate = { $lte: filter.maxResolutionDate };
+	}
+
+	if (filter.newDetail && !filter.usedDetail) {
+		orderFilter['spare.isNewDetail'] = true;
+	}
+	if (filter.usedDetail && !filter.newDetail) {
+		orderFilter['spare.isUsedDetail'] = true;
+	}
+
 	// if (filter.worksNow) {
 	// 	currentDay = moment().format('dddd').toLowerCase();
 	// 	currentTime = moment().format('HH:mm');

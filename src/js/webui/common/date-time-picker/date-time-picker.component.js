@@ -21,7 +21,7 @@
         var clientFormat, defaultOptions, serverFormat;
 
         clientFormat = 'LL';
-        serverFormat = 'DD-MM-YYYY';
+        serverFormat = 'YYYY-MM-DD';
         defaultOptions = {
             format: clientFormat
         };

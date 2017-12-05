@@ -14,8 +14,8 @@ OrderSchema = new mongoose.Schema({
 	description: String,
 	spareType: String,
 	spare: {
-		isNew: Boolean,
-		isOld: Boolean
+		isNewDetail: Boolean,
+		isUsedDetail: Boolean
 	},
 	resolutionDate: String,
 	attachments: [FileSchema],
