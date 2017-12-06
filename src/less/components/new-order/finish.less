@@ -5,20 +5,71 @@
             padding-left: 9%;
             padding-right: 9%;
             padding-bottom: 20px;
-            .line-group {
-                margin-bottom: 10px;
-                .line {
-                    padding-left: 10px;
-                    padding-top: 2px;
-                    padding-bottom: 2px;
-                }
-                input[type="checkbox"] {
-                    transform: scale(1.6);
-                    margin: 0 4px 0;
-                }
-            }
+
             .action {
                 text-align: center;
+            }
+
+            .summary {
+                .group-caption {
+                    font-size: 1.5em;
+                    line-height: 1.8em;
+                }
+
+                &.summary-title {
+                    input {
+                        padding: 6px 12px;
+                    }
+                }
+                &.summary-description {
+                    textarea {
+                        background-color: #fff;
+                        resize: vertical;
+                    }
+                }
+                &.summary-details {
+                    padding: 10px 0;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    .line {
+                        .caption {
+                            font-weight: bold;
+                            color: #2db36f;
+                        }
+                        .value {
+                            font-size: 1.3em;                          
+                        }
+                    }
+                    @media only screen and (max-width: 768px) {
+                        justify-content: space-evenly;
+                    }
+                }
+                &.summary-additional {
+                    justify-content: space-evenly;
+                    flex-wrap: wrap;
+                    .summary-car,
+                    .summary-contacts {
+                        text-align: center;
+                        dl {
+                            dt {
+                                float: left;
+                                clear: left;
+                                width: 100px;
+                                text-align: right;
+                                font-weight: bold;
+                                color: #2db36f;
+                              }
+                              dt::after {
+                                content: ":";
+                              }
+                              dd {
+                                text-align: left;
+                                margin: 0 0 0 110px;
+                                padding: 0 0 0.5em 0;
+                              }
+                        }
+                    }
+                }
             }
         }
     }

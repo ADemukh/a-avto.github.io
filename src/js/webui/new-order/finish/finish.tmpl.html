@@ -1,14 +1,16 @@
 <div class="finish">
 
-    <div class="line-group">
-        <div class="line">
-            <span class="caption">{{'TITLE'| translate}}:</span>
-            <span class="value">{{$ctrl.order.details.title}}</span>
-        </div>
-        <div class="line">
-            <span class="caption">{{'DESCRIPTION'| translate}}:</span>
-            <span class="value">{{$ctrl.order.details.description}}</span>
-        </div>
+    <div class="field layout-column summary summary-title">
+        <span class="group-caption" translate>TITLE</span>
+        <input type="text" name="title" ng-model="$ctrl.order.details.title" ng-readonly="true"></input>
+    </div>
+
+    <div class="field summary summary-description">
+        <span class="group-caption" translate>DESCRIPTION</span>
+        <textarea type="text" name="description" ng-model="$ctrl.order.details.description" class="form-control" ng-readonly="true"></textarea>
+    </div>
+
+    <div class="layout-row summary summary-details">
         <div class="line">
             <span class="caption">{{'CATEGORY'| translate}}:</span>
             <span class="value">{{$ctrl.order.details.spareType}}</span>
@@ -19,53 +21,39 @@
         </div>
     </div>
 
-    <div class="line-group">
-        <div class="line">
-            <span class="caption">{{'MARK'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.mark}}</span>
+    <div class="layout-row summary summary-additional">
+        <div class="summary-car">
+            <span class="group-caption" translate>CAR</span>
+            <dl>
+                <dt>{{'MARK'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.mark}}</dd>
+                <dt>{{'MODEL'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.model}}</dd>
+                <dt>{{'YEAR'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.year}}</dd>
+                <dt>{{'ENGINE_TYPE'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.engineType}}</dd>
+                <dt>{{'ENGINE_CAPACITY'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.engineCapacity}}</dd>
+                <dt>{{'GEARBOX'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.gearbox}}</dd>
+                <dt>{{'VIN'| translate}}</dt>
+                <dd>{{$ctrl.order.car.selected.VIN}}</dd>
+            </dl>
         </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.model">
-            <span class="caption">{{'MODEL'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.model}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.year">
-            <span class="caption">{{'YEAR'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.year}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.engineType">
-            <span class="caption">{{'ENGINE_TYPE'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.engineType}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.engineCapacity">
-            <span class="caption">{{'ENGINE_CAPACITY'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.engineCapacity}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.gearbox">
-            <span class="caption">{{'GEARBOX'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.gearbox}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.car.selected.VIN">
-            <span class="caption">{{'VIN'| translate}}:</span>
-            <span class="value">{{$ctrl.order.car.selected.VIN}}</span>
-        </div>
-    </div>
 
-    <div class="line-group">
-        <div class="line">
-            <span class="caption">{{'NAME'| translate}}:</span>
-            <span class="value">{{$ctrl.order.contacts.name}}</span>
-        </div>
-        <div class="line">
-            <span class="caption">{{'CITY'| translate}}:</span>
-            <span class="value">{{$ctrl.order.contacts.city}}</span>
-        </div>
-        <div class="line">
-            <span class="caption">{{'ADDRESS'| translate}}:</span>
-            <span class="value">{{$ctrl.order.contacts.address}}</span>
-        </div>
-        <div class="line">
-            <span class="caption">{{'PHONE'| translate}}:</span>
-            <div ng-repeat="phone in $ctrl.order.contacts.phoneNumbers" class="value">{{phone}}</div>
+        <div class="summary-contacts">
+            <span class="group-caption" translate>CONTACTS</span>
+            <dl>
+                <dt>{{'NAME'| translate}}</dt>
+                <dd>{{$ctrl.order.contacts.name}}</dd>
+                <dt>{{'CITY'| translate}}</dt>
+                <dd>{{$ctrl.order.contacts.city}}</dd>
+                <dt>{{'ADDRESS'| translate}}</dt>
+                <dd>{{$ctrl.order.contacts.address}}</dd>          
+                <dt>{{'PHONE'| translate}}</dt>
+                <dd ng-repeat="phone in $ctrl.order.contacts.phoneNumbers" class="value">{{phone}}</dd>
+            </dl>
         </div>
     </div>
 
