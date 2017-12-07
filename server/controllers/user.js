@@ -13,9 +13,7 @@ function findUserByEmail(email) {
 			email: email
 		}).exec()
 		.then(function userFound(user) {
-			return user || Promise.reject({
-				message: 'Пользователь не найден.'
-			});
+			return user;
 		});
 }
 
@@ -107,10 +105,10 @@ function setPassword(token, password) {
 
 function checkEmailIsFree(email) {
 	return findUserByEmail(email)
-		.then(function foundUser() {
-			return Promise.reject('Пользователь не с таким имейлом существует.');
-		})
-		.catch(function nofoundUser() {
+		.then(function foundUser(user) {
+			if (user) {
+				return Promise.reject('Пользователь с таким имейлом уже существует.');
+			}
 			return Promise.resolve('Имейл свободен.');
 		});
 }

@@ -17,7 +17,7 @@
 	function NewOrderCarNewController() {
 		this.$onInit = function onInit() {
 			this.onCarChange = function onCarChange($event) {
-				this.ngModel = angular.merge({}, this.ngModel, $event.car);
+				this.ngModel = angular.merge(this.ngModel, $event.car);
 				this.ngModelCtrl.$setViewValue(this.ngModel);
 			};
 		};
