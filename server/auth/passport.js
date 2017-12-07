@@ -93,6 +93,40 @@ passport.use('signupclient', new AuthLocalStrategy({
             });
     }));
 
+passport.use('signupclientpartial', new AuthLocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    },
+    function callback(req, email, password, done) {
+        userController.findByEmail(email)
+            .then(function userFound() {
+                return done(null, false, {
+                    message: 'Пользователь с таким e-mail уже существует.'
+                });
+            }, function userNotFound() {
+                var clientUser;
+
+                clientUser = new ClientUser();
+
+                clientUser.name = req.param('name');
+                clientUser.email = email;
+
+                // TODO: Generate password here...
+                clientUser.password = 'TEMPORARY';
+                clientUser.passwordHash = clientUser.generateHash('TEMPORARY');
+
+                return userController.saveOrUpdate(clientUser)
+                    .then(function successful(savedUser) {
+                        savedUser.password = null;
+                        return done(null, savedUser);
+                    });
+            })
+            .catch(function onError(err) {
+                done('Не удалось зарегистрироваться. ' + err);
+            });
+    }));
+
 passport.use('signupshop', new AuthLocalStrategy({
         usernameField: 'email',
         passwordField: 'password',

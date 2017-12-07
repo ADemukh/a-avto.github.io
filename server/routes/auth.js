@@ -16,6 +16,7 @@ router.post('/loggedin', function loggedIn(req, res) {
 router.post('/login', authController.signIn);
 router.post('/logout', authController.signOut);
 router.post('/signupclient', authController.signUpClient);
+router.post('/signupclientpartial', authController.signUpClientPartial);
 router.post('/signupshop', authController.signUpShop);
 router.get('/popup/:strategy', function authPopup(req, res) {
   res.render('auth', {

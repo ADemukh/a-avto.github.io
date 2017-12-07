@@ -60,7 +60,7 @@ function onAuthenticatedSocial(req, res) {
                 message: err
             };
         } else if (!user) {
-            responseData = responseHelper(res)
+            responseData = responseHelper(res);
         } else {
             req.logIn(user, function onLoginnedIn(loginErr) {
                 if (loginErr) {
@@ -94,6 +94,7 @@ module.exports = {
     signIn: authenticate('signin'),
     signOut: singOut,
     signUpClient: authenticate('signupclient'),
+    signUpClientPartial: authenticate('signupclientpartial'),
     signUpShop: authenticate('signupshop'),
     authFacebook: authenticateSocial('facebook', {
         scope: 'email'

@@ -22,7 +22,7 @@
         return {
             newOrder: getNewOrder,
             clear: clearOrder,
-            submit: submitOrder,
+            submit: startOrderSubmission,
             statuses: STATUSES
         };
 
@@ -35,16 +35,20 @@
         }
 
         function submitOrder() {
-            // identity.signUpAnon -> register with name, email + temp password + token ->
-            // save order
-            // save car
             return $http.post('order/submitneworder', {
                 order: newOrder
             }).then(function onSubmit(resp) {
                 clearOrder();
-
                 return resp.data;
             });
+        }
+
+        function startOrderSubmission() {
+            // identity.signUpAnon -> register with name, email + temp password + token ->
+            // save order
+            // save car
+            return identityService.signUpClientPartial(newOrder.contacts)
+                .then(submitOrder);
         }
 
         function newEmptyOrder() {

@@ -20,6 +20,7 @@
             authVk: authVk,
             authFacebook: authFacebook,
             signUp: signUp,
+            signUpClientPartial: signUpClientPartial,
             checkEmailIsFree: checkEmailIsFree,
             recoverPassword: recoverPassword,
             setPassword: setPassword,
@@ -101,6 +102,11 @@
 
         function signUp(userInfo, role) {
             return $http.post(role === 'shop' ? 'auth/signupshop' : 'auth/signupclient', userInfo)
+                .then(changeUser);
+        }
+
+        function signUpClientPartial(userInfoPartial) {
+            return $http.post('auth/signupclientpartial', userInfoPartial)
                 .then(changeUser);
         }
 
