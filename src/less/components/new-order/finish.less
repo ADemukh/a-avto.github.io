@@ -58,17 +58,28 @@
                                 text-align: right;
                                 font-weight: bold;
                                 color: #2db36f;
-                              }
-                              dt::after {
+                            }
+                            dt::after {
                                 content: ":";
-                              }
-                              dd {
+                            }
+                            dd {
                                 text-align: left;
                                 margin: 0 0 0 110px;
                                 padding: 0 0 0.5em 0;
-                              }
+                            }
                         }
                     }
+                }
+                &.summary-wanted-list {
+                    label {
+                        display: block;
+                        input[type="checkbox"] {
+                            transform: scale(1.6);
+                            margin: 0 4px 0;
+                        }
+                    }
+                    padding: 10px 0 20px;
+                    text-align: center;
                 }
             }
         }

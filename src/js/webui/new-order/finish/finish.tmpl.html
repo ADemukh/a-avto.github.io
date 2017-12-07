@@ -57,6 +57,14 @@
         </div>
     </div>
 
+    <div class="summary summary-wanted-list">
+        <label class="is-wanted" for="wantedList_id">
+            <input type="checkbox" id="wantedList_id" ng-model="$ctrl.order.wantedList" />
+            <span translate="">Добавить в "Горячие заявки"</span>
+        </label>
+        <small>Горячие заявки видны всем магазинам, что дает им возможность самим отозваться на ваш заказ.</small>
+    </div>
+
     <div class="action">
         <button type="button" class="btn btn-cancel btn-back" ng-click="::$ctrl.back()">
             <span translate>BACK</span>
