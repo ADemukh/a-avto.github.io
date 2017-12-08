@@ -47,6 +47,10 @@
             // identity.signUpAnon -> register with name, email + temp password + token ->
             // save order
             // save car
+
+            // otherwise, passport.js will throw 'missing credentials' error.
+            newOrder.contacts.password = 'TEMPORARY';
+
             return identityService.signUpClientPartial(newOrder.contacts)
                 .then(submitOrder);
         }
