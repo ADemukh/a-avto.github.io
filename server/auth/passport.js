@@ -41,8 +41,12 @@ passport.use('signin', new AuthLocalStrategy({
         }
 
         userController.findByEmail(email)
-            .then(function userFound(user) {
-                if (!!user.passwordHash && user.validPassword(password)) {
+            .then(function searchCompleted(user) {
+                if (!user) {
+                    done(null, false, {
+                        message: 'Не удалось ввойти. '
+                    });
+                } else if (!!user.passwordHash && user.validPassword(password)) {
                     user.password = null;
                     done(null, user);
                 } else {
@@ -50,10 +54,6 @@ passport.use('signin', new AuthLocalStrategy({
                         message: 'Неправильный пароль.'
                     });
                 }
-            }, function userNotFound(error) {
-                done(null, false, {
-                    message: 'Не удалось ввойти. ' + error
-                });
             })
             .catch(function onError(err) {
                 done(err);
@@ -67,15 +67,15 @@ passport.use('signupclient', new AuthLocalStrategy({
     },
     function callback(req, email, password, done) {
         userController.findByEmail(email)
-            .then(function userFound(user) {
-                return done(null, false, {
-                    message: 'Пользователь с таким e-mail уже существует.'
-                });
-            }, function userNotFound() {
+            .then(function searchCompleted(user) {
                 var clientUser;
 
+                if (user) {
+                    return done(null, false, {
+                        message: 'Пользователь с таким e-mail уже существует.'
+                    });
+                }
                 clientUser = new ClientUser();
-
                 clientUser.email = email;
                 clientUser.password = req.param('password');
                 clientUser.passwordHash = clientUser.generateHash(req.param('password'));
@@ -100,18 +100,17 @@ passport.use('signupclientpartial', new AuthLocalStrategy({
     },
     function callback(req, email, password, done) {
         userController.findByEmail(email)
-            .then(function userFound() {
-                return done(null, false, {
-                    message: 'Пользователь с таким e-mail уже существует.'
-                });
-            }, function userNotFound() {
+            .then(function searchCompleted(user) {
                 var clientUser;
 
+                if (user) {
+                    return done(null, false, {
+                        message: 'Пользователь с таким e-mail уже существует.'
+                    });
+                }
                 clientUser = new ClientUser();
-
                 clientUser.name = req.param('name');
                 clientUser.email = email;
-
                 // TODO: Generate password here...
                 clientUser.password = 'TEMPORARY';
                 clientUser.passwordHash = clientUser.generateHash('TEMPORARY');
@@ -134,15 +133,15 @@ passport.use('signupshop', new AuthLocalStrategy({
     },
     function callback(req, email, password, done) {
         userController.findByEmail(email)
-            .then(function userFound(user) {
-                return done(null, false, {
-                    message: 'Пользователь с таким e-mail уже существует.'
-                });
-            }, function userNotFound() {
+            .then(function searchCompleted(user) {
                 var shopUser;
 
+                if (user) {
+                    return done(null, false, {
+                        message: 'Пользователь с таким e-mail уже существует.'
+                    });
+                }
                 shopUser = new ShopUser();
-
                 shopUser.email = email;
                 shopUser.name = req.param('name');
                 shopUser.www = req.param('www');
@@ -185,7 +184,10 @@ passport.use('facebook', new AuthFacebookStrategy({
             email = profile.emails[0].value;
 
             userController.findByEmail(email)
-                .then(function userFound(user) {
+                .then(function searchCompleted(user) {
+                    var clientUser;
+
+                    if (user) {
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
                             done(null, user);
@@ -205,10 +207,7 @@ passport.use('facebook', new AuthFacebookStrategy({
                                     return done(null, savedUser);
                                 });
                         }
-                    },
-                    function userNotFound() {
-                        var clientUser;
-
+                    } else {
                         clientUser = new ClientUser({
                             email: email,
                             name: profile.displayName,
@@ -224,7 +223,8 @@ passport.use('facebook', new AuthFacebookStrategy({
                                 savedUser.password = null;
                                 return done(null, savedUser);
                             });
-                    })
+                    }
+                })
                 .catch(function onError(err) {
                     done('Не удалось авторизоваться через социальную сеть. ' + err);
                 });
@@ -248,45 +248,46 @@ passport.use('vk', new AuthVkStrategy({
             email = params.email;
 
             userController.findByEmail(email)
-                .then(function userFound(user) {
-                        if (user.vk && user.vk.id === profile.id) {
-                            user.password = null;
-                            done(null, user);
-                        } else if (user.vk && user.vk.id && user.vk.id !== profile.id) {
-                            done(null, false, {
-                                message: 'Пользователь с таким e-mail уже существует.'
-                            });
-                        } else {
-                            user.vk = {
-                                id: profile.id,
-                                profileUrl: profile.profileUrl
-                            };
+                .then(function searchCompleted(user) {
+                        var clientUser;
 
-                            return userController.saveOrUpdate(user)
+                        if (user) {
+                            if (user.vk && user.vk.id === profile.id) {
+                                user.password = null;
+                                done(null, user);
+                            } else if (user.vk && user.vk.id && user.vk.id !== profile.id) {
+                                done(null, false, {
+                                    message: 'Пользователь с таким e-mail уже существует.'
+                                });
+                            } else {
+                                user.vk = {
+                                    id: profile.id,
+                                    profileUrl: profile.profileUrl
+                                };
+
+                                return userController.saveOrUpdate(user)
+                                    .then(function successful(savedUser) {
+                                        savedUser.password = null;
+                                        return done(null, savedUser);
+                                    });
+                            }
+                        } else {
+                            clientUser = new ClientUser({
+                                email: email,
+                                name: profile.displayName,
+                                role: config.user.roles.CLIENT,
+                                vk: {
+                                    id: profile.id,
+                                    profileUrl: profile.profileUrl
+                                }
+                            });
+
+                            return userController.saveOrUpdate(clientUser)
                                 .then(function successful(savedUser) {
                                     savedUser.password = null;
                                     return done(null, savedUser);
                                 });
                         }
-                    },
-                    function userNotFound() {
-                        var clientUser;
-
-                        clientUser = new ClientUser({
-                            email: email,
-                            name: profile.displayName,
-                            role: config.user.roles.CLIENT,
-                            vk: {
-                                id: profile.id,
-                                profileUrl: profile.profileUrl
-                            }
-                        });
-
-                        return userController.saveOrUpdate(clientUser)
-                            .then(function successful(savedUser) {
-                                savedUser.password = null;
-                                return done(null, savedUser);
-                            });
                     })
                 .catch(function onError(err) {
                     done('Не удалось авторизоваться через социальную сеть. ' + err);
