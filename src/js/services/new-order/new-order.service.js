@@ -44,11 +44,6 @@
         }
 
         function startOrderSubmission() {
-            // identity.signUpAnon -> register with name, email + temp password + token
-
-            // otherwise, passport.js will throw 'missing credentials' error.
-            newOrder.contacts.password = 'TEMPORARY';
-
             if (!identityService.loggedIn()) {
                 return identityService.signUpClientPartial(newOrder.contacts)
                     .then(submitOrder);

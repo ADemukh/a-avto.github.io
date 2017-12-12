@@ -1,10 +1,10 @@
-var FileSchema, OrderAnswerSchema, OrderSchema, UserClientCarSchema, config, mongoose;
+var FileSchema, OrderAnswerSchema, OrderSchema, UserClientCarSchema, config, moment, mongoose;
 
 config = require('../../config');
 mongoose = require('mongoose');
 FileSchema = require('./file');
-OrderAnswerSchema = require('./orderAnswer');
 UserClientCarSchema = require('./userClientCar');
+moment = require('../../moment');
 
 OrderSchema = new mongoose.Schema({
 	title: {
@@ -35,14 +35,13 @@ OrderSchema = new mongoose.Schema({
 		default: config.order.statuses.new
 	},
 	shops: [String],
-	answers: [OrderAnswerSchema],
 	wantedList: {
 		type: Boolean,
 		default: false
 	},
 	createdDate: {
 		type: String,
-		// required: true
+		default: moment().format('YYY-MM-DD HH:mm')
 	}
 });
 

@@ -1,8 +1,9 @@
 /*eslint strict:0  */
-var passport, responseHelper;
+var moment, passport, responseHelper;
 
 passport = require('passport');
 responseHelper = require('../helpers/response');
+moment = require('../moment');
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -23,6 +24,13 @@ function authenticate(passportStrategy) {
     };
 }
 
+function authenticateWithoutPassword(passportStrategy) {
+    return function passportWrapper(req, res, next) {
+        req.body.password = moment.utc().format('YYY-MM-DD HH:mm');
+        passport.authenticate(passportStrategy, onAuthenticatedWithoutPassword(req, res, next))(req, res, next);
+    };
+}
+
 function onAuthenticated(req, res, next) {
     return function onAuthCompleted(err, user, alert) {
         if (err) {
@@ -38,6 +46,26 @@ function onAuthenticated(req, res, next) {
             }
             return responseHelper(res).success(user);
         });
+    };
+}
+
+function onAuthenticatedWithoutPassword(req, res, next) {
+    return function onAuthCompleted(err, user, alert) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return responseHelper(res).error(alert);
+        }
+
+        req.logIn(user, function onLoginnedIn(loginErr) {
+            if (loginErr) {
+                return next(loginErr);
+            }
+            return responseHelper(res).success(user);
+        });
+
+        // send recover password
     };
 }
 
@@ -94,7 +122,7 @@ module.exports = {
     signIn: authenticate('signin'),
     signOut: singOut,
     signUpClient: authenticate('signupclient'),
-    signUpClientPartial: authenticate('signupclientpartial'),
+    signUpClientPartial: authenticateWithoutPassword('signupclient'),
     signUpShop: authenticate('signupshop'),
     authFacebook: authenticateSocial('facebook', {
         scope: 'email'
