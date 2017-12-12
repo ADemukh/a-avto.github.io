@@ -447,6 +447,35 @@
     padding: 5px 0;
 }
 
+.shop-result-layout .is-selected-button {
+    display: inline-block;
+}
+
+.shop-result-layout .is-selected-button input {
+    display: none;
+}
+
+.shop-result-layout .is-selected-button label {
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 400;
+    color: #fff;
+    background-color: #ff6600;
+    border-color: #e25d05;
+    padding: .1em 1.2em;    
+}
+
+.shop-result-layout .is-selected-button .selected {
+    color: #333;
+    background-color: #e6e6e6;
+}
+
+.shop-result-layout .is-selected-button .selected:hover {
+    background-color: #d9d9d9;
+}
+
 .shop-result-layout .result-action a {
     border-radius: 2px;
     color: #fff;
@@ -460,9 +489,9 @@
 }
 
 .shop-result-layout .result-action a:focus,
-.shop-result-layout .result-action a:hover {
+.shop-result-layout .result-action a:hover,
+.shop-result-layout .is-selected-button label:hover {
     background-color: #e25d05;
-    color: #fff;
 }
 
 .shop-result-layout .list-heading {

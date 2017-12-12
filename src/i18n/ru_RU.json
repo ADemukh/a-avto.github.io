@@ -117,6 +117,7 @@
     "SEARCH_SHOPS": "Магазины",
     "SEARCH_ORDERS": "Заказы",
     "SELECT": "Выбрать",
+    "UNDO_SELECT": "Отменить выбор",
     "SEND": "Отправить",
     "SERVICED_CARS": "Обслуживаемые автомобили",
     "SERVICED_CITIES": "Обслуживаемые города",

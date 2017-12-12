@@ -66,6 +66,10 @@
         </div>
     </div>
     <div class="result-action">
+        <div class="is-selected-button">
+            <label for="{{::$ctrl.shop._id}}_isShopSelected" ng-class="{ selected: $ctrl.shop.isSelected }" translate>{{$ctrl.shop.isSelected ? 'UNDO_SELECT' : 'SELECT'}}</label>
+            <input id="{{::$ctrl.shop._id}}_isShopSelected" type="checkbox" ng-model="$ctrl.shop.isSelected">
+        </div>
         <a class="result-action-button" href="#/order-registration">Отправить заявку</a>
     </div>
 </div>
