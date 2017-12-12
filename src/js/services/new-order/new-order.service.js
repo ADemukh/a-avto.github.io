@@ -44,15 +44,16 @@
         }
 
         function startOrderSubmission() {
-            // identity.signUpAnon -> register with name, email + temp password + token ->
-            // save order
-            // save car
+            // identity.signUpAnon -> register with name, email + temp password + token
 
             // otherwise, passport.js will throw 'missing credentials' error.
             newOrder.contacts.password = 'TEMPORARY';
 
-            return identityService.signUpClientPartial(newOrder.contacts)
-                .then(submitOrder);
+            if (!identityService.loggedIn()) {
+                return identityService.signUpClientPartial(newOrder.contacts)
+                    .then(submitOrder);
+            }
+            return submitOrder();
         }
 
         function newEmptyOrder() {
