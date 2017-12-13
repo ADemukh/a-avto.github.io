@@ -10,8 +10,12 @@
                 index: '<'
             }
         })
-        .controller('controllers.searchshopsresultshop', function SearchShopsResultsShopController() {
-            var DAY_TRANSLATIONS, vm;
+        .controller('controllers.searchshopsresultshop', SearchShopsResultsShopController);
+
+        SearchShopsResultsShopController.$inject = ['_', 'services.neworder'];
+
+        function SearchShopsResultsShopController(_, newOrderService) {
+            var DAY_TRANSLATIONS, newOrder, vm;
 
             DAY_TRANSLATIONS = {
                 monday: 'MONDAY',
@@ -37,11 +41,21 @@
                 vm.getDayTranslationKey = function getDayTranslationKey(day) {
                     return DAY_TRANSLATIONS[day];
                 };
+                newOrder = newOrderService.newOrder();
             };
             this.$onChanges = function onChanges(changes) {
                 if (changes.shop) {
                     this.shop = angular.copy(this.shop);
                 }
             };
-        });
+            this.changeSelection = function changeSelection() {
+                if (vm.shop.isSelected) {
+                    newOrder.shops.push(vm.shop._id);
+                } else {
+                    _.remove(newOrder.shops, function rmSelected(shopId) {
+                        return shopId === vm.shop._id;
+                    });
+                }
+            };
+        }
 })();

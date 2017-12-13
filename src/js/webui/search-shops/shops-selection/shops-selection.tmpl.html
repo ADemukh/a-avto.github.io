@@ -1,0 +1,9 @@
+<div class="shops-selection">
+    <button type="button" class="btn btn-action">
+        <span ng-if="!$ctrl.selectedShops.length" translate>SEND_ALL</span>
+        <span ng-if="$ctrl.selectedShops.length">
+            <span translate>SEND </span>
+            <span class="selected-counter">{{$ctrl.selectedShops.length < 100 ? $ctrl.selectedShops.length : '99+'}}</span>
+        </span>
+    </button>
+</div>
