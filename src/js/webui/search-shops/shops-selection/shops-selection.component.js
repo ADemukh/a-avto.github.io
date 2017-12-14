@@ -8,14 +8,18 @@
         })
         .controller('controllers.shopsselection', ShopsSelectionController);
 
-        ShopsSelectionController.$inject = ['services.neworder'];
+        ShopsSelectionController.$inject = ['services.neworder', '$state'];
 
-        function ShopsSelectionController(newOrderService) {
+        function ShopsSelectionController(newOrderService, $state) {
             var vm;
 
             vm = this;
             this.$onInit = function onInit() {
                 vm.selectedShops = newOrderService.newOrder().shops;
+            };
+
+            this.createNewOrder = function createNewOrder() {
+                $state.go('new-order');
             };
         }
 })();

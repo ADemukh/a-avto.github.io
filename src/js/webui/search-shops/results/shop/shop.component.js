@@ -42,6 +42,7 @@
                     return DAY_TRANSLATIONS[day];
                 };
                 newOrder = newOrderService.newOrder();
+                vm.shop.isSelected = _.includes(newOrder.shops, vm.shop._id);
             };
             this.$onChanges = function onChanges(changes) {
                 if (changes.shop) {
