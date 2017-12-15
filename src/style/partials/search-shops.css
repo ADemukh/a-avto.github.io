@@ -108,14 +108,14 @@
 }
 
 .search-shops .switch.outer-wrapper {
+    display: flex;
+    justify-content: space-evenly;
     position: fixed;
     bottom: 16px;
-    text-align: center;
     width: 100%;
 }
 
 .search-shops .switch .inner-wrapper {
-    display: inline-block;
     height: 35px;
     border-radius: 23px;
     background-color: #fff;
@@ -456,10 +456,12 @@
 }
 
 .shop-result-layout .is-selected-button label {
+    width: 100px;
     cursor: pointer;
     border-radius: 2px;
     font-size: 14px;
     text-decoration: none;
+    text-align: center;
     font-weight: 400;
     color: #fff;
     background-color: #ff6600;
