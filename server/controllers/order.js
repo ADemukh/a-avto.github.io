@@ -24,7 +24,8 @@ function submitOrder(orderInfo) {
 		resolutionDate: orderInfo.details.resolutionDate,
 		car: car,
 		client: orderInfo.contacts,
-		wantedList: orderInfo.wantedList
+		wantedList: orderInfo.wantedList,
+		shops: orderInfo.shops
 	});
 
 	return orderModel.save()

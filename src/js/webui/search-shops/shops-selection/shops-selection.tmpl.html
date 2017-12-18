@@ -1,0 +1,15 @@
+<div ng-if="!$ctrl.isMobileState" class="shops-selection">
+    <button type="button" class="btn btn-action" ng-click="::$ctrl.createNewOrder()">
+        <span ng-if="!$ctrl.selectedShops.length" translate>SEND_ALL</span>
+        <span ng-if="$ctrl.selectedShops.length">
+            <span translate>SEND </span>
+            <span class="selected-counter">{{$ctrl.selectedShops.length < 100 ? $ctrl.selectedShops.length : '99+'}}</span>
+        </span>
+    </button>
+</div>
+<div ng-if="$ctrl.isMobileState" class="inner-wrapper shop-selection-mobile" ng-class="{'shops-selected': $ctrl.selectedShops.length}">
+    <a href class="NA">
+        <i class="fa fa-handshake-o" aria-hidden="true"></i>
+        {{$ctrl.selectedShops.length < 100 ? $ctrl.selectedShops.length : '99+'}}
+    </a>
+</div>
