@@ -35,6 +35,7 @@
     "DESCRIPTION": "Описание",
     "DETAILS": "Детали",
     "DOWNLOAD": "Загрузить",
+    "EDIT": "Изменить",
     "EMAIL": "E-mail",
     "EMAIL_IS_BUSY": "Пользователь с таким E-mail уже существует.",
     "EMAIL_IS_NOT_CORRECT": "E-mail не соответветствует шаблону",

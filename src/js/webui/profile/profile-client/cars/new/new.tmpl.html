@@ -1,0 +1,8 @@
+<div class="new">
+    <q-select-car class="display-block" car="$ctrl.car" on-change="$ctrl.onCarChange($event);" />
+    <div class="action single">
+        <button type="button" class="btn btn-action" ng-click="$ctrl.onSave({ $event: { car: $ctrl.car } });">
+            <span translate>SAVE</span>
+        </button>
+    </div>
+</div>

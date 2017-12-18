@@ -1,0 +1,82 @@
+.profile-client-cars {
+    margin-top: 30px;
+
+    q-alerts {
+        margin-bottom: 20px;
+        max-width: 600px;
+        margin: 0 auto 20px;
+    }
+
+    /* xs */
+    @media (max-width: 1023px) {
+        margin: 30px 30px 0;
+    }
+    .cars {
+        margin: 0 auto 0;
+        @media (min-width: 940px) {
+            max-width: 939px;
+        }
+        @media (min-width: 630px) and (max-width: 939px) {
+            max-width: 629px;
+        }
+        @media (max-width: 629px) {
+            max-width: 330px;
+        }
+
+        .car {
+            width: 300px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            text-align: left;
+            vertical-align: top;
+            font-weight: normal;
+            line-height: 1.4em;
+            font-size: @font-size-md;
+            .my {
+                padding: 27px 10px 10px 10px;
+                position: relative;
+                .delete {
+                    position: absolute;
+                    top: 0;
+                    right: 3px;
+                    color: @color-black;
+                    background-color: transparent;
+                    border: none;
+                    &:focus,
+                    &:hover {
+                        color: @color-red;
+                        border: none;
+                        font-size: 1.2em;
+                    }
+                }
+                .icon {
+                    text-align: center;
+                    font-size: 2.5em;
+                    margin-bottom: 30px;
+                }
+                .line {
+                    padding-left: 10px;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    margin-bottom: 10px;
+                }
+            }
+            .new {
+                padding: 30px 10px 10px 10px;
+            }
+            .my,
+            .new {
+                height: 400px;
+                border: @theme-border;
+                -webkit-box-shadow: 0 0 5px @color-gray;
+                -moz-box-shadow: 0 0 5px @color-gray;
+                box-shadow: 0 0 5px @color-gray;
+                .action.single {
+                    button {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

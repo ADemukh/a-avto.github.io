@@ -1,0 +1,8 @@
+<div class="profile-client-cars">
+    <q-alerts class="display-block" alerts="$ctrl.alerts" />
+    <div class="cars">
+        <q-client-car-my ng-repeat="car in $ctrl.cars" car="car" class="display-inline-block car" on-delete="$ctrl.delete($event);"
+            on-update="$ctrl.update($event);" />
+        <q-client-car-new car="$ctrl.newCar" class="display-inline-block car" on-save="$ctrl.add($event);" />
+    </div>
+</div>

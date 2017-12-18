@@ -1,0 +1,54 @@
+<div class="my">
+    <a href class="delete" title="{{'DELETE'| translate}}" ng-click="$ctrl.delete();">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+    <div ng-if="!$ctrl.editMode">
+        <div class="icon">
+            <i class="fa fa-car" aria-hidden="true"></i>
+        </div>
+        <div class="line">
+            <span class="caption">{{'MARK'| translate}}:</span>
+            <span class="value">{{$ctrl.car.mark}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'MODEL'| translate}}:</span>
+            <span class="value">{{$ctrl.car.model}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'YEAR'| translate}}:</span>
+            <span class="value">{{$ctrl.car.year}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'ENGINE_TYPE'| translate}}:</span>
+            <span class="value">{{$ctrl.car.engineType}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'ENGINE_CAPACITY'| translate}}:</span>
+            <span class="value">{{$ctrl.car.engineCapacity}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'GEARBOX'| translate}}:</span>
+            <span class="value">{{$ctrl.car.gearbox}}</span>
+        </div>
+        <div class="line">
+            <span class="caption">{{'VIN'| translate}}:</span>
+            <span class="value">{{$ctrl.car.VIN}}</span>
+        </div>
+        <div class="action single">
+            <button type="button" class="btn btn-action" ng-click="::$ctrl.toEditMode()">
+                <span translate>EDIT</span>
+            </button>
+        </div>
+    </div>
+    <div ng-if="$ctrl.editMode">
+        <q-select-car class="display-block" car="$ctrl.car" on-change="$ctrl.onCarChange($event);" />
+        <div class="action">
+            <button type="button" class="btn btn-cancel btn-cancel" ng-click="::$ctrl.cancelEditMode()" style="width:49%">
+                <span translate>CANCEL</span>
+            </button>
+            <button type="button" class="btn btn-action" ng-click="::$ctrl.update();" style="width:49%">
+                <span translate>SAVE</span>
+            </button>
+        </div>
+    </div>
+</div>
