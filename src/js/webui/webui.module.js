@@ -53,9 +53,9 @@ var WEBUI_MODULE_NAME;
                     templateUrl: 'webui/agreement/agreement.tmpl.html',
                     url: '/agreement',
                     parent: 'public'
-                }).state('public.contacts', {
-                    templateUrl: 'webui/contacts/contacts.tmpl.html',
-                    url: '/contacts',
+                }).state('public.question-answer', {
+                    template: '<q-question-answer/>',
+                    url: '/question-answer',
                     parent: 'public'
                 }).state('public.term', {
                     template: '<h2>Terms & conditions</h2>',

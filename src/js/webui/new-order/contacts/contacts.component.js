@@ -18,7 +18,7 @@
 		this.$onInit = function onInit() {
 			this.changePhoneNumber = function changePhoneNumber(index) {
 				this.orderContacts.phoneNumbers[index] = this.phones[index].number;
-			}
+			};
 			this.addPhoneNumber = function addPhoneNumber() {
 				this.phones.push({});
 			};

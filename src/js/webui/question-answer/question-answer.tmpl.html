@@ -1,0 +1,31 @@
+<div class="container">
+    <form name="$ctrl.questionForm" class="contacts layout-column" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.name.$invalid && !$ctrl.questionForm.name.$pristine }">
+            <span class="caption" translate>NAME</span>
+            <div class="field short layout-column">
+                <input type="text" name="name" ng-model="$ctrl.name" required class="form-control"></input>
+                <span class="help-block" ng-show="$ctrl.questionForm.name.$error.required && !$ctrl.questionForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.email.$invalid && !$ctrl.questionForm.email.$pristine}">
+            <span class="caption" translate>EMAIL</span>
+            <div class="field short layout-column">
+                <input type="email" name="email" ng-model="$ctrl.email" required class="form-control"></input>
+                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.required && !$ctrl.questionForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
+                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.email && !$ctrl.questionForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
+            </div>
+        <div class="form-group">
+            <span class="caption">Вопрос: </span>
+            <div class="field short" ng-class="{ 'has-error' : $ctrl.questionForm.question.$invalid && !$ctrl.questionForm.question.$pristine }">
+                <textarea type="text" name="question" ng-model="$ctrl.question" required class="form-control"></textarea>
+                <span class="help-block" ng-show="$ctrl.questionForm.question.$error.required && !$ctrl.questionForm.question.$pristine" translate>FIELD_IS_REQUIRED</span>
+            </div>
+        </div>
+
+        <div class="action">
+            <button type="button" class="btn btn-cancel btn-back" ng-click="$ctrl.send()">
+                <span>Отправить</span>
+            </button>
+        </div>
+    </form>
+</div>
