@@ -1,0 +1,79 @@
+<div class="summary-card" ng-if="$ctrl.cardArea == 'car'">
+    <div class="icon">
+        <i class="fa fa-car" aria-hidden="true"></i>
+    </div>
+    <div class="line">
+        <span class="caption">{{'MARK'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.mark}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'MODEL'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.model}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'YEAR'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.year}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'ENGINE_TYPE'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.engineType}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'ENGINE_CAPACITY'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.engineCapacity}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'GEARBOX'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.gearbox}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'VIN'| translate}}:</span>
+        <span class="value">{{$ctrl.order.car.selected.VIN}}</span>
+    </div>
+</div>
+
+<div class="summary-card" ng-if="$ctrl.cardArea == 'contacts'">
+    <div class="icon">
+        <i class="fa fa-user" aria-hidden="true"></i>
+    </div>
+    <div class="line">
+        <span class="caption">{{'NAME'| translate}}:</span>
+        <span class="value">{{$ctrl.order.contacts.name}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'CITY'| translate}}:</span>
+        <span class="value">{{$ctrl.order.contacts.city}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'ADDRESS'| translate}}:</span>
+        <span class="value">{{$ctrl.order.contacts.address}}</span>
+    </div>
+    <div class="line phone-numbers">
+        <span class="caption">{{'PHONE'| translate}}:</span>
+        <div class="phones-block">
+            <span class="value" ng-repeat="phone in $ctrl.order.contacts.phoneNumbers">{{phone}}</span>        
+        </div>
+    </div>
+</div>
+
+<div class="summary-card" ng-if="$ctrl.cardArea == 'details'">
+    <div class="icon">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </div>
+    <div class="line">
+        <span class="caption">{{'CATEGORY'| translate}}:</span>
+        <span class="value">{{$ctrl.order.details.spareType}}</span>
+    </div>
+    <div class="line">
+        <span class="caption">{{'RESOLUTION_DATE'| translate}}:</span>
+        <span class="value">{{$ctrl.order.details.resolutionDate}}</span>
+    </div>
+    <div class="line">
+        <input type="checkbox" ng-model="$ctrl.order.details.spare.isNewDetail" ng-disabled="true">
+        <span class="caption">{{'IS_NEW'| translate}}</span>
+    </div>
+    <div class="line">
+        <input type="checkbox" ng-model="$ctrl.order.details.spare.isUsedDetail" ng-disabled="true">        
+        <span class="caption">{{'IS_OLD'| translate}}</span>
+    </div>
+</div>

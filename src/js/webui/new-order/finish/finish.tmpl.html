@@ -10,51 +10,10 @@
         <textarea type="text" name="description" ng-model="$ctrl.order.details.description" class="form-control" ng-readonly="true"></textarea>
     </div>
 
-    <div class="layout-row summary summary-details">
-        <div class="line">
-            <span class="caption">{{'CATEGORY'| translate}}:</span>
-            <span class="value">{{$ctrl.order.details.spareType}}</span>
-        </div>
-        <div class="line" ng-if="$ctrl.order.details.resolutionDate">
-            <span class="caption">{{'RESOLUTION_DATE'| translate}}:</span>
-            <span class="value">{{$ctrl.order.details.resolutionDate}}</span>
-        </div>
-    </div>
-
-    <div class="layout-row summary summary-additional">
-        <div class="summary-car">
-            <span class="group-caption" translate>CAR</span>
-            <dl>
-                <dt>{{'MARK'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.mark}}</dd>
-                <dt>{{'MODEL'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.model}}</dd>
-                <dt>{{'YEAR'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.year}}</dd>
-                <dt>{{'ENGINE_TYPE'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.engineType}}</dd>
-                <dt>{{'ENGINE_CAPACITY'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.engineCapacity}}</dd>
-                <dt>{{'GEARBOX'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.gearbox}}</dd>
-                <dt>{{'VIN'| translate}}</dt>
-                <dd>{{$ctrl.order.car.selected.VIN}}</dd>
-            </dl>
-        </div>
-
-        <div class="summary-contacts">
-            <span class="group-caption" translate>CONTACTS</span>
-            <dl>
-                <dt>{{'NAME'| translate}}</dt>
-                <dd>{{$ctrl.order.contacts.name}}</dd>
-                <dt>{{'CITY'| translate}}</dt>
-                <dd>{{$ctrl.order.contacts.city}}</dd>
-                <dt>{{'ADDRESS'| translate}}</dt>
-                <dd>{{$ctrl.order.contacts.address}}</dd>          
-                <dt>{{'PHONE'| translate}}</dt>
-                <dd ng-repeat="phone in $ctrl.order.contacts.phoneNumbers" class="value">{{phone}}</dd>
-            </dl>
-        </div>
+    <div class="layout-row summary summary-cards">
+        <q-summary-card order="$ctrl.order" card-area="'details'" />
+        <q-summary-card order="$ctrl.order" card-area="'car'" />
+        <q-summary-card order="$ctrl.order" card-area="'contacts'" />
     </div>
 
     <div class="summary summary-wanted-list">

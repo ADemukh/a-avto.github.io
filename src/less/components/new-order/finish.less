@@ -21,55 +21,24 @@
                         padding: 6px 12px;
                     }
                 }
+
                 &.summary-description {
                     textarea {
                         background-color: #fff;
                         resize: vertical;
                     }
                 }
-                &.summary-details {
-                    padding: 10px 0;
+
+                &.summary-cards {
                     justify-content: space-between;
                     flex-wrap: wrap;
-                    .line {
-                        .caption {
-                            font-weight: bold;
-                            color: #2db36f;
-                        }
-                        .value {
-                            font-size: 1.3em;                          
-                        }
-                    }
-                    @media only screen and (max-width: 768px) {
+                }
+                @media only screen and (max-width: 1200px) {
+                    &.summary-cards {
                         justify-content: space-evenly;
                     }
                 }
-                &.summary-additional {
-                    justify-content: space-evenly;
-                    flex-wrap: wrap;
-                    .summary-car,
-                    .summary-contacts {
-                        text-align: center;
-                        dl {
-                            dt {
-                                float: left;
-                                clear: left;
-                                width: 100px;
-                                text-align: right;
-                                font-weight: bold;
-                                color: #2db36f;
-                            }
-                            dt::after {
-                                content: ":";
-                            }
-                            dd {
-                                text-align: left;
-                                margin: 0 0 0 110px;
-                                padding: 0 0 0.5em 0;
-                            }
-                        }
-                    }
-                }
+
                 &.summary-wanted-list {
                     label {
                         display: block;
