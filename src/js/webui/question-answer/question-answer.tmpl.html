@@ -23,9 +23,21 @@
         </div>
 
         <div class="action">
-            <button type="button" class="btn btn-cancel btn-back" ng-click="$ctrl.send()">
+            <button type="button" class="btn btn-cancel btn-back" ng-disabled="$ctrl.questionForm.$invalid" ng-click="$ctrl.send()">
                 <span>Отправить</span>
             </button>
         </div>
     </form>
+    <div class="row">
+        <div class="text-center">
+            Вопросы
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="question in $ctrl.allQuestions">
+                <h5>Вопрос: {{question.question}}</h5>
+                <h5>Ответ: {{question.answer}}</h5>
+                <h5>Пользователь: {{question.userName}}</h5>
+            </li>
+        </ul>
+    </div>
 </div>

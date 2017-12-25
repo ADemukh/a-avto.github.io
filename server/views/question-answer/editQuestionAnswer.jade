@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    form(action='/questionAnswer/allQuestionAnswer/' + question.question + '/edit', method='POST')
+        P
+            div.cbm_wrap_button
+                div.wrapper_body_button
+                    a.addCarSubmit(href="/questionAnswer") Вопросы
+        p.center Вопрос
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='question', value=question.question, placeholder=question.question)  
+        p.center Ответ
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='answer', value=question.answer, placeholder=question.answer)   
+        p.center Пользователь   
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='userName', value=question.userName, placeholder=question.userName) 
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='email', value=question.email, placeholder=question.email) 
+        p
+            input(type='hidden', name='status', value='Read')
+            input(type='hidden', name='id', value=question._id)
+            div.cbm_wrap_button_center
+                div.wrapper_body_button_center
+                    button.addCarSubmit(type='submit').
+                        Изменить

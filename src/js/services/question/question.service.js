@@ -8,11 +8,16 @@
 
     function QuestionService($http) {
         return {
-            sendNewQuestion: sendNewQuestion
+            sendNewQuestion: sendNewQuestion,
+            getAllQuestionsAnswers: getAllQuestionsAnswers
         };
 
         function sendNewQuestion(newQuestion) {
-            return $http.post('questionAnswer/sendnewquestion', newQuestion);
+            return $http.post('questionAnswer/sendNewQuestion', newQuestion);
+        }
+
+        function getAllQuestionsAnswers() {
+            return $http.get('questionAnswer/getQuestionsAnswers');
         }
     }
 })();
