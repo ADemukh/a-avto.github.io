@@ -1,4 +1,6 @@
-<ul uib-pagination total-items="$ctrl.items.length"
+<ul
+    ng-if="$ctrl.selectedItems < $ctrl.items"
+    uib-pagination total-items="$ctrl.items.length"
     ng-model="$ctrl.currPageNumber"
     max-size="3"
     items-per-page="$ctrl.itemsPerPage"

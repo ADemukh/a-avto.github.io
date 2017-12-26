@@ -4,5 +4,5 @@
 <div ng-if="!$ctrl.loading">
     <q-no-data-found ng-if="!$ctrl.shops.length" />
     <q-search-shops-results-shop shop="shop" index="$index" ng-repeat="shop in $ctrl.currPageShops" class="display-block" />
-    <q-pagination ng-show="$ctrl.currPageShops.length" items="$ctrl.shops" selected-items="$ctrl.currPageShops" class="display-inline-block pagination" />
+    <q-pagination items="$ctrl.shops" selected-items="$ctrl.currPageShops" class="display-inline-block pagination" />
 </div>

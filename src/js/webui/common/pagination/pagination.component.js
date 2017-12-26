@@ -31,8 +31,9 @@
         this.$onInit = function init() {
             vm.currPageNumber = 1;
             if (!vm.itemsPerPage) {
-                vm.itemsPerPage = 5;
+                vm.itemsPerPage = 10;
             }
+            vm.pageChanged();
         };
 
         this.$onChanges = function changes() {
