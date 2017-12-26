@@ -12,9 +12,9 @@
         })
         .controller('controllers.searchshopsresultshop', SearchShopsResultsShopController);
 
-        SearchShopsResultsShopController.$inject = ['_', 'services.neworder'];
+        SearchShopsResultsShopController.$inject = ['_', 'services.neworder', '$state'];
 
-        function SearchShopsResultsShopController(_, newOrderService) {
+        function SearchShopsResultsShopController(_, newOrderService, $state) {
             var DAY_TRANSLATIONS, newOrder, vm;
 
             DAY_TRANSLATIONS = {
@@ -57,6 +57,16 @@
                         return shopId === vm.shop._id;
                     });
                 }
+            };
+            this.createNewOrder = function createNewOrder() {
+                if (newOrder.shops.length) {
+                    _.remove(newOrder.shops, function removeAll() {
+                        return true;
+                    });
+                }
+                newOrder.shops.push(vm.shop._id);
+
+                $state.go('new-order');
             };
         }
 })();

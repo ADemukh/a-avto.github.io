@@ -11,11 +11,11 @@
     </button>
 </div>
 <div ng-if="$ctrl.isMobileState" class="inner-wrapper shop-selection-mobile" ng-class="{'shops-selected': $ctrl.selectedShops.length}">
-    <a ng-if="!$ctrl.selectedShops.length" href>
+    <a ng-if="!$ctrl.selectedShops.length" href ng-click="::$ctrl.createNewOrder()">
         <i class="fa fa-handshake-o" aria-hidden="true"></i>
         {{$ctrl.shops.length < 100 ? $ctrl.shops.length : '99+'}}
     </a>
-    <a ng-if="$ctrl.selectedShops.length" class="selected-counter" href>
+    <a ng-if="$ctrl.selectedShops.length" class="selected-counter" href ng-click="::$ctrl.createNewOrder()">
         <i class="fa fa-handshake-o" aria-hidden="true"></i>
         {{$ctrl.selectedShops.length < 100 ? $ctrl.selectedShops.length : '99+'}}
     </a>
