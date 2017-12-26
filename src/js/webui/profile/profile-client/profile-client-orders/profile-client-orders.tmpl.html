@@ -5,6 +5,7 @@
         <div class="loader">Loading...</div>
     </div>
     <div ng-if="!$ctrl.loading">
+        <q-no-data-found ng-if="!$ctrl.orders.length" />
         <q-client-order-item order="order" on-change="$ctrl.updateOrder($event);" on-remove="$ctrl.removeOrder($event);" ng-repeat="order in $ctrl.currPageOrders"
             class="display-block order-item"></q-client-order-item>
         <q-pagination ng-show="$ctrl.currPageOrders.length" items="$ctrl.orders" selected-items="$ctrl.currPageOrders" class="display-inline-block pagination pagination-center" />

@@ -9,6 +9,6 @@
             <a href class="marker-map" ng-show="!$ctrl.visibilityHistory.map" data-ng-click="$ctrl.toggleMap();"><i class="icon fa fa-map-o"></i>{{'MAP' | translate }}</a>
             <a href class="marker-filters" data-ng-click="$ctrl.toggleFilters();"><i class="icon icon-filters"></i>{{'FILTERS' | translate }}</a>
         </div>
-        <q-shops-selection shops="$ctrl.shops" ng-if="!$ctrl.loading" is-mobile-state="true" />
+        <q-shops-selection shops="$ctrl.shops" ng-if="!$ctrl.loading && $ctrl.shops.length" is-mobile-state="true" />
     </div>
 </div>
