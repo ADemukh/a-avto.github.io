@@ -9,6 +9,7 @@
 				filters: '<',
 				onUpdate: '&',
 				onCancel: '&',
+				shops: '<',
 				show: '<'
 			}
 		})

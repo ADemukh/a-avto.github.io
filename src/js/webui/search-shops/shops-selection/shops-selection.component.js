@@ -6,7 +6,8 @@
             templateUrl: 'webui/search-shops/shops-selection/shops-selection.tmpl.html',
             controller: 'controllers.shopsselection',
             bindings: {
-                isMobileState: '<'
+                isMobileState: '<',
+                shops: '<'
             }
         })
         .controller('controllers.shopsselection', ShopsSelectionController);
