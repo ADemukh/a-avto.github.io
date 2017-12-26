@@ -189,7 +189,7 @@
         width: 1170px;
     }
     .search-orders .results {
-        min-height: calc(100vh - 180px);
+        min-height: calc(100vh - 160px);
     }
     .search-orders .filters .desktop {
         width: 570px;

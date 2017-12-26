@@ -223,7 +223,7 @@
     }
     .search-shops .results {
         width: 50%;
-        min-height: calc(100vh - 180px);
+        min-height: calc(100vh - 160px);
     }
     .search-shops .filters .desktop {
         width: 570px;
