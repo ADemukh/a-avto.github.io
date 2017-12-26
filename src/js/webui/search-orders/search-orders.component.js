@@ -13,8 +13,10 @@
     function SearchOrdersController(common, screenSize) {
         this.$onInit = function init() {
             this.getOrders = function getOrders() {
+                this.loading = true;
                 common.services.order.getOrders(this.filters).then(function onGetOrders(orders) {
                     this.orders = orders;
+                    this.loading = false;
                 }.bind(this));
             }.bind(this);
             this.getOrders();

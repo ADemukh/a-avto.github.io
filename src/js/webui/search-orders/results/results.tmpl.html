@@ -1,2 +1,7 @@
-<q-client-order-item order="order" ng-repeat="order in $ctrl.currPageOrders" class="display-block order-item"></q-client-order-item>
-<q-pagination ng-show="$ctrl.currPageOrders.length" items="$ctrl.orders" selected-items="$ctrl.currPageOrders" class="display-inline-block pagination pagination-center" />
+<div ng-if="$ctrl.loading" class="loader-wrapper">
+    <div class="loader">Loading...</div>
+</div>
+<div ng-if="!$ctrl.loading">
+    <q-client-order-item order="order" ng-repeat="order in $ctrl.currPageOrders" class="display-block order-item"></q-client-order-item>
+    <q-pagination ng-show="$ctrl.currPageOrders.length" items="$ctrl.orders" selected-items="$ctrl.currPageOrders" class="display-inline-block pagination pagination-center" />
+</div>

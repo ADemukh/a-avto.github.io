@@ -1,7 +1,7 @@
 <div class="navbar-top-offset height-full search-orders wrapper clear">
     <q-search-orders-filters show="$ctrl.visibility.filters" filters="$ctrl.filters" on-update="$ctrl.updateFilters($event);" on-cancel="$ctrl.hideFilters();" class="display-block filters"
     />
-    <q-search-orders-results ng-show="$ctrl.visibility.results" orders="$ctrl.orders" class="display-block results" />    
+    <q-search-orders-results ng-show="$ctrl.visibility.results" loading="$ctrl.loading" orders="$ctrl.orders" class="display-block results" />    
     <div ng-show="$ctrl.showSwitch()" class="switch outer-wrapper">
         <div class="inner-wrapper">
             <a href class="marker-results" ng-show="!$ctrl.visibilityHistory.results" data-ng-click="$ctrl.toggleResults();"><i class="icon fa fa-list"></i>{{::'SEARCH_SHOPS_RESULTS' | translate }}</a>

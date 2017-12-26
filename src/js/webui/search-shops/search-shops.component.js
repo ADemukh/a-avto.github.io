@@ -13,8 +13,10 @@
     function SearchShopsController(newOrderService, common, screenSize) {
         this.$onInit = function init() {
             this.getShops = function getShops() {
+                this.loading = true;
                 common.services.shop.getShops(this.filters).then(function onGetShops(shops) {
                     this.shops = shops;
+                    this.loading = false;
                 }.bind(this));
             }.bind(this);
             this.getShops();

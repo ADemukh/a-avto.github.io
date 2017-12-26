@@ -5,7 +5,8 @@
         .component('qSearchOrdersResults', {
             templateUrl: 'webui/search-orders/results/results.tmpl.html',
             bindings: {
-                orders: '<'
+                orders: '<',
+                loading: '<'
             }
         });
 })();

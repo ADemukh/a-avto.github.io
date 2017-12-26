@@ -5,6 +5,7 @@
         .component('qSearchShopsResults', {
             templateUrl: 'webui/search-shops/results/results.tmpl.html',
             bindings: {
+                loading: '<',
                 shops: '<'
             }
         });

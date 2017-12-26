@@ -1,2 +1,7 @@
-<q-search-shops-results-shop shop="shop" index="$index" ng-repeat="shop in $ctrl.currPageShops" class="display-block" />
-<q-pagination ng-show="$ctrl.currPageShops.length" items="$ctrl.shops" selected-items="$ctrl.currPageShops" class="display-inline-block pagination" />
+<div ng-if="$ctrl.loading" class="loader-wrapper">
+    <div class="loader">Loading...</div>
+</div>
+<div ng-if="!$ctrl.loading">
+    <q-search-shops-results-shop shop="shop" index="$index" ng-repeat="shop in $ctrl.currPageShops" class="display-block" />
+    <q-pagination ng-show="$ctrl.currPageShops.length" items="$ctrl.shops" selected-items="$ctrl.currPageShops" class="display-inline-block pagination" />
+</div>

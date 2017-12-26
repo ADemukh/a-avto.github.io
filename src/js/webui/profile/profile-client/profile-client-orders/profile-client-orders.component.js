@@ -56,9 +56,11 @@
                 filters = {
                     filter: this.filter
                 };
+                this.loading = true;
                 clientService.getOrders(filters)
                     .then(function gotOrders(orders) {
                         this.orders = orders;
+                        this.loading = false;
                     }.bind(this));
             }.bind(this);
 
