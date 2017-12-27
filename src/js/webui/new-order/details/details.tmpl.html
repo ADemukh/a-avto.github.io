@@ -24,11 +24,11 @@
         <span class="caption" translate>SPARIES</span>
         <div class="field short">
             <label>
-                <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.orderDetails.spare.isNewDetail">
+                <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.orderDetails.spare.isNewDetail" ng-init="$ctrl.orderDetails.spare.isNewDetail = true" ng-change="::$ctrl.checkSelection()">
                 <span translate>IS_NEW</span>
             </label>
             <label>
-                <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.orderDetails.spare.isUsedDetail">
+                <input class="checkbox-spare" type="checkbox" ng-model="$ctrl.orderDetails.spare.isUsedDetail" ng-init="$ctrl.orderDetails.spare.isUsedDetail = true" ng-change="::$ctrl.checkSelection()">
                 <span translate>IS_OLD</span>
             </label>
         </div>

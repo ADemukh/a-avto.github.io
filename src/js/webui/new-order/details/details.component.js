@@ -25,5 +25,12 @@
 				this.spareTypes = spareTypes;
 			}.bind(this));
 		};
+
+		this.checkSelection = function allowCheck() {
+			if (!this.orderDetails.spare.isNewDetail && !this.orderDetails.spare.isUsedDetail) {
+				this.orderDetails.spare.isNewDetail = true;
+				this.orderDetails.spare.isUsedDetail = true;
+			}
+		};
 	}
 })();

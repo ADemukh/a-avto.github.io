@@ -10,10 +10,27 @@
         <textarea type="text" name="description" ng-model="$ctrl.order.details.description" class="form-control" ng-readonly="true"></textarea>
     </div>
 
-    <div class="layout-row summary summary-cards">
-        <q-summary-card order="$ctrl.order" card-area="'details'" />
-        <q-summary-card order="$ctrl.order" card-area="'car'" />
-        <q-summary-card order="$ctrl.order" card-area="'contacts'" />
+    <div class="summary summary-details">
+        <div class="summary-details-section">
+            <span class="details-unit"><i class="fa fa-cogs" aria-hidden="true"></i>{{$ctrl.order.details.spareType}}</span>
+            <span class="details-unit"><span ng-class="{'line-through': !$ctrl.order.details.spare.isNewDetail}">Новые</span>/<span>Б.у.</span></span>
+            <span class="details-unit"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$ctrl.order.details.resolutionDate}}</span>
+        </div>
+        <div class="summary-details-section">
+            <span><i class="fa fa-car" aria-hidden="true"></i>{{$ctrl.order.car.selected.mark}}</span>
+            <span>{{$ctrl.order.car.selected.model}}</span>, 
+            <span>{{$ctrl.order.car.selected.year}}</span>, 
+            <span>{{$ctrl.order.car.selected.engineType}}</span>, 
+            <span>{{$ctrl.order.car.selected.engineCapacity}}</span>, 
+            <span>{{$ctrl.order.car.selected.gearbox}}</span>, 
+            <span class="details-unit">VIN: {{$ctrl.order.car.selected.VIN}}</span>
+            <span ng-if="$ctrl.order.car.newCar.needSave"><i class="fa fa-check" aria-hidden="true"></i><span translate>SAVE_TO_GARAGE</span></span>
+        </div>
+        <div class="summary-details-section">
+            <span class="details-unit"><i class="fa fa-user" aria-hidden="true"></i>{{$ctrl.order.contacts.name}}</span>
+            <span class="details-unit"><i class="fa map-marker" aria-hidden="true"></i>{{$ctrl.order.contacts.city}}, {{$ctrl.order.contacts.address}}</span>
+            <div ng-repeat="phone in $ctrl.order.contacts.phoneNumbers"><i class="fa fa-phone" aria-hidden="true"></i>{{phone}}</div>
+        </div>
     </div>
 
     <div class="summary summary-wanted-list">
