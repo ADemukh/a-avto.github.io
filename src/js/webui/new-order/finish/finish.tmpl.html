@@ -1,13 +1,12 @@
 <div class="finish">
 
     <div class="field layout-column summary summary-title">
-        <span class="group-caption" translate>TITLE</span>
-        <input type="text" name="title" ng-model="$ctrl.order.details.title" ng-readonly="true"></input>
+        <h2>{{$ctrl.order.details.title}}</h2>
     </div>
 
     <div class="field summary summary-description">
         <span class="group-caption" translate>DESCRIPTION</span>
-        <textarea type="text" name="description" ng-model="$ctrl.order.details.description" class="form-control" ng-readonly="true"></textarea>
+        <div>{{$ctrl.order.details.description}}</div>
     </div>
 
     <div class="summary summary-details">
