@@ -3,7 +3,7 @@
 </div>
 <ya-map ya-after-init="$ctrl.afterMapInit($target);" ya-zoom="10" ya-center="{{$ctrl.center}}" ya-controls="zoomControl" class="height-full">
     <ya-cluster ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }">
-        <ya-geo-object ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }" ng-repeat="shop in $ctrl.builtShops" ya-source="shop">
+        <ya-geo-object ya-after-init="$ctrl.getGeoObjects($target)" ng-repeat="shop in $ctrl.builtShops" ya-source="shop">
         </ya-geo-object>
     </ya-cluster>
 </ya-map>

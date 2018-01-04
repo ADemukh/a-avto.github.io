@@ -12,9 +12,9 @@
         })
         .controller('controllers.searchshopsresultshop', SearchShopsResultsShopController);
 
-        SearchShopsResultsShopController.$inject = ['_', 'services.neworder', '$state'];
+        SearchShopsResultsShopController.$inject = ['_', 'services.neworder', 'services.geoobjects', '$state'];
 
-        function SearchShopsResultsShopController(_, newOrderService, $state) {
+        function SearchShopsResultsShopController(_, newOrderService, geoObjectsService, $state) {
             var DAY_TRANSLATIONS, newOrder, vm;
 
             DAY_TRANSLATIONS = {
@@ -52,10 +52,12 @@
             this.changeSelection = function changeSelection() {
                 if (vm.shop.isSelected) {
                     newOrder.shops.push(vm.shop._id);
+                    geoObjectsService.select(vm.shop._id);
                 } else {
                     _.remove(newOrder.shops, function rmSelected(shopId) {
                         return shopId === vm.shop._id;
                     });
+                    geoObjectsService.unselect(vm.shop._id);
                 }
             };
             this.createNewOrder = function createNewOrder() {
