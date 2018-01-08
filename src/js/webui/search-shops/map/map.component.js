@@ -12,10 +12,17 @@
         })
         .controller('controllers.searchshopsmap', SearchShopsMapController);
 
-        SearchShopsMapController.$inject = ['services.geoobjects'];
+    SearchShopsMapController.$inject = [
+        '$scope',
+        '$state',
+        '$translate',
+        'services.neworder',
+        'services.geoobjects',
+        'templateLayoutFactory'
+    ];
 
-    function SearchShopsMapController(geoObjectsService) {
-        var mapTarget, vm;
+    function SearchShopsMapController($scope, $state, $translate, newOrderService, geoObjectsService, templateLayoutFactory) {
+        var mapTarget, processedShop, vm;
 
         vm = this;
         this.$onInit = function onInit() {
@@ -41,38 +48,78 @@
                             coordinates: [shop.longitude, shop.latitude]
                         },
                         properties: {
+                            shop: shop,
                             name: shop.name,
-                            shopId: shop._id,
-                            hintContent: shop.name,
-                            balloonContentHeader: '<h3>"' + shop.name + '"</h3>' + shopRating(shop.rating),
-                            balloonContentFooter: '<button type="button" ><a href="#/order-registration" >Отправить заявку</a></button>',
-                            balloonContentBody: '<h4>' + shop.address + '</h4>'
+                            sendButtonText: $translate.instant('SEND')
                         },
                         options: {
-                            iconColor: shop.isSeleced ? '#f00' : '#000'
+                            iconColor: shop.isSelected ? '#f00' : '#000'
                         }
                     };
                 });
             }
         };
 
-        function shopRating(rating) {
-            var currentRating, html, i, max;
+        // function shopRating(rating) {
+        //     var currentRating, html, i, max;
 
-            currentRating = rating > 0 ? rating : 0;
-            max = 5;
-            html = '<ul class="star-rating readonly">';
-            for (i = 0; i < max; i += 1) {
-                html += '<li class="star' + (i < currentRating ? ' filled' : '') + '" ><i class="fa fa-star"></i></li>';
-            }
-            html += '</ul>';
+        //     currentRating = rating > 0 ? rating : 0;
+        //     max = 5;
+        //     html = '<ul class="star-rating readonly">';
+        //     for (i = 0; i < max; i += 1) {
+        //         html += '<li class="star' + (i < currentRating ? ' filled' : '') + '" ><i class="fa fa-star"></i></li>';
+        //     }
+        //     html += '</ul>';
 
-            return html;
-        }
+        //     return html;
+        // }
 
         this.$onDestroy = function onDestroy() {
             if (mapTarget) {
                 mapTarget.destroy();
+            }
+        };
+
+        this.selectShop = function selectedShop() {
+            if (newOrderService.isShopSelected(processedShop._id)) {
+                newOrderService.removeShop(processedShop._id);
+                geoObjectsService.unselect(processedShop._id);
+                angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
+            } else {
+                newOrderService.addShop(processedShop._id);
+                geoObjectsService.select(processedShop._id);
+                angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
+            }
+
+            $scope.$apply();
+        };
+
+        this.createNewOrder = function createNewOrder() {
+            newOrderService.dropShopSelection();
+            newOrderService.addShop(processedShop._id);
+            $state.go('new-order');
+        };
+
+        this.balloonOverrides = {
+            build: function build() {
+                var BalloonContentLayout, selectionButtonText;
+
+                processedShop = this.getData().properties.get('shop');
+
+                BalloonContentLayout = templateLayoutFactory.get('CustomBalloonContentLayout');
+                BalloonContentLayout.superclass.build.call(this);
+                selectionButtonText = $translate.instant(newOrderService.isShopSelected(processedShop._id) ? 'CANCEL' : 'SELECT');
+                angular.element(document.getElementById('geo-object-select')).text(selectionButtonText);
+                angular.element(document.getElementById('geo-object-select')).bind('click', vm.selectShop);
+                angular.element(document.getElementById('geo-object-new-order')).bind('click', vm.createNewOrder);
+            },
+            clear: function clear() {
+                var BalloonContentLayout;
+
+                angular.element(document.getElementById('geo-object-select')).unbind('click', vm.selectShop);
+                angular.element(document.getElementById('geo-object-new-order')).unbind('click', vm.createNewOrder);
+                BalloonContentLayout = templateLayoutFactory.get('CustomBalloonContentLayout');
+                BalloonContentLayout.superclass.clear.call(this);
             }
         };
     }

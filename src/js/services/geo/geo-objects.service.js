@@ -22,7 +22,7 @@
         function addGeoObject(geoObj) {
             var shopId;
 
-            shopId = _.get(geoObj, 'properties._data.shopId');
+            shopId = _.get(geoObj, 'properties._data.shop')._id;
             shopsMapping.set(shopId, geoObj);
             checkSelection(shopId);
         }

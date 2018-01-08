@@ -15,7 +15,7 @@
         SearchShopsResultsShopController.$inject = ['_', 'services.neworder', 'services.geoobjects', '$state'];
 
         function SearchShopsResultsShopController(_, newOrderService, geoObjectsService, $state) {
-            var DAY_TRANSLATIONS, newOrder, vm;
+            var DAY_TRANSLATIONS, vm;
 
             DAY_TRANSLATIONS = {
                 monday: 'MONDAY',
@@ -41,8 +41,7 @@
                 vm.getDayTranslationKey = function getDayTranslationKey(day) {
                     return DAY_TRANSLATIONS[day];
                 };
-                newOrder = newOrderService.newOrder();
-                vm.shop.isSelected = _.includes(newOrder.shops, vm.shop._id);
+                vm.shop.isSelected = newOrderService.isShopSelected(vm.shop._id);
             };
             this.$onChanges = function onChanges(changes) {
                 if (changes.shop) {
@@ -51,23 +50,16 @@
             };
             this.changeSelection = function changeSelection() {
                 if (vm.shop.isSelected) {
-                    newOrder.shops.push(vm.shop._id);
+                    newOrderService.addShop(vm.shop._id);
                     geoObjectsService.select(vm.shop._id);
                 } else {
-                    _.remove(newOrder.shops, function rmSelected(shopId) {
-                        return shopId === vm.shop._id;
-                    });
+                    newOrderService.removeShop(vm.shop._id);
                     geoObjectsService.unselect(vm.shop._id);
                 }
             };
             this.createNewOrder = function createNewOrder() {
-                if (newOrder.shops.length) {
-                    _.remove(newOrder.shops, function removeAll() {
-                        return true;
-                    });
-                }
-                newOrder.shops.push(vm.shop._id);
-
+                newOrderService.dropShopSelection();
+                newOrderService.addShop(vm.shop._id);
                 $state.go('new-order');
             };
         }
