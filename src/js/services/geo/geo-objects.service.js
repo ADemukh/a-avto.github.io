@@ -4,20 +4,30 @@
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.geoobjects', GeoObjectsService);
 
-    GeoObjectsService.$inject = ['_', 'services.neworder'];
+    GeoObjectsService.$inject = ['_', '$translate', 'services.neworder'];
 
-    function GeoObjectsService(_, newOrderService) {
+    function GeoObjectsService(_, $translate, newOrderService) {
         // maps shopIds with geoObjects on the map
-        var newOrderShops, shopsMapping;
+        var newOrderShops, processedShop, shopsMapping;
 
-        shopsMapping = new Map();
         newOrderShops = newOrderService.newOrder().shops;
+        shopsMapping = new Map();
 
         return {
+            getProcessedShop: getProcessedShop,
+            setProcessedShop: setProcessedShop,
             add: addGeoObject,
             select: setSelected,
             unselect: setUnselected
         };
+
+        function getProcessedShop() {
+            return processedShop;
+        }
+
+        function setProcessedShop(shop) {
+            processedShop = shop;
+        }
 
         function addGeoObject(geoObj) {
             var shopId;
@@ -33,6 +43,10 @@
             geoObj = shopsMapping.get(shopId);
             geoObj.options.set('preset', 'islands#circleDotIcon');
             geoObj.options.set('iconColor', '#ff6600');
+
+            if (processedShop && shopId === processedShop._id) {
+                angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
+            }
         }
 
         function setUnselected(shopId) {
@@ -41,6 +55,10 @@
             geoObj = shopsMapping.get(shopId);
             geoObj.options.set('preset', 'islands#circleIcon');
             geoObj.options.set('iconColor', '#4d7198');
+
+            if (processedShop && shopId === processedShop._id) {
+                angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
+            }
         }
 
         function checkSelection(shopId) {

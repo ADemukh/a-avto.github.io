@@ -43,11 +43,6 @@
                 };
                 vm.shop.isSelected = newOrderService.isShopSelected(vm.shop._id);
             };
-            this.$onChanges = function onChanges(changes) {
-                if (changes.shop) {
-                    this.shop = angular.copy(this.shop);
-                }
-            };
             this.changeSelection = function changeSelection() {
                 if (vm.shop.isSelected) {
                     newOrderService.addShop(vm.shop._id);

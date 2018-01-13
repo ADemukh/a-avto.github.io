@@ -22,7 +22,7 @@
     ];
 
     function SearchShopsMapController($scope, $state, $translate, newOrderService, geoObjectsService, templateLayoutFactory) {
-        var mapTarget, processedShop, vm;
+        var mapTarget, vm;
 
         vm = this;
         this.$onInit = function onInit() {
@@ -38,7 +38,7 @@
         };
 
         this.$onChanges = function recalculateMap() {
-            if (vm.shops && vm.shops.length) {
+            if (vm.shops) {
                 vm.center = vm.filters.shopCity;
                 vm.totalShops = vm.shops && vm.shops.length >= 0 ? vm.shops.length : '';
                 vm.builtShops = vm.shops.map(function buildShopGeo(shop) {
@@ -80,44 +80,48 @@
             }
         };
 
-        this.selectShop = function selectedShop() {
-            if (newOrderService.isShopSelected(processedShop._id)) {
-                newOrderService.removeShop(processedShop._id);
-                geoObjectsService.unselect(processedShop._id);
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
+        function changeSelection() {
+            var shop;
+
+            shop = geoObjectsService.getProcessedShop();
+
+            if (shop.isSelected) {
+                newOrderService.removeShop(shop._id);
+                geoObjectsService.unselect(shop._id);
             } else {
-                newOrderService.addShop(processedShop._id);
-                geoObjectsService.select(processedShop._id);
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
+                newOrderService.addShop(shop._id);
+                geoObjectsService.select(shop._id);
             }
+            shop.isSelected = !shop.isSelected;
 
             $scope.$apply();
-        };
+        }
 
-        this.createNewOrder = function createNewOrder() {
+        function createNewOrder() {
             newOrderService.dropShopSelection();
-            newOrderService.addShop(processedShop._id);
+            newOrderService.addShop(geoObjectsService.getProcessedShop()._id);
             $state.go('new-order');
-        };
+        }
 
         this.balloonOverrides = {
             build: function build() {
-                var BalloonContentLayout, selectionButtonText;
+                var BalloonContentLayout, selectionButtonText, shop;
 
-                processedShop = this.getData().properties.get('shop');
+                shop = this.getData().properties.get('shop');
+                geoObjectsService.setProcessedShop(shop);
 
                 BalloonContentLayout = templateLayoutFactory.get('CustomBalloonContentLayout');
                 BalloonContentLayout.superclass.build.call(this);
-                selectionButtonText = $translate.instant(newOrderService.isShopSelected(processedShop._id) ? 'CANCEL' : 'SELECT');
+                selectionButtonText = $translate.instant(newOrderService.isShopSelected(shop._id) ? 'CANCEL' : 'SELECT');
                 angular.element(document.getElementById('geo-object-select')).text(selectionButtonText);
-                angular.element(document.getElementById('geo-object-select')).bind('click', vm.selectShop);
-                angular.element(document.getElementById('geo-object-new-order')).bind('click', vm.createNewOrder);
+                angular.element(document.getElementById('geo-object-select')).bind('click', changeSelection);
+                angular.element(document.getElementById('geo-object-new-order')).bind('click', createNewOrder);
             },
             clear: function clear() {
                 var BalloonContentLayout;
 
-                angular.element(document.getElementById('geo-object-select')).unbind('click', vm.selectShop);
-                angular.element(document.getElementById('geo-object-new-order')).unbind('click', vm.createNewOrder);
+                angular.element(document.getElementById('geo-object-select')).unbind('click', changeSelection);
+                angular.element(document.getElementById('geo-object-new-order')).unbind('click', createNewOrder);
                 BalloonContentLayout = templateLayoutFactory.get('CustomBalloonContentLayout');
                 BalloonContentLayout.superclass.clear.call(this);
             }
