@@ -18,7 +18,8 @@
             setProcessedShop: setProcessedShop,
             add: addGeoObject,
             select: setSelected,
-            unselect: setUnselected
+            unselect: setUnselected,
+            updateGeoObjectRating: updateGeoObjectRating
         };
 
         function getProcessedShop() {
@@ -59,6 +60,21 @@
             if (processedShop && shopId === processedShop._id) {
                 angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
             }
+        }
+
+        function updateGeoObjectRating() {
+            var rating, stars;
+
+            stars = document.getElementById('geo-object-rating').children;
+            // rating = processedShop.rating;
+            rating = Math.random() * 6;
+
+            _.forEach(stars, function checkStar(star, index) {
+                if ((star.classList.contains('filled') && index >= rating) ||
+                    (!star.classList.contains('filled') && index < rating)) {
+                        star.classList.toggle('filled');
+                }
+            });
         }
 
         function checkSelection(shopId) {

@@ -4,8 +4,17 @@
 
 <ya-template-layout ya-key="CustomBalloonContentLayout" ya-overrides="$ctrl.balloonOverrides">
     <div style="margin: 10px; min-width: 200px;">
-        <b>$[properties.name]</b>
-        <br />
+        <h3>$[properties.shop.name]</h4>
+
+        <ul class="star-rating readonly" id="geo-object-rating">
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+        </ul>
+        
+        <h4>$[properties.shop.address]</h4>
         <button type="button" id="geo-object-new-order">$[properties.sendButtonText]</button>
         <button type="button" id="geo-object-select"></button>
     </div>

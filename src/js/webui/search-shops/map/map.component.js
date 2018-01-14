@@ -49,7 +49,6 @@
                         },
                         properties: {
                             shop: shop,
-                            name: shop.name,
                             sendButtonText: $translate.instant('SEND')
                         },
                         options: {
@@ -59,20 +58,6 @@
                 });
             }
         };
-
-        // function shopRating(rating) {
-        //     var currentRating, html, i, max;
-
-        //     currentRating = rating > 0 ? rating : 0;
-        //     max = 5;
-        //     html = '<ul class="star-rating readonly">';
-        //     for (i = 0; i < max; i += 1) {
-        //         html += '<li class="star' + (i < currentRating ? ' filled' : '') + '" ><i class="fa fa-star"></i></li>';
-        //     }
-        //     html += '</ul>';
-
-        //     return html;
-        // }
 
         this.$onDestroy = function onDestroy() {
             if (mapTarget) {
@@ -116,6 +101,8 @@
                 angular.element(document.getElementById('geo-object-select')).text(selectionButtonText);
                 angular.element(document.getElementById('geo-object-select')).bind('click', changeSelection);
                 angular.element(document.getElementById('geo-object-new-order')).bind('click', createNewOrder);
+
+                geoObjectsService.updateGeoObjectRating();                
             },
             clear: function clear() {
                 var BalloonContentLayout;
