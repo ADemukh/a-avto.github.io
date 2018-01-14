@@ -19,6 +19,7 @@
             add: addGeoObject,
             select: setSelected,
             unselect: setUnselected,
+            checkSelection: checkSelection,
             updateGeoObjectRating: updateGeoObjectRating
         };
 
@@ -48,6 +49,8 @@
             if (processedShop && shopId === processedShop._id) {
                 angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
             }
+
+            document.getElementById('geo-object-select').classList.add('selected');
         }
 
         function setUnselected(shopId) {
@@ -60,6 +63,8 @@
             if (processedShop && shopId === processedShop._id) {
                 angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
             }
+
+            document.getElementById('geo-object-select').classList.remove('selected');            
         }
 
         function updateGeoObjectRating() {

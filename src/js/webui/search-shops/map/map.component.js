@@ -97,12 +97,12 @@
 
                 BalloonContentLayout = templateLayoutFactory.get('CustomBalloonContentLayout');
                 BalloonContentLayout.superclass.build.call(this);
-                selectionButtonText = $translate.instant(newOrderService.isShopSelected(shop._id) ? 'CANCEL' : 'SELECT');
-                angular.element(document.getElementById('geo-object-select')).text(selectionButtonText);
+                geoObjectsService.checkSelection(shop._id);
+
                 angular.element(document.getElementById('geo-object-select')).bind('click', changeSelection);
                 angular.element(document.getElementById('geo-object-new-order')).bind('click', createNewOrder);
 
-                geoObjectsService.updateGeoObjectRating();                
+                geoObjectsService.updateGeoObjectRating();
             },
             clear: function clear() {
                 var BalloonContentLayout;
