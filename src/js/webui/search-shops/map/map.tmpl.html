@@ -1,9 +1,30 @@
 <div ng-if="$ctrl.loading" class="loader-wrapper">
     <div class="loader">Loading...</div>
 </div>
-<ya-map ya-after-init="$ctrl.afterMapInit($target);" ya-zoom="10" ya-center="{{$ctrl.center}}" ya-controls="zoomControl" class="height-full">
+
+<ya-template-layout ya-key="CustomBalloonContentLayout" ya-overrides="$ctrl.balloonOverrides">
+    <div class="geo-object-balloon">
+        <h3>$[properties.shop.name]</h4>
+
+        <ul class="star-rating readonly" id="geo-object-rating">
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+            <li class="star"><i class="fa fa-star"></i></li>
+        </ul>
+        
+        <h4>$[properties.shop.address]</h4>
+        <button type="button" class="balloon-button" id="geo-object-new-order">$[properties.sendButtonText]</button>
+        <button type="button" class="balloon-button" id="geo-object-select"></button>
+    </div>
+</ya-template-layout>
+
+<ya-map ya-after-init="$ctrl.afterMapInit($target);" ya-zoom="10" ya-center="{{$ctrl.center}}" ya-controls="zoomControl"
+    class="height-full">
     <ya-cluster ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }">
-        <ya-geo-object ya-options="{ preset: 'islands#circleIcon', iconColor: '#4d7198' }" ng-repeat="shop in $ctrl.builtShops" ya-source="shop">
+        <ya-geo-object ya-options="{balloonContentLayout:'CustomBalloonContentLayout', balloonPanelMaxMapArea: 0}" ya-after-init="$ctrl.getGeoObjects($target)"
+            ng-repeat="shop in $ctrl.builtShops" ya-source="shop">
         </ya-geo-object>
     </ya-cluster>
 </ya-map>

@@ -4,9 +4,9 @@
     angular.module(SERVICES_MODULE_NAME)
         .factory('services.neworder', OrderService);
 
-    OrderService.$inject = ['services.identity', '$http', 'services.events'];
+    OrderService.$inject = ['_', 'services.identity', '$http', 'services.events'];
 
-    function OrderService(identityService, $http, events) {
+    function OrderService(_, identityService, $http, events) {
         var STATUSES, newOrder;
 
         STATUSES = {
@@ -22,12 +22,34 @@
         return {
             newOrder: getNewOrder,
             clear: clearOrder,
+            addShop: addShop,
+            removeShop: removeShop,
+            dropShopSelection: dropShopSelection,
+            isShopSelected: checkShopSelection,
             submit: startOrderSubmission,
             statuses: STATUSES
         };
 
         function getNewOrder() {
             return newOrder;
+        }
+
+        function addShop(shopId) {
+            newOrder.shops.push(shopId);
+        }
+
+        function removeShop(shopId) {
+            _.remove(newOrder.shops, function rmSelected(id) {
+                return id === shopId;
+            });
+        }
+
+        function dropShopSelection() {
+            newOrder.shops = [];
+        }
+
+        function checkShopSelection(shopId) {
+            return _.includes(newOrder.shops, shopId);
         }
 
         function clearOrder() {
