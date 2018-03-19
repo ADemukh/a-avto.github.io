@@ -68,6 +68,9 @@
         function startOrderSubmission() {
             if (!identityService.loggedIn()) {
                 return identityService.signUpClientPartial(newOrder.contacts)
+                    .then(function updateClient() {
+                        newOrder.client = identityService.user._id;
+                    })
                     .then(submitOrder);
             }
             return submitOrder();
@@ -83,6 +86,7 @@
                     }
                 },
                 contacts: {},
+                client: identityService.user._id,
                 shops: [],
                 status: STATUSES.START,
                 filters: {}

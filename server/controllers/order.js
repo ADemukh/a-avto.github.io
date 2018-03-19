@@ -1,19 +1,33 @@
 /*eslint strict:0  */
-var Order, moment, profileClientController;
+var Message, Order, OrderShopDialog, mongoose, profileClientController;
 
-moment = require('../moment');
+mongoose = require('mongoose');
 Order = require('../models/order');
+OrderShopDialog = require('../models/orderShopDialog');
+Message = require('../models/message');
 profileClientController = require('./profileClient');
 
 function submitOrder(orderInfo) {
-	var car, orderModel;
+	var car, dialogs, orderId, orderModel;
 
 	car = orderInfo.car.selected._id === orderInfo.car.newCar._id ?
 		orderInfo.car.newCar :
 		orderInfo.car.selected;
 	delete car._id;
 
+	orderId = new mongoose.Types.ObjectId();
+
+	dialogs = orderInfo.shops.map(function createDialog(shop) {
+		return new OrderShopDialog({
+			_id: new mongoose.Types.ObjectId(),
+			order: orderId,
+			shop: shop,
+			messages: [getFirstMessage(orderInfo)]
+		});
+	});
+
 	orderModel = new Order({
+		_id: orderId,
 		title: orderInfo.details.title,
 		description: orderInfo.details.description,
 		spare: {
@@ -22,14 +36,23 @@ function submitOrder(orderInfo) {
 		},
 		spareType: orderInfo.details.spareType,
 		resolutionDate: orderInfo.details.resolutionDate,
-		car: car,
-		client: orderInfo.contacts,
-		wantedList: orderInfo.wantedList,
-		shops: orderInfo.shops
+		client: {
+			user: orderInfo.client,
+			car: car,
+			contacts: orderInfo.contacts
+		},
+		wantedList: orderInfo.wantedList
+	});
+
+	dialogs.forEach(function pushDialog(dialog) {
+		orderModel.dialogs.push(dialog);
 	});
 
 	return orderModel.save()
-		.then(function onSuccess() {
+		.then(function bulkInserDialogs() {
+			return OrderShopDialog.insertMany(dialogs);
+		})
+		.then(function saveNewCar() {
 			if (car.needSave) {
 				return profileClientController.addNewCar(orderInfo.contacts.email, orderInfo.car.newCar);
 			}
@@ -39,22 +62,37 @@ function submitOrder(orderInfo) {
 		});
 }
 
+function getFirstMessage(orderInfo) {
+	return new Message({
+		author: orderInfo.client._id,
+		content: 'First message'
+	});
+}
+
 function getOrders(filter) {
 	var orderFilter;
 
 	orderFilter = {};
 	if (filter.orderCity) {
-		orderFilter['client.city'] = { $in: [filter.orderCity] };
+		orderFilter['client.contacts.city'] = {
+			$in: [filter.orderCity]
+		};
 	}
 	if (filter.carMark) {
-		orderFilter['car.mark'] = { $in: [filter.carMark] };
+		orderFilter['client.car.mark'] = {
+			$in: [filter.carMark]
+		};
 	}
 	if (filter.spareType) {
-		orderFilter.spareType = { $in: [filter.spareType] };
+		orderFilter.spareType = {
+			$in: [filter.spareType]
+		};
 	}
 
 	if (filter.maxResolutionDate) {
-		orderFilter.resolutionDate = { $lte: filter.maxResolutionDate };
+		orderFilter.resolutionDate = {
+			$lte: filter.maxResolutionDate
+		};
 	}
 
 	if (filter.newDetail && !filter.usedDetail) {

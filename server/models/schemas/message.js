@@ -1,14 +1,21 @@
-var MessageSchema, mongoose;
+var MessageSchema, moment, mongoose;
 
 mongoose = require('mongoose');
+moment = require('../../moment');
+
 MessageSchema = new mongoose.Schema({
-	author: {
+	author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+	content: {
 		type: String,
 		required: true
 	},
 	created: {
 		type: String,
-		required: true
+		default: moment().format(moment.DATE_TIME_FORMAT)
+	},
+	seen: {
+		type: Boolean,
+		default: false
 	}
 });
 

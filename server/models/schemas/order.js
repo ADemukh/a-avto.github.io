@@ -7,6 +7,7 @@ UserClientCarSchema = require('./userClientCar');
 moment = require('../../moment');
 
 OrderSchema = new mongoose.Schema({
+	_id: mongoose.Schema.Types.ObjectId,
 	title: {
 		type: String,
 		required: true
@@ -19,29 +20,38 @@ OrderSchema = new mongoose.Schema({
 	},
 	resolutionDate: String,
 	attachments: [FileSchema],
-	car: UserClientCarSchema,
 	client: {
-		email: {
-			type: String,
-			required: true
+		user: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
 		},
-		name: String,
-		phoneNumbers: [String],
-		address: String,
-		city: String
+		car: UserClientCarSchema,
+		contacts: {
+			email: {
+				type: String,
+				required: true
+			},
+			name: String,
+			phoneNumbers: [String],
+			address: String,
+			city: String
+		}
 	},
 	status: {
 		type: String,
 		default: config.order.statuses.new
 	},
-	shops: [String],
+	dialogs: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'OrderShopDialog'
+	}],
 	wantedList: {
 		type: Boolean,
 		default: false
 	},
-	createdDate: {
+	created: {
 		type: String,
-		default: moment().format('YYY-MM-DD HH:mm')
+		default: moment().format(moment.DATE_TIME_FORMAT)
 	}
 });
 

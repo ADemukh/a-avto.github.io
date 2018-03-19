@@ -58,7 +58,7 @@ function getOrders(filter, email) {
 	var orderFilter;
 
 	orderFilter = {};
-	orderFilter['client.email'] = email;
+	orderFilter['client.contacts.email'] = email;
 
 	return Order.find(orderFilter).exec();
 }
