@@ -294,6 +294,14 @@ var WEBUI_MODULE_NAME;
                         identity.saveAttemptUrl(toState.url);
                         $state.go('anon.login');
                     }
+                } else if (toState.name === 'public.main') {
+                    if (identity.authorize(identity.accessLevels.client)) {
+                        event.preventDefault();
+                        $state.go('client.profile.orders');
+                    } else if (identity.authorize(identity.accessLevels.shop)) {
+                        event.preventDefault();
+                        $state.go('shop.profile.orders');
+                    }
                 }
             } else {
                 event.preventDefault();

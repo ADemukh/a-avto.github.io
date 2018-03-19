@@ -64,7 +64,7 @@
                 angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
             }
 
-            document.getElementById('geo-object-select').classList.remove('selected');            
+            document.getElementById('geo-object-select').classList.remove('selected');
         }
 
         function updateGeoObjectRating() {
@@ -77,7 +77,7 @@
             _.forEach(stars, function checkStar(star, index) {
                 if ((star.classList.contains('filled') && index >= rating) ||
                     (!star.classList.contains('filled') && index < rating)) {
-                        star.classList.toggle('filled');
+                    star.classList.toggle('filled');
                 }
             });
         }
