@@ -40,31 +40,35 @@
         }
 
         function setSelected(shopId) {
-            var geoObj;
+            var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
             geoObj.options.set('preset', 'islands#circleDotIcon');
             geoObj.options.set('iconColor', '#ff6600');
 
-            if (processedShop && shopId === processedShop._id) {
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
+            geoObjElement = document.getElementById('geo-object-select');
+            if (geoObjElement) {
+                if (processedShop && shopId === processedShop._id) {
+                    angular.element(geoObjElement).text($translate.instant('CANCEL'));
+                }
+                geoObjElement.classList.add('selected');
             }
-
-            document.getElementById('geo-object-select').classList.add('selected');
         }
 
         function setUnselected(shopId) {
-            var geoObj;
+            var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
             geoObj.options.set('preset', 'islands#circleIcon');
             geoObj.options.set('iconColor', '#4d7198');
 
-            if (processedShop && shopId === processedShop._id) {
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
+            geoObjElement = document.getElementById('geo-object-select');
+            if (geoObjElement) {
+                if (processedShop && shopId === processedShop._id) {
+                    angular.element(geoObjElement).text($translate.instant('SELECT'));
+                }
+                geoObjElement.classList.remove('selected');
             }
-
-            document.getElementById('geo-object-select').classList.remove('selected');
         }
 
         function updateGeoObjectRating() {
