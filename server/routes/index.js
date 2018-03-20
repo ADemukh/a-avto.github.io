@@ -15,6 +15,7 @@ router.use('/cars', require('./cars'));
 router.use('/cities', require('./cities'));
 router.use('/notifications', require('./notifications'));
 router.use('/profile', require('./profile'));
+router.use('/questionAnswer', require('./questionAnswer'));
 router.use('/shops', require('./shops'));
 router.use('/upload', require('./upload'));
 router.use('/order', require('./order'));

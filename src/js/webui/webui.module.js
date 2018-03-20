@@ -57,6 +57,10 @@ var WEBUI_MODULE_NAME;
                     templateUrl: 'webui/contacts/contacts.tmpl.html',
                     url: '/contacts',
                     parent: 'public'
+                }).state('public.question-answer', {
+                    template: '<q-question-answer/>',
+                    url: '/question-answer',
+                    parent: 'public'
                 }).state('public.how-it-works', {
                     template: '<q-how-it-works class="display-block"/>',
                     url: '/how-it-works',

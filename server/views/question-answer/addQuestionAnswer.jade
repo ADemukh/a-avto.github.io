@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    form(method='post', action='add')
+        div.cbm_wrap_button
+            div.wrapper_body_button
+                a.addCarSubmit(href="/questionAnswer") Вопросы
+        p.center Добавление вопроса:
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='question', value=question, placeholder='Вопрос') 
+        p.center Ответ
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='answer', value=answer, placeholder='Ответ')   
+        p.center Пользователь   
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='userName', value=userName, placeholder='Имя пользователя') 
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='text', name='email', value=email, placeholder='Email') 
+        p
+            input(type='hidden', name='status', value='Read')
+            input(type='hidden', name='id', value=_id)
+        div.cbm_wrap_button_center
+            div.wrapper_body_button_center
+                button.addCarSubmit(type='submit').
+                    Добавить
