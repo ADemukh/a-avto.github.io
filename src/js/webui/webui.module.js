@@ -46,7 +46,7 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     parent: 'root'
                 }).state('public.main', {
-                    templateUrl: 'webui/main/main.tmpl.html',
+                    templateUrl: 'webui/landing/landing.tmpl.html',
                     url: '/',
                     parent: 'public'
                 }).state('public.agreement', {
