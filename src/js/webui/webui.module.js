@@ -57,13 +57,17 @@ var WEBUI_MODULE_NAME;
                     templateUrl: 'webui/contacts/contacts.tmpl.html',
                     url: '/contacts',
                     parent: 'public'
-                }).state('public.term', {
-                    template: '<h2>Terms & conditions</h2>',
-                    url: '/term',
+                }).state('public.how-it-works', {
+                    template: '<q-how-it-works class="display-block"/>',
+                    url: '/how-it-works',
                     parent: 'public'
                 }).state('public.rules', {
                     templateUrl: 'webui/rules/rules.tmpl.html',
                     url: '/rules',
+                    parent: 'public'
+                }).state('public.site-map', {
+                    templateUrl: 'webui/site-map/site-map.tmpl.html',
+                    url: '/site-map',
                     parent: 'public'
                 });
 
