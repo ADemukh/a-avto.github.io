@@ -32,12 +32,10 @@ router.post('/changeclientcars', authController.isAuthenticated, function change
   profileClientController.changeCars(req.body.email, req.body.cars)
     .then(responseHelper(res).success, responseHelper(res).error);
 });
-router.post('/getclientorders', authController.isAuthenticated, function changeClientCars(req, res) {
-  profileClientController.getOrders(req.body.filter, req.body.email)
+router.post('/getclientorders', authController.isAuthenticated, function getClientOrders(req, res) {
+  profileClientController.getOrders(req.body.filter, req.body.email, req.body.id)
     .then(function gotOrders(orders) {
-      res.json({
-        orders: orders
-      });
+      res.json(orders);
     });
 });
 

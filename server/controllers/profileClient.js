@@ -1,7 +1,8 @@
 /*eslint strict:0  */
-var Order, userController;
+var Order, OrderShopDialog, userController;
 
 Order = require('../models/order');
+OrderShopDialog = require('../models/orderShopDialog');
 userController = require('./user');
 
 function changeContactInfo(email, userInfo) {
@@ -54,13 +55,43 @@ function addNewCar(email, newCar) {
 		});
 }
 
-function getOrders(filter, email) {
-	var orderFilter;
+function getOrders(filter, email, user) {
+	var orders;
 
-	orderFilter = {};
-	orderFilter['client.contacts.email'] = email;
+	// return Order.find({ 'client.user': user }).exec()
+	// 	.then(function setOrdersResult(results) {
+	// 		orders = results;
+	// 	})
+	// 	.then(function fetchUnseenOrderMessages() {
+	// 		return OrderShopDialog
+	// 			.find({
+	// 				'messages.seen': false,
+	// 				'messages.author'
+	// 			})
+	// 			.where('messages')
+	// 			.exec();
+	// 	})
+	// 	.then(function setOrderDialogsResult(results) {
+	// 		return orders;
+	// 	})
 
-	return Order.find(orderFilter).exec();
+	return Order.find({
+			'client.user': user
+		})
+		.populate({
+			path: 'dialogs',
+			select: 'messages',
+			// match: {
+
+			// }
+		})
+		.exec()
+		.then(function setOrdersResult(results) {
+			return results;
+		})
+		.catch(function onError(err) {
+			return err;
+		});
 }
 
 module.exports = {

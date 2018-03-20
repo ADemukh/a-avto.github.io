@@ -64,7 +64,7 @@ function submitOrder(orderInfo) {
 
 function getFirstMessage(orderInfo) {
 	return new Message({
-		author: orderInfo.client._id,
+		author: orderInfo.client,
 		content: 'First message'
 	});
 }

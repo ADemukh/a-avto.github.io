@@ -62,9 +62,10 @@
         function getOrders(filter) {
             return $http.post('profile/getclientorders', {
                 filter: filter,
-                email: identityService.user.email
+                email: identityService.user.email,
+                id: identityService.user._id
             }).then(function gotOrders(response) {
-                return response.data.orders;
+                return response.data;
             });
         }
 
