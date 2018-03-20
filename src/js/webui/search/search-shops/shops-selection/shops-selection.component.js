@@ -3,7 +3,7 @@
 
     angular.module(WEBUI_MODULE_NAME)
         .component('qShopsSelection', {
-            templateUrl: 'webui/search-shops/shops-selection/shops-selection.tmpl.html',
+            templateUrl: 'webui/search/search-shops/shops-selection/shops-selection.tmpl.html',
             controller: 'controllers.shopsselection',
             bindings: {
                 isMobileState: '<',

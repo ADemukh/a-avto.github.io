@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qSearchOrders', {
             controller: 'controllers.searchorders',
-            templateUrl: 'webui/search-orders/search-orders.tmpl.html'
+            templateUrl: 'webui/search/search-orders/search-orders.tmpl.html'
         })
         .controller('controllers.searchorders', SearchOrdersController);
 

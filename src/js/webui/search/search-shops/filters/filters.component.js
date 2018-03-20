@@ -4,7 +4,7 @@
 	angular.module(WEBUI_MODULE_NAME)
 		.component('qSearchShopsFilters', {
 			controller: 'controllers.searchshopsfilters',
-			templateUrl: 'webui/search-shops/filters/filters.tmpl.html',
+			templateUrl: 'webui/search/search-shops/filters/filters.tmpl.html',
 			bindings: {
 				filters: '<',
 				onUpdate: '&',

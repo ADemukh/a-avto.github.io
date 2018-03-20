@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qSearchShopsMap', {
             controller: 'controllers.searchshopsmap',
-            templateUrl: 'webui/search-shops/map/map.tmpl.html',
+            templateUrl: 'webui/search/search-shops/map/map.tmpl.html',
             bindings: {
                 filters: '<',
                 shops: '<'

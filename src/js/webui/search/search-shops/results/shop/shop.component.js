@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qSearchShopsResultsShop', {
             controller: 'controllers.searchshopsresultshop',
-            templateUrl: 'webui/search-shops/results/shop/shop.tmpl.html',
+            templateUrl: 'webui/search/search-shops/results/shop/shop.tmpl.html',
             bindings: {
                 shop: '<',
                 index: '<'

@@ -4,7 +4,7 @@
 	angular.module(WEBUI_MODULE_NAME)
 		.component('qSearchShopsFiltersModal', {
 			controller: 'controllers.searchshopsfiltersmodal',
-			templateUrl: 'webui/search-shops/filters/modal/modal.tmpl.html',
+			templateUrl: 'webui/search/search-shops/filters/modal/modal.tmpl.html',
 			bindings: {
 				resolve: '<',
 				close: '&',

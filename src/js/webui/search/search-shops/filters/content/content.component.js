@@ -1,21 +1,21 @@
-(function SearchOrdersFiltersComponentInit() {
+(function SearchShopsFiltersComponentInit() {
 	'use strict';
 
 	angular.module(WEBUI_MODULE_NAME)
-		.component('qSearchOrdersFiltersContent', {
-			controller: 'controllers.searchordersfilterscontent',
-			templateUrl: 'webui/search-orders/filters/content/content.tmpl.html',
+		.component('qSearchShopsFiltersContent', {
+			controller: 'controllers.searchshopsfilterscontent',
+			templateUrl: 'webui/search/search-shops/filters/content/content.tmpl.html',
 			bindings: {
 				filters: '<',
 				onApply: '&',
 				onCancel: '&'
 			}
 		})
-		.controller('controllers.searchordersfilterscontent', SearchOrdersFiltersContentController);
+		.controller('controllers.searchshopsfilterscontent', SearchShopsFiltersContentController);
 
-	SearchOrdersFiltersContentController.$inject = ['services.common'];
+	SearchShopsFiltersContentController.$inject = ['services.common'];
 
-	function SearchOrdersFiltersContentController(common) {
+	function SearchShopsFiltersContentController(common) {
 		this.$onInit = function onInit() {
 			common.services.adress.getCities().then(function onGetCities(cities) {
 				this.cities = cities;
