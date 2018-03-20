@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module(WEBUI_MODULE_NAME)
-        .component('qFooter', {
-            templateUrl: 'webui/footer/footer.tmpl.html'
+        .component('qRootFooter', {
+            templateUrl: 'webui/root/footer/footer.tmpl.html'
         });
 })();
