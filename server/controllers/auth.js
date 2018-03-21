@@ -1,11 +1,6 @@
-/* eslint strict:0  */
-let moment,
-    passport,
-    responseHelper;
-
-passport = require('passport');
-responseHelper = require('../helpers/response');
-moment = require('../moment');
+const passport = require('passport');
+const responseHelper = require('../helpers/response');
+const moment = require('../moment');
 
 function isAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -20,19 +15,6 @@ function singOut(req, res) {
     res.send(200);
 }
 
-function authenticate(passportStrategy) {
-    return function passportWrapper(req, res, next) {
-        passport.authenticate(passportStrategy, onAuthenticated(req, res, next))(req, res, next);
-    };
-}
-
-function authenticateWithoutPassword(passportStrategy) {
-    return function passportWrapper(req, res, next) {
-        req.body.password = moment.utc().format('YYY-MM-DD HH:mm');
-        passport.authenticate(passportStrategy, onAuthenticatedWithoutPassword(req, res, next))(req, res, next);
-    };
-}
-
 function onAuthenticated(req, res, next) {
     return function onAuthCompleted(err, user, alert) {
         if (err) {
@@ -42,7 +24,7 @@ function onAuthenticated(req, res, next) {
             return responseHelper(res).error(alert);
         }
 
-        req.logIn(user, (loginErr) => {
+        return req.logIn(user, (loginErr) => {
             if (loginErr) {
                 return next(loginErr);
             }
@@ -60,7 +42,7 @@ function onAuthenticatedWithoutPassword(req, res, next) {
             return responseHelper(res).error(alert);
         }
 
-        req.logIn(user, (loginErr) => {
+        return req.logIn(user, (loginErr) => {
             if (loginErr) {
                 return next(loginErr);
             }
@@ -71,18 +53,36 @@ function onAuthenticatedWithoutPassword(req, res, next) {
     };
 }
 
+function authenticate(passportStrategy) {
+    return function passportWrapper(req, res, next) {
+        passport.authenticate(passportStrategy, onAuthenticated(req, res, next))(req, res, next);
+    };
+}
+
+function authenticateWithoutPassword(passportStrategy) {
+    return function passportWrapper(req, res, next) {
+        req.body.password = moment.utc().format('YYY-MM-DD HH:mm');
+        passport.authenticate(
+            passportStrategy,
+            onAuthenticatedWithoutPassword(req, res, next),
+        )(req, res, next);
+    };
+}
+
 function authenticateSocial(passportStrategy, options) {
     return passport.authenticate(passportStrategy, options);
 }
 
-function authenticateSocialCallback(passportStrategy) {
-    return function passportWrapper(req, res, next) {
-        passport.authenticate(passportStrategy, onAuthenticatedSocial(req, res, next))(req, res, next);
-    };
+function postMessageResponse(response) {
+    const jsonData = JSON.stringify(response);
+    return `${'<script>' +
+        'window.opener.postMessage('}${jsonData}, "*");` +
+        'setTimeout(function() { window.close(); }, 50);' +
+        '</script>';
 }
 
 function onAuthenticatedSocial(req, res) {
-    return function onAuthCompleted(err, user, alert) {
+    return function onAuthCompleted(err, user) {
         let responseData;
 
         if (err) {
@@ -108,15 +108,13 @@ function onAuthenticatedSocial(req, res) {
     };
 }
 
-function postMessageResponse(response) {
-    let jsonData;
-
-    jsonData = JSON.stringify(response);
-
-    return `${'<script>' +
-        'window.opener.postMessage('}${jsonData}, "*");` +
-        'setTimeout(function() { window.close(); }, 50);' +
-        '</script>';
+function authenticateSocialCallback(passportStrategy) {
+    return function passportWrapper(req, res, next) {
+        passport.authenticate(
+            passportStrategy,
+            onAuthenticatedSocial(req, res, next),
+        )(req, res, next);
+    };
 }
 
 module.exports = {

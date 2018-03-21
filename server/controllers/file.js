@@ -1,16 +1,9 @@
-/* eslint strict:0  */
-let File,
-    cloudinary,
-    cloudinaryMulter,
-    cloudinaryStorage,
-    multer;
+const File = require('../models/file');
+const multer = require('multer');
+const cloudinary = require('../core/cloudinary');
+const cloudinaryStorage = require('../core/storages/cloudinaryStorage');
 
-File = require('../models/file');
-multer = require('multer');
-cloudinary = require('../core/cloudinary');
-cloudinaryStorage = require('../core/storages/cloudinaryStorage');
-
-cloudinaryMulter = multer({
+const cloudinaryMulter = multer({
     storage: cloudinaryStorage,
 });
 

@@ -1,12 +1,7 @@
-/* eslint strict:0  */
-let Notifications;
-
-Notifications = require('../models/notifications');
+const Notifications = require('../models/notifications');
 
 function saveNotification(notification) {
-    let notificationModel;
-
-    notificationModel = new Notifications({
+    const notificationModel = new Notifications({
         name: notification.name,
         type: notification.type,
         forClient: notification.forClient || false,

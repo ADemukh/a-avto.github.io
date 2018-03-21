@@ -1,85 +1,59 @@
-/* eslint strict:0  */
-let carsInitialCollection,
-    cityInitialCollection,
-    enginecapacitesInitialCollection,
-    enginetypesInitialCollection,
-    gearboxesInitialCollection,
-    notificationsInitialCollection,
-    spareInitialCollection;
-let carController,
-    cityController,
-    notificationsController;
-
-carsInitialCollection = require('../init/cars');
-spareInitialCollection = require('../init/spareTypes');
-gearboxesInitialCollection = require('../init/gearboxes');
-enginetypesInitialCollection = require('../init/engineTypes');
-enginecapacitesInitialCollection = require('../init/engineCapacities');
-cityInitialCollection = require('../init/cities');
-notificationsInitialCollection = require('../init/notifications');
-carController = require('../controllers/car');
-cityController = require('../controllers/city');
-notificationsController = require('../controllers/notifications');
+const carsInitialCollection = require('../init/cars');
+const spareInitialCollection = require('../init/spareTypes');
+const gearboxesInitialCollection = require('../init/gearboxes');
+const enginetypesInitialCollection = require('../init/engineTypes');
+const enginecapacitesInitialCollection = require('../init/engineCapacities');
+const cityInitialCollection = require('../init/cities');
+const notificationsInitialCollection = require('../init/notifications');
+const carController = require('../controllers/car');
+const cityController = require('../controllers/city');
+const notificationsController = require('../controllers/notifications');
 
 module.exports = {
     initSpareTypes: function initSpareTypes() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         spareInitialCollection.forEach((spareItem) => {
             promises.push(carController.addSpare(spareItem));
         });
         return Promise.all(promises);
     },
     initCars: function initCars() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         carsInitialCollection.forEach((carItem) => {
             promises.push(carController.addMark(carItem));
         });
         return Promise.all(promises);
     },
     initCities: function initCities() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         cityInitialCollection.forEach((cityItem) => {
             promises.push(cityController.addCity(cityItem));
         });
         return Promise.all(promises);
     },
     initNotifications: function initNotifications() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         notificationsInitialCollection.forEach((notificationItem) => {
             promises.push(notificationsController.addNotification(notificationItem));
         });
         return Promise.all(promises);
     },
     initEngineCapacites: function initEngineCapacites() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         enginecapacitesInitialCollection.forEach((enginecapacity) => {
             promises.push(carController.addEngineCapacity(enginecapacity));
         });
         return Promise.all(promises);
     },
     initEngineTypes: function initEngineTypes() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         enginetypesInitialCollection.forEach((enginetypes) => {
             promises.push(carController.addEngineType(enginetypes));
         });
         return Promise.all(promises);
     },
     initGearBoxes: function initGearBoxes() {
-        let promises;
-
-        promises = [];
+        const promises = [];
         gearboxesInitialCollection.forEach((gearboxes) => {
             promises.push(carController.addGearbox(gearboxes));
         });

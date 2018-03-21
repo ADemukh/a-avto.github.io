@@ -1,18 +1,11 @@
-/* eslint strict:0  */
-let User,
-    bcrypt,
-    config,
-    fileController,
-    mailer,
-    moment,
-    resetEmailHtml;
+const User = require('../models/user');
+const config = require('../config');
+const fileController = require('./file');
+const mailer = require('./mailer');
+const moment = require('../moment');
+const bcrypt = require('bcryptjs');
 
-User = require('../models/user');
-config = require('../config');
-fileController = require('./file');
-mailer = require('./mailer');
-moment = require('../moment');
-bcrypt = require('bcryptjs');
+const recoverEmailTemplate = require('../templates/recoverEmail');
 
 function findUserByEmail(email) {
     return User.findOne({
@@ -49,11 +42,8 @@ function changePassword(email, newPassword) {
 function recoverPassword(req) {
     return findUserByEmail(req.body.email)
         .then((user) => {
-            let token,
-                validTill;
-
-            validTill = moment().add(24, 'h').format('YYYY-MM-DD HH:mm');
-            token = bcrypt.hashSync(validTill, bcrypt.genSaltSync(config.bcrypt.salt));
+            const validTill = moment().add(24, 'h').format('YYYY-MM-DD HH:mm');
+            const token = bcrypt.hashSync(validTill, bcrypt.genSaltSync(config.bcrypt.salt));
             user.tokens.push({
                 token,
                 validTill,
@@ -64,16 +54,13 @@ function recoverPassword(req) {
                 .then(updatedUser => Promise.resolve(updatedUser, token));
         })
         .then((user, token) => {
-            let params,
-                template;
-
-            params = {
+            const params = {
                 title: 'Востановление пароля для Aavto',
                 aavtoUrl: 'aavto.com',
                 userName: user.name,
                 restorePasswordUrl: `aavto.com/${token}`,
             };
-            template = require('../templates/recoverEmail')(params);
+            const template = recoverEmailTemplate(params);
 
             return mailer.sendEmail(user.email, 'Aavto.by. Востановление пороля', template);
         })
@@ -88,10 +75,8 @@ function recoverPassword(req) {
 function setPassword(token, password) {
     return findUserByToken(token)
         .then((user) => {
-            let userToken;
-
             user.passwordHash = user.generateHash(password);
-            userToken = user.tokens.find(eachToken => eachToken.token === token);
+            const userToken = user.tokens.find(eachToken => eachToken.token === token);
             if (userToken) {
                 userToken.active = false;
             }
@@ -112,9 +97,7 @@ function checkEmailIsFree(email) {
 function changePhoto(email, photo) {
     return findUserByEmail(email)
         .then((user) => {
-            let oldPhotoName;
-
-            oldPhotoName = user.photo ? user.photo.fileName : null;
+            const oldPhotoName = user.photo ? user.photo.fileName : null;
             user.photo = {
                 fileName: photo.fileName,
                 url: photo.url,

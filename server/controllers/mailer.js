@@ -1,16 +1,9 @@
-/* eslint strict:0  */
-let config,
-    nodemailer;
-
-config = require('../config');
-nodemailer = require('nodemailer');
+const config = require('../config');
+const nodemailer = require('nodemailer');
 
 function sendEmail(to, subject, body) {
-    let mailOptions,
-        transporter;
-
-    transporter = nodemailer.createTransport(config.nodemailer.options);
-    mailOptions = {
+    const transporter = nodemailer.createTransport(config.nodemailer.options);
+    const mailOptions = {
         from: config.nodemailer.maailFrom,
         to,
         subject,

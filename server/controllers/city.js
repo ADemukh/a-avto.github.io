@@ -1,12 +1,7 @@
-/* eslint strict:0  */
-let City;
-
-City = require('../models/city');
+const City = require('../models/city');
 
 function saveCity(city) {
-    let cityModel;
-
-    cityModel = new City({
+    const cityModel = new City({
         name: city.name,
     });
 

@@ -1,18 +1,9 @@
-/* eslint strict:0  */
-let Shop,
-    moment;
-
-Shop = require('../models/userShop');
-moment = require('../moment');
+const Shop = require('../models/userShop');
+const moment = require('../moment');
 
 module.exports = {
     getShops: function getShops(filter) {
-        let currentDay,
-            currentTime,
-            data,
-            shopFilter;
-
-        shopFilter = {};
+        const shopFilter = {};
         if (filter.shopCity) {
             shopFilter.cities = { $in: [filter.shopCity] };
         }
@@ -29,8 +20,8 @@ module.exports = {
             shopFilter['spare.isOld'] = true;
         }
         if (filter.worksNow) {
-            currentDay = moment().format('dddd').toLowerCase();
-            currentTime = moment().format('HH:mm');
+            const currentDay = moment().format('dddd').toLowerCase();
+            const currentTime = moment().format('HH:mm');
             shopFilter[`schedule.${currentDay}.active`] = true;
             shopFilter[`schedule.${currentDay}.from`] = { $lte: currentTime };
             shopFilter[`schedule.${currentDay}.to`] = { $gte: currentTime };

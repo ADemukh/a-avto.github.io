@@ -1,12 +1,7 @@
-/* eslint strict:0  */
-let QuestionAnswer;
-
-QuestionAnswer = require('../models/questionAnswer');
+const QuestionAnswer = require('../models/questionAnswer');
 
 function saveQuestionAnswer(question) {
-    let questionAnswerModel;
-
-    questionAnswerModel = new QuestionAnswer(question);
+    const questionAnswerModel = new QuestionAnswer(question);
     return questionAnswerModel.save((err) => {
         if (err) {
             console.log(err);

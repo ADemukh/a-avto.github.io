@@ -1,20 +1,11 @@
-/* eslint strict:0  */
-let Car,
-    EngineCapacity,
-    EngineType,
-    Gearbox,
-    SpareType;
-
-EngineType = require('../models/engineType');
-EngineCapacity = require('../models/engineCapacity');
-Gearbox = require('../models/gearbox');
-Car = require('../models/car');
-SpareType = require('../models/spareType');
+const EngineType = require('../models/engineType');
+const EngineCapacity = require('../models/engineCapacity');
+const Gearbox = require('../models/gearbox');
+const Car = require('../models/car');
+const SpareType = require('../models/spareType');
 
 function saveSpareType(spareType) {
-    let spareModel;
-
-    spareModel = new SpareType({
+    const spareModel = new SpareType({
         name: spareType.name,
     });
 
@@ -28,9 +19,7 @@ function saveSpareType(spareType) {
 }
 
 function saveEngineType(engineType) {
-    let engineTypeModel;
-
-    engineTypeModel = new EngineType({
+    const engineTypeModel = new EngineType({
         name: engineType.name,
     });
 
@@ -44,9 +33,7 @@ function saveEngineType(engineType) {
 }
 
 function saveEngineCapacity(engineCapacity) {
-    let engineCapacityModel;
-
-    engineCapacityModel = new EngineCapacity({
+    const engineCapacityModel = new EngineCapacity({
         name: engineCapacity.name,
     });
 
@@ -60,9 +47,7 @@ function saveEngineCapacity(engineCapacity) {
 }
 
 function saveGearbox(gearbox) {
-    let gearboxModel;
-
-    gearboxModel = new Gearbox({
+    const gearboxModel = new Gearbox({
         name: gearbox.name,
     });
 
@@ -76,9 +61,7 @@ function saveGearbox(gearbox) {
 }
 
 function saveCar(car) {
-    let carModel;
-
-    carModel = new Car({
+    const carModel = new Car({
         mark: car.mark,
         model: car.model,
         from: car.from || 2000,
@@ -120,11 +103,8 @@ module.exports = {
             mark: car.oldMark,
         }).exec()
             .then((carModels) => {
-                let i,
-                    promises;
-
-                promises = [];
-                for (i = 0; i < carModels.length; i += 1) {
+                const promises = [];
+                for (let i = 0; i < carModels.length; i += 1) {
                     carModels[i].mark = car.newMark;
                     promises.push(carModels[i].save());
                 }
@@ -136,11 +116,8 @@ module.exports = {
             mark,
         }).exec()
             .then((marks) => {
-                let i,
-                    promises;
-
-                promises = [];
-                for (i = 0; i < marks.length; i += 1) {
+                const promises = [];
+                for (let i = 0; i < marks.length; i += 1) {
                     promises.push(marks[i].remove());
                 }
                 return Promise.all(promises);
