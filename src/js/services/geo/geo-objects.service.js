@@ -40,31 +40,39 @@
         }
 
         function setSelected(shopId) {
-            var geoObj;
+            var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
-            geoObj.options.set('preset', 'islands#circleDotIcon');
-            geoObj.options.set('iconColor', '#ff6600');
-
-            if (processedShop && shopId === processedShop._id) {
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('CANCEL'));
+            // escape the case when a shop doesn't have a coords, which mean that it also doesn't have an associated geoObj
+            if (geoObj) {
+                geoObj.options.set('preset', 'islands#circleDotIcon');
+                geoObj.options.set('iconColor', '#ff6600');
             }
-
-            document.getElementById('geo-object-select').classList.add('selected');
+            geoObjElement = document.getElementById('geo-object-select');
+            // geoObject DOM-element doesn't exists when it's not included in a current map scope
+            if (geoObjElement) {
+                if (processedShop && shopId === processedShop._id) {
+                    angular.element(geoObjElement).text($translate.instant('CANCEL'));
+                }
+                geoObjElement.classList.add('selected');
+            }
         }
 
         function setUnselected(shopId) {
-            var geoObj;
+            var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
-            geoObj.options.set('preset', 'islands#circleIcon');
-            geoObj.options.set('iconColor', '#4d7198');
-
-            if (processedShop && shopId === processedShop._id) {
-                angular.element(document.getElementById('geo-object-select')).text($translate.instant('SELECT'));
+            if (geoObj) {
+                geoObj.options.set('preset', 'islands#circleIcon');
+                geoObj.options.set('iconColor', '#4d7198');
             }
-
-            document.getElementById('geo-object-select').classList.remove('selected');
+            geoObjElement = document.getElementById('geo-object-select');
+            if (geoObjElement) {
+                if (processedShop && shopId === processedShop._id) {
+                    angular.element(geoObjElement).text($translate.instant('SELECT'));
+                }
+                geoObjElement.classList.remove('selected');
+            }
         }
 
         function updateGeoObjectRating() {
