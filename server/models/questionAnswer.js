@@ -1,4 +1,5 @@
-var QuestionAnswerSchema, mongoose;
+let QuestionAnswerSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 QuestionAnswerSchema = require('./schemas/questionAnswer');

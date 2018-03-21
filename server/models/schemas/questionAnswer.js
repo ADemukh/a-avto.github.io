@@ -1,4 +1,4 @@
-var mongoose;
+let mongoose;
 
 mongoose = require('mongoose');
 
@@ -7,5 +7,5 @@ module.exports = new mongoose.Schema({
     answer: String,
     status: String,
     email: String,
-    userName: String
+    userName: String,
 });

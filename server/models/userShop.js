@@ -1,4 +1,6 @@
-var User, UserShopSchema, config;
+let User,
+    UserShopSchema,
+    config;
 
 config = require('../config');
 User = require('./user');

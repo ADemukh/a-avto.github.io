@@ -1,7 +1,7 @@
-var enginetypes;
+let enginetypes;
 
 enginetypes = [{
-    name: '1'
+    name: '1',
 }];
 
-module.exports =  enginetypes;
+module.exports = enginetypes;

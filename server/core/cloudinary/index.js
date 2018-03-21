@@ -1,7 +1,4 @@
-var cloudinary, config;
+const cloudinary = require('cloudinary');
+const config = require('../../config');
 
-cloudinary = require('cloudinary');
-config = require('../../config');
-cloudinary.config(config.storage.cloudinary);
-
-module.exports = cloudinary;
+module.exports = cloudinary.config(config.storage.cloudinary);;

@@ -1,7 +1,7 @@
-var enginetypes;
+let enginetypes;
 
 enginetypes = [{
-    name: 'Дизель'
+    name: 'Дизель',
 }];
 
-module.exports =  enginetypes;
+module.exports = enginetypes;

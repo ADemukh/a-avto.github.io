@@ -1,4 +1,5 @@
-var config, moment;
+let config,
+    moment;
 
 moment = require('moment-timezone');
 config = require('../config');

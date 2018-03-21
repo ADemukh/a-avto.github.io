@@ -1,4 +1,5 @@
-var EngineCapacitySchema, mongoose;
+let EngineCapacitySchema,
+    mongoose;
 
 mongoose = require('mongoose');
 EngineCapacitySchema = require('./schemas/engineCapacity');

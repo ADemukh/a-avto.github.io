@@ -1,4 +1,5 @@
-var OrderSchema, mongoose;
+let OrderSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 OrderSchema = require('./schemas/order');

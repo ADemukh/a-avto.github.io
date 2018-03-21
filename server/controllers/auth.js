@@ -1,5 +1,7 @@
-/*eslint strict:0  */
-var moment, passport, responseHelper;
+/* eslint strict:0  */
+let moment,
+    passport,
+    responseHelper;
 
 passport = require('passport');
 responseHelper = require('../helpers/response');
@@ -40,7 +42,7 @@ function onAuthenticated(req, res, next) {
             return responseHelper(res).error(alert);
         }
 
-        req.logIn(user, function onLoginnedIn(loginErr) {
+        req.logIn(user, (loginErr) => {
             if (loginErr) {
                 return next(loginErr);
             }
@@ -58,14 +60,14 @@ function onAuthenticatedWithoutPassword(req, res, next) {
             return responseHelper(res).error(alert);
         }
 
-        req.logIn(user, function onLoginnedIn(loginErr) {
+        req.logIn(user, (loginErr) => {
             if (loginErr) {
                 return next(loginErr);
             }
             return responseHelper(res).success(user);
         });
 
-        // send recover password
+    // send recover password
     };
 }
 
@@ -81,19 +83,19 @@ function authenticateSocialCallback(passportStrategy) {
 
 function onAuthenticatedSocial(req, res) {
     return function onAuthCompleted(err, user, alert) {
-        var responseData;
+        let responseData;
 
         if (err) {
             responseData = {
-                message: err
+                message: err,
             };
         } else if (!user) {
             responseData = responseHelper(res);
         } else {
-            req.logIn(user, function onLoginnedIn(loginErr) {
+            req.logIn(user, (loginErr) => {
                 if (loginErr) {
                     responseData = {
-                        message: loginErr
+                        message: loginErr,
                     };
                 }
 
@@ -107,29 +109,29 @@ function onAuthenticatedSocial(req, res) {
 }
 
 function postMessageResponse(response) {
-    var jsonData;
+    let jsonData;
 
     jsonData = JSON.stringify(response);
 
-    return '<script>' +
-        'window.opener.postMessage(' + jsonData + ', "*");' +
+    return `${'<script>' +
+        'window.opener.postMessage('}${jsonData}, "*");` +
         'setTimeout(function() { window.close(); }, 50);' +
         '</script>';
 }
 
 module.exports = {
-    isAuthenticated: isAuthenticated,
+    isAuthenticated,
     signIn: authenticate('signin'),
     signOut: singOut,
     signUpClient: authenticate('signupclient'),
     signUpClientPartial: authenticateWithoutPassword('signupclient'),
     signUpShop: authenticate('signupshop'),
     authFacebook: authenticateSocial('facebook', {
-        scope: 'email'
+        scope: 'email',
     }),
     authFacebookCallback: authenticateSocialCallback('facebook'),
     authVk: authenticateSocial('vk', {
-        scope: 'email'
+        scope: 'email',
     }),
-    authVkCallback: authenticateSocialCallback('vk')
+    authVkCallback: authenticateSocialCallback('vk'),
 };

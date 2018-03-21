@@ -1,4 +1,5 @@
-var MessageSchema, mongoose;
+let MessageSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 MessageSchema = require('./schemas/message');

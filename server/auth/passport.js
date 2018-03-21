@@ -1,25 +1,21 @@
-/*eslint strict:0  */
-var AuthFacebookStrategy, AuthLocalStrategy, AuthVkStrategy, config, passport, userController;
-var ClientUser, ShopUser, User;
+const passport = require('passport');
+const config = require('../config');
+const userController = require('../controllers/user');
 
-passport = require('passport');
-config = require('../config');
-userController = require('../controllers/user');
+const AuthLocalStrategy = require('passport-local').Strategy;
+const AuthFacebookStrategy = require('passport-facebook').Strategy;
+const AuthVkStrategy = require('passport-vkontakte').Strategy;
 
-AuthLocalStrategy = require('passport-local').Strategy;
-AuthFacebookStrategy = require('passport-facebook').Strategy;
-AuthVkStrategy = require('passport-vkontakte').Strategy;
+const ClientUser = require('../models/userClient');
+const ShopUser = require('../models/userShop');
+const User = require('../models/user');
 
-ClientUser = require('../models/userClient');
-ShopUser = require('../models/userShop');
-User = require('../models/user');
-
-passport.serializeUser(function serialize(user, done) {
+passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser(function deserialize(id, done) {
-    User.findById(id, function callback(err, user) {
+passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
         if (user) {
             user.password = null;
         }
@@ -27,55 +23,58 @@ passport.deserializeUser(function deserialize(id, done) {
     });
 });
 
-passport.use('signin', new AuthLocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password'
-    },
-    function callback(email, password, done) {
+const signinStrategyOption = {
+    usernameField: 'email',
+    passwordField: 'password',
+};
+passport.use('signin', new AuthLocalStrategy(
+    signinStrategyOption,
+    ((email, password, done) => {
         if (email === 'admin@aavto.com' && password === 'adminaavto') {
             return done(null, {
                 name: 'admin',
                 email: 'admin@aavto.com',
-                role: 'admin'
+                role: 'admin',
             });
         }
 
-        userController.findByEmail(email)
-            .then(function searchCompleted(user) {
+        return userController.findByEmail(email)
+            .then((user) => {
                 if (!user) {
                     done(null, false, {
-                        message: 'Не удалось ввойти. '
+                        message: 'Не удалось ввойти. ',
                     });
                 } else if (!!user.passwordHash && user.validPassword(password)) {
                     user.password = null;
                     done(null, user);
                 } else {
                     done(null, false, {
-                        message: 'Неправильный пароль.'
+                        message: 'Неправильный пароль.',
                     });
                 }
             })
-            .catch(function onError(err) {
+            .catch((err) => {
                 done(err);
             });
-    }));
+    }),
+));
 
-passport.use('signupclient', new AuthLocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
-    },
-    function callback(req, email, password, done) {
+const signupStrategyOption = {
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true,
+};
+passport.use('signupclient', new AuthLocalStrategy(
+    signupStrategyOption,
+    ((req, email, password, done) => {
         userController.findByEmail(email)
-            .then(function searchCompleted(user) {
-                var clientUser;
-
+            .then((user) => {
                 if (user) {
                     return done(null, false, {
-                        message: 'Пользователь с таким e-mail уже существует.'
+                        message: 'Пользователь с таким e-mail уже существует.',
                     });
                 }
-                clientUser = new ClientUser();
+                const clientUser = new ClientUser();
                 clientUser.email = email;
                 clientUser.password = req.param('password');
                 clientUser.passwordHash = clientUser.generateHash(req.param('password'));
@@ -83,32 +82,27 @@ passport.use('signupclient', new AuthLocalStrategy({
                 clientUser.phone = req.param('phone');
 
                 return userController.saveOrUpdate(clientUser)
-                    .then(function successful(savedUser) {
+                    .then((savedUser) => {
                         savedUser.password = null;
                         return done(null, savedUser);
                     });
             })
-            .catch(function onError(err) {
-                done('Не удалось зарегистрироваться. ' + err);
+            .catch((err) => {
+                done(`Не удалось зарегистрироваться. ${err}`);
             });
-    }));
-
-passport.use('signupshop', new AuthLocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
-    },
-    function callback(req, email, password, done) {
+    }),
+));
+passport.use('signupshop', new AuthLocalStrategy(
+    signupStrategyOption,
+    ((req, email, password, done) => {
         userController.findByEmail(email)
-            .then(function searchCompleted(user) {
-                var shopUser;
-
+            .then((user) => {
                 if (user) {
                     return done(null, false, {
-                        message: 'Пользователь с таким e-mail уже существует.'
+                        message: 'Пользователь с таким e-mail уже существует.',
                     });
                 }
-                shopUser = new ShopUser();
+                const shopUser = new ShopUser();
                 shopUser.email = email;
                 shopUser.name = req.param('name');
                 shopUser.www = req.param('www');
@@ -123,147 +117,149 @@ passport.use('signupshop', new AuthLocalStrategy({
                 shopUser.role = config.user.roles.SHOP;
 
                 return userController.saveOrUpdate(shopUser)
-                    .then(function successful(savedUser) {
+                    .then((savedUser) => {
                         savedUser.password = null;
                         return done(null, savedUser);
                     });
             })
-            .catch(function onError(err) {
-                done('Не удалось зарегистрироваться. ' + err);
+            .catch((err) => {
+                done(`Не удалось зарегистрироваться. ${err}`);
             });
-    }));
+    }),
+));
 
-passport.use('facebook', new AuthFacebookStrategy({
-        clientID: config.auth.facebookAuth.clientID,
-        clientSecret: config.auth.facebookAuth.clientSecret,
-        callbackURL: config.auth.facebookAuth.callbackURL,
-        profileFields: [
-            'id',
-            'displayName',
-            'profileUrl',
-            'email'
-        ]
-    },
-    function callback(accessToken, refreshToken, profile, done) {
-        var email;
-
+const facebookStrategyOption = {
+    clientID: config.auth.facebookAuth.clientID,
+    clientSecret: config.auth.facebookAuth.clientSecret,
+    callbackURL: config.auth.facebookAuth.callbackURL,
+    profileFields: [
+        'id',
+        'displayName',
+        'profileUrl',
+        'email',
+    ],
+};
+passport.use('facebook', new AuthFacebookStrategy(
+    facebookStrategyOption,
+    ((accessToken, refreshToken, profile, done) => {
         if (profile) {
-            email = profile.emails[0].value;
+            const email = profile.emails[0].value;
 
-            userController.findByEmail(email)
-                .then(function searchCompleted(user) {
-                    var clientUser;
-
+            return userController.findByEmail(email)
+                .then((user) => {
                     if (user) {
                         if (user.fb && user.fb.id === profile.id) {
                             user.password = null;
-                            done(null, user);
+                            return done(null, user);
                             // } else if (user.fb && user.fb.id && user.fb.id !== profile.id) {
                             //     done(null, false, {
                             //         message: 'Пользователь с таким e-mail уже существует.'
                             //     });
-                        } else {
-                            user.fb = {
-                                id: profile.id,
-                                profileUrl: profile.profileUrl
-                            };
-
-                            return userController.saveOrUpdate(user)
-                                .then(function successful(savedUser) {
-                                    savedUser.password = null;
-                                    return done(null, savedUser);
-                                });
                         }
-                    } else {
-                        clientUser = new ClientUser({
-                            email: email,
-                            name: profile.displayName,
-                            role: config.user.roles.CLIENT,
-                            fb: {
-                                id: profile.id,
-                                profileUrl: profile.profileUrl
-                            }
-                        });
 
-                        return userController.saveOrUpdate(clientUser)
-                            .then(function successful(savedUser) {
+                        user.fb = {
+                            id: profile.id,
+                            profileUrl: profile.profileUrl,
+                        };
+
+                        return userController.saveOrUpdate(user)
+                            .then((savedUser) => {
                                 savedUser.password = null;
                                 return done(null, savedUser);
                             });
                     }
+
+                    const clientUser = new ClientUser({
+                        email,
+                        name: profile.displayName,
+                        role: config.user.roles.CLIENT,
+                        fb: {
+                            id: profile.id,
+                            profileUrl: profile.profileUrl,
+                        },
+                    });
+
+                    return userController.saveOrUpdate(clientUser)
+                        .then((savedUser) => {
+                            savedUser.password = null;
+                            return done(null, savedUser);
+                        });
                 })
-                .catch(function onError(err) {
-                    done('Не удалось авторизоваться через социальную сеть. ' + err);
+                .catch((err) => {
+                    done(`Не удалось авторизоваться через социальную сеть. ${err}`);
                 });
-        } else {
-            return done(null, false, {
-                message: 'Не удалось авторизоваться через социальную сеть.'
-            });
         }
-    }));
+        return done(null, false, {
+            message: 'Не удалось авторизоваться через социальную сеть.',
+        });
+    }),
+));
 
-passport.use('vk', new AuthVkStrategy({
-        clientID: config.auth.vkAuth.clientID,
-        clientSecret: config.auth.vkAuth.clientSecret,
-        callbackURL: config.auth.vkAuth.callbackURL
-    },
-    function callback(accessToken, refreshToken, params, profile, done) {
-        var email;
-
+const vkStrategyOption = {
+    clientID: config.auth.vkAuth.clientID,
+    clientSecret: config.auth.vkAuth.clientSecret,
+    callbackURL: config.auth.vkAuth.callbackURL,
+};
+passport.use('vk', new AuthVkStrategy(
+    vkStrategyOption,
+    ((accessToken, refreshToken, params, profile, done) => {
         if (params && profile) {
             profile.id += '';
-            email = params.email;
 
-            userController.findByEmail(email)
-                .then(function searchCompleted(user) {
-                        var clientUser;
+            const {
+                email,
+            } = {
+                params,
+            };
 
-                        if (user) {
-                            if (user.vk && user.vk.id === profile.id) {
-                                user.password = null;
-                                done(null, user);
-                            } else if (user.vk && user.vk.id && user.vk.id !== profile.id) {
-                                done(null, false, {
-                                    message: 'Пользователь с таким e-mail уже существует.'
-                                });
-                            } else {
-                                user.vk = {
-                                    id: profile.id,
-                                    profileUrl: profile.profileUrl
-                                };
-
-                                return userController.saveOrUpdate(user)
-                                    .then(function successful(savedUser) {
-                                        savedUser.password = null;
-                                        return done(null, savedUser);
-                                    });
-                            }
-                        } else {
-                            clientUser = new ClientUser({
-                                email: email,
-                                name: profile.displayName,
-                                role: config.user.roles.CLIENT,
-                                vk: {
-                                    id: profile.id,
-                                    profileUrl: profile.profileUrl
-                                }
-                            });
-
-                            return userController.saveOrUpdate(clientUser)
-                                .then(function successful(savedUser) {
-                                    savedUser.password = null;
-                                    return done(null, savedUser);
-                                });
+            return userController.findByEmail(params.email)
+                .then((user) => {
+                    if (user) {
+                        if (user.vk && user.vk.id === profile.id) {
+                            user.password = null;
+                            return done(null, user);
                         }
-                    })
-                .catch(function onError(err) {
-                    done('Не удалось авторизоваться через социальную сеть. ' + err);
+                        if (user.vk && user.vk.id && user.vk.id !== profile.id) {
+                            return done(null, false, {
+                                message: 'Пользователь с таким e-mail уже существует.',
+                            });
+                        }
+                        user.vk = {
+                            id: profile.id,
+                            profileUrl: profile.profileUrl,
+                        };
+
+                        return userController.saveOrUpdate(user)
+                            .then((savedUser) => {
+                                savedUser.password = null;
+                                return done(null, savedUser);
+                            });
+                    }
+
+                    const clientUser = new ClientUser({
+                        email,
+                        name: profile.displayName,
+                        role: config.user.roles.CLIENT,
+                        vk: {
+                            id: profile.id,
+                            profileUrl: profile.profileUrl,
+                        },
+                    });
+
+                    return userController.saveOrUpdate(clientUser)
+                        .then((savedUser) => {
+                            savedUser.password = null;
+                            return done(null, savedUser);
+                        });
+                })
+                .catch((err) => {
+                    done(`Не удалось авторизоваться через социальную сеть. ${err}`);
                 });
-        } else {
-            return done(null, false, {
-                message: 'Не удалось авторизоваться через социальную сеть.'
-            });
         }
-    }));
+        return done(null, false, {
+            message: 'Не удалось авторизоваться через социальную сеть.',
+        });
+    }),
+));
 
 module.exports = passport;

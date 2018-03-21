@@ -1,4 +1,5 @@
-var UserBaseSchema, mongoose;
+let UserBaseSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 UserBaseSchema = require('./schemas/user');

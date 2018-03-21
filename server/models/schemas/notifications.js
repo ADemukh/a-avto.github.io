@@ -1,4 +1,4 @@
-var mongoose;
+let mongoose;
 
 mongoose = require('mongoose');
 
@@ -6,5 +6,5 @@ module.exports = new mongoose.Schema({
     name: String,
     type: String,
     forClient: Boolean,
-    forShop: Boolean
+    forShop: Boolean,
 });

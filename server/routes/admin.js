@@ -1,9 +1,11 @@
-/*eslint strict:0  */
-var express, router;
+/* eslint strict:0  */
+let express,
+    router;
 
 express = require('express');
+
 router = express.Router();
-router.get('/', function getCities(req, res) {
-  res.render('admin');
+router.get('/', (req, res) => {
+    res.render('admin');
 });
 module.exports = router;

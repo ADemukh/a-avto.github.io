@@ -1,29 +1,26 @@
-/*eslint strict:0  */
-var bodyParser, cookieParser, cookieSession, cors, express, favicon, logger, path;
-var app, config, db, passport, router;
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 
-express = require('express');
-cors = require('cors');
-path = require('path');
-favicon = require('serve-favicon');
-logger = require('morgan');
-cookieParser = require('cookie-parser');
-cookieSession = require('cookie-session');
-bodyParser = require('body-parser');
+const config = require('./config');
+const router = require('./routes/');
 
-config = require('./config');
-router = require('./routes/');
+require('./db');
+const passport = require('./auth/passport');
 
-db = require('./db');
-passport = require('./auth/passport');
-app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cors());
 app.use(cookieParser(config.cookie.parser));
@@ -39,23 +36,21 @@ app.use(express.static(path.join(__dirname, '../.build')));
 app.use('/', router);
 
 // catch 404 and forward to error handler
-app.use(function use(req, res, next) {
-  var err;
-
-  err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
-app.use(function use(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((err, req, res) => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

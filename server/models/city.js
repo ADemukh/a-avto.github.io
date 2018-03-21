@@ -1,4 +1,5 @@
-var CitySchema, mongoose;
+let CitySchema,
+    mongoose;
 
 mongoose = require('mongoose');
 CitySchema = require('./schemas/city');

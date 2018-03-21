@@ -1,10 +1,10 @@
-var mongoose;
+let mongoose;
 
 mongoose = require('mongoose');
 
 module.exports = new mongoose.Schema({
     name: {
-		type: String,
-		required: true
-	}
+        type: String,
+        required: true,
+    },
 });

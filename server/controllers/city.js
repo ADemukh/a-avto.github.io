@@ -1,20 +1,20 @@
-/*eslint strict:0  */
-var City;
+/* eslint strict:0  */
+let City;
 
 City = require('../models/city');
 
 function saveCity(city) {
-    var cityModel;
+    let cityModel;
 
     cityModel = new City({
-        name: city.name
+        name: city.name,
     });
 
-    return cityModel.save(function save(err) {
+    return cityModel.save((err) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(city.name + ' is loaded.');
+            console.log(`${city.name} is loaded.`);
         }
     });
 }
@@ -28,36 +28,34 @@ module.exports = {
     },
     deleteCity: function deleteCity(id) {
         return City.findOne({
-                _id: id
-            }).exec()
-            .then(function foundCity(city) {
-                return city.remove(function success(err) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        console.log('DELETE removing ID: ' + city.id);
-                    }
-                });
-            });
+            _id: id,
+        }).exec()
+            .then(city => city.remove((err) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(`DELETE removing ID: ${city.id}`);
+                }
+            }));
     },
     getCity: function getCity(name) {
         return City.findOne({
-            name: name
+            name,
         }).exec();
     },
     updateCity: function updateCity(city) {
-		return City.findById({
-			_id: city.id
-		}).exec()
-			.then(function foundCar(gotCity) {
-				gotCity.name = city.name;
+        return City.findById({
+            _id: city.id,
+        }).exec()
+            .then((gotCity) => {
+                gotCity.name = city.name;
 
-				return gotCity.save()
-					.then(function success(save) {
-						console.log(save.type + ' is loaded.');
-					}, function failure(err) {
-						console.log(err);
-					});
-			});
-	}
+                return gotCity.save()
+                    .then((save) => {
+                        console.log(`${save.type} is loaded.`);
+                    }, (err) => {
+                        console.log(err);
+                    });
+            });
+    },
 };

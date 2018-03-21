@@ -1,4 +1,5 @@
-var OrderShopDialogSchema, mongoose;
+let OrderShopDialogSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 OrderShopDialogSchema = require('./schemas/orderShopDialog');

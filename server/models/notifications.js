@@ -1,4 +1,5 @@
-var NotificationsSchema, mongoose;
+let NotificationsSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 NotificationsSchema = require('./schemas/notifications');

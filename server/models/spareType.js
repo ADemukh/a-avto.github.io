@@ -1,4 +1,5 @@
-var SpareTypeSchema, mongoose;
+let SpareTypeSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 SpareTypeSchema = require('./schemas/spareType');

@@ -1,4 +1,5 @@
-var CarSchema, mongoose;
+let CarSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 CarSchema = require('./schemas/car');

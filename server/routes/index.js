@@ -1,11 +1,13 @@
-/*eslint strict:0  */
-var express, router;
+/* eslint strict:0  */
+let express,
+    router;
 
 express = require('express');
+
 router = express.Router();
 
-router.get('/', function index(req, res) {
-  res.sendFile('../../.build/index.html');
+router.get('/', (req, res) => {
+    res.sendFile('../../.build/index.html');
 });
 
 router.use('/init', require('./inits'));

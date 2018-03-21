@@ -1,4 +1,5 @@
-var FileSchema, mongoose;
+let FileSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 FileSchema = require('./schemas/file');

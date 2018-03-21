@@ -1,6 +1,4 @@
 
-var multer;
-
-multer = require('multer');
+const multer = require('multer');
 
 module.exports = multer.memoryStorage();

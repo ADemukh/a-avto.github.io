@@ -1,5 +1,9 @@
-/*eslint strict:0  */
-var TokenSchema, UserSchema, bcrypt, config, mongoose;
+/* eslint strict:0  */
+let TokenSchema,
+    UserSchema,
+    bcrypt,
+    config,
+    mongoose;
 
 mongoose = require('mongoose');
 bcrypt = require('bcryptjs');
@@ -7,29 +11,29 @@ config = require('../../config');
 TokenSchema = require('./token');
 
 UserSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: true
-	},
-	email: {
-		type: String,
-		required: true
-	},
-	passwordHash: String,
-	phone: String,
-	notifications: [String],
-	changesFrom: {
-		'type': Date,
-		'default': Date.now
-	},
-	photo: {
-		fileName: String,
-		url: String,
-		thumbUrl: String
-	},
-	tokens: [TokenSchema]
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
+    passwordHash: String,
+    phone: String,
+    notifications: [String],
+    changesFrom: {
+        type: Date,
+        default: Date.now,
+    },
+    photo: {
+        fileName: String,
+        url: String,
+        thumbUrl: String,
+    },
+    tokens: [TokenSchema],
 }, {
-	discriminatorKey: 'role'
+    discriminatorKey: 'role',
 });
 
 UserSchema.methods.generateHash = function generateHash(password) {

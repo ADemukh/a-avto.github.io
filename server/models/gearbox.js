@@ -1,4 +1,5 @@
-var GearboxSchema, mongoose;
+let GearboxSchema,
+    mongoose;
 
 mongoose = require('mongoose');
 GearboxSchema = require('./schemas/gearbox');

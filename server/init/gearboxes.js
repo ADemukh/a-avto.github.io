@@ -1,7 +1,7 @@
-var enginetypes;
+let enginetypes;
 
 enginetypes = [{
-    name: 'Автоматическая'
+    name: 'Автоматическая',
 }];
 
-module.exports =  enginetypes;
+module.exports = enginetypes;

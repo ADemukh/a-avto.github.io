@@ -1,46 +1,46 @@
-/*eslint strict:0  */
-var cityInitialCollection;
+/* eslint strict:0  */
+let cityInitialCollection;
 
 cityInitialCollection = [{
-    name: 'Минск'
+    name: 'Минск',
 }, {
-    name: 'Гомель'
+    name: 'Гомель',
 }, {
-    name: 'Могилёв'
+    name: 'Могилёв',
 }, {
-    name: 'Витебск'
+    name: 'Витебск',
 }, {
-    name: 'Гродно'
+    name: 'Гродно',
 }, {
-    name: 'Брест'
+    name: 'Брест',
 }, {
-    name: 'Бобруйск'
+    name: 'Бобруйск',
 }, {
-    name: 'Барановичи'
+    name: 'Барановичи',
 }, {
-    name: 'Борисов'
+    name: 'Борисов',
 }, {
-    name: 'Пинск'
+    name: 'Пинск',
 }, {
-    name: 'Орша'
+    name: 'Орша',
 }, {
-    name: 'Мозырь'
+    name: 'Мозырь',
 }, {
-    name: 'Солигорск'
+    name: 'Солигорск',
 }, {
-    name: 'Новополоцк'
+    name: 'Новополоцк',
 }, {
-    name: 'Лида'
+    name: 'Лида',
 }, {
-    name: 'Молодечно'
+    name: 'Молодечно',
 }, {
-    name: 'Полоцк'
+    name: 'Полоцк',
 }, {
-    name: 'Жлобин'
+    name: 'Жлобин',
 }, {
-    name: 'Светлогорск'
+    name: 'Светлогорск',
 }, {
-    name: 'Речица'
+    name: 'Речица',
 }];
 
 module.exports = cityInitialCollection;
