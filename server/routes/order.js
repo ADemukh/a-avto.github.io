@@ -1,19 +1,13 @@
-/* eslint strict:0  */
-let express,
-    responseHelper,
-    router;
-let authController,
-    orderController;
+const express = require('express');
 
-express = require('express');
-
-router = express.Router();
-authController = require('../controllers/auth');
-orderController = require('../controllers/order');
-responseHelper = require('../helpers/response');
+const router = express.Router();
+const authController = require('../controllers/auth');
+const orderController = require('../controllers/order');
+const responseHelper = require('../helpers/response');
+const profileClientController = require('../controllers/profileClient');
 
 router.post('/submitneworder', authController.isAuthenticated, (req, res) => {
-    orderController.submitOrder(req.body.order)
+    profileClientController.submitClientOrder(req.body.order)
         .then(responseHelper(res).success, responseHelper(res).error);
 });
 

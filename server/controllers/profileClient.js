@@ -1,11 +1,7 @@
-/* eslint strict:0  */
-let Order,
-    OrderShopDialog,
-    userController;
-
-Order = require('../models/order');
-OrderShopDialog = require('../models/orderShopDialog');
-userController = require('./user');
+const Order = require('../models/order');
+// const OrderShopDialog = require('../models/orderShopDialog');
+const userController = require('./user');
+const orderService = require('../services/order.service');
 
 function changeContactInfo(email, userInfo) {
     return userController.findByEmail(email)
@@ -58,38 +54,26 @@ function addNewCar(email, newCar) {
 }
 
 function getOrders(filter, email, user) {
-    let orders;
-
-    // return Order.find({ 'client.user': user }).exec()
-    // 	.then(function setOrdersResult(results) {
-    // 		orders = results;
-    // 	})
-    // 	.then(function fetchUnseenOrderMessages() {
-    // 		return OrderShopDialog
-    // 			.find({
-    // 				'messages.seen': false,
-    // 				'messages.author'
-    // 			})
-    // 			.where('messages')
-    // 			.exec();
-    // 	})
-    // 	.then(function setOrderDialogsResult(results) {
-    // 		return orders;
-    // 	})
-
     return Order.find({
         'client.user': user,
     })
         .populate({
             path: 'dialogs',
             select: 'messages',
-            // match: {
-
-            // }
+            populate: {
+                path: 'messages',
+                options: {
+                    // limit: 1,
+                },
+            },
         })
         .exec()
         .then(results => results)
         .catch(err => err);
+}
+
+function submitClientOrder(orderInfo) {
+    return orderService.submitClientOrder(orderInfo);
 }
 
 module.exports = {
@@ -98,4 +82,5 @@ module.exports = {
     changeCars,
     addNewCar,
     getOrders,
+    submitClientOrder,
 };

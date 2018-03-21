@@ -4,6 +4,8 @@ const Message = require('../models/message');
 const mongoose = require('mongoose');
 const shopService = require('./shop.service');
 
+const profileClientController = require('../controllers/profileClient');
+
 function getOrderCar(orderInfo) {
     const car = orderInfo.car.selected._id === orderInfo.car.newCar._id ?
         orderInfo.car.newCar :
@@ -28,14 +30,13 @@ function getAvailableShops(orderInfo) {
 }
 
 function getOrderDialogs(orderInfo) {
-    const initialMessage = getInitialOrderMessage(orderInfo);
     return getAvailableShops(orderInfo)
         .then(shops =>
             shops.map(shop => new OrderShopDialog({
                 _id: new mongoose.Types.ObjectId(),
                 order: orderInfo._id,
                 shop,
-                messages: [initialMessage],
+                messages: [getInitialOrderMessage(orderInfo)],
             })));
 }
 
@@ -65,25 +66,29 @@ function submitClientOrder(orderInfo) {
                 wantedList: orderInfo.wantedList,
             });
 
+            const newlyCreatedMessages = [];
             dialogs.forEach((dialog) => {
                 order.dialogs.push(dialog);
+                newlyCreatedMessages.push(...dialog.messages);
             });
 
             return order.save()
                 .then(() => OrderShopDialog.insertMany(dialogs))
+                .then(() => Message.insertMany(newlyCreatedMessages))
                 .then(() => {
-                    // return car.needSave ?
-                    //     profileClientController.addNewCar(orderInfo.contacts.email, orderInfo.car.newCar) :
-                    //     car;
-                    return car;
+                    if (car.needSave) {
+                        return profileClientController.addNewCar(
+                            orderInfo.contacts.email,
+                            orderInfo.car.newCar,
+                        );
+                    }
+                    return Promise.resolve();
                 });
         });
 }
 
 function getOrders(filter) {
-    let orderFilter;
-
-    orderFilter = {};
+    const orderFilter = {};
     if (filter.orderCity) {
         orderFilter['client.contacts.city'] = {
             $in: [filter.orderCity],
@@ -114,26 +119,38 @@ function getOrders(filter) {
     }
 
     // if (filter.worksNow) {
-    // 	currentDay = moment().format('dddd').toLowerCase();
-    // 	currentTime = moment().format('HH:mm');
-    // 	orderFilter['schedule.' + currentDay + '.active'] = true;
-    // 	orderFilter['schedule.' + currentDay + '.from'] = { $lte: currentTime };
-    // 	orderFilter['schedule.' + currentDay + '.to'] = { $gte: currentTime };
+    //     const currentDay = moment().format('dddd').toLowerCase();
+    //     const currentTime = moment().format('HH:mm');
+    //     orderFilter[`schedule.${currentDay}.active`] = true;
+    //     orderFilter[`schedule.${currentDay}.from`] = {
+    //         $lte: currentTime,
+    //     };
+    //     orderFilter[`schedule.${currentDay}.to`] = {
+    //         $gte: currentTime,
+    //     };
     // }
     // if (filter.worksOnWeekend) {
-    // 	orderFilter.$or = [
-    // 		{ 'schedule.saturday.active': true },
-    // 		{ 'schedule.sunday.active': true }
-    // 	];
+    //     orderFilter.$or = [
+    //         {
+    //             'schedule.saturday.active': true,
+    //         },
+    //         {
+    //             'schedule.sunday.active': true,
+    //         },
+    //     ];
     // }
     return Order.find(orderFilter).exec();
+}
+
+function getClientOrders() {
+    
 }
 
 module.exports = {
     submitClientOrder,
     getClientOrders,
-    getClientOrderShops,
-    getClientOrderShopMessages,
-    getShopOrders,
-    getShopOrderMessages,
+    // getClientOrderShops,
+    // getClientOrderShopMessages,
+    // getShopOrders,
+    // getShopOrderMessages,
 };

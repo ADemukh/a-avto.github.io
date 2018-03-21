@@ -17,7 +17,10 @@ OrderShopDialogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    messages: [MessageSchema],
+    messages: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message',
+    }],
     created: {
         type: String,
         default: moment().format(moment.DATE_TIME_FORMAT),
