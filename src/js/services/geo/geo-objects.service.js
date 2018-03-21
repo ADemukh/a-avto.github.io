@@ -43,10 +43,13 @@
             var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
-            geoObj.options.set('preset', 'islands#circleDotIcon');
-            geoObj.options.set('iconColor', '#ff6600');
-
+            // escape the case when a shop doesn't have a coords, which mean that it also doesn't have an associated geoObj
+            if (geoObj) {
+                geoObj.options.set('preset', 'islands#circleDotIcon');
+                geoObj.options.set('iconColor', '#ff6600');
+            }
             geoObjElement = document.getElementById('geo-object-select');
+            // geoObject DOM-element doesn't exists when it's not included in a current map scope
             if (geoObjElement) {
                 if (processedShop && shopId === processedShop._id) {
                     angular.element(geoObjElement).text($translate.instant('CANCEL'));
@@ -59,9 +62,10 @@
             var geoObj, geoObjElement;
 
             geoObj = shopsMapping.get(shopId);
-            geoObj.options.set('preset', 'islands#circleIcon');
-            geoObj.options.set('iconColor', '#4d7198');
-
+            if (geoObj) {
+                geoObj.options.set('preset', 'islands#circleIcon');
+                geoObj.options.set('iconColor', '#4d7198');
+            }
             geoObjElement = document.getElementById('geo-object-select');
             if (geoObjElement) {
                 if (processedShop && shopId === processedShop._id) {

@@ -41,7 +41,9 @@
             if (vm.shops) {
                 vm.center = vm.filters.shopCity;
                 vm.totalShops = vm.shops && vm.shops.length >= 0 ? vm.shops.length : '';
-                vm.builtShops = vm.shops.map(function buildShopGeo(shop) {
+                vm.builtShops = vm.shops.filter(function withCoordsOnly(shop) {
+                    return shop.longitude && shop.latitude;
+                }).map(function buildShopGeo(shop) {
                     return {
                         geometry: {
                             type: 'Point',
