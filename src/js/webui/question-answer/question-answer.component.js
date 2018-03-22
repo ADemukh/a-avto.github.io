@@ -8,7 +8,7 @@
         })
         .controller('controllers.questionanswer', QuestionAnswerController);
 
-        QuestionAnswerController.$inject = ['services.identity', 'services.question'];
+    QuestionAnswerController.$inject = ['services.identity', 'services.question'];
 
     function QuestionAnswerController(identity, question) {
         this.$onInit = function onInit() {
@@ -28,13 +28,12 @@
                 this.question = '';
             };
 
-        question.getAllQuestionsAnswers().then(function onGetAllQuestionsAnswers(allQuestions) {
-            vm.allQuestions = allQuestions.data;
-            console.log(vm.allQuestions);
-        });
-        
-        this.email = identity.user.email;
-        this.name = identity.user.name;
+            question.getAllQuestionsAnswers().then(function onGetAllQuestionsAnswers(allQuestions) {
+                vm.allQuestions = allQuestions.data;
+            });
+
+            this.email = identity.user.email;
+            this.name = identity.user.name;
         };
     }
 })();
