@@ -1,5 +1,6 @@
 const QuestionAnswer = require('../models/questionAnswer');
-
+const mailer = require('./mailer');
+const sendAnswerTemplate = require('../templates/sendAnswer');
 function saveQuestionAnswer(question) {
     const questionAnswerModel = new QuestionAnswer(question);
     return questionAnswerModel.save((err) => {
@@ -14,6 +15,9 @@ function saveQuestionAnswer(question) {
 module.exports = {
     getQuestionAnswer: function getQuestionAnswer(filter) {
         return QuestionAnswer.find(filter).exec();
+    },
+    getQuestionAnswerPublic: function getQuestionAnswerPublic() {
+        return QuestionAnswer.find({ public: "on"}).exec();
     },
     deleteQuestionAnswer: function deleteQuestionAnswer(id) {
         return QuestionAnswer.findOne({
@@ -34,24 +38,26 @@ module.exports = {
             .then((gotQuestionAnswer) => {
                 gotQuestionAnswer.question = question.question;
                 gotQuestionAnswer.answer = question.answer;
-                gotQuestionAnswer.status = question.status;
+                gotQuestionAnswer.public = question.public;
                 gotQuestionAnswer.userName = question.userName;
                 gotQuestionAnswer.email = question.email;
+
+                const template = sendAnswerTemplate(gotQuestionAnswer);
+                mailer.sendEmail(gotQuestionAnswer.email, 'Aavto.by. ' + gotQuestionAnswer.question, template);
                 return gotQuestionAnswer.save()
                     .then((save) => {
-                        console.log(`${save.type} is loaded.`);
+                        console.log(`${save.question} is loaded.`);
                     }, (err) => {
                         console.log(err);
                     });
             });
     },
-    getQuestion: function getQuestion(question) {
-        return QuestionAnswer.findOne({
-            question,
-        }).exec();
+    getQuestion: function getQuestion(_id) {
+        return QuestionAnswer.findById(_id).exec();
     },
 
     addQuestionAnswer: function addQuestionAnswer(questionAnswer) {
+        questionAnswer.status = questionAnswer.public || false
         return saveQuestionAnswer(questionAnswer);
     },
 };

@@ -20,13 +20,13 @@
     vm = this;
     vm.$onInit = function onInit() {
       carService.getEngineCapacities().then(function onGetCapacities(engineCapacities) {
-          vm.engineCapacities = engineCapacities;
+        vm.engineCapacities = engineCapacities;
       });
       carService.getGearboxes().then(function onGetGearboxes(gearboxes) {
-          vm.gearboxes = gearboxes;
+        vm.gearboxes = gearboxes;
       });
       carService.getEngineTypes().then(function onGetEngineTypes(engineTypes) {
-          vm.engineTypes = engineTypes;
+        vm.engineTypes = engineTypes;
       });
 
       loadMarks();

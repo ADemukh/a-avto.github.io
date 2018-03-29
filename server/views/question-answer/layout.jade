@@ -53,34 +53,38 @@ html
         text-align: center;
       }
       .close {
-        margin-top: -14px;
-        right: 10px;
-        float: right;
-        background-color: transparent;
-        font-size: 20px;
+          position: sticky;
+          margin-top: 2px;
+          margin-right: 2px;
+          float: right;
+          background-color: #c00000;
+          border-radius: 50%;
+          border: none;
+          width: 20px;
+          height: 20px;
       }
       .close:hover {
         color: red;
       }
       .wrapper_body {
-        margin-top: 13px;
-        font-size: 11px;
-        font-family: 'Open Sans', sans-serif;
-        color: #4A4A4A ;
-        text-align: center;   
+          font-size: 11px;
+          font-family: 'Open Sans', sans-serif;
+          color: #4A4A4A;
+          text-align: center;
+          word-wrap: break-word;
       }
       .cbm_wrap {
           background: #fff;
-          margin: 5px;
-          height: 55px;
-          width: 210px;
+          margin: 10px;
+          padding: 10px;
+          height: auto;
+          width: 300px;
           box-sizing: border-box;
           border: 2px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
       }
       .wrapper_body_center {
-        margin-top: 10px;
         font-size: 11px;
         font-family: 'Open Sans', sans-serif;
         color: #4A4A4A ;
@@ -90,20 +94,18 @@ html
           background: #fff;
           margin: auto;
           margin-top: 10px;
-          height: 55px;
-          width: 210px;
+          width: 400px;
           box-sizing: border-box;
           border: 2px solid #ccc;
           border-radius: 4px;
           font-size: 16px;
       }
-      .allLinks{
-        top: 10px;
-        text-decoration: none;
-        height: 30px;
-        width: 200px;
-        color: #4A4A4A !important;
-        font-size: 20px;
+      .allLinks {
+          text-decoration: none;
+          height: 30px;
+          width: 200px;
+          color: #4A4A4A !important;
+          font-size: 20px;
       }
       .allLinks:hover{
         text-decoration: underline;
@@ -135,5 +137,19 @@ html
       }
       .addCarSubmit:hover{
         text-decoration: underline;
+      }
+
+      .carSubmitTextArea {
+        max-width: 390px;
+        min-width: 390px;
+        width: 390px;
+        min-height: 150px;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: white;
+        color: black;
       }
     block content

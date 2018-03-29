@@ -8,6 +8,7 @@
 
     function QuestionService($http) {
         return {
+            newQuestion: newQuestion,
             sendNewQuestion: sendNewQuestion,
             getAllQuestionsAnswers: getAllQuestionsAnswers
         };
@@ -17,7 +18,15 @@
         }
 
         function getAllQuestionsAnswers() {
-            return $http.get('questionAnswer/getQuestionsAnswers');
+            return $http.get('questionAnswer/getQuestionsAnswersPublic');
+        }
+
+        function newQuestion() {
+            return {
+                userName: '',
+                email: '',
+                question: ''
+            };
         }
     }
 })();

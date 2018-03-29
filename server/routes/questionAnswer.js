@@ -7,15 +7,16 @@ express = require('express');
 
 router = express.Router();
 questionAnswerController = require('../controllers/questionAnswer');
+responseHelper = require('../helpers/response');
 
 router.post('/sendNewQuestion', (req, res) => {
     questionAnswerController.addQuestionAnswer({
         question: req.body.question,
         answer: req.body.answer,
-        status: req.body.status,
+        public: req.body.public,
         email: req.body.email,
         userName: req.body.userName,
-    });
+    }).then(responseHelper(res).success, responseHelper(res).error);
 });
 
 router.get('/allQuestionAnswer/add', (req, res) => {
@@ -25,7 +26,7 @@ router.post('/allQuestionAnswer/add', (req, res) => {
     questionAnswerController.addQuestionAnswer({
         question: req.body.question,
         answer: req.body.answer,
-        status: req.body.status,
+        public: req.body.public,
         userName: req.body.userName,
         email: req.body.email,
     })
@@ -34,10 +35,18 @@ router.post('/allQuestionAnswer/add', (req, res) => {
         });
 });
 
+router.get('/getQuestionsAnswersPublic', (req, res) => {
+    questionAnswerController.getQuestionAnswerPublic({})
+        .then((questions) => {
+            console.log(questions)
+            res.json(questions);
+        });
+});
+
 router.get('/getQuestionsAnswers', (req, res) => {
     questionAnswerController.getQuestionAnswer({})
-        .then((cities) => {
-            res.json(cities);
+        .then((questions) => {
+            res.json(questions);
         });
 });
 
@@ -57,8 +66,8 @@ router.post('/allQuestionAnswer/delete', (req, res) => {
         });
 });
 
-router.get('/allQuestionAnswer/:question', (req, res) => {
-    questionAnswerController.getQuestion(req.params.question)
+router.get('/allQuestionAnswer/:_id', (req, res) => {
+    questionAnswerController.getQuestion(req.params._id)
         .then((question) => {
             res.render('question-answer/editQuestionAnswer', {
                 question,
@@ -66,12 +75,12 @@ router.get('/allQuestionAnswer/:question', (req, res) => {
         });
 });
 
-router.post('/allQuestionAnswer/:question/edit', (req, res) => {
+router.post('/allQuestionAnswer/:_id/edit', (req, res) => {
     questionAnswerController.updateQuestionAnswer({
         id: req.body.id,
         question: req.body.question,
         answer: req.body.answer,
-        status: req.body.status,
+        public: req.body.public,
         userName: req.body.userName,
         email: req.body.email,
     })
