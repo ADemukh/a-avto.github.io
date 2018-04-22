@@ -32,12 +32,16 @@ function getAvailableShops(orderInfo) {
 function getOrderDialogs(orderInfo) {
     return getAvailableShops(orderInfo)
         .then(shops =>
-            shops.map(shop => new OrderShopDialog({
-                _id: new mongoose.Types.ObjectId(),
-                order: orderInfo._id,
-                shop,
-                messages: [getInitialOrderMessage(orderInfo)],
-            })));
+            shops.map((shop) => {
+                const initMsg = getInitialOrderMessage(orderInfo);
+                return new OrderShopDialog({
+                    _id: new mongoose.Types.ObjectId(),
+                    order: orderInfo._id,
+                    shop,
+                    messages: [initMsg],
+                    lastMessage: initMsg,
+                });
+            }));
 }
 
 

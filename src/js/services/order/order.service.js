@@ -8,13 +8,25 @@
 
     function OrdersService($http) {
         return {
-            getOrders: getOrders
+            getOrders: getOrders,
+            getOrderById: getOrderById
         };
 
         function getOrders(filter) {
             return $http.get('order/getOrders', {
                 params: {
                     filter: filter
+                }
+            })
+            .then(function response(resp) {
+                return resp.data;
+            });
+        }
+
+        function getOrderById(id) {
+            return $http.get('order/getOrderById', {
+                params: {
+                    id: id
                 }
             })
             .then(function response(resp) {

@@ -13,9 +13,12 @@
         })
         .controller('controllers.clientordersitem', ClientOrdersItemController);
 
-    ClientOrdersItemController.$inject = [];
+    ClientOrdersItemController.$inject = ['$state'];
 
-    function ClientOrdersItemController() {
+    function ClientOrdersItemController($state) {
+        var vm;
+
+        vm = this;
         this.$onInit = function onInit() {
 			this.closeOrder = function closeOrder() {
 				this.onClose({
@@ -27,8 +30,9 @@
 					$event: this.order
 				});
 			};
-			this.seeMessages = function seeMessages() {
-			};
+			this.openOrderDialogs = function openOrderDialogs() {
+                $state.go('client.profile.order', { orderId: vm.order._id });
+            };
         };
         this.$onChanges = function onChanges(changes) {
             if (changes.order) {

@@ -59,11 +59,26 @@ function getOrders(filter, email, user) {
     })
         .populate({
             path: 'dialogs',
-            select: 'messages',
+            select: 'lastMessage',
             populate: {
-                path: 'messages',
-                options: {
-                    // limit: 1,
+                path: 'lastMessage',
+            },
+        })
+        .exec()
+        .then(results => results)
+        .catch(err => err);
+}
+
+function getOrderById(id) {
+    return Order.findById(id)
+        .populate({
+            path: 'dialogs',
+            select: 'lastMessage shop',
+            populate: {
+                path: 'lastMessage shop',
+                populate: {
+                    path: 'author',
+                    select: 'name',
                 },
             },
         })
@@ -82,5 +97,6 @@ module.exports = {
     changeCars,
     addNewCar,
     getOrders,
+    getOrderById,
     submitClientOrder,
 };
