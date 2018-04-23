@@ -128,7 +128,7 @@ var WEBUI_MODULE_NAME;
                     url: '/client/profile/orders',
                     parent: 'client.profile'
                 }).state('client.profile.order', {
-                    template: '<q-order-details class="display-block"/>',
+                    template: '<q-dialogs-container class="display-block"/>',
                     url: '/client/profile/order/:orderId',
                     parent: 'client.profile'
                 }).state('client.profile.settings', {

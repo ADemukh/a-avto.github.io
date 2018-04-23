@@ -1,0 +1,20 @@
+<div class="order-details">
+    <div ng-if="$ctrl.loading" class="loader-wrapper">
+        <div class="loader">Loading...</div>
+    </div>
+    <div ng-if="!$ctrl.loading">
+        <q-no-data-found ng-if="!$ctrl.order" />
+
+        <ul class="order-dialog-list">
+            <li ng-repeat="dialog in $ctrl.order.dialogs">
+                <!-- ALSO SEEN OR NOT -->
+                <div class="order-dialog-list-item">
+                    <a href="#"><h2>SHOP: {{dialog.shop.name}}</h2></a>
+                    <span class="dialog-last-msg">{{dialog.lastMessage.author.name}}: {{dialog.lastMessage.content}}</span>
+                    <span class="dialog-last-msg-created">{{dialog.lastMessage.created}}</span>
+                    <button>OPEN_DIALOG</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

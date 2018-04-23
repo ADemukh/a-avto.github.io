@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qClientOrderItem', {
             controller: 'controllers.clientordersitem',
-            templateUrl: 'webui/common/orders/order.tmpl.html',
+            templateUrl: 'webui/profile/profile-client/profile-client-order-item/profile-client-order-item.tmpl.html',
             bindings: {
                 order: '<',
 				onChange: '&',
@@ -30,7 +30,7 @@
 					$event: this.order
 				});
 			};
-			this.openOrderDialogs = function openOrderDialogs() {
+			this.openOrderDialogContainer = function openOrderDialogs() {
                 $state.go('client.profile.order', { orderId: vm.order._id });
             };
         };

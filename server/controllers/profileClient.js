@@ -73,7 +73,7 @@ function getOrderById(id) {
     return Order.findById(id)
         .populate({
             path: 'dialogs',
-            select: 'lastMessage shop',
+            // select: 'lastMessage shop',
             populate: {
                 path: 'lastMessage shop',
                 populate: {
