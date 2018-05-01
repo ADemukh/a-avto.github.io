@@ -128,7 +128,7 @@ var WEBUI_MODULE_NAME;
                     url: '/client/profile/orders',
                     parent: 'client.profile'
                 }).state('client.profile.order', {
-                    template: '<q-dialogs-container class="display-block"/>',
+                    template: '<q-dialogs-container class="display-block height-full"/>',
                     url: '/client/profile/order/:orderId',
                     params: {
                         profileType: 'client'
@@ -154,7 +154,7 @@ var WEBUI_MODULE_NAME;
                     abstract: true,
                     parent: 'shop'
                 }).state('shop.profile.orders', {
-                    template: '<q-dialogs-container class="display-block"/>',
+                    template: '<q-dialogs-container class="display-block height-full"/>',
                     url: '/shop/profile/orders',
                     params: {
                         profileType: 'shop'

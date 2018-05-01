@@ -8,7 +8,7 @@
             bindings: {
                 profileType: '<',
                 dialogs: '<',
-                changeSelectedDialog: '&'
+                selectedDialog: '='
             }
         })
         .controller('controllers.dialogs', DialogsController);
@@ -19,5 +19,8 @@
         var vm;
 
         vm = this;
+        vm.changeSelectedDialog = function changeSelectedDialog(dialog) {
+            vm.selectedDialog = dialog;
+        };
     }
 })();

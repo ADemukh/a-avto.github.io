@@ -33,9 +33,5 @@
                 vm.loading = false;
             });
         };
-
-        vm.changeSelectedDialog = function changeSelectedDialog(dialog) {
-            vm.selectedDialog = dialog;
-        };
     }
 })();

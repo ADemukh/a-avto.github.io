@@ -1,11 +1,11 @@
 <ul class="dialog-list">
-    <li ng-repeat="dialog in $ctrl.dialogs">
-        <!-- ALSO SEEN OR NOT -->
-        <div class="dialog-list-item">
+    <li ng-repeat="dialog in $ctrl.dialogs"
+        class="dialog-list-item"
+        ng-class="{ 'selected' : dialog === $ctrl.selectedDialog }"
+        ng-click="::$ctrl.changeSelectedDialog(dialog)">
+            <!-- ALSO SEEN OR NOT -->
             <a href="#"><h2>{{$ctrl.profileType === 'shop' ? dialog.user.name : dialog.shop.name}}</h2></a>
             <span class="dialog-last-msg">{{dialog.lastMessage.author.name}}: {{dialog.lastMessage.content}}</span>
             <span class="dialog-last-msg-created">{{dialog.lastMessage.created}}</span>
-            <button ng-click="::$ctrl.changeSelectedDialog({ dialog: dialog })">select dialog</button>
-        </div>
     </li>
 </ul>
