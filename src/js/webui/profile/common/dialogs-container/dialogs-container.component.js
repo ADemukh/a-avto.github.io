@@ -8,20 +8,34 @@
         })
         .controller('controllers.dialogscontainer', DialogsContainerController);
 
-        DialogsContainerController.$inject = ['$stateParams', 'services.order'];
+        DialogsContainerController.$inject = ['$stateParams', 'services.client', 'services.shop'];
 
-    function DialogsContainerController($stateParams, orderService) {
+    function DialogsContainerController($stateParams, clientService, shopService) {
         var vm;
 
         vm = this;
         this.$onInit = function onInit() {
-            vm.loading = true;
+            var getDialogsPromise;
 
-            orderService.getOrderById($stateParams.orderId)
-                .then(function gotOrder(order) {
-                    vm.order = order;
-                    vm.loading = false;
-                });
+            vm.loading = true;
+            vm.profileType = $stateParams.profileType;
+            if (vm.profileType === 'client') {
+                getDialogsPromise = clientService.getOrderDialogs($stateParams.orderId);
+            } else if (vm.profileType === 'shop') {
+                getDialogsPromise = shopService.getShopDialogs();
+            }
+
+            getDialogsPromise.then(function gotDialogs(dialogs) {
+                vm.dialogs = dialogs;
+                if (vm.dialogs.length) {
+                    vm.selectedDialog = vm.dialogs[0];
+                }
+                vm.loading = false;
+            });
+        };
+
+        vm.changeSelectedDialog = function changeSelectedDialog(dialog) {
+            vm.selectedDialog = dialog;
         };
     }
 })();

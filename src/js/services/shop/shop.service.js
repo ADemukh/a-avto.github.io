@@ -8,6 +8,7 @@
     function ShopsService($http, identityService) {
         return {
             getShops: getShops,
+            getShopDialogs: getShopDialogs,
             changePhoto: changePhoto,
             changeContactInfo: changeContactInfo,
             changePassword: changePassword,
@@ -65,6 +66,14 @@
             })
             .then(function response(resp) {
                 return resp.data;
+            });
+        }
+
+        function getShopDialogs() {
+            return $http.post('profile/getshopdialogs', {
+                    id: identityService.user._id
+            }).then(function gotDialogs(response) {
+                return response.data;
             });
         }
     }

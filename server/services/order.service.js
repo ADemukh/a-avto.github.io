@@ -37,6 +37,7 @@ function getOrderDialogs(orderInfo) {
                 return new OrderShopDialog({
                     _id: new mongoose.Types.ObjectId(),
                     order: orderInfo._id,
+                    user: orderInfo.client,
                     shop,
                     messages: [initMsg],
                     lastMessage: initMsg,

@@ -18,9 +18,4 @@ router.get('/getOrders', (req, res) => {
         });
 });
 
-router.get('/getOrderById', (req, res) => {
-    profileClientController.getOrderById(req.query.id)
-        .then(order => res.json(order));
-});
-
 module.exports = router;

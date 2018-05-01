@@ -1,5 +1,5 @@
 const Order = require('../models/order');
-// const OrderShopDialog = require('../models/orderShopDialog');
+const OrderShopDialog = require('../models/orderShopDialog');
 const userController = require('./user');
 const orderService = require('../services/order.service');
 
@@ -69,17 +69,13 @@ function getOrders(filter, email, user) {
         .catch(err => err);
 }
 
-function getOrderById(id) {
-    return Order.findById(id)
+function getOrderDialogs(orderId) {
+    return OrderShopDialog.find({ order: orderId })
         .populate({
-            path: 'dialogs',
-            // select: 'lastMessage shop',
+            path: 'lastMessage messages shop',
             populate: {
-                path: 'lastMessage shop',
-                populate: {
-                    path: 'author',
-                    select: 'name',
-                },
+                path: 'author',
+                select: 'name',
             },
         })
         .exec()
@@ -97,6 +93,6 @@ module.exports = {
     changeCars,
     addNewCar,
     getOrders,
-    getOrderById,
+    getOrderDialogs,
     submitClientOrder,
 };

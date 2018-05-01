@@ -1,0 +1,8 @@
+<div class="chat-view">
+    <h2>{{$ctrl.profileType === 'shop' ? $ctrl.selectedDialog.user.name : $ctrl.selectedDialog.shop.name}}</h2>
+    <ul class="message-list">
+        <li ng-repeat="msg in $ctrl.selectedDialog.messages">
+            {{msg.author.name}}: {{msg.content}}
+        </li>
+    </ul>
+</div>

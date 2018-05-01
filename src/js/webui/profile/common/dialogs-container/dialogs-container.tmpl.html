@@ -1,20 +1,17 @@
-<div class="order-details">
+<div>
     <div ng-if="$ctrl.loading" class="loader-wrapper">
         <div class="loader">Loading...</div>
     </div>
     <div ng-if="!$ctrl.loading">
-        <q-no-data-found ng-if="!$ctrl.order" />
+        <q-no-data-found ng-if="!$ctrl.dialogs" />
 
-        <ul class="order-dialog-list">
-            <li ng-repeat="dialog in $ctrl.order.dialogs">
-                <!-- ALSO SEEN OR NOT -->
-                <div class="order-dialog-list-item">
-                    <a href="#"><h2>SHOP: {{dialog.shop.name}}</h2></a>
-                    <span class="dialog-last-msg">{{dialog.lastMessage.author.name}}: {{dialog.lastMessage.content}}</span>
-                    <span class="dialog-last-msg-created">{{dialog.lastMessage.created}}</span>
-                    <button>OPEN_DIALOG</button>
-                </div>
-            </li>
-        </ul>
+        <div class="dialog-container-view">
+            <q-dialogs
+                profile-type="::$ctrl.profileType"
+                dialogs="$ctrl.dialogs"
+                change-selected-dialog="::$ctrl.changeSelectedDialog(dialog)">
+            </q-dialogs>
+            <q-chat-view profile-type="::$ctrl.profileType" selected-dialog="$ctrl.selectedDialog"></q-chat-view>
+        </div>
     </div>
 </div>

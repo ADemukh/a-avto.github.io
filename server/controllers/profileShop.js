@@ -1,7 +1,5 @@
-/* eslint strict:0  */
-let userController;
-
-userController = require('../controllers/user');
+const OrderShopDialog = require('../models/orderShopDialog');
+const userController = require('../controllers/user');
 
 function changePhoto(email, photo) {
     return userController.findUserByEmail(email)
@@ -65,9 +63,24 @@ function updateNotification(user, notifications) {
     return userController.saveOrUpdate(user);
 }
 
+function getShopDialogs(shopId) {
+    return OrderShopDialog.find({ shop: shopId })
+        .populate({
+            path: 'lastMessage messages user',
+            populate: {
+                path: 'author',
+                select: 'name',
+            },
+        })
+        .exec()
+        .then(results => results)
+        .catch(err => err);
+}
+
 module.exports = {
     changePhoto,
     changeContactInfo,
     changeOptions,
     changeNotifications,
+    getShopDialogs,
 };

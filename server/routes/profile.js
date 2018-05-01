@@ -44,6 +44,12 @@ router.post('/getclientorders', authController.isAuthenticated, (req, res) => {
             res.json(orders);
         });
 });
+router.post('/getorderdialogs', authController.isAuthenticated, (req, res) => {
+    profileClientController.getOrderDialogs(req.body.id)
+        .then((dialogs) => {
+            res.json(dialogs);
+        });
+});
 
 // shop profile
 router.post('/changeshopphoto', authController.isAuthenticated, (req, res) => {
@@ -61,6 +67,12 @@ router.post('/changeshopoptions', authController.isAuthenticated, (req, res) => 
 router.post('/changeshopnotifications', authController.isAuthenticated, (req, res) => {
     profileShopController.changeNotifications(req.body.email, req.body.notifications)
         .then(responseHelper(res).success, responseHelper(res).error);
+});
+router.post('/getshopdialogs', authController.isAuthenticated, (req, res) => {
+    profileShopController.getShopDialogs(req.body.id)
+        .then((dialogs) => {
+            res.json(dialogs);
+        });
 });
 
 module.exports = router;

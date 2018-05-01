@@ -13,6 +13,7 @@
             changeNotifications: changeNotifications,
             changeCars: changeCars,
             getOrders: getOrders,
+            getOrderDialogs: getOrderDialogs,
             closeOrder: closeOrder,
             deleteOrder: deleteOrder
         };
@@ -66,6 +67,15 @@
                 id: identityService.user._id
             }).then(function gotOrders(response) {
                 return response.data;
+            });
+        }
+
+        function getOrderDialogs(id) {
+            return $http.post('profile/getOrderDialogs', {
+                    id: id
+            })
+            .then(function gotDialogs(resp) {
+                return resp.data;
             });
         }
 
