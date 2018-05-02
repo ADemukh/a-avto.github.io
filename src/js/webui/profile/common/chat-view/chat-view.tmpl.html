@@ -1,14 +1,14 @@
-<div class="chat-view">
+<div class="chat-view height-full">
     <div class="chat-view-header">
         <h2>{{$ctrl.profileType === 'shop' ? $ctrl.selectedDialog.user.name : $ctrl.selectedDialog.shop.name}}</h2>        
     </div>
-    <ul class="message-list">
+    <ul class="message-list flex">
         <li ng-repeat="msg in $ctrl.selectedDialog.messages">
             {{msg.author.name}}: {{msg.content}}
         </li>
     </ul>
     <div class="chat-input-area">
-        <input type="text">
-        <button>send</button>
+        <input  class="message-input flex" type="text">
+        <button class="message-send">send</button>
     </div>
 </div>
