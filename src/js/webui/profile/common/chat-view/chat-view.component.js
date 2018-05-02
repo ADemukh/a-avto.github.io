@@ -6,7 +6,7 @@
             controller: 'controllers.chatview',
             templateUrl: 'webui/profile/common/chat-view/chat-view.tmpl.html',
             bindings: {
-                profileType: '<',
+                user: '<',
                 selectedDialog: '<'
             }
         })
@@ -15,8 +15,11 @@
         // DialogsController.$inject = [];
 
     function ChatViewController() {
-        var vm;
+        var user, vm;
 
         vm = this;
+
+        vm.sendUserMsg = function sendUserMessage() {
+        };
     }
 })();

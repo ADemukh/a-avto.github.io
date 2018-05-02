@@ -8,9 +8,9 @@
         })
         .controller('controllers.dialogscontainer', DialogsContainerController);
 
-        DialogsContainerController.$inject = ['$stateParams', 'services.client', 'services.shop'];
+        DialogsContainerController.$inject = ['services.identity', '$stateParams', 'services.client', 'services.shop'];
 
-    function DialogsContainerController($stateParams, clientService, shopService) {
+    function DialogsContainerController(identityService, $stateParams, clientService, shopService) {
         var vm;
 
         vm = this;
@@ -18,10 +18,10 @@
             var getDialogsPromise;
 
             vm.loading = true;
-            vm.profileType = $stateParams.profileType;
-            if (vm.profileType === 'client') {
+            vm.user = identityService.user;
+            if (vm.user.role === 'client') {
                 getDialogsPromise = clientService.getOrderDialogs($stateParams.orderId);
-            } else if (vm.profileType === 'shop') {
+            } else if (vm.user.role === 'shop') {
                 getDialogsPromise = shopService.getShopDialogs();
             }
 

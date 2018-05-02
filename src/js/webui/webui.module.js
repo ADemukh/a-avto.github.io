@@ -130,9 +130,6 @@ var WEBUI_MODULE_NAME;
                 }).state('client.profile.order', {
                     template: '<q-dialogs-container class="display-block height-full"/>',
                     url: '/client/profile/order/:orderId',
-                    params: {
-                        profileType: 'client'
-                    },
                     parent: 'client.profile'
                 }).state('client.profile.settings', {
                     template: '<q-profile-client-settings class="display-block"/>',
@@ -156,9 +153,6 @@ var WEBUI_MODULE_NAME;
                 }).state('shop.profile.orders', {
                     template: '<q-dialogs-container class="display-block height-full"/>',
                     url: '/shop/profile/orders',
-                    params: {
-                        profileType: 'shop'
-                    },
                     parent: 'shop.profile'
                 }).state('shop.profile.settings', {
                     template: '<q-profile-shop-settings class="display-block"/>',

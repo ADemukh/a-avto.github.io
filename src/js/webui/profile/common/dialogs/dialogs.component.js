@@ -6,7 +6,7 @@
             controller: 'controllers.dialogs',
             templateUrl: 'webui/profile/common/dialogs/dialogs.tmpl.html',
             bindings: {
-                profileType: '<',
+                user: '<',
                 dialogs: '<',
                 selectedDialog: '='
             }

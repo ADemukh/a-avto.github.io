@@ -7,13 +7,13 @@
     <div class="dialog-container-view height-full">
         <q-dialogs
             class="flex"
-            profile-type="::$ctrl.profileType"
+            user="::$ctrl.user"
             dialogs="$ctrl.dialogs"
             selected-dialog="$ctrl.selectedDialog">
         </q-dialogs>
         <q-chat-view
-            class="flex height-full"
-            profile-type="::$ctrl.profileType"
+            class="flex"
+            user="::$ctrl.user"
             selected-dialog="$ctrl.selectedDialog">
         </q-chat-view>
     </div>

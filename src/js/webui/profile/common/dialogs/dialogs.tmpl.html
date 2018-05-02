@@ -4,7 +4,7 @@
         ng-class="{ 'selected' : dialog === $ctrl.selectedDialog }"
         ng-click="::$ctrl.changeSelectedDialog(dialog)">
             <!-- ALSO SEEN OR NOT -->
-            <a href="#"><h2>{{$ctrl.profileType === 'shop' ? dialog.user.name : dialog.shop.name}}</h2></a>
+            <a href="#"><h2>{{$ctrl.user.role === 'shop' ? dialog.user.name : dialog.shop.name}}</h2></a>
             <span class="dialog-last-msg">{{dialog.lastMessage.author.name}}: {{dialog.lastMessage.content}}</span>
             <span class="dialog-last-msg-created">{{dialog.lastMessage.created}}</span>
     </li>
