@@ -5,17 +5,22 @@
         .factory('services.dialog', DialogService);
     DialogService.$inject = ['$http', 'services.identity'];
 
-    function DialogService($http, identityService) {
+    function DialogService($http) {
         return {
+            addMessageToDialog: addMessageToDialog,
         };
 
-        // function addMessageToDialog(author, content) {
-        //     return $http.post('dialog/addMessage', {
-        //             id: id
-        //     })
-        //     .then(function gotDialogs(resp) {
-        //         return resp.data;
-        //     });
-        // }
+        function addMessageToDialog(dialog, author, content) {
+            return $http.post('dialog/addMessage', {
+                    dialogId: dialog._id,
+                    author: author,
+                    content: content
+            })
+            .then(function messageSavingSuccess(resp) {
+                return resp.data;
+            }, function messageSavingFailure() {
+                console.log('Message failed saving to the dialog!');
+            });
+        }
     }
 })();

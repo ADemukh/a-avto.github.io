@@ -12,14 +12,15 @@
         })
         .controller('controllers.chatview', ChatViewController);
 
-        // DialogsController.$inject = [];
+    ChatViewController.$inject = ['services.dialog'];
 
-    function ChatViewController() {
+    function ChatViewController(dialogService) {
         var user, vm;
 
         vm = this;
 
         vm.sendUserMsg = function sendUserMessage() {
+            dialogService.addMessageToDialog(vm.selectedDialog, vm.user, vm.userMsg);
         };
     }
 })();
