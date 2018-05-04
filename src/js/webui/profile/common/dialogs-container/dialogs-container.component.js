@@ -28,7 +28,7 @@
             getDialogsPromise.then(function gotDialogs(dialogs) {
                 vm.dialogs = dialogs;
                 if (vm.dialogs.length) {
-                    vm.selectedDialog = vm.dialogs[0];
+                    // vm.selectedDialog = vm.dialogs[0];
                 }
                 vm.loading = false;
             });
@@ -49,6 +49,10 @@
                     vm.dialogs[selectedDialogIndex] = dialog;
                     vm.selectedDialog = dialog;
                 });
+        };
+
+        vm.selectDialog = function selectDialog(dialog) {
+            vm.selectedDialog = dialog;
         };
     }
 })();

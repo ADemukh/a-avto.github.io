@@ -9,7 +9,8 @@
             class="flex"
             user="::$ctrl.user"
             dialogs="$ctrl.dialogs"
-            selected-dialog="$ctrl.selectedDialog">
+            selected-dialog="$ctrl.selectedDialog"
+            select-dialog="::$ctrl.selectDialog(dialog)">
         </q-dialogs>
         <q-chat-view
             class="flex"

@@ -8,19 +8,23 @@
             bindings: {
                 user: '<',
                 dialogs: '<',
-                selectedDialog: '='
+                selectedDialog: '<',
+                selectDialog: '&'
             }
         })
         .controller('controllers.dialogs', DialogsController);
 
-        // DialogsController.$inject = [];
+        DialogsController.$inject = ['_'];
 
-    function DialogsController() {
+    function DialogsController(_) {
         var vm;
 
         vm = this;
-        vm.changeSelectedDialog = function changeSelectedDialog(dialog) {
-            vm.selectedDialog = dialog;
+
+        vm.countUnseenMessages = function countUnseenMessages(dialog) {
+            return _.filter(dialog.messages, function seenByUser(message) {
+                return !message.seen && message.author._id !== vm.user._id;
+            }).length;
         };
     }
 })();
