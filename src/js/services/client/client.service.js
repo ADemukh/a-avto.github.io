@@ -14,6 +14,7 @@
             changeCars: changeCars,
             getOrders: getOrders,
             getOrderDialogs: getOrderDialogs,
+            getOrderDialogById: getOrderDialogById,
             closeOrder: closeOrder,
             deleteOrder: deleteOrder
         };
@@ -70,8 +71,17 @@
             });
         }
 
-        function getOrderDialogs(id) {
+        function getOrderDialogs(orderId) {
             return $http.post('profile/getOrderDialogs', {
+                    id: orderId
+            })
+            .then(function gotDialogs(resp) {
+                return resp.data;
+            });
+        }
+
+        function getOrderDialogById(id) {
+            return $http.post('profile/client/getOrderDialogById', {
                     id: id
             })
             .then(function gotDialogs(resp) {

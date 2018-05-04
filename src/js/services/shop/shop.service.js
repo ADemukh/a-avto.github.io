@@ -9,6 +9,7 @@
         return {
             getShops: getShops,
             getShopDialogs: getShopDialogs,
+            getOrderDialogById: getOrderDialogById,
             changePhoto: changePhoto,
             changeContactInfo: changeContactInfo,
             changePassword: changePassword,
@@ -74,6 +75,15 @@
                     id: identityService.user._id
             }).then(function gotDialogs(response) {
                 return response.data;
+            });
+        }
+
+        function getOrderDialogById(id) {
+            return $http.post('profile/shop/getOrderDialogById', {
+                    id: id
+            })
+            .then(function gotDialogs(resp) {
+                return resp.data;
             });
         }
     }

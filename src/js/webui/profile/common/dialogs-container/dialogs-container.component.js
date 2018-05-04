@@ -8,13 +8,13 @@
         })
         .controller('controllers.dialogscontainer', DialogsContainerController);
 
-        DialogsContainerController.$inject = ['services.identity', '$stateParams', 'services.client', 'services.shop'];
+        DialogsContainerController.$inject = ['_', 'services.identity', '$stateParams', 'services.client', 'services.shop'];
 
-    function DialogsContainerController(identityService, $stateParams, clientService, shopService) {
+    function DialogsContainerController(_, identityService, $stateParams, clientService, shopService) {
         var vm;
 
         vm = this;
-        this.$onInit = function onInit() {
+        vm.$onInit = function onInit() {
             var getDialogsPromise;
 
             vm.loading = true;
@@ -32,6 +32,23 @@
                 }
                 vm.loading = false;
             });
+        };
+
+        vm.updateSelectedDialog = function updateSelectedDialog() {
+            var getOrderDialogPromise;
+
+            if (vm.user.role === 'client') {
+                getOrderDialogPromise = clientService.getOrderDialogById(vm.selectedDialog._id);
+            } else if (vm.user.role === 'shop') {
+                getOrderDialogPromise = shopService.getOrderDialogById(vm.selectedDialog._id);
+            }
+            getOrderDialogPromise.then(function gotUpdatedDialog(dialog) {
+                    var selectedDialogIndex;
+
+                    selectedDialogIndex = _.indexOf(vm.dialogs, vm.selectedDialog);
+                    vm.dialogs[selectedDialogIndex] = dialog;
+                    vm.selectedDialog = dialog;
+                });
         };
     }
 })();

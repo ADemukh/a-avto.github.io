@@ -83,6 +83,20 @@ function getOrderDialogs(orderId) {
         .catch(err => err);
 }
 
+function getOrderDialogById(id) {
+    return OrderShopDialog.findById(id)
+        .populate({
+            path: 'lastMessage messages shop',
+            populate: {
+                path: 'author',
+                select: 'name',
+            },
+        })
+        .exec()
+        .then(result => result)
+        .catch(err => err);
+}
+
 function submitClientOrder(orderInfo) {
     return orderService.submitClientOrder(orderInfo);
 }
@@ -94,5 +108,6 @@ module.exports = {
     addNewCar,
     getOrders,
     getOrderDialogs,
+    getOrderDialogById,
     submitClientOrder,
 };

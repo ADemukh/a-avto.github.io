@@ -77,10 +77,25 @@ function getShopDialogs(shopId) {
         .catch(err => err);
 }
 
+function getOrderDialogById(id) {
+    return OrderShopDialog.findById(id)
+        .populate({
+            path: 'lastMessage messages user',
+            populate: {
+                path: 'author',
+                select: 'name',
+            },
+        })
+        .exec()
+        .then(result => result)
+        .catch(err => err);
+}
+
 module.exports = {
     changePhoto,
     changeContactInfo,
     changeOptions,
     changeNotifications,
     getShopDialogs,
+    getOrderDialogById,
 };

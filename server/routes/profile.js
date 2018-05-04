@@ -1,20 +1,11 @@
-/* eslint strict:0  */
-let express,
-    router;
-let authController,
-    profileClientController,
-    profileShopController,
-    responseHelper,
-    userController;
+const express = require('express');
 
-express = require('express');
-
-router = express.Router();
-authController = require('../controllers/auth');
-userController = require('../controllers/user');
-profileClientController = require('../controllers/profileClient');
-profileShopController = require('../controllers/profileShop');
-responseHelper = require('../helpers/response');
+const router = express.Router();
+const authController = require('../controllers/auth');
+const userController = require('../controllers/user');
+const profileClientController = require('../controllers/profileClient');
+const profileShopController = require('../controllers/profileShop');
+const responseHelper = require('../helpers/response');
 
 router.post('/changepassword', authController.isAuthenticated, (req, res) => {
     userController.changePassword(req.body.email, req.body.newPassword)
@@ -50,6 +41,12 @@ router.post('/getorderdialogs', authController.isAuthenticated, (req, res) => {
             res.json(dialogs);
         });
 });
+router.post('/client/getorderdialogbyid', authController.isAuthenticated, (req, res) => {
+    profileClientController.getOrderDialogById(req.body.id)
+        .then((dialog) => {
+            res.json(dialog);
+        });
+});
 
 // shop profile
 router.post('/changeshopphoto', authController.isAuthenticated, (req, res) => {
@@ -72,6 +69,12 @@ router.post('/getshopdialogs', authController.isAuthenticated, (req, res) => {
     profileShopController.getShopDialogs(req.body.id)
         .then((dialogs) => {
             res.json(dialogs);
+        });
+});
+router.post('/shop/getorderdialogbyid', authController.isAuthenticated, (req, res) => {
+    profileShopController.getOrderDialogById(req.body.id)
+        .then((dialog) => {
+            res.json(dialog);
         });
 });
 

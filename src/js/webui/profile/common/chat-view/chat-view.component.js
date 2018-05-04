@@ -7,7 +7,8 @@
             templateUrl: 'webui/profile/common/chat-view/chat-view.tmpl.html',
             bindings: {
                 user: '<',
-                selectedDialog: '<'
+                selectedDialog: '<',
+                updateSelectedDialog: '&'
             }
         })
         .controller('controllers.chatview', ChatViewController);
@@ -20,7 +21,9 @@
         vm = this;
 
         vm.sendUserMsg = function sendUserMessage() {
-            dialogService.addMessageToDialog(vm.selectedDialog, vm.user, vm.userMsg);
+            dialogService.addMessageToDialog(vm.selectedDialog, vm.user, vm.userMsg)
+                .then(vm.updateSelectedDialog);
+            vm.userMsg = '';
         };
     }
 })();
