@@ -8,9 +8,16 @@
         })
         .controller('controllers.dialogscontainer', DialogsContainerController);
 
-        DialogsContainerController.$inject = ['_', 'services.identity', '$stateParams', 'services.client', 'services.shop'];
+        DialogsContainerController.$inject = [
+            '_',
+            'services.identity',
+            '$stateParams',
+            'services.client',
+            'services.shop',
+            'services.dialog'
+        ];
 
-    function DialogsContainerController(_, identityService, $stateParams, clientService, shopService) {
+    function DialogsContainerController(_, identityService, $stateParams, clientService, shopService, dialogService) {
         var vm;
 
         vm = this;
@@ -53,6 +60,25 @@
 
         vm.selectDialog = function selectDialog(dialog) {
             vm.selectedDialog = dialog;
+
+            setDialogMessagesSeen(dialog.messages);
         };
+
+        function setDialogMessagesSeen(messages) {
+            var unseenMessages, unseenMessagesIds;
+
+            unseenMessages = _.filter(messages, msg => isMessageUnseen(msg));
+            unseenMessagesIds = _.map(unseenMessages, msg => msg._id);
+
+            // set seen already fetched object (avoid additional fetching)
+            dialogService.setMessagesSeen(unseenMessagesIds)
+                .then(() => _.each(unseenMessages, msg => {
+                    msg.seen = true;
+                }));
+        }
+
+        function isMessageUnseen(msg) {
+            return !msg.seen && msg.author._id !== vm.user._id;
+        }
     }
 })();

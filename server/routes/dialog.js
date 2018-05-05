@@ -11,4 +11,9 @@ router.post('/addMessage', authController.isAuthenticated, (req, res) => {
         .then(responseHelper(res).success, responseHelper(res).error);
 });
 
+router.post('/setMessagesSeen', authController.isAuthenticated, (req, res) => {
+    dialogController.setMessagesSeen(req.body.messagesIds)
+        .then(responseHelper(res).success, responseHelper(res).error);
+});
+
 module.exports = router;

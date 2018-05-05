@@ -8,6 +8,7 @@
     function DialogService($http) {
         return {
             addMessageToDialog: addMessageToDialog,
+            setMessagesSeen: setMessagesSeen,
         };
 
         function addMessageToDialog(dialog, author, content) {
@@ -20,6 +21,17 @@
                 return resp.data;
             }, function messageSavingFailure() {
                 console.log('Message failed saving to the dialog!');
+            });
+        }
+
+        function setMessagesSeen(messagesIds) {
+            return $http.post('dialog/setMessagesSeen', {
+                messagesIds: messagesIds,
+            })
+            .then(function messagesSetSeen(resp) {
+                return resp.data;
+            }, function failure() {
+                console.log('Messages failed to be set seen!');
             });
         }
     }

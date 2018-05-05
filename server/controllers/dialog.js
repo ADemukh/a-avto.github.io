@@ -13,6 +13,17 @@ function addMessage(dialogId, author, content) {
         }));
 }
 
+function setMessagesSeen(messagesIds) {
+    return Message.update({
+        _id: { $in: messagesIds },
+    }, {
+        $set: { seen: true },
+    }, {
+        multi: true,
+    });
+}
+
 module.exports = {
     addMessage,
+    setMessagesSeen,
 };
