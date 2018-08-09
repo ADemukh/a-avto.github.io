@@ -4,8 +4,7 @@
   "description": "An express a-avto app.",
   "main": "index.js",
   "scripts": {
-    "start": "gulp start",
-    "postinstall": "bower install"
+    "start": "gulp start"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
