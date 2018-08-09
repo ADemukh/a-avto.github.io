@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    form(action='/questionAnswer/allQuestionAnswer/' + question.question + '/edit', method='POST')
+    form(action='/questionAnswer/allQuestionAnswer/' + question._id + '/edit', method='POST')
         P
             div.cbm_wrap_button
                 div.wrapper_body_button
@@ -9,11 +9,15 @@ block content
         p.center Вопрос
             .cbm_wrap_center
                 .wrapper_body_center
-                    input.carSubmit(type='text', name='question', value=question.question, placeholder=question.question)  
+                    textarea.carSubmitTextArea(type='text', name='question', value=question.question, placeholder=question.question)  
         p.center Ответ
             .cbm_wrap_center
                 .wrapper_body_center
-                    input.carSubmit(type='text', name='answer', value=question.answer, placeholder=question.answer)   
+                    textarea.carSubmitTextArea(type='text', name='answer', value=question.answer, placeholder=question.answer)   
+        p.center Публиковать?
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='checkbox', name='public', value=question.public, placeholder=question.public)               
         p.center Пользователь   
             .cbm_wrap_center
                 .wrapper_body_center
@@ -27,4 +31,4 @@ block content
             div.cbm_wrap_button_center
                 div.wrapper_body_button_center
                     button.addCarSubmit(type='submit').
-                        Изменить
+                        Изменить 

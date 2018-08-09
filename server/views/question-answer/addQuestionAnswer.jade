@@ -8,11 +8,15 @@ block content
         p.center Добавление вопроса:
             .cbm_wrap_center
                 .wrapper_body_center
-                    input.carSubmit(type='text', name='question', value=question, placeholder='Вопрос') 
+                    textarea.carSubmitTextArea(type='text', name='question', value=question, placeholder='Вопрос') 
         p.center Ответ
             .cbm_wrap_center
                 .wrapper_body_center
-                    input.carSubmit(type='text', name='answer', value=answer, placeholder='Ответ')   
+                    textarea.carSubmitTextArea(type='text', name='answer', value=answer, placeholder='Ответ')   
+        p.center Публиковать?
+            .cbm_wrap_center
+                .wrapper_body_center
+                    input.carSubmit(type='checkbox', name='public', value=public, placeholder=public)        
         p.center Пользователь   
             .cbm_wrap_center
                 .wrapper_body_center

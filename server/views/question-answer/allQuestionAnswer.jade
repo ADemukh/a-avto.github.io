@@ -17,7 +17,7 @@ block content
             div.cbm_wrap
                 div.wrapper_body
                     form(action='/questionAnswer/allQuestionAnswer/delete', method='POST')
-                        a.allLinks(href="/questionAnswer/allQuestionAnswer/#{question.question}") #{question.question}               
+                        a.allLinks(href="/questionAnswer/allQuestionAnswer/#{question._id}") #{question.question}               
                         input(type='hidden', value=question.id, name='id')
                         button.close(type='submit' title='Удалить' onclick="return confirm('Вы уверены?') ? true : false;").
                             X

@@ -1,43 +1,102 @@
-<div class="container">
-    <form name="$ctrl.questionForm" class="contacts layout-column" novalidate>
-        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.name.$invalid && !$ctrl.questionForm.name.$pristine }">
-            <span class="caption" translate>NAME</span>
-            <div class="field short layout-column">
-                <input type="text" name="name" ng-model="$ctrl.name" required class="form-control"></input>
-                <span class="help-block" ng-show="$ctrl.questionForm.name.$error.required && !$ctrl.questionForm.name.$pristine" translate>FIELD_IS_REQUIRED</span>
+<div class="question-answer">
+    <div class="container">
+        <div ng-if="!$ctrl.selectedQuestion">
+            <div class="row">
+                <div class="col-md-8 text-center margin-top">
+                    <h1>
+                        <span>Есть вопросы? Мы поможем вам!</span>
+                    </h1>
+                </div>
+                <div class="col-md-4">
+                    <form name="$ctrl.questionForm" class="contacts layout-column" novalidate>
+                        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.userName.$invalid && !$ctrl.questionForm.userName.$pristine }">
+                            <h4 class="caption" translate>Имя:</h4>
+                            <div class="field short layout-column">
+                                <input type="text" name="userName" ng-model="$ctrl.form.userName" required class="form-control text-center"></input>
+                                <span class="help-block" ng-show="$ctrl.questionForm.userName.$error.required && !$ctrl.questionForm.userName.$pristine"
+                                    translate>FIELD_IS_REQUIRED</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.email.$invalid && !$ctrl.questionForm.email.$pristine}">
+                            <h4 class="caption">Эл. адрес:</h4>
+                            <div class="field short layout-column">
+                                <input type="email" name="email" ng-model="$ctrl.form.email" required class="form-control text-center"></input>
+                                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.required && !$ctrl.questionForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
+                                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.email && !$ctrl.questionForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h4 class="caption">Вопрос:</h4>
+                            <div class="field short" ng-class="{ 'has-error' : $ctrl.questionForm.question.$invalid && !$ctrl.questionForm.question.$pristine }">
+                                <textarea type="text" name="question" ng-model="$ctrl.form.question" required class="form-control"></textarea>
+                                <span class="help-block" ng-show="$ctrl.questionForm.question.$error.required && !$ctrl.questionForm.question.$pristine"
+                                    translate>FIELD_IS_REQUIRED</span>
+                            </div>
+                        </div>
+
+                        <div ng-show="$ctrl.alerts && $ctrl.alerts.length" class="form-group layout-row layout-wrap">
+                            <div class="settings-line-caption"></div>
+                            <div class="layout-column settings-line-content-input">
+                                <q-alerts alerts="$ctrl.alerts" />
+                            </div>
+                        </div>
+
+                        <div class="action text-center">
+                            <button type="button" class="btn btn-cancel btn-back" ng-disabled="$ctrl.questionForm.$invalid" ng-click="$ctrl.send()">
+                                <span>Отправить</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : $ctrl.questionForm.email.$invalid && !$ctrl.questionForm.email.$pristine}">
-            <span class="caption" translate>EMAIL</span>
-            <div class="field short layout-column">
-                <input type="email" name="email" ng-model="$ctrl.email" required class="form-control"></input>
-                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.required && !$ctrl.questionForm.email.$pristine" translate>FIELD_IS_REQUIRED</span>
-                <span class="help-block" ng-show="$ctrl.questionForm.email.$error.email && !$ctrl.questionForm.email.$pristine" translate>EMAIL_IS_NOT_CORRECT</span>
+            <hr>
+
+            <div class="row text-center faq">
+                <h2>
+                    <span>Список часто задаваемых вопросов</span>
+                </h2>
             </div>
-        <div class="form-group">
-            <span class="caption">Вопрос: </span>
-            <div class="field short" ng-class="{ 'has-error' : $ctrl.questionForm.question.$invalid && !$ctrl.questionForm.question.$pristine }">
-                <textarea type="text" name="question" ng-model="$ctrl.question" required class="form-control"></textarea>
-                <span class="help-block" ng-show="$ctrl.questionForm.question.$error.required && !$ctrl.questionForm.question.$pristine" translate>FIELD_IS_REQUIRED</span>
+            <div class="row">
+                <div class="col-md-4" ng-repeat="question in $ctrl.allQuestions">
+                    <div class="question-block">
+                        <div class="question-block-body">
+                            <strong>
+                                <h3 class="question-head" title="{{question.question}}">{{question.question}}</h3>
+                            </strong>
+                            <hr>
+                            <h4 class="ellipsis" title="{{question.answer}}">{{question.answer}}</h4>
+                        </div>
+                        <div class="question-block-footer text-right">
+                            <button type="button" class="btn" ng-click="::$ctrl.openQuestion(question);" style="width:34%">
+                                <span>Подробнее</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <hr>
         </div>
 
-        <div class="action">
-            <button type="button" class="btn btn-cancel btn-back" ng-disabled="$ctrl.questionForm.$invalid" ng-click="$ctrl.send()">
-                <span>Отправить</span>
-            </button>
+        <div ng-if="$ctrl.selectedQuestion">
+            <div class="question-block-footer text-left">
+                <button type="button" class="btn" ng-click="::$ctrl.backTolist();">
+                    <span>Вернуться</span>
+                </button>
+            </div>
+            <div class="row text-center faq">
+                <h2>
+                    <strong>
+                        <span>{{$ctrl.selectedQuestion.question}}</span>
+                    </strong>
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{$ctrl.selectedQuestion.answer}}</h4>
+                </div>
+            </div>
         </div>
-    </form>
-    <div class="row">
-        <div class="text-center">
-            Вопросы
-        </div>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="question in $ctrl.allQuestions">
-                <h5>Вопрос: {{question.question}}</h5>
-                <h5>Ответ: {{question.answer}}</h5>
-                <h5>Пользователь: {{question.userName}}</h5>
-            </li>
-        </ul>
     </div>
 </div>
