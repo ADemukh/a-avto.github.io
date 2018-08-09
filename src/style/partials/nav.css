@@ -110,8 +110,14 @@
   padding: 10px;
 }
 
+/* height manipulation causes footer layout issues */
 .navbar-top-offset {
   margin-top: 50px;
+  height: calc(100vh - 50px - 188.67px);
+}
+.navbar-top-offset.search-shops,
+.navbar-top-offset.search-orders {
+  height: auto;
   min-height: calc(100vh - 50px - 188.67px);
 }
 

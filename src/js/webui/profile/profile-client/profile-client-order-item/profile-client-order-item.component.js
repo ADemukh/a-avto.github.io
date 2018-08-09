@@ -4,7 +4,7 @@
     angular.module(WEBUI_MODULE_NAME)
         .component('qClientOrderItem', {
             controller: 'controllers.clientordersitem',
-            templateUrl: 'webui/common/orders/order.tmpl.html',
+            templateUrl: 'webui/profile/profile-client/profile-client-order-item/profile-client-order-item.tmpl.html',
             bindings: {
                 order: '<',
 				onChange: '&',
@@ -13,9 +13,12 @@
         })
         .controller('controllers.clientordersitem', ClientOrdersItemController);
 
-    ClientOrdersItemController.$inject = [];
+    ClientOrdersItemController.$inject = ['$state'];
 
-    function ClientOrdersItemController() {
+    function ClientOrdersItemController($state) {
+        var vm;
+
+        vm = this;
         this.$onInit = function onInit() {
 			this.closeOrder = function closeOrder() {
 				this.onClose({
@@ -27,8 +30,9 @@
 					$event: this.order
 				});
 			};
-			this.seeMessages = function seeMessages() {
-			};
+			this.openOrderDialogContainer = function openOrderDialogs() {
+                $state.go('client.profile.order', { orderId: vm.order._id });
+            };
         };
         this.$onChanges = function onChanges(changes) {
             if (changes.order) {

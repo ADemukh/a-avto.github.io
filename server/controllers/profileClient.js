@@ -1,6 +1,23 @@
 const Order = require('../models/order');
-// const OrderShopDialog = require('../models/orderShopDialog');
+const OrderShopDialog = require('../models/orderShopDialog');
 const userController = require('./user');
+const orderService = require('../services/order.service');
+
+function changeContactInfo(email, userInfo) {
+    return userController.findByEmail(email)
+        .then((user) => {
+            if (userInfo.email !== email) {
+                return Promise.reject('Возможность изменить email отсуствует.');
+                // return userController.findByEmail(userInfo.email)
+                // 	.then(function foundUserWithOtherEmail(otherUser) {
+                // 		return Promise.reject('Пользователь с таким email уже существует.');
+                // 	}, function notFoundUserWithOtherEmail() {
+                // 		return updateContactInfo(user, userInfo);
+                // 	});
+            }
+            return updateContactInfo(user, userInfo);
+        });
+}
 
 function updateContactInfo(user, newUserContactInfo) {
     user.email = newUserContactInfo.email;
@@ -9,22 +26,6 @@ function updateContactInfo(user, newUserContactInfo) {
     user.address = newUserContactInfo.address;
     user.city = newUserContactInfo.city;
     return userController.saveOrUpdate(user);
-}
-
-function changeContactInfo(email, userInfo) {
-    return userController.findByEmail(email)
-        .then((user) => {
-            if (userInfo.email !== email) {
-                return Promise.reject('Возможность изменить email отсуствует.');
-                // return userController.findByEmail(userInfo.email)
-                //     .then(function foundUserWithOtherEmail(otherUser) {
-                //         return Promise.reject('Пользователь с таким email уже существует.');
-                //     }, function notFoundUserWithOtherEmail() {
-                //         return updateContactInfo(user, userInfo);
-                //     });
-            }
-            return updateContactInfo(user, userInfo);
-        });
 }
 
 function changeNotifications(email, notifications) {
@@ -53,37 +54,51 @@ function addNewCar(email, newCar) {
 }
 
 function getOrders(filter, email, user) {
-    // let orders;
-    // return Order.find({
-    //         'client.user': user
-    //     }).exec()
-    //     .then(function setOrdersResult(results) {
-    //         orders = results;
-    //     })
-    //     .then(function fetchUnseenOrderMessages() {
-    //         return OrderShopDialog
-    //             .find({
-    //                 'messages.seen': false,
-    //                 'messages.author'
-    //             })
-    //             .where('messages')
-    //             .exec();
-    //     })
-    //     .then(function setOrderDialogsResult(results) {
-    //         return orders;
-    //     })
-
-    return Order.find({ 'client.user': user })
+    return Order.find({
+        'client.user': user,
+    })
         .populate({
             path: 'dialogs',
-            select: 'messages',
-            // match: {
-
-            // }
+            select: 'lastMessage',
+            populate: {
+                path: 'lastMessage',
+            },
         })
         .exec()
         .then(results => results)
         .catch(err => err);
+}
+
+function getOrderDialogs(orderId) {
+    return OrderShopDialog.find({ order: orderId })
+        .populate({
+            path: 'lastMessage messages shop',
+            populate: {
+                path: 'author',
+                select: 'name',
+            },
+        })
+        .exec()
+        .then(results => results)
+        .catch(err => err);
+}
+
+function getOrderDialogById(id) {
+    return OrderShopDialog.findById(id)
+        .populate({
+            path: 'lastMessage messages shop',
+            populate: {
+                path: 'author',
+                select: 'name',
+            },
+        })
+        .exec()
+        .then(result => result)
+        .catch(err => err);
+}
+
+function submitClientOrder(orderInfo) {
+    return orderService.submitClientOrder(orderInfo);
 }
 
 module.exports = {
@@ -92,4 +107,7 @@ module.exports = {
     changeCars,
     addNewCar,
     getOrders,
+    getOrderDialogs,
+    getOrderDialogById,
+    submitClientOrder,
 };

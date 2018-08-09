@@ -1,0 +1,33 @@
+.dialog-list {
+    list-style-type: none;
+
+    .dialog-list-item {
+        display: flex;
+
+        .dialog-unseen-count {
+            display: flex;
+            width: 50px;
+            background-color: #ff6600;
+
+            span {
+                display: inline-block;
+                margin: auto;
+                color: #fff;
+                font-weight: bold;
+                font-size: 20px;
+            } 
+        }
+    
+        .dialog-actions {
+            width: 100px;
+            background-color: green;
+        }
+    }
+    .dialog-list-item:hover {
+        background-color: #f6f6f6;
+    }
+
+    .dialog-list-item.selected {
+        background-color: #e6e6e6;
+    }
+}

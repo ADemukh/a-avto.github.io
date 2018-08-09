@@ -1,23 +1,28 @@
-let MessageSchema,
-    OrderShopDialogSchema,
-    moment,
-    mongoose;
+const mongoose = require('mongoose');
+const moment = require('../../moment');
 
-mongoose = require('mongoose');
-MessageSchema = require('./message');
-moment = require('../../moment');
-
-OrderShopDialogSchema = new mongoose.Schema({
+const OrderShopDialogSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     order: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
     shop: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    messages: [MessageSchema],
+    messages: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message',
+    }],
+    lastMessage: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message',
+    },
     created: {
         type: String,
         default: moment().format(moment.DATE_TIME_FORMAT),

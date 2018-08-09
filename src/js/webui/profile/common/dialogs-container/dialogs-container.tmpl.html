@@ -1,0 +1,22 @@
+<div ng-if="$ctrl.loading" class="loader-wrapper">
+    <div class="loader">Loading...</div>
+</div>
+<div ng-if="!$ctrl.loading" class="height-full">
+    <q-no-data-found ng-if="!$ctrl.dialogs" />
+
+    <div class="dialog-container-view height-full">
+        <q-dialogs
+            class="flex"
+            user="::$ctrl.user"
+            dialogs="$ctrl.dialogs"
+            selected-dialog="$ctrl.selectedDialog"
+            select-dialog="::$ctrl.selectDialog(dialog)">
+        </q-dialogs>
+        <q-chat-view
+            class="flex"
+            user="::$ctrl.user"
+            selected-dialog="$ctrl.selectedDialog"
+            update-selected-dialog="::$ctrl.updateSelectedDialog()">
+        </q-chat-view>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="chat-view height-full">
+    <div class="chat-view-header">
+        <h2>{{$ctrl.user.role === 'shop' ? $ctrl.selectedDialog.user.name : $ctrl.selectedDialog.shop.name}}</h2>        
+    </div>
+    <ul class="message-list flex">
+        <li
+            ng-repeat="msg in $ctrl.selectedDialog.messages"
+            class="message"
+            ng-class="{ 'unseen' : msg.seen === false && $ctrl.user._id !== msg.author._id }">
+                {{msg.author.name}}: {{msg.content}}
+        </li>
+    </ul>
+    <div class="chat-input-area">
+        <input class="message-input flex" type="text" ng-model="$ctrl.userMsg">
+        <button class="message-send" ng-click="$ctrl.sendUserMsg()">send</button>
+    </div>
+</div>
